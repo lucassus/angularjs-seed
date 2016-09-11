@@ -10,7 +10,7 @@ export default function($q) {
   return {
 
     all() {
-      return contacts;
+      return $q.resolve(contacts);
     },
 
     find(id) {

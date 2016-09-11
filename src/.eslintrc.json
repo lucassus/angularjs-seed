@@ -21,6 +21,7 @@
     "inject": true
   },
   "rules": {
+    "angular/no-service-method": "off",
     "no-duplicate-imports": "error",
     "no-useless-rename": "error",
     "sort-imports": "error"

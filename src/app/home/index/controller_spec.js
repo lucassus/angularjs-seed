@@ -1,5 +1,5 @@
-import module from '../module';
 import { expect } from 'chai';
+import module from '../module';
 import sinon from 'sinon';
 
 describe(`module: ${module.name}`, () => {
