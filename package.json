@@ -6,7 +6,7 @@
   "scripts": {
     "heroku-postbuild": "webpack",
     "start": "node server.js",
-    "lint": "eslint webpack.config.js karma.conf.js src",
+    "lint": "eslint ./*.js ./src",
     "test": "karma start --single-run --browsers=PhantomJS",
     "tdd": "karma start --browsers=PhantomJS",
     "server": "concurrently 'webpack --watch' 'nodemon server.js'"

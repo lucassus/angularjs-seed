@@ -11,6 +11,7 @@
   },
   "rules": {
     "indent": ["error", 2],
+    "no-console": "off",
     "prefer-arrow-callback": "error"
   }
 }
