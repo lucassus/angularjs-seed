@@ -35,3 +35,15 @@ app.get('/api/contacts/:id', (req, res) => {
     res.sendStatus(404);
   }
 });
+
+app.delete('/api/contacts/:id', (req, res) => {
+  const { id } = req.params;
+  const index = _.findIndex(contacts, { id });
+
+  if (index > -1) {
+    contacts.splice(index, 1);
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(404);
+  }
+});
