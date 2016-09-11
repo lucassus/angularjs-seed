@@ -1,6 +1,25 @@
-<h3>Contact</h3>
+<h3>
+  Contact
+  <span ng-bind="ctrl.contact.firstName"></span>
+  <span ng-bind="ctrl.contact.lastName"></span>
+</h3>
 
-<pre ng-bind="ctrl.contact | json"></pre>
+<dl class="dl-horizontal">
+  <dt>#</dt>
+  <dd ng-bind="ctrl.contact.id"></dd>
+
+  <dt>First name</dt>
+  <dd ng-bind="ctrl.contact.firstName"></dd>
+
+  <dt>Last name</dt>
+  <dd ng-bind="ctrl.contact.lastName"></dd>
+
+  <dt>Email</dt>
+  <dd ng-bind="ctrl.contact.email"></dd>
+
+  <dt>Phone</dt>
+  <dd ng-bind="ctrl.contact.phone"></dd>
+</dl>
 
 <button class="btn btn-default" ui-sref="contacts.edit({ id: ctrl.contact.id })">
   <span class="glyphicon glyphicon-edit"></span>

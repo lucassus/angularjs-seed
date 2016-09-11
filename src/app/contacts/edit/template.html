@@ -1,4 +1,8 @@
-<h3>Edit contact</h3>
+<h3>
+  Edit contact
+  <span ng-bind="ctrl.contact.firstName"></span>
+  <span ng-bind="ctrl.contact.lastName"></span>
+</h3>
 
 <form name="contactForm" ng-submit="ctrl.update()">
   <div class="form-group">
@@ -18,5 +22,10 @@
   <button class="btn btn-success">
     <span class="glyphicon glyphicon-floppy-disk"></span>
     Update
+  </button>
+
+  <button class="btn btn-default">
+    <span class="glyphicon glyphicon-repeat"></span>
+    Cancel
   </button>
 </form>
