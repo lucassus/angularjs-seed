@@ -34,7 +34,9 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
     "mocha": "^3.0.2",
+    "node-sass": "^3.9.3",
     "null-loader": "^0.1.1",
+    "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2"
@@ -42,6 +44,6 @@
   "dependencies": {
     "angular": "^1.5.8",
     "babel-polyfill": "^6.13.0",
-    "bootstrap": "^3.3.7"
+    "bootstrap-sass": "^3.3.7"
   }
 }

@@ -16,7 +16,7 @@ npm run server
 ## Features
 
 * AngularJS 1.5.x with ES2015 flavour
-* Twitter Bootstrap
+* Twitter Bootstrap with Sass
 * Webpack
 * ESLint
 * Karma with test coverage

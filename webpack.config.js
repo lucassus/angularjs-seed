@@ -6,7 +6,7 @@ module.exports = {
   entry: {
     vendor: [
       'angular',
-      'bootstrap'
+      'bootstrap-sass'
     ],
     app: './src/app.js'
   },
@@ -27,8 +27,8 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel-loader'
     }, {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader'
+      test: /\.scss$/,
+      loaders: ['style', 'css', 'sass']
     }, {
       test: /\.png$/,
       loader: 'url-loader?limit=100000'

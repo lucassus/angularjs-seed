@@ -1,8 +1,8 @@
 import 'babel-polyfill';
 import angular from 'angular';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import './style.css';
+import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+import './style.scss';
 
 import AppController from './app/app_controller';
 

@@ -46,7 +46,7 @@ module.exports = function(config) {
             ]
           }
         }, {
-          test: /\.css$/,
+          test: /\.scss/,
           loader: 'null-loader'
         }]
       }
