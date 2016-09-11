@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "angular"
+  ],
+  "plugins": [
+    "angular",
+    "promise"
+  ],
+  "env": {
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prefer-arrow-callback": "warn"
+  }
+}
