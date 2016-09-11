@@ -9,6 +9,21 @@
 </head>
 
 <body ng-app="seed">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#/">Angular seed</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#/">Home</a></li>
+          <li><a href="#/about">About</a></li>
+          <li><a href="#/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
     <div class="page-header" ng-controller="AppController as ctrl">
       <h2 ng-bind="ctrl.message"></h2>
