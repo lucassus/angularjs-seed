@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = function(config) {
   config.set({
 
@@ -96,5 +97,5 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
+  });
 };

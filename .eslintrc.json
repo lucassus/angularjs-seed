@@ -17,6 +17,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "indent": [2, 2],
     "prefer-arrow-callback": 1
   }
 }
