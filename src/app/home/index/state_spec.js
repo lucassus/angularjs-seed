@@ -1,10 +1,10 @@
-import appModule from '../../app';
 import { expect } from 'chai';
+import module from '../module';
 
-describe('module: app', () => {
+describe(`module: ${module.name}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(appModule.name);
+    angular.mock.module(module.name);
   });
 
   describe('state: home', () => {

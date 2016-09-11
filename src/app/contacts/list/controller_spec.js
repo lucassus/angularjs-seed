@@ -1,10 +1,10 @@
-import appModule from '../../app';
 import { expect } from 'chai';
+import module from '../module';
 
-describe('module: app', () => {
+describe(`module: ${module.name}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(appModule.name);
+    angular.mock.module(module.name);
   });
 
   describe('controller: contacts ', () => {
@@ -12,7 +12,7 @@ describe('module: app', () => {
     let ctrl;
 
     beforeEach(inject(($controller, $state) => {
-      const Controller = $state.get('contacts').controller;
+      const Controller = $state.get('contacts.list').controller;
 
       ctrl = $controller(Controller, {
         contacts: [

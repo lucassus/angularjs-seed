@@ -1,4 +1,4 @@
-<h3>Contact page</h3>
+<h3>Contacts list</h3>
 
 <table class="table">
   <thead>
@@ -10,7 +10,7 @@
 
   <tbody>
   <tr ng-repeat="contact in ctrl.contacts">
-    <td ng-bind="contact.id"></td>
+    <td><a ui-sref="contacts.show({ id: contact.id })" ng-bind="contact.id"></a></td>
     <td ng-bind="contact.name"></td>
   </tr>
   </tbody>
