@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-undef
 module.exports = function(config) {
   config.set({
 
@@ -45,7 +44,16 @@ module.exports = function(config) {
               }]
             ]
           }
+        }, {
+          test: /sinon\.js$/,
+          loader: 'imports?define=>false,require=>false'
+        }, {
+          test: /\.scss/,
+          loader: 'null-loader'
         }]
+      },
+      resolve: {
+        alias: { sinon: 'sinon/pkg/sinon.js' }
       }
     },
 
