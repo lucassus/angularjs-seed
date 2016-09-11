@@ -1,8 +1,11 @@
 {
   "name": "angular-webpack-seed",
   "version": "0.0.1",
-  "description": "Angular 1.x webpack seed",
-  "main": "index.js",
+  "description": "Angular 1.5.x webpack seed",
+  "main": "server.js",
+  "engines": {
+    "node": "6.2.2"
+  },
   "scripts": {
     "heroku-postbuild": "webpack",
     "start": "node server.js",
