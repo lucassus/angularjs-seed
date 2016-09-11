@@ -5,10 +5,12 @@
   ],
   "plugins": [
     "angular",
+    "mocha",
     "promise"
   ],
   "env": {
-    "browser": true
+    "browser": true,
+    "mocha": true
   },
   "parserOptions": {
     "ecmaVersion": 6,
