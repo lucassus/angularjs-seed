@@ -7,7 +7,7 @@ describe(`module: ${module.name}`, () => {
     angular.mock.module(module.name);
   });
 
-  describe('controller: contacts', () => {
+  describe('controller: contacts.list', () => {
 
     let ctrl;
 

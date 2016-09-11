@@ -12,5 +12,5 @@ export default {
     }
   },
   template,
-  url: '/show/{id:int}'
+  url: '/{id:int}'
 }
