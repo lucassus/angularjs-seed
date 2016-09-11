@@ -6,11 +6,12 @@ export default {
 
   controller,
   controllerAs: 'ctrl',
+
   resolve: {
     contacts: function(contactsRepository) {
       return contactsRepository.all();
     }
   },
-  template,
-  url: ''
+
+  template
 }

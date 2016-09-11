@@ -6,6 +6,7 @@ export default function($stateProvider) {
     .state('home', {
       controller,
       controllerAs: 'ctrl',
+
       template,
       url: '/'
     });

@@ -6,11 +6,13 @@ export default {
 
   controller,
   controllerAs: 'ctrl',
+
   resolve: {
     contact: function($stateParams, contactsRepository) {
       return contactsRepository.find($stateParams.id);
     }
   },
+
   template,
   url: '/{id:int}'
 }
