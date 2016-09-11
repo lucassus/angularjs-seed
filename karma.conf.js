@@ -45,9 +45,15 @@ module.exports = function(config) {
             ]
           }
         }, {
+          test: /sinon\.js$/,
+          loader: 'imports?define=>false,require=>false'
+        }, {
           test: /\.scss/,
           loader: 'null-loader'
         }]
+      },
+      resolve: {
+        alias: { sinon: 'sinon/pkg/sinon.js' }
       }
     },
 

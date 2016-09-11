@@ -19,5 +19,6 @@ npm run server
 * Twitter Bootstrap with Sass
 * Webpack
 * ESLint
-* Karma with test coverage
+* Karma, mocha and Sinon.js 
+* Istanbul test coverage
 * TravisCI
