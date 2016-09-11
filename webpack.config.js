@@ -1,7 +1,5 @@
-// eslint-disable-next-line no-undef
 const webpack = require('webpack');
 
-// eslint-disable-next-line no-undef
 module.exports = {
   entry: {
     vendor: [
