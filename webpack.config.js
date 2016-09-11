@@ -4,7 +4,8 @@ module.exports = {
   entry: {
     vendor: [
       'angular',
-      'bootstrap-sass'
+      'bootstrap-sass',
+      'jquery'
     ],
     app: './src/app.js'
   },
@@ -16,6 +17,11 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    }),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
   ],
 
