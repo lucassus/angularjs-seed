@@ -4,6 +4,9 @@
   "description": "Angular 1.x webpack seed",
   "main": "index.js",
   "scripts": {
+    "heroku-postbuild": "webpack",
+    "start": "http-server",
+
     "lint": "eslint webpack.config.js karma.conf.js src",
     "test": "karma start --single-run --browsers=PhantomJS",
     "server": "concurrently 'webpack --watch' 'http-server .'"
