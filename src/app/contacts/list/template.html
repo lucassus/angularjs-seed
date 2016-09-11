@@ -1,0 +1,17 @@
+<h3>Contacts list</h3>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr ng-repeat="contact in ctrl.contacts">
+    <td><a ui-sref="contacts.show({ id: contact.id })" ng-bind="contact.id"></a></td>
+    <td ng-bind="contact.name"></td>
+  </tr>
+  </tbody>
+</table>

@@ -45,6 +45,9 @@ module.exports = function(config) {
             ]
           }
         }, {
+          test: /\.html$/,
+          loader: 'html'
+        }, {
           test: /sinon\.js$/,
           loader: 'imports?define=>false,require=>false'
         }, {
@@ -71,7 +74,8 @@ module.exports = function(config) {
       reporters: [
         { type: 'html', subdir: 'report-html' },
         { type: 'lcov', subdir: '.', file: 'lcov.info' },
-        { type: 'text' }
+        { type: 'text', subdir: '.', file: 'report.txt' },
+        { type: 'text-summary' }
       ]
     },
 
