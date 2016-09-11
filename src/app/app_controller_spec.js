@@ -25,9 +25,9 @@ describe('module `app`', () => {
       expect(ctrl.message).to.eq('Hello World!');
     });
 
-    describe('.sayHello', function() {
+    describe('.sayHello', () => {
 
-      it('alerts a message', function() {
+      it('alerts a message', () => {
         ctrl.sayHello();
         expect(ctrl.$window.alert.calledWith('Hello World!')).to.be.true;
       });

@@ -1,0 +1,17 @@
+languages:
+  JavaScript: true
+
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+  eslint:
+    enabled: true
+    config:
+      config: .eslintrc.json
+
+ratings:
+   paths:
+   - "**.js"
