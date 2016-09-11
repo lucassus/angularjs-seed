@@ -3,5 +3,5 @@ import angular from 'angular';
 
 import AppController from './app/app_controller';
 
-angular.module('seed', [])
+export default angular.module('seed', [])
   .controller('AppController', AppController);

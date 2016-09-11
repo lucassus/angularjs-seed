@@ -7,7 +7,8 @@
 ```
 npm install
 npm run lint
-npm run serve
+npm run test
+npm run server
 ```
 
 ## Features
@@ -15,4 +16,5 @@ npm run serve
 * AngularJS 1.5.x with ES2015 flavour
 * webpack
 * eslint
+* karma, test coverage
 * TravisCI
