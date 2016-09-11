@@ -8,11 +8,13 @@ export default {
   controllerAs: 'ctrl',
 
   resolve: {
-    contact: function($stateParams, contactsRepository) {
-      return contactsRepository.find($stateParams.id);
+    contact: function($http, $stateParams) {
+      const { id } = $stateParams;
+      return $http.get(`/api/contacts/${id}`)
+        .then((response) => response.data)
     }
   },
 
   template,
-  url: '/{id:int}'
+  url: '/:id'
 }

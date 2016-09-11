@@ -1,20 +1,10 @@
 import { expect } from 'chai';
 import module from '../module';
-import sinon from 'sinon';
 
 describe(`module: ${module.name}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module.name, ($provide) => {
-      $provide.service('contactsRepository', ($q) => {
-        return {
-          all: sinon.stub().returns($q.resolve([
-            { id: 10, name: 'foo' },
-            { id: 11, name: 'bar' },
-          ]))
-        }
-      })
-    });
+    angular.mock.module(module.name);
   });
 
   describe('state: contacts.list', () => {
@@ -29,14 +19,21 @@ describe(`module: ${module.name}`, () => {
       expect($state.href(state)).to.eq('#/contacts');
     }));
 
-    it('resolves `contacts`', inject(($rootScope, $state, contactsRepository) => {
+    it('resolves `contacts`', inject(($httpBackend, $state) => {
+      // Given
+      $httpBackend
+        .expectGET('/api/contacts')
+        .respond(200, {
+          contacts: [
+            { id: 10, name: 'foo' },
+            { id: 11, name: 'bar' }
+          ]});
+
       // When
       $state.go(state);
-      $rootScope.$digest();
+      $httpBackend.flush();
 
       // Then
-      expect(contactsRepository.all.called).to.be.true;
-
       const { contacts } = $state.$current.locals.globals;
       expect(contacts).to.be.an.array;
       expect(contacts).to.have.length(2);
