@@ -1,10 +1,6 @@
-<h3>
-  Edit contact
-  <span ng-bind="ctrl.contact.firstName"></span>
-  <span ng-bind="ctrl.contact.lastName"></span>
-</h3>
+<h3>Create contact</h3>
 
-<form name="contactForm" ng-submit="ctrl.update()">
+<form name="contactForm" ng-submit="ctrl.create()">
   <div class="form-group">
     <label for="fist-name-field">First name</label>
     <input ng-model="ctrl.contact.firstName"
@@ -21,10 +17,10 @@
 
   <button class="btn btn-success">
     <span class="glyphicon glyphicon-floppy-disk"></span>
-    Update
+    Create
   </button>
 
-  <button class="btn btn-default" ui-sref="contacts.show({ id: ctrl.contact.id })">
+  <button class="btn btn-default" ui-sref="contacts.list">
     <span class="glyphicon glyphicon-repeat"></span>
     Cancel
   </button>

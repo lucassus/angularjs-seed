@@ -28,6 +28,15 @@ app.get('/api/contacts', (req, res) => {
   res.json({ contacts });
 });
 
+app.post('/api/contacts', (req, res) => {
+  const data = req.body;
+
+  const contact = _.extend({}, data, { id: faker.random.uuid() });
+  contacts.push(contact);
+
+  res.json(contact);
+});
+
 app.get('/api/contacts/:id', (req, res) => {
   const { id } = req.params;
   const contact = _.find(contacts, { id });
