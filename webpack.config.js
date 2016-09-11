@@ -1,12 +1,25 @@
 // eslint-disable-next-line no-undef
+const webpack = require('webpack');
+
+// eslint-disable-next-line no-undef
 module.exports = {
-  entry: './src/app.js',
+  entry: {
+    vendor: [
+      'angular',
+      'bootstrap'
+    ],
+    app: './src/app.js'
+  },
 
   output: {
     path: './build',
-    filename: 'app.bundle.js',
+    filename: 'app.js',
     publicPath: 'build/'
   },
+
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
+  ],
 
   module: {
     loaders: [{
