@@ -11,15 +11,15 @@ describe('module: app', () => {
 
     let state;
 
-    beforeEach(angular.mock.inject(($state) => {
+    beforeEach(inject(($state) => {
       state = $state.get('contacts');
     }));
 
-    it('has valid url', angular.mock.inject(($state) => {
+    it('has valid url', inject(($state) => {
       expect($state.href(state)).to.eq('#/contacts');
     }));
 
-    it('resolves `contacts`', angular.mock.inject(($rootScope, $state) => {
+    it('resolves `contacts`', inject(($rootScope, $state) => {
       // When
       $state.go(state);
       $rootScope.$digest();

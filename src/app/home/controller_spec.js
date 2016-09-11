@@ -12,7 +12,7 @@ describe('module: app', () => {
 
     let ctrl;
 
-    beforeEach(angular.mock.inject(($controller, $state) => {
+    beforeEach(inject(($controller, $state) => {
       const Controller = $state.get('home').controller;
 
       ctrl = $controller(Controller, {

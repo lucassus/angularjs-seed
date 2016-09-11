@@ -11,11 +11,11 @@ describe('module: app', () => {
 
     let state;
 
-    beforeEach(angular.mock.inject(($state) => {
+    beforeEach(inject(($state) => {
       state = $state.get('about');
     }));
 
-    it('has valid url', angular.mock.inject(($state) => {
+    it('has valid url', inject(($state) => {
       expect($state.href(state)).to.eq('#/about');
     }));
 
