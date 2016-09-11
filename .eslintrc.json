@@ -15,6 +15,6 @@
     "sourceType": "module"
   },
   "rules": {
-    "prefer-arrow-callback": "warn"
+    "prefer-arrow-callback": 1
   }
 }
