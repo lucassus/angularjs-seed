@@ -10,26 +10,20 @@
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#/">Angular seed</a>
+        <a class="navbar-brand" ui-sref="home">Angular seed</a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#/">Home</a></li>
-          <li><a href="#/about">About</a></li>
-          <li><a href="#/contact">Contact</a></li>
+          <li class="active"><a ui-sref="home">Home</a></li>
+          <li><a ui-sref="about">About</a></li>
+          <li><a ui-sref="contact">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
   <div class="container">
-    <div class="page-header" ng-controller="AppController as ctrl">
-      <h2 ng-bind="ctrl.message"></h2>
-
-      <button type="button" class="btn btn-default" ng-click="ctrl.sayHello()">
-        <span class="glyphicon glyphicon-star"></span> Click me!
-      </button>
-    </div>
+    <div ui-view></div>
   </div>
 
   <footer class="footer">

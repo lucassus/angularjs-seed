@@ -45,6 +45,9 @@ module.exports = function(config) {
             ]
           }
         }, {
+          test: /\.html$/,
+          loader: 'html'
+        }, {
           test: /sinon\.js$/,
           loader: 'imports?define=>false,require=>false'
         }, {

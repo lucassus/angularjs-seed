@@ -25,6 +25,9 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel-loader'
     }, {
+      test: /\.html$/,
+      loader: 'html'
+    }, {
       test: /\.scss$/,
       loaders: ['style', 'css', 'sass']
     }, {
