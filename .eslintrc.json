@@ -5,16 +5,19 @@
   ],
   "plugins": [
     "angular",
+    "mocha",
     "promise"
   ],
   "env": {
-    "browser": true
+    "browser": true,
+    "mocha": true
   },
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
   },
   "rules": {
-    "prefer-arrow-callback": "warn"
+    "indent": [2, 2],
+    "prefer-arrow-callback": 1
   }
 }
