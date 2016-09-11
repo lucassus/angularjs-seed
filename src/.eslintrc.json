@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "../.eslintrc.json",
+    "angular"
+  ],
+  "plugins": [
+    "angular",
+    "mocha",
+    "promise"
+  ],
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": false
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-duplicate-imports": "error",
+    "no-useless-rename": "error",
+    "sort-imports": "error"
+  }
+}

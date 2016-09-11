@@ -1,6 +1,5 @@
-import { expect } from 'chai';
 import appModule from '../app';
-import 'angular-mocks';
+import { expect } from 'chai';
 import sinon from 'sinon';
 
 describe('module `app`', () => {
