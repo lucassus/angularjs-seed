@@ -1,0 +1,22 @@
+<h3>Edit contact</h3>
+
+<form name="contactForm" ng-submit="ctrl.update()">
+  <div class="form-group">
+    <label for="fist-name-field">First name</label>
+    <input ng-model="ctrl.contact.firstName"
+           name="firstName"
+           type="text" class="form-control" id="fist-name-field" />
+  </div>
+
+  <div class="form-group">
+    <label for="last-name-field">Last name</label>
+    <input ng-model="ctrl.contact.lastName"
+           name="lastName"
+           type="text" class="form-control" id="last-name-field" />
+  </div>
+
+  <button class="btn btn-success">
+    <span class="glyphicon glyphicon-floppy-disk"></span>
+    Update
+  </button>
+</form>

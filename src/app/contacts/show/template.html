@@ -2,6 +2,11 @@
 
 <pre ng-bind="ctrl.contact | json"></pre>
 
+<button class="btn btn-default" ui-sref="contacts.edit({ id: ctrl.contact.id })">
+  <span class="glyphicon glyphicon-edit"></span>
+  Edit
+</button>
+
 <button class="btn btn-danger" ng-click="ctrl.delete()">
   <span class="glyphicon glyphicon-trash"></span>
   Delete

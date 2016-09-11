@@ -8,7 +8,7 @@ describe(`module: ${module.name}`, () => {
     angular.mock.module(module.name);
   });
 
-  describe('controller: contacts.show', () => {
+  describe('controller: contacts.edit', () => {
 
     let $httpBackend, $state, ctrl;
 
@@ -16,7 +16,7 @@ describe(`module: ${module.name}`, () => {
       $httpBackend = $injector.get('$httpBackend');
       $state = $injector.get('$state');
 
-      const Controller = $state.get('contacts.show').controller;
+      const Controller = $state.get('contacts.edit').controller;
 
       ctrl = $controller(Controller, {
         contact: { id: 2, name: 'bar' }
@@ -28,14 +28,14 @@ describe(`module: ${module.name}`, () => {
       expect(ctrl.contact).to.have.property('name', 'bar');
     });
 
-    describe('.delete', () => {
+    describe('.update', () => {
 
       it('deletes a contact and redirect to the list page', (done) => {
-        $httpBackend.expectDELETE('/api/contacts/2').respond(200);
+        $httpBackend.expectPUT('/api/contacts/2').respond(200);
         sinon.stub($state, 'go');
 
-        ctrl.delete().then(() => {
-          expect($state.go.calledWith('contacts.list')).to.be.true;
+        ctrl.update().then(() => {
+          expect($state.go.calledWith('contacts.show', { id: 2 })).to.be.true;
           done();
         });
 

@@ -7,12 +7,12 @@ export default class {
     this.contact = contact;
   }
 
-  delete() {
+  update() {
     const { id } = this.contact;
 
-    return this.$http.delete(`/api/contacts/${id}`).then(() => {
-      return this.$state.go('contacts.list');
-    });
+    return this.$http.put(`/api/contacts/${id}`, this.contact).then(() => {
+      return this.$state.go('contacts.show', { id });
+    })
   }
 
 }

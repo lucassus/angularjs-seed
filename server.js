@@ -6,6 +6,9 @@ const app = express();
 
 app.use(express.static(__dirname));
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log('Node app is running on port', port);
@@ -14,8 +17,8 @@ app.listen(port, () => {
 const contacts = _.times(20, () => {
   return {
     id: faker.random.uuid(),
-    fistName: faker.name.firstName(),
-    lastName: faker.name.lastName,
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
     email: faker.internet.email(),
     phone: faker.phone.phoneNumber()
   }
@@ -33,6 +36,20 @@ app.get('/api/contacts/:id', (req, res) => {
     res.json(contact);
   } else {
     res.sendStatus(404);
+  }
+});
+
+app.put('/api/contacts/:id', (req, res) => {
+  const { id } = req.params;
+  const index = _.findIndex(contacts, { id });
+
+  if (index > -1) {
+    const data = req.body;
+    const contact = _.extend(contacts[index], data);
+
+    res.json(contact);
+  } else {
+    res.sendStatus(200);
   }
 });
 
