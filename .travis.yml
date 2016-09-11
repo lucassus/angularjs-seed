@@ -13,4 +13,4 @@ script:
   - "npm run test"
 
 after_success:
-  - "CODECLIMATE_REPO_TOKEN=fc3c4be2b5ec98157352202135496c5b54ed39fe09fbf06f4fbcd78ceb00ac2e ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < artifacts/coverage/lcov.info"
+  - "cat artifacts/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"

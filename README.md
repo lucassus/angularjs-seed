@@ -1,9 +1,7 @@
 # Angular webpack seed
 
 [![Build Status](https://travis-ci.org/lucassus/angular-webpack-seed.svg?branch=master)](https://travis-ci.org/lucassus/angular-webpack-seed)
-[![Test Coverage](https://codeclimate.com/github/lucassus/angular-webpack-seed/badges/coverage.svg)](https://codeclimate.com/github/lucassus/angular-webpack-seed/coverage)
-[![Code Climate](https://codeclimate.com/github/lucassus/angular-webpack-seed/badges/gpa.svg)](https://codeclimate.com/github/lucassus/angular-webpack-seed)
-[![Issue Count](https://codeclimate.com/github/lucassus/angular-webpack-seed/badges/issue_count.svg)](https://codeclimate.com/github/lucassus/angular-webpack-seed)
+[![Coverage Status](https://coveralls.io/repos/github/lucassus/angular-webpack-seed/badge.svg?branch=master)](https://coveralls.io/github/lucassus/angular-webpack-seed?branch=master)
 [![Dependency Status](https://gemnasium.com/lucassus/angular-webpack-seed.svg)](https://gemnasium.com/lucassus/angular-webpack-seed)
 
 
@@ -22,4 +20,4 @@ npm run server
 * ESLint
 * Karma, mocha and Sinon.js 
 * Istanbul test coverage
-* TravisCI, Code Climate
+* TravisCI
