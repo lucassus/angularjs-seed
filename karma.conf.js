@@ -60,9 +60,9 @@ module.exports = function(config) {
     coverageReporter: {
       dir : 'artifacts/coverage',
       reporters: [
-        { type : 'html', subdir: 'report-html' },
-        { type: 'lcovonly', subdir: '.', file: 'report-lcovonly.txt' },
-        { type: 'text' },
+        { type: 'html', subdir: 'report-html' },
+        { type: 'lcov', subdir: '.', file: 'lcov.info' },
+        { type: 'text' }
       ]
     },
 
