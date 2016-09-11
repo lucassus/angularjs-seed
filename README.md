@@ -4,6 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/lucassus/angular-webpack-seed/badge.svg?branch=master)](https://coveralls.io/github/lucassus/angular-webpack-seed?branch=master)
 [![Dependency Status](https://gemnasium.com/lucassus/angular-webpack-seed.svg)](https://gemnasium.com/lucassus/angular-webpack-seed)
 
+https://angular-webpack-seed.herokuapp.com/
 
 ```
 npm install
