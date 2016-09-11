@@ -45,6 +45,9 @@ module.exports = function(config) {
               }]
             ]
           }
+        }, {
+          test: /\.css$/,
+          loader: 'null-loader'
         }]
       }
     },

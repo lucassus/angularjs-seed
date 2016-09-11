@@ -9,9 +9,21 @@
 </head>
 
 <body ng-app="seed">
-  <div ng-controller="AppController as ctrl">
-    <h2 ng-bind="ctrl.message"></h2>
+  <div class="container">
+    <div class="page-header" ng-controller="AppController as ctrl">
+      <h2 ng-bind="ctrl.message"></h2>
+
+      <button type="button" class="btn btn-default" ng-click="ctrl.sayHello()">
+        <span class="glyphicon glyphicon-star"></span> Click me!
+      </button>
+    </div>
   </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted">Angular webpack seed</p>
+    </div>
+  </footer>
 
   <script src="build/app.bundle.js"></script>
 </body>
