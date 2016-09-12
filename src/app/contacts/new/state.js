@@ -6,6 +6,11 @@ export default {
 
   controller,
   controllerAs: 'ctrl',
+  resolve: {
+    contact: function(Contact) {
+      return new Contact();
+    }
+  },
 
   template,
   url: '/new'

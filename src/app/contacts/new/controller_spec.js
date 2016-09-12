@@ -11,44 +11,67 @@ describe(`module: ${module.name}`, () => {
 
   describe('controller: contacts.new', () => {
 
-    let $httpBackend, $state, ctrl;
+    let ctrl;
 
-    beforeEach(inject(($controller, $injector) => {
-      $httpBackend = $injector.get('$httpBackend');
-      $state = $injector.get('$state');
+    beforeEach(inject(($controller, $state, Contact) => {
+      const { controller } = $state.get('contacts.new');
 
-      const Controller = $state.get('contacts.new').controller;
-
-      ctrl = $controller(Controller);
+      ctrl = $controller(controller, {
+        contact: new Contact()
+      });
     }));
 
-    it('has a contact', () => {
-      expect(ctrl.contact).to.be.an.object;
-    });
+    it('has a contact', inject((Contact) => {
+      expect(ctrl.contact).to.be.an.instanceOf(Contact);
+    }));
 
     describe('.create', () => {
 
-      it('deletes a contact and redirect to the list page', (done) => {
-        // Given
-        const data = {
+      let requestHandler;
+
+      beforeEach(inject(($httpBackend, $state) => {
+        angular.extend(ctrl.contact, {
           firstName: 'Lukasz',
           lastName: 'Bandzarewicz'
-        };
-
-        $httpBackend
-          .expectPOST('/api/contacts', data)
-          .respond(200, angular.extend({}, data, { id: 125 }));
-
-        sinon.stub($state, 'go');
-        angular.extend(ctrl.contact, data);
-
-        // When
-        ctrl.create().then(() => {
-          expect($state.go.calledWith('contacts.show', { id: 125 })).to.be.true;
-          done();
         });
 
-        $httpBackend.flush();
+        requestHandler = $httpBackend
+          .expectPOST('/api/contacts', ctrl.contact);
+
+        sinon.spy(ctrl.contact, '$create');
+        sinon.stub($state, 'go');
+
+        ctrl.create();
+      }));
+
+      it('creates a contact', () => {
+        expect(ctrl.contact.$create.called).to.be.true;
+      });
+
+      describe('on success', () => {
+
+        beforeEach(inject(($httpBackend) => {
+          requestHandler.respond(200, { id: 125 });
+          $httpBackend.flush();
+        }));
+
+        it('redirects to the show page', inject(($state) => {
+          expect($state.go.calledWith('contacts.show', { id: 125 })).to.be.true;
+        }));
+
+      });
+
+      describe('on error', () => {
+
+        beforeEach(inject(($httpBackend) => {
+          requestHandler.respond(422);
+          $httpBackend.flush();
+        }));
+
+        it('does not redirect to the show page', inject(($state) => {
+          expect($state.go.calledWith('contacts.show')).to.be.false;
+        }));
+
       });
 
     });

@@ -10,6 +10,7 @@ export default function($stateProvider) {
       url: '/contacts',
       template: '<div ui-view></div>'
     })
+
     .state(create)
     .state(edit)
     .state(list)

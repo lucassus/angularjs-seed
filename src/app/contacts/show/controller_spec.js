@@ -10,16 +10,13 @@ describe(`module: ${module.name}`, () => {
 
   describe('controller: contacts.show', () => {
 
-    let $httpBackend, $state, ctrl;
+    let ctrl;
 
-    beforeEach(inject(($controller, $injector) => {
-      $httpBackend = $injector.get('$httpBackend');
-      $state = $injector.get('$state');
+    beforeEach(inject(($controller, $state, Contact) => {
+      const { controller } = $state.get('contacts.show');
 
-      const Controller = $state.get('contacts.show').controller;
-
-      ctrl = $controller(Controller, {
-        contact: { id: 2, name: 'bar' }
+      ctrl = $controller(controller, {
+        contact: new Contact({ id: 2, name: 'bar' })
       });
     }));
 
@@ -30,16 +27,45 @@ describe(`module: ${module.name}`, () => {
 
     describe('.delete', () => {
 
-      it('deletes a contact and redirect to the list page', (done) => {
-        $httpBackend.expectDELETE('/api/contacts/2').respond(200);
+      let requestHandler;
+
+      beforeEach(inject(($httpBackend, $state) => {
+        requestHandler = $httpBackend.expectDELETE('/api/contacts/2');
+
+        sinon.spy(ctrl.contact, '$delete');
         sinon.stub($state, 'go');
 
-        ctrl.delete().then(() => {
-          expect($state.go.calledWith('contacts.list')).to.be.true;
-          done();
-        });
+        ctrl.delete();
+      }));
 
-        $httpBackend.flush();
+      it('deletes a contact', () => {
+        expect(ctrl.contact.$delete.called).to.be.true;
+      });
+
+      describe('on success', () => {
+
+        beforeEach(inject(($httpBackend) => {
+          requestHandler.respond(200);
+          $httpBackend.flush();
+        }));
+
+        it('redirect to the list page', inject(($state) => {
+          expect($state.go.calledWith('contacts.list')).to.be.true;
+        }));
+
+      });
+
+      describe('on error', () => {
+
+        beforeEach(inject(($httpBackend) => {
+          requestHandler.respond(422);
+          $httpBackend.flush();
+        }));
+
+        it('does not redirect', inject(($state) => {
+          expect($state.go.calledWith('contacts.list')).to.be.false;
+        }));
+
       });
 
     });

@@ -1,19 +1,14 @@
 export default class {
 
-  constructor($http, $state) {
-    this.$http = $http;
+  constructor($state, contact) {
     this.$state = $state;
-
-    this.contact = {};
+    this.contact = contact;
   }
 
   create() {
-    return this.$http.post(`/api/contacts`, this.contact).then((response) => {
-      const contact = response.data;
-      const { id } = contact;
-
-      return this.$state.go('contacts.show', { id });
-    })
+    this.contact.$create().then(({ id }) => {
+      this.$state.go('contacts.show', { id });
+    });
   }
 
 }

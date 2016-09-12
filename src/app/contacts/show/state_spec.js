@@ -19,7 +19,7 @@ describe(`module: ${module.name}`, () => {
       expect($state.href(state, { id: 123 })).to.eq('#/contacts/123');
     }));
 
-    it('resolves `contacts`', inject(($httpBackend, $state) => {
+    it('resolves `contact`', inject(($httpBackend, $state) => {
       // Given
       $httpBackend
         .expectGET('/api/contacts/3')

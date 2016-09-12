@@ -8,10 +8,9 @@ export default {
   controllerAs: 'ctrl',
 
   resolve: {
-    contact: function($http, $stateParams) {
+    contact: function($stateParams, Contact) {
       const { id } = $stateParams;
-      return $http.get(`/api/contacts/${id}`)
-        .then((response) => response.data)
+      return Contact.get({ id }).$promise;
     }
   },
 
