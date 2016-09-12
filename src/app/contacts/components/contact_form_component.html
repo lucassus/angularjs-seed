@@ -50,7 +50,9 @@
           type="submit"
           ng-disabled="contactForm.$invalid">
     <span class="glyphicon glyphicon-floppy-disk"></span>
-    Save
+
+    <span ng-show="!$ctrl.contact.id">Create</span>
+    <span ng-show="$ctrl.contact.id">Update</span>
   </button>
 
   <button class="btn btn-default" ui-sref="contacts.list">
