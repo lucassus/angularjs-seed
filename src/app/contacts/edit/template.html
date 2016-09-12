@@ -1,22 +1,35 @@
 <h3>
   Edit contact
-  <span ng-bind="ctrl.contact.firstName"></span>
-  <span ng-bind="ctrl.contact.lastName"></span>
+  <span ng-bind="::ctrl.contact.firstName"></span>
+  <span ng-bind="::ctrl.contact.lastName"></span>
 </h3>
 
-<form name="contactForm" ng-submit="ctrl.update()">
-  <div class="form-group">
-    <label for="fist-name-field">First name</label>
+<form name="contactForm" ng-submit="ctrl.update()" novalidate>
+  <div class="form-group"
+       ng-class="{ 'has-error': contactForm.firstName.$invalid }">
+    <label class="control-label" for="fist-name-field">First name</label>
     <input ng-model="ctrl.contact.firstName"
+           required
            name="firstName"
            type="text" class="form-control" id="fist-name-field" />
+
+    <span ng-messages="contactForm.firstName.$error" class="help-block">
+      <div ng-message="required">Please enter first name.</div>
+    </span>
   </div>
 
-  <div class="form-group">
-    <label for="last-name-field">Last name</label>
+
+  <div class="form-group"
+       ng-class="{ 'has-error': contactForm.lastName.$invalid }">
+    <label class="control-label" for="last-name-field">Last name</label>
     <input ng-model="ctrl.contact.lastName"
+           required
            name="lastName"
            type="text" class="form-control" id="last-name-field" />
+
+    <span ng-messages="contactForm.lastName.$error" class="help-block">
+      <div ng-message="required">Please enter last name.</div>
+    </span>
   </div>
 
   <button class="btn btn-success">
