@@ -48,6 +48,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
     "mocha": "^3.0.2",
+    "ng-annotate-loader": "^0.1.1",
     "node-sass": "^3.9.3",
     "nodemon": "^1.10.2",
     "null-loader": "^0.1.1",
@@ -56,6 +57,7 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
+    "webpack-combine-loaders": "^2.0.0",
     "webpack-dev-server": "^1.15.1"
   },
   "dependencies": {
