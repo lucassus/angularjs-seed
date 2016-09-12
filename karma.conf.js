@@ -1,3 +1,6 @@
+const combineLoaders = require('webpack-combine-loaders');
+const path = require('path');
+
 module.exports = function(config) {
   config.set({
 
@@ -32,18 +35,14 @@ module.exports = function(config) {
         loaders: [{
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
-          query: {
-            presets: ['es2015'],
-            plugins: [
-              ['istanbul', {
-                exclude: [
-                  'src/specs.js',
-                  'src/**/*_spec.js'
-                ]
-              }]
-            ]
-          }
+          loader: combineLoaders([{
+            loader: 'ng-annotate'
+          }, {
+            loader: 'babel-loader',
+            query: {
+              extends: path.join(__dirname, '.babelrc.karma')
+            }
+          }])
         }, {
           test: /\.html$/,
           loader: 'html'

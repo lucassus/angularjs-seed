@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -41,7 +42,14 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      loader: combineLoaders([{
+        loader: 'ng-annotate'
+      }, {
+        loader: 'babel-loader',
+        query: {
+          extends: path.join(__dirname, '.babelrc')
+        }
+      }])
     }, {
       test: /\.html$/,
       loader: 'html'
