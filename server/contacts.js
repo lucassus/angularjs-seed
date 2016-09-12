@@ -8,7 +8,7 @@ function nextId() {
   return ++lastId;
 }
 
-let contacts = [];
+const contacts = [];
 
 function seed(n = 20) {
   faker.seed(667);

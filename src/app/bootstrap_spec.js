@@ -29,7 +29,7 @@ describe(`module: ${module.name}`, () => {
           expect(options).to.have.property('strictDi', true);
 
           done();
-        })
+        });
       });
     });
 
