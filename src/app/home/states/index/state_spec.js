@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import module from '../module';
+import module from '../../module';
 
 describe(`module: ${module.name}`, () => {
 
@@ -7,16 +7,16 @@ describe(`module: ${module.name}`, () => {
     angular.mock.module(module.name);
   });
 
-  describe('state: about', () => {
+  describe('state: home', () => {
 
     let state;
 
     beforeEach(inject(($state) => {
-      state = $state.get('about');
+      state = $state.get('home');
     }));
 
     it('has valid url', inject(($state) => {
-      expect($state.href(state)).to.eq('#/about');
+      expect($state.href(state)).to.eq('#/');
     }));
 
   });

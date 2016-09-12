@@ -1,8 +1,8 @@
 import angular from 'angular';
 import angularMessages from 'angular-messages';
 import angularResource from 'angular-resource';
-import contactFormComponent from './contact_form_component';
-import contactResource from './contact_resource';
+import contactFormComponent from './components/contact_form_component';
+import contactResource from './services/contact_resource';
 import states from './states';
 import uiRouter from 'angular-ui-router';
 

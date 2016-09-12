@@ -1,9 +1,6 @@
 import angular from 'angular';
 import template from './contact_form_component.html';
 
-// TODO better app organization
-// TODO figure out how to organize components
-
 class Controller {
 
   $onInit() {
