@@ -26,7 +26,7 @@ describe(`module: ${module.name}`, () => {
 
           const [, modules, options] = angular.bootstrap.lastCall.args;
           expect(modules[0]).to.eq('app');
-          expect(options).to.have.property('strictDi', false);
+          expect(options).to.have.property('strictDi', true);
 
           done();
         })

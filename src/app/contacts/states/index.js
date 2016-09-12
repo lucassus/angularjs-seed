@@ -4,6 +4,8 @@ import list from './list/state';
 import show from './show/state';
 
 export default function($stateProvider) {
+  'ngInject';
+
   $stateProvider
     .state('contacts', {
       abstract: true,

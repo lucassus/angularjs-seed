@@ -2,6 +2,8 @@ import controller from './controller';
 import template from './template.html';
 
 function contact(Contact) {
+  'ngInject';
+
   return new Contact();
 }
 

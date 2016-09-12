@@ -1,6 +1,8 @@
 export default class {
 
   constructor($window) {
+    'ngInject';
+
     this.$window = $window;
     this.message = 'Hello World!';
   }

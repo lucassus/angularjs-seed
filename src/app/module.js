@@ -6,11 +6,15 @@ import template404 from './404.html';
 import uiRouter from 'angular-ui-router';
 
 function router($urlMatcherFactoryProvider, $urlRouterProvider) {
+  'ngInject';
+
   $urlMatcherFactoryProvider.strictMode(true);
   $urlRouterProvider.when('', '/');
 }
 
 function notFoundState($stateProvider, $urlRouterProvider) {
+  'ngInject';
+
   $stateProvider
     .state('404', {
       template: template404
@@ -31,6 +35,8 @@ export default angular.module('app', [
   .config(router)
   .config(notFoundState)
   .run(($log, $rootScope, $state) => {
+    'ngInject';
+
     $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
       $log.error('$stateChangeError', error);
       $state.go('404');

@@ -2,6 +2,8 @@ import controller from './controller';
 import template from './template.html';
 
 function contacts(Contact) {
+  'ngInject';
+
   return Contact.query().$promise;
 }
 
