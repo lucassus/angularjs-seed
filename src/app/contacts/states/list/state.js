@@ -1,6 +1,10 @@
 import controller from './controller';
 import template from './template.html';
 
+function contacts(Contact) {
+  return Contact.query().$promise;
+}
+
 export default {
   name: 'contacts.list',
 
@@ -8,9 +12,7 @@ export default {
   controllerAs: 'ctrl',
 
   resolve: {
-    contacts: function(Contact) {
-      return Contact.query().$promise;
-    }
+    contacts
   },
 
   template,
