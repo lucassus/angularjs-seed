@@ -1,3 +1,4 @@
+import { resolveContact as contact } from '../../services/contact_resource';
 import controller from './controller';
 import template from './template.html';
 
@@ -8,10 +9,7 @@ export default {
   controllerAs: 'ctrl',
 
   resolve: {
-    contact: function($stateParams, Contact) {
-      const { id } = $stateParams;
-      return Contact.get({ id }).$promise;
-    }
+    contact
   },
 
   template,

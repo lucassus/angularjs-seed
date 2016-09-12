@@ -12,3 +12,8 @@ export default function($resource) {
     delete: { method: 'DELETE' }
   });
 }
+
+export function resolveContact($stateParams, Contact) {
+  const { id } = $stateParams;
+  return Contact.get({ id }).$promise;
+}
