@@ -6,8 +6,13 @@ module.exports = {
   entry: {
     vendor: [
       'angular',
+      'angular-messages',
+      'angular-resource',
+      'angular-ui-router',
+      'babel-polyfill',
       'bootstrap-sass',
-      'jquery'
+      'jquery',
+      'lodash'
     ],
     app: './src/app.js'
   },
