@@ -1,0 +1,27 @@
+<h3>Contacts list</h3>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Email</th>
+    <th>Phone</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr ng-repeat="contact in ctrl.contacts">
+    <td><a ui-sref="contacts.show({ id: contact.id })" ng-bind="contact.id"></a></td>
+    <td ng-bind="contact.firstName"></td>
+    <td ng-bind="contact.lastName"></td>
+    <td ng-bind="contact.email"></td>
+    <td ng-bind="contact.phone"></td>
+  </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-default" ui-sref="contacts.new">
+  Add new contact
+</button>

@@ -1,0 +1,8 @@
+<h3>
+  Edit contact
+  <span ng-bind="ctrl.contact.firstName"></span>
+  <span ng-bind="ctrl.contact.lastName"></span>
+</h3>
+
+<contact-form contact="ctrl.contact"
+              on-submit="ctrl.update(contact)"></contact-form>
