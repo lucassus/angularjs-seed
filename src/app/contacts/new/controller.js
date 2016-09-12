@@ -5,8 +5,11 @@ export default class {
     this.contact = contact;
   }
 
-  create() {
-    this.contact.$create().then(({ id }) => {
+  create(contact) {
+    contact.$create().then((createdContact) => {
+      angular.extend(this.contact, createdContact);
+
+      const { id } = this.contact;
       this.$state.go('contacts.show', { id });
     });
   }

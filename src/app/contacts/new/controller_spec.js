@@ -30,23 +30,21 @@ describe(`module: ${module.name}`, () => {
       let requestHandler;
 
       beforeEach(inject(($httpBackend, $state) => {
-        angular.extend(ctrl.contact, {
+        const contactCopy = angular.copy(ctrl.contact);
+
+        angular.extend(contactCopy, {
           firstName: 'Lukasz',
           lastName: 'Bandzarewicz'
         });
 
         requestHandler = $httpBackend
-          .expectPOST('/api/contacts', ctrl.contact);
+          .expectPOST('/api/contacts', contactCopy);
 
         sinon.spy(ctrl.contact, '$create');
         sinon.stub($state, 'go');
 
-        ctrl.create();
+        ctrl.create(contactCopy);
       }));
-
-      it('creates a contact', () => {
-        expect(ctrl.contact.$create.called).to.be.true;
-      });
 
       describe('on success', () => {
 
@@ -54,6 +52,10 @@ describe(`module: ${module.name}`, () => {
           requestHandler.respond(200, { id: 125 });
           $httpBackend.flush();
         }));
+
+        it('creates a contact', () => {
+          expect(ctrl.contact).to.have.property('id', 125);
+        });
 
         it('redirects to the show page', inject(($state) => {
           expect($state.go.calledWith('contacts.show', { id: 125 })).to.be.true;

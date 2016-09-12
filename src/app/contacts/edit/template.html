@@ -1,64 +1,8 @@
 <h3>
   Edit contact
-  <span ng-bind="::ctrl.contact.firstName"></span>
-  <span ng-bind="::ctrl.contact.lastName"></span>
+  <span ng-bind="ctrl.contact.firstName"></span>
+  <span ng-bind="ctrl.contact.lastName"></span>
 </h3>
 
-<form name="contactForm" ng-submit="ctrl.update()" novalidate>
-  <div class="form-group"
-       ng-class="{ 'has-error': contactForm.firstName.$invalid }">
-    <label class="control-label" for="fist-name-field">First name</label>
-    <input ng-model="ctrl.contact.firstName"
-           name="firstName"
-           required
-           type="text" class="form-control" id="fist-name-field" />
-
-    <span ng-messages="contactForm.firstName.$error" class="help-block">
-      <div ng-message="required">Please enter first name.</div>
-    </span>
-  </div>
-
-  <div class="form-group"
-       ng-class="{ 'has-error': contactForm.lastName.$invalid }">
-    <label class="control-label" for="last-name-field">Last name</label>
-    <input ng-model="ctrl.contact.lastName"
-           name="lastName"
-           required
-           type="text" class="form-control" id="last-name-field" />
-
-    <span ng-messages="contactForm.lastName.$error" class="help-block">
-      <div ng-message="required">Please enter last name.</div>
-    </span>
-  </div>
-
-  <div class="form-group"
-       ng-class="{ 'has-error': contactForm.email.$invalid }">
-    <label for="email-field" class="control-label">Email</label>
-    <input ng-model="ctrl.contact.email"
-           name="email"
-           type="email" class="form-control" id="email-field" />
-
-    <span ng-messages="contactForm.email.$error" class="help-block">
-      <div ng-message="email">Invalid email address.</div>
-    </span>
-  </div>
-
-  <div class="form-group">
-    <label for="phone-field" class="control-label">Phone</label>
-    <input ng-model="ctrl.contact.phone"
-           name="phone"
-           type="text" class="form-control" id="phone-field" />
-  </div>
-
-  <button class="btn btn-success"
-          type="submit"
-          ng-disabled="contactForm.$invalid">
-    <span class="glyphicon glyphicon-floppy-disk"></span>
-    Update
-  </button>
-
-  <button class="btn btn-default" ui-sref="contacts.show({ id: ctrl.contact.id })">
-    <span class="glyphicon glyphicon-repeat"></span>
-    Cancel
-  </button>
-</form>
+<contact-form contact="ctrl.contact"
+              on-submit="ctrl.update(contact)"></contact-form>

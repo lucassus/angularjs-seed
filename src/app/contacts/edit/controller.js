@@ -5,8 +5,11 @@ export default class {
     this.contact = contact;
   }
 
-  update() {
-    this.contact.$update().then(({ id }) => {
+  update(contact) {
+    contact.$update().then((updatedContact) => {
+      angular.extend(this.contact, updatedContact);
+
+      const { id } = this.contact;
       this.$state.go('contacts.show', { id });
     });
   }
