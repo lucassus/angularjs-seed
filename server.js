@@ -1,15 +1,16 @@
 const express = require('express');
 const faker = require('faker');
+const path = require('path');
 const _ = require('lodash');
 
 const app = express();
 
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 9090;
 app.listen(port, () => {
   console.log('Node app is running on port', port);
 });

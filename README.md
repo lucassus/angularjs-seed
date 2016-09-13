@@ -16,6 +16,8 @@ gulp tdd
 npm run server
 ```
 
+Dev server url: http://localhost:9090
+
 ## Features
 
 * AngularJS 1.5.x with ES2015 flavour

@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -11,12 +12,17 @@ module.exports = {
   },
 
   output: {
-    path: './build',
+    path: './build/assets',
     filename: 'app.js',
-    publicPath: 'build/'
+    publicPath: 'assets/'
   },
 
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      filename: '../index.html',
+      inject: false
+    }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
