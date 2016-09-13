@@ -18,6 +18,9 @@ const db = {
   contacts: require('./server/contacts')
 };
 
+// Initially seed the fake db
+db.contacts.seed();
+
 function parseId(req) {
   return parseInt(req.param('id'));
 }

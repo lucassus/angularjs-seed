@@ -16,6 +16,7 @@ gulp.task('lint', () => {
 
   return gulp.src([
     '*.js',
+    'server/**/*.js',
     'src/**/*.js'
   ])
     .pipe(eslint())

@@ -2,12 +2,11 @@
   <h3>Contacts list</h3>
 </div>
 
-<table class="table">
+<table class="table table-striped table-hover">
   <thead>
   <tr>
     <th>#</th>
-    <th>First name</th>
-    <th>Last name</th>
+    <th>Full Name</th>
     <th>Email</th>
     <th>Phone</th>
   </tr>
@@ -16,8 +15,10 @@
   <tbody>
   <tr ng-repeat="contact in ctrl.contacts">
     <td><a ui-sref="contacts.show({ id: contact.id })" ng-bind="contact.id"></a></td>
-    <td ng-bind="contact.firstName"></td>
-    <td ng-bind="contact.lastName"></td>
+    <td>
+      <span ng-bind="contact.firstName"></span>
+      <span ng-bind="contact.lastName"></span>
+    </td>
     <td ng-bind="contact.email"></td>
     <td ng-bind="contact.phone"></td>
   </tr>

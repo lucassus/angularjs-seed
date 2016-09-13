@@ -8,21 +8,24 @@ function nextId() {
   return ++lastId;
 }
 
-function seed() {
+let contacts = [];
+
+function seed(n = 20) {
   faker.seed(667);
 
-  return _.times(20, () => {
-    return {
+  // Delete all contacts
+  contacts.splice(0, contacts.length);
+
+  _.times(n, () => {
+    contacts.push({
       id: nextId(),
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
       phone: faker.phone.phoneNumber()
-    };
+    });
   });
 }
-
-const contacts = seed();
 
 function find() {
   return Promise.resolve(contacts);
@@ -60,4 +63,4 @@ function deleteOne(query) {
   });
 }
 
-module.exports = { find, findOne, insertOne, updateOne, deleteOne };
+module.exports = { seed, find, findOne, insertOne, updateOne, deleteOne };
