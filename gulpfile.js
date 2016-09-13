@@ -57,8 +57,12 @@ gulp.task('tdd', (done) => {
   karmaStart({ singleRun: false }, done);
 });
 
-function webpackBuild(config, done) {
-  webpack(config, (err, stats) => {
+// Create a single instance of the compiler to allow caching
+const devCompiler = webpack(webpackConfig);
+
+// TODO less verbose output
+function runCompiler(compiler, done) {
+  compiler.run((err, stats) => {
     if (err) {
       throw new gutil.PluginError('webpack', err);
     }
@@ -71,8 +75,7 @@ function webpackBuild(config, done) {
 }
 
 gulp.task('webpack:build', (done) => {
-  const config = Object.create(webpackConfig);
-  webpackBuild(config, done);
+  runCompiler(devCompiler, done);
 });
 
 gulp.task('webpack:build-production', (done) => {
@@ -83,13 +86,13 @@ gulp.task('webpack:build-production', (done) => {
     new webpack.optimize.UglifyJsPlugin()
   );
 
-  webpackBuild(config, done);
+  const compiler = webpack(config);
+  runCompiler(compiler, done);
 });
-
-// TODO `gulp watch` as replacement for `webpack --watch`
 
 gulp.task('watch', ['webpack:build'], () => {
   gulp.watch(['src/**/*', 'src/**/!(*_spec).js'], ['webpack:build']);
 });
 
+// TODO cleanup build directory
 gulp.task('default', ['webpack:build']);
