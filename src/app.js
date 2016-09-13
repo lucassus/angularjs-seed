@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 import './style.scss';
 import * as modules from './modules';
