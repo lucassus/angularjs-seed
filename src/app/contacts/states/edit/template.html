@@ -1,8 +1,10 @@
-<h3>
-  Edit contact
-  <span ng-bind="ctrl.contact.firstName"></span>
-  <span ng-bind="ctrl.contact.lastName"></span>
-</h3>
+<div class="page-header">
+  <h2>
+    Edit contact
+    <span ng-bind="ctrl.contact.firstName"></span>
+    <span ng-bind="ctrl.contact.lastName"></span>
+  </h2>
+</div>
 
 <contact-form contact="ctrl.contact"
               on-submit="ctrl.update(contact)"></contact-form>
