@@ -1,6 +1,8 @@
-const Server = require('karma').Server;
+const KarmaServer = require('karma').Server;
 const gulp = require('gulp');
+const gutils = require('gulp-util');
 const path = require('path');
+const _ = require('lodash');
 
 gulp.task('lint', () => {
   const eslint = require('gulp-eslint');
@@ -15,18 +17,39 @@ gulp.task('lint', () => {
     .pipe(eslint.failAfterError());
 });
 
-// TODO tune karma setup
+function karmaStart(config, done) {
+  config = _.extend({
+    configFile: path.join(__dirname, 'karma.conf.js'),
+    singleRun: false
+  }, config);
+
+  const server = new KarmaServer(config);
+
+  if (config.singleRun) {
+    // TDD never ends
+
+    server.on('run_complete', (browsers, results) => {
+      const { failed } = results;
+
+      if (failed > 0) {
+        const message = failed > 1 ? 'Tests' : 'Test';
+
+        done(new gutils.PluginError('karma', {
+          message: [failed, message, 'failed'].join(' ')
+        }));
+      } else {
+        done();
+      }
+    });
+  }
+
+  server.start();
+}
 
 gulp.task('test', (done) => {
-  new Server({
-    configFile: path.join(__dirname, 'karma.conf.js'),
-    singleRun: true
-  }, done).start();
+  karmaStart({ singleRun: true }, done);
 });
 
 gulp.task('tdd', (done) => {
-  new Server({
-    configFile: path.join(__dirname, 'karma.conf.js'),
-    singleRun: false
-  }, done).start();
+  karmaStart({ singleRun: false }, done);
 });
