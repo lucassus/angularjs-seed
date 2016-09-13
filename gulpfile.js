@@ -1,11 +1,14 @@
 const _ = require('lodash');
 const KarmaServer = require('karma').Server;
+const del = require('del');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const path = require('path');
 const webpack = require('webpack');
 
-const webpackConfig = require('./webpack.config.js');
+gulp.task('clean', () => {
+  return del('build/**/*');
+});
 
 gulp.task('lint', () => {
   const eslint = require('gulp-eslint');
@@ -58,6 +61,7 @@ gulp.task('tdd', (done) => {
 });
 
 // Create a single instance of the compiler to allow caching
+const webpackConfig = require('./webpack.config.js');
 const devCompiler = webpack(webpackConfig);
 
 function runCompiler(compiler, done) {
@@ -74,11 +78,11 @@ function runCompiler(compiler, done) {
   });
 }
 
-gulp.task('webpack:build', (done) => {
+gulp.task('webpack:build', ['clean'], (done) => {
   runCompiler(devCompiler, done);
 });
 
-gulp.task('webpack:build-production', (done) => {
+gulp.task('webpack:build-production', ['clean'], (done) => {
   const config = Object.create(webpackConfig);
 
   config.plugins = config.plugins.concat(
@@ -86,14 +90,12 @@ gulp.task('webpack:build-production', (done) => {
     new webpack.optimize.UglifyJsPlugin()
   );
 
-  const compiler = webpack(config);
-  runCompiler(compiler, done);
+  const prodCompiler = webpack(config);
+  runCompiler(prodCompiler, done);
 });
 
-gulp.task('watch', ['lint', 'webpack:build'], () => {
-  gulp.watch(['*.js', 'src/**/*.js'], ['lint']);
+gulp.task('watch', ['webpack:build'], () => {
   gulp.watch(['src/**/*', 'src/**/!(*_spec).js'], ['webpack:build']);
 });
 
-// TODO cleanup build directory
 gulp.task('default', ['webpack:build']);
