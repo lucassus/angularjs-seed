@@ -57,9 +57,7 @@ gulp.task('tdd', (done) => {
   karmaStart({ singleRun: false }, done);
 });
 
-gulp.task('webpack:build', (done) => {
-  const config = Object.create(webpackConfig);
-
+function webpackBuild(config, done) {
   webpack(config, (err, stats) => {
     if (err) {
       throw new gutil.PluginError('webpack', err);
@@ -70,9 +68,12 @@ gulp.task('webpack:build', (done) => {
     }));
     done();
   });
-});
+}
 
-// TODO dry it
+gulp.task('webpack:build', (done) => {
+  const config = Object.create(webpackConfig);
+  webpackBuild(config, done);
+});
 
 gulp.task('webpack:build-production', (done) => {
   const config = Object.create(webpackConfig);
@@ -82,16 +83,13 @@ gulp.task('webpack:build-production', (done) => {
     new webpack.optimize.UglifyJsPlugin()
   );
 
-  webpack(config, (err, stats) => {
-    if (err) {
-      throw new gutil.PluginError('webpack', err);
-    }
+  webpackBuild(config, done);
+});
 
-    gutil.log('[webpack]', stats.toString({
-      colors: true
-    }));
-    done();
-  });
+// TODO `gulp watch` as replacement for `webpack --watch`
+
+gulp.task('watch', ['webpack:build'], () => {
+  gulp.watch(['src/**/*', 'src/**/!(*_spec).js'], ['webpack:build']);
 });
 
 gulp.task('default', ['webpack:build']);
