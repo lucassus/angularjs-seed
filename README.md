@@ -8,7 +8,8 @@ https://angular-webpack-seed.herokuapp.com/
 
 ```
 npm install
-npm run lint
+
+gulp lint
 npm run test
 npm run server
 ```

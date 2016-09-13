@@ -13,6 +13,7 @@
     "indent": ["error", 2],
     "no-console": "off",
     "no-warning-comments": "warn",
-    "prefer-arrow-callback": "error"
+    "prefer-arrow-callback": "error",
+    "semi": "error"
   }
 }
