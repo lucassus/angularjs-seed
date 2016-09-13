@@ -90,7 +90,8 @@ gulp.task('webpack:build-production', (done) => {
   runCompiler(compiler, done);
 });
 
-gulp.task('watch', ['webpack:build'], () => {
+gulp.task('watch', ['lint', 'webpack:build'], () => {
+  gulp.watch(['*.js', 'src/**/*.js'], ['lint']);
   gulp.watch(['src/**/*', 'src/**/!(*_spec).js'], ['webpack:build']);
 });
 
