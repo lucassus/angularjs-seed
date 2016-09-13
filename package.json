@@ -7,7 +7,7 @@
     "node": "6.2.2"
   },
   "scripts": {
-    "heroku-postbuild": "webpack",
+    "heroku-postbuild": "gulp webpack:build-production",
     "test": "gulp test",
     "start": "node server.js",
     "server": "concurrently 'webpack --watch' 'nodemon --config nodemon.json server.js'"
