@@ -1,5 +1,5 @@
 function transformResponse(json) {
-  var data = angular.fromJson(json);
+  const data = angular.fromJson(json);
   return data.contacts;
 }
 

@@ -12,8 +12,10 @@
   "rules": {
     "indent": ["error", 2],
     "no-console": "off",
+    "no-var": "error",
     "no-warning-comments": "warn",
     "prefer-arrow-callback": "error",
+    "prefer-const": "warn",
     "semi": "error"
   }
 }
