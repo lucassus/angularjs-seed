@@ -10,7 +10,9 @@
     "heroku-postbuild": "gulp webpack:build-production",
     "test": "gulp test",
     "start": "node server.js",
-    "server": "concurrently 'gulp watch' 'nodemon --config nodemon.json server.js'"
+    "webpack-dev-server": "webpack-dev-server --content-base build/ --inline",
+    "dev-api-server": "nodemon --config nodemon.json server.js",
+    "dev-server": "concurrently 'npm run webpack-dev-server' 'npm run dev-api-server'"
   },
   "author": "Lukasz Bandzarewicz",
   "license": "ISC",
@@ -53,7 +55,8 @@
     "sinon": "^1.17.5",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.1"
   },
   "dependencies": {
     "angular": "^1.5.8",

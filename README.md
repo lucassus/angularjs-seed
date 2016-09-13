@@ -13,10 +13,10 @@ gulp lint
 gulp test
 gulp tdd
 
-npm run server
+npm run dev-server
 ```
 
-Dev server url: http://localhost:9090
+Dev server url: http://localhost:8080
 
 ## Features
 
