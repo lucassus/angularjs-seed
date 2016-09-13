@@ -11,7 +11,7 @@ before_script:
 
 script:
   - "gulp lint"
-  - "npm run test"
+  - "gulp test"
 
 after_success:
   - "cat artifacts/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"

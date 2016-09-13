@@ -10,7 +10,9 @@ https://angular-webpack-seed.herokuapp.com/
 npm install
 
 gulp lint
-npm run test
+gulp test
+gulp tdd
+
 npm run server
 ```
 

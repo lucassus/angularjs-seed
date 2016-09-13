@@ -9,8 +9,6 @@
   "scripts": {
     "heroku-postbuild": "webpack",
     "start": "node server.js",
-    "test": "karma start --single-run --browsers=PhantomJS",
-    "tdd": "karma start --browsers=PhantomJS",
     "server": "concurrently 'webpack --watch' 'nodemon --config nodemon.json server.js'"
   },
   "author": "Lukasz Bandzarewicz",
