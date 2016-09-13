@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   entry: {
@@ -12,7 +13,7 @@ module.exports = {
   },
 
   output: {
-    path: './build/assets',
+    path: path.resolve('./build/assets'),
     filename: 'app.js',
     publicPath: 'assets/'
   },
@@ -64,10 +65,18 @@ module.exports = {
   },
 
   devServer: {
+    contentBase: './build',
+    inline: true,
+
     proxy: {
       '/api': {
         target: 'http://localhost:9090',
       }
+    },
+
+    stats: {
+      chunks: false,
+      colors: true
     }
   },
 

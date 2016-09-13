@@ -10,7 +10,7 @@
     "heroku-postbuild": "gulp webpack:build-production",
     "test": "gulp test",
     "start": "node server.js",
-    "webpack-dev-server": "webpack-dev-server --content-base build/ --inline",
+    "webpack-dev-server": "webpack-dev-server",
     "dev-api-server": "nodemon --config nodemon.json server.js",
     "dev-server": "concurrently 'npm run webpack-dev-server' 'npm run dev-api-server'"
   },
