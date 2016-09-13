@@ -14,4 +14,4 @@ export default {
 
   template,
   url: '/:id'
-}
+};

@@ -5,4 +5,4 @@ export default  {
 
   template,
   url: '/about'
-}
+};

@@ -4,13 +4,19 @@ function transformResponse(json) {
 }
 
 export default function($resource) {
-  return $resource('/api/contacts/:id', { id: '@id' }, {
+  const Resource = $resource('/api/contacts/:id', { id: '@id' }, {
     query: { method: 'GET', isArray: true, transformResponse },
     get: { method: 'GET' },
     create: { method: 'POST' },
     update: { method: 'PUT' },
     delete: { method: 'DELETE' }
   });
+
+  class Contact extends Resource {
+
+  }
+
+  return Contact;
 }
 
 export function resolveContact($stateParams, Contact) {

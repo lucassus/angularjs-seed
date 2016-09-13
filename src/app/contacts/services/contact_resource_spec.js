@@ -23,6 +23,11 @@ describe(`module: ${module.name}`, () => {
       expect(Contact.prototype).to.respondTo('$delete');
     });
 
+    it('can be initialized', () => {
+      const contact = new Contact({ id: 123 });
+      expect(contact).to.have.property('id', 123);
+    });
+
   });
 
 });

@@ -21,7 +21,7 @@ const contacts = _.times(20, () => {
     lastName: faker.name.lastName(),
     email: faker.internet.email(),
     phone: faker.phone.phoneNumber()
-  }
+  };
 });
 
 app.get('/api/contacts', (req, res) => {
