@@ -1,8 +1,9 @@
+const _ = require('lodash');
 const KarmaServer = require('karma').Server;
 const gulp = require('gulp');
-const gutils = require('gulp-util');
+const gutil = require('gulp-util');
 const path = require('path');
-const _ = require('lodash');
+const webpack = require('webpack');
 
 gulp.task('lint', () => {
   const eslint = require('gulp-eslint');
@@ -34,7 +35,7 @@ function karmaStart(config, done) {
       if (failed > 0) {
         const message = failed > 1 ? 'Tests' : 'Test';
 
-        done(new gutils.PluginError('karma', {
+        done(new gutil.PluginError('karma', {
           message: [failed, message, 'failed'].join(' ')
         }));
       } else {
@@ -53,3 +54,20 @@ gulp.task('test', (done) => {
 gulp.task('tdd', (done) => {
   karmaStart({ singleRun: false }, done);
 });
+
+gulp.task('webpack:build', (done) => {
+  const config = require('./webpack.config.js');
+
+  webpack(config, (err, stats) => {
+    if (err) {
+      throw new gutil.PluginError('webpack', err);
+    }
+
+    gutil.log('[webpack]', stats.toString({
+      colors: true
+    }));
+    done();
+  });
+});
+
+gulp.task('default', ['webpack:build']);
