@@ -60,7 +60,6 @@ gulp.task('tdd', (done) => {
 // Create a single instance of the compiler to allow caching
 const devCompiler = webpack(webpackConfig);
 
-// TODO less verbose output
 function runCompiler(compiler, done) {
   compiler.run((err, stats) => {
     if (err) {
@@ -68,6 +67,7 @@ function runCompiler(compiler, done) {
     }
 
     gutil.log('[webpack]', stats.toString({
+      chunks: false,
       colors: true
     }));
     done();
