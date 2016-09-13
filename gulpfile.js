@@ -78,11 +78,11 @@ function runCompiler(compiler, done) {
   });
 }
 
-gulp.task('webpack:build', ['clean'], (done) => {
+gulp.task('webpack:build', (done) => {
   runCompiler(devCompiler, done);
 });
 
-gulp.task('webpack:build-production', ['clean'], (done) => {
+gulp.task('webpack:build-production', (done) => {
   const config = Object.create(webpackConfig);
 
   config.plugins = config.plugins.concat(
@@ -98,4 +98,4 @@ gulp.task('watch', ['webpack:build'], () => {
   gulp.watch(['src/**/*', 'src/**/!(*_spec).js'], ['webpack:build']);
 });
 
-gulp.task('default', ['webpack:build']);
+gulp.task('default', ['clean', 'webpack:build']);
