@@ -10,8 +10,11 @@
     "sourceType": "commonjs"
   },
   "rules": {
+    "complexity": "warn",
+    "eol-last": "error",
     "indent": ["error", 2],
     "no-console": "off",
+    "no-trailing-spaces": "error",
     "no-var": "error",
     "no-warning-comments": "warn",
     "prefer-arrow-callback": "error",
