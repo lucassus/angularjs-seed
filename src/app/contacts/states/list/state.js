@@ -13,5 +13,6 @@ export default {
     }
   },
 
-  template
+  template,
+  url: '/'
 };
