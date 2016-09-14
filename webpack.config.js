@@ -1,4 +1,6 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   entry: {
@@ -11,12 +13,17 @@ module.exports = {
   },
 
   output: {
-    path: './build',
+    path: path.resolve('./build/assets'),
     filename: 'app.js',
-    publicPath: 'build/'
+    publicPath: 'assets/'
   },
 
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      filename: '../index.html',
+      inject: false
+    }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
@@ -55,6 +62,22 @@ module.exports = {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'url?limit=10000&mimetype=image/svg+xml'
     }]
+  },
+
+  devServer: {
+    contentBase: './build',
+    inline: true,
+
+    proxy: {
+      '/api': {
+        target: 'http://localhost:9090',
+      }
+    },
+
+    stats: {
+      chunks: false,
+      colors: true
+    }
   },
 
   devtool: 'source-map'

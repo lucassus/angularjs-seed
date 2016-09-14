@@ -10,9 +10,19 @@
     "sourceType": "commonjs"
   },
   "rules": {
+    "complexity": "warn",
+    "curly": "error",
+    "eol-last": "error",
     "indent": ["error", 2],
+    "keyword-spacing": "error",
     "no-console": "off",
+    "no-trailing-spaces": "error",
+    "no-var": "error",
     "no-warning-comments": "warn",
-    "prefer-arrow-callback": "error"
+    "prefer-arrow-callback": "error",
+    "prefer-const": "warn",
+    "semi": "error",
+    "space-before-blocks": "error",
+    "quotes": ["error", "single"]
   }
 }

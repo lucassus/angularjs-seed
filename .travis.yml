@@ -6,11 +6,12 @@ node_js:
   - "6.2"
 
 before_script:
+  - "npm install gulp --global"
   - "npm install"
 
 script:
-  - "npm run lint"
-  - "npm run test"
+  - "gulp lint"
+  - "gulp test"
 
 after_success:
   - "cat artifacts/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"

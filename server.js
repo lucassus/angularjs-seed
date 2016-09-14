@@ -1,75 +1,71 @@
 const express = require('express');
-const faker = require('faker');
-const _ = require('lodash');
+const path = require('path');
 
 const app = express();
 
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 9090;
 app.listen(port, () => {
   console.log('Node app is running on port', port);
 });
 
-const contacts = _.times(20, () => {
-  return {
-    id: faker.random.uuid(),
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    email: faker.internet.email(),
-    phone: faker.phone.phoneNumber()
-  }
-});
+// Fake in-memory database
+const db = {
+  contacts: require('./server/contacts')
+};
+
+// Initially seed the fake db
+db.contacts.seed();
+
+function parseId(req) {
+  return parseInt(req.param('id'));
+}
 
 app.get('/api/contacts', (req, res) => {
-  res.json({ contacts });
+  db.contacts.find().then((contacts) => {
+    res.json({ contacts });
+  });
 });
 
 app.post('/api/contacts', (req, res) => {
   const data = req.body;
 
-  const contact = _.extend({}, data, { id: faker.random.uuid() });
-  contacts.push(contact);
-
-  res.json(contact);
+  db.contacts.insertOne(data).then((contact) => {
+    res.json(contact);
+  });
 });
 
 app.get('/api/contacts/:id', (req, res) => {
-  const { id } = req.params;
-  const contact = _.find(contacts, { id });
+  const id = parseId(req);
 
-  if (contact) {
+  db.contacts.findOne({ id }).then((contact) => {
     res.json(contact);
-  } else {
+  }).catch(() => {
     res.sendStatus(404);
-  }
+  });
 });
 
 app.put('/api/contacts/:id', (req, res) => {
-  const { id } = req.params;
-  const index = _.findIndex(contacts, { id });
+  const id = parseId(req);
+  const data = req.body;
 
-  if (index > -1) {
-    const data = req.body;
-    const contact = _.extend(contacts[index], data);
-
+  db.contacts.updateOne({ id }, data).then((contact) => {
     res.json(contact);
-  } else {
-    res.sendStatus(200);
-  }
+  }).catch(() => {
+    res.sendStatus(422);
+  });
 });
 
 app.delete('/api/contacts/:id', (req, res) => {
-  const { id } = req.params;
-  const index = _.findIndex(contacts, { id });
+  const id = parseId(req);
 
-  if (index > -1) {
-    contacts.splice(index, 1);
+  db.contacts.deleteOne({ id }).then(() => {
     res.sendStatus(200);
-  } else {
+  }).catch(() => {
     res.sendStatus(404);
-  }
+  });
 });

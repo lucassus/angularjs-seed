@@ -8,10 +8,15 @@ https://angular-webpack-seed.herokuapp.com/
 
 ```
 npm install
-npm run lint
-npm run test
-npm run server
+
+gulp lint
+gulp test
+gulp tdd
+
+npm run dev-server
 ```
+
+Dev server url: http://localhost:8080
 
 ## Features
 
