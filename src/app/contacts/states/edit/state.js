@@ -1,4 +1,4 @@
-import { resolveContact as contact } from '../../services/contact_resource';
+import contact from '../../services/resolve_contact';
 import controller from './controller';
 import template from './template.html';
 
