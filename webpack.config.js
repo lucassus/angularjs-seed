@@ -1,3 +1,4 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
@@ -29,6 +30,7 @@ module.exports = {
       jQuery: 'jquery',
       'window.jQuery': 'jquery'
     }),
+    new ExtractTextPlugin('style.css'),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
   ],
 
@@ -49,7 +51,9 @@ module.exports = {
       loader: 'html'
     }, {
       test: /\.scss$/,
-      loaders: ['style', 'css', 'sass']
+      loader: ExtractTextPlugin.extract('style', 'css!sass', {
+        publicPath: '../assets/'
+      }),
     }, {
       test: /\.png$/,
       loader: 'url-loader?limit=100000'

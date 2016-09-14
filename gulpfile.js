@@ -95,5 +95,6 @@ gulp.task('webpack:build-production', (done) => {
 });
 
 gulp.task('build', ['clean', 'webpack:build']);
+gulp.task('build-production', ['clean', 'webpack:build-production']);
 
 gulp.task('default', ['build']);
