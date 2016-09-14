@@ -10,9 +10,6 @@ module.exports = {
       'angular-messages',
       'angular-resource',
       'angular-ui-router',
-      'babel-polyfill',
-      'bootstrap-sass',
-      'jquery',
       'lodash'
     ],
     app: './src/app.js'
@@ -25,11 +22,6 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    }),
     new ExtractTextPlugin('style.css'),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
   ],

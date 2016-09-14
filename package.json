@@ -64,13 +64,11 @@
     "angular-messages": "^1.5.8",
     "angular-resource": "^1.5.8",
     "angular-ui-router": "^0.3.1",
-    "babel-polyfill": "^6.13.0",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "bootstrap-sass": "^3.3.7",
     "express": "^4.14.0",
     "faker": "^3.1.0",
-    "jquery": "^3.1.0",
     "lodash": "^4.15.0"
   }
 }
