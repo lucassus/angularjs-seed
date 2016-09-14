@@ -1,5 +1,5 @@
 import angular from 'angular';
-import module from './app/module';
+import module from './module';
 
 export default function($document) {
   'ngInject';
