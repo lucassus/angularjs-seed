@@ -1,10 +1,9 @@
 import angular from 'angular';
 import bootstrap from './bootstrap';
 import { expect } from 'chai';
-import module from './module';
 import sinon from 'sinon';
 
-describe(`module: ${module.name}`, () => {
+describe('boostrap', () => {
 
   beforeEach(() => {
     // Do not boot the app in the test environment
