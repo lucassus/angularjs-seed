@@ -14,16 +14,16 @@ gulp test
 gulp tdd
 
 npm run dev-server
+open http://localhost:8080
 ```
-
-Dev server url: http://localhost:8080
 
 ## Features
 
 * AngularJS 1.5.x with ES2015 flavour
 * Twitter Bootstrap with Sass
+* Gulp
 * Webpack
-* ESLint
 * Karma, mocha and Sinon.js 
 * Istanbul test coverage
+* ESLint
 * TravisCI

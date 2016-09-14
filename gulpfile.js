@@ -7,7 +7,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 gulp.task('clean', () => {
-  return del('build/**/*');
+  return del('public/assets/**/*');
 });
 
 gulp.task('lint', () => {

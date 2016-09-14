@@ -1,4 +1,3 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
@@ -19,17 +18,12 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve('./build/assets'),
+    path: path.resolve('./public/assets'),
     filename: 'app.js',
     publicPath: 'assets/'
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      filename: '../index.html',
-      inject: false
-    }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
@@ -78,7 +72,9 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: './build',
+    port: 8080,
+    contentBase: './public',
+
     inline: true,
 
     proxy: {
