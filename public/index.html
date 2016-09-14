@@ -4,9 +4,11 @@
 <head>
   <meta charset="utf-8">
   <title>Angular webpack seed</title>
+
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 
-<body ng-app="app">
+<body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -14,9 +16,9 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><a ui-sref="home">Home</a></li>
-          <li><a ui-sref="contacts.list">Contacts</a></li>
-          <li><a ui-sref="about">About</a></li>
+          <li ng-class="{ active: ('home' | includedByState) }"><a ui-sref="home">Home</a></li>
+          <li ng-class="{ active: ('contacts' | includedByState) }"><a ui-sref="contacts.list">Contacts</a></li>
+          <li ng-class="{ active: ('about' | includedByState) }"><a ui-sref="about">About</a></li>
         </ul>
       </div>
     </div>

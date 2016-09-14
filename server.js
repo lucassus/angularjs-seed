@@ -3,7 +3,7 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -22,7 +22,8 @@ const db = {
 db.contacts.seed();
 
 function parseId(req) {
-  return parseInt(req.param('id'));
+  const { id } = req.params;
+  return parseInt(id);
 }
 
 app.get('/api/contacts', (req, res) => {

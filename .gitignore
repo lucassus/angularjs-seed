@@ -1,5 +1,5 @@
 .idea
 artifacts
-build
+public/assets
 node_modules
 npm-debug.log

@@ -7,7 +7,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 gulp.task('clean', () => {
-  return del('build/**/*');
+  return del('public/assets/**/*');
 });
 
 gulp.task('lint', () => {
@@ -61,9 +61,7 @@ gulp.task('tdd', (done) => {
   karmaStart({ singleRun: false }, done);
 });
 
-// Create a single instance of the compiler to allow caching
 const webpackConfig = require('./webpack.config.js');
-const devCompiler = webpack(webpackConfig);
 
 function runCompiler(compiler, done) {
   compiler.run((err, stats) => {
@@ -80,6 +78,7 @@ function runCompiler(compiler, done) {
 }
 
 gulp.task('webpack:build', (done) => {
+  const devCompiler = webpack(webpackConfig);
   runCompiler(devCompiler, done);
 });
 
@@ -95,8 +94,7 @@ gulp.task('webpack:build-production', (done) => {
   runCompiler(prodCompiler, done);
 });
 
-gulp.task('watch', ['webpack:build'], () => {
-  gulp.watch(['src/**/*', 'src/**/!(*_spec).js'], ['webpack:build']);
-});
+gulp.task('build', ['clean', 'webpack:build']);
+gulp.task('build-production', ['clean', 'webpack:build-production']);
 
-gulp.task('default', ['clean', 'webpack:build']);
+gulp.task('default', ['build']);

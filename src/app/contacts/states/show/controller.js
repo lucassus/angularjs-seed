@@ -1,6 +1,8 @@
 export default class {
 
   constructor($state, contact) {
+    'ngInject';
+
     this.$state = $state;
     this.contact = contact;
   }

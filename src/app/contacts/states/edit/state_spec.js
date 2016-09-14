@@ -19,21 +19,24 @@ describe(`module: ${module.name}`, () => {
       expect($state.href(state, { id: 124 })).to.eq('#/contacts/124/edit');
     }));
 
-    it('resolves `contacts`', inject(($httpBackend, $state) => {
-      // Given
-      $httpBackend
-        .expectGET('/api/contacts/124')
-        .respond(200, { id: 124, name: 'baz' });
+    it('resolves `contacts`', (done) => {
+      inject(($httpBackend, $resolve) => {
+        $httpBackend
+          .expectGET('/api/contacts/124')
+          .respond(200, { id: 124, name: 'baz' });
 
-      // When
-      $state.go(state, { id: 124 });
-      $httpBackend.flush();
+        const $stateParams = { id: 124 };
 
-      // Then
-      const { contact } = $state.$current.locals.globals;
-      expect(contact).to.have.property('id', 124);
-      expect(contact).to.have.property('name', 'baz');
-    }));
+        $resolve.resolve(state.resolve, { $stateParams }).then(({ contact }) => {
+          expect(contact).to.have.property('id', 124);
+          expect(contact).to.have.property('name', 'baz');
+
+          done();
+        });
+
+        $httpBackend.flush();
+      });
+    });
 
   });
 

@@ -1,34 +1,28 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
     vendor: [
       'angular',
-      'bootstrap-sass',
-      'jquery'
+      'angular-messages',
+      'angular-resource',
+      'angular-ui-router',
+      'lodash'
     ],
     app: './src/app.js'
   },
 
   output: {
-    path: path.resolve('./build/assets'),
+    path: path.resolve('./public/assets'),
     filename: 'app.js',
     publicPath: 'assets/'
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      filename: '../index.html',
-      inject: false
-    }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    }),
+    new ExtractTextPlugin('style.css'),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
   ],
 
@@ -36,13 +30,22 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      loader: combineLoaders([{
+        loader: 'ng-annotate'
+      }, {
+        loader: 'babel-loader',
+        query: {
+          extends: path.join(__dirname, '.babelrc')
+        }
+      }])
     }, {
       test: /\.html$/,
       loader: 'html'
     }, {
       test: /\.scss$/,
-      loaders: ['style', 'css', 'sass']
+      loader: ExtractTextPlugin.extract('style', 'css!sass', {
+        publicPath: '../assets/'
+      }),
     }, {
       test: /\.png$/,
       loader: 'url-loader?limit=100000'
@@ -65,7 +68,9 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: './build',
+    port: 8080,
+    contentBase: './public',
+
     inline: true,
 
     proxy: {

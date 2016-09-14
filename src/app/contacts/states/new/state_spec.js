@@ -19,15 +19,16 @@ describe(`module: ${module.name}`, () => {
       expect($state.href(state)).to.eq('#/contacts/new');
     }));
 
-    it('resolves `contact`', inject(($rootScope, $state, Contact) => {
-      // When
-      $state.go(state);
-      $rootScope.$digest();
+    it('resolves `contact`', (done) => {
+      inject(($resolve, $rootScope, Contact) => {
+        $resolve.resolve(state.resolve).then(({ contact }) => {
+          expect(contact).to.be.an.instanceOf(Contact);
+          done();
+        });
 
-      // Then
-      const { contact } = $state.$current.locals.globals;
-      expect(contact).to.be.an.instanceOf(Contact);
-    }));
+        $rootScope.$digest();
+      });
+    });
 
   });
 
