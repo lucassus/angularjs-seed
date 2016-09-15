@@ -1,14 +1,9 @@
 const _ = require('lodash');
 const KarmaServer = require('karma').Server;
-const del = require('del');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const path = require('path');
 const webpack = require('webpack');
-
-gulp.task('clean', () => {
-  return del('public/assets/**/*');
-});
 
 gulp.task('lint', () => {
   const eslint = require('gulp-eslint');
@@ -83,18 +78,13 @@ gulp.task('webpack:build', (done) => {
 });
 
 gulp.task('webpack:build-production', (done) => {
-  const config = Object.create(webpackConfig);
-
-  config.plugins = config.plugins.concat(
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin()
-  );
-
+  const config = require('./webpack-production.config');
   const prodCompiler = webpack(config);
+
   runCompiler(prodCompiler, done);
 });
 
-gulp.task('build', ['clean', 'webpack:build']);
-gulp.task('build-production', ['clean', 'webpack:build-production']);
+gulp.task('build', ['webpack:build']);
+gulp.task('build-production', ['webpack:build-production']);
 
 gulp.task('default', ['build']);

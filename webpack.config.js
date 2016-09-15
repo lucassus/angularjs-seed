@@ -1,7 +1,12 @@
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
+
+const BUILD_DIRECTORY = 'build';
+const CHUNK_FILENAME = '[name].[chunkhash].js';
 
 module.exports = {
   entry: {
@@ -12,18 +17,26 @@ module.exports = {
       'angular-ui-router',
       'lodash'
     ],
-    app: './src/app.js'
+    app: ['./src/app.js']
   },
 
   output: {
-    path: path.resolve('./public/assets'),
-    filename: 'app.js',
-    publicPath: 'assets/'
+    path: path.resolve(BUILD_DIRECTORY),
+    filename: CHUNK_FILENAME,
+    chunkFilename: CHUNK_FILENAME
   },
 
   plugins: [
-    new ExtractTextPlugin('style.css'),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
+    new CleanWebpackPlugin(BUILD_DIRECTORY, {
+      verbose: true,
+    }),
+    new webpack.optimize.CommonsChunkPlugin('vendor', CHUNK_FILENAME),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'src/index.html',
+      inject: true
+    }),
+    new ExtractTextPlugin('stype.[chunkhash].css')
   ],
 
   module: {
@@ -43,9 +56,7 @@ module.exports = {
       loader: 'html'
     }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('style', 'css!sass', {
-        publicPath: '../assets/'
-      }),
+      loader: ExtractTextPlugin.extract('style', 'css!sass'),
     }, {
       test: /\.png$/,
       loader: 'url-loader?limit=100000'
@@ -69,7 +80,7 @@ module.exports = {
 
   devServer: {
     port: 8080,
-    contentBase: './public',
+    contentBase: './build',
 
     inline: true,
 
