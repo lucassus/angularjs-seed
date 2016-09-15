@@ -1,7 +1,7 @@
 # Angular webpack seed
 
 [![Build Status](https://travis-ci.org/lucassus/angular-webpack-seed.svg?branch=master)](https://travis-ci.org/lucassus/angular-webpack-seed)
-[![Coverage Status](https://coveralls.io/repos/github/lucassus/angular-webpack-seed/badge.svg?branch=master)](https://coveralls.io/github/lucassus/angular-webpack-seed?branch=master)
+[![codecov](https://codecov.io/gh/lucassus/angular-webpack-seed/branch/master/graph/badge.svg)](https://codecov.io/gh/lucassus/angular-webpack-seed)
 [![Dependency Status](https://gemnasium.com/lucassus/angular-webpack-seed.svg)](https://gemnasium.com/lucassus/angular-webpack-seed)
 
 https://angular-webpack-seed.herokuapp.com/
