@@ -1,11 +1,14 @@
 const webpack = require('webpack');
+const _ = require('lodash');
 
-const devConfig = require('./webpack.config.js');
-const config = Object.create(devConfig);
+const config = require('./webpack.config.js');
 
-config.plugins = config.plugins.concat(
+const plugins = config.plugins.concat(
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin()
 );
 
-module.exports = config;
+module.exports = _.extend({}, config, {
+  plugins,
+  devtool: 'source-map'
+});
