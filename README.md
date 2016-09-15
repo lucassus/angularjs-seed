@@ -27,4 +27,4 @@ open http://localhost:8080
 * Karma, mocha and Sinon.js 
 * Istanbul test coverage
 * ESLint, HTMLHint
-* TravisCI
+* TravisCI, Heroku, Continuous deployment

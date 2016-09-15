@@ -5,7 +5,7 @@ const gutil = require('gulp-util');
 const htmlhint = require('gulp-htmlhint');
 const path = require('path');
 
-gulp.task('lint', () => {
+gulp.task('eslint', () => {
   const eslint = require('gulp-eslint');
   const friendlyFormatter = require('eslint-friendly-formatter');
 
@@ -27,6 +27,8 @@ gulp.task('htmlhint', () => {
     }))
     .pipe(htmlhint.reporter('htmlhint-stylish'));
 });
+
+gulp.task('lint', ['eslint', 'htmlhint']);
 
 function karmaStart(config, done) {
   config = _.extend({
@@ -65,4 +67,4 @@ gulp.task('tdd', (done) => {
   karmaStart({ singleRun: false }, done);
 });
 
-gulp.task('default', ['lint', 'htmlhint', 'test']);
+gulp.task('default', ['lint', 'test']);
