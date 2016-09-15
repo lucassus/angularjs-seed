@@ -1,10 +1,11 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
 
-const BUILD_DIRECTORY = 'public/assets';
+const BUILD_DIRECTORY = 'build';
 const CHUNK_FILENAME = '[name].[chunkhash].js';
 
 module.exports = {
@@ -22,7 +23,6 @@ module.exports = {
   output: {
     path: path.resolve(BUILD_DIRECTORY),
     filename: CHUNK_FILENAME,
-    publicPath: 'assets/',
     chunkFilename: CHUNK_FILENAME
   },
 
@@ -30,8 +30,13 @@ module.exports = {
     new CleanWebpackPlugin(BUILD_DIRECTORY, {
       verbose: true,
     }),
-    new ExtractTextPlugin(CHUNK_FILENAME),
-    new webpack.optimize.CommonsChunkPlugin('vendor', CHUNK_FILENAME)
+    new webpack.optimize.CommonsChunkPlugin('vendor', CHUNK_FILENAME),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'src/index.html',
+      inject: true
+    }),
+    new ExtractTextPlugin('stype.[chunkhash].css')
   ],
 
   module: {
@@ -51,9 +56,7 @@ module.exports = {
       loader: 'html'
     }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('style', 'css!sass', {
-        publicPath: '../assets/'
-      }),
+      loader: ExtractTextPlugin.extract('style', 'css!sass'),
     }, {
       test: /\.png$/,
       loader: 'url-loader?limit=100000'
@@ -77,7 +80,7 @@ module.exports = {
 
   devServer: {
     port: 8080,
-    contentBase: './public',
+    contentBase: './build',
 
     inline: true,
 

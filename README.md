@@ -23,6 +23,7 @@ open http://localhost:8080
 * Twitter Bootstrap with Sass
 * Gulp
 * Webpack
+* Long term caching
 * Karma, mocha and Sinon.js 
 * Istanbul test coverage
 * ESLint
