@@ -21,7 +21,10 @@ gulp.task('lint', () => {
 
 gulp.task('htmlhint', () => {
   gulp.src('src/**/*.html')
-    .pipe(htmlhint({ 'doctype-first': false }))
+    .pipe(htmlhint({
+      'doctype-first': false,
+      'tag-self-close': true
+    }))
     .pipe(htmlhint.reporter('htmlhint-stylish'));
 });
 
