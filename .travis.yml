@@ -32,4 +32,4 @@ script:
   - gulp test --browsers=Firefox
 
 after_success:
-  - codecov --file ./artifacts/coverage/phantomjs/lcov.info
+  - codecov
