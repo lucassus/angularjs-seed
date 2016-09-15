@@ -78,14 +78,9 @@ gulp.task('webpack:build', (done) => {
 });
 
 gulp.task('webpack:build-production', (done) => {
-  const config = Object.create(webpackConfig);
-
-  config.plugins = config.plugins.concat(
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin()
-  );
-
+  const config = require('./webpack-production.config');
   const prodCompiler = webpack(config);
+
   runCompiler(prodCompiler, done);
 });
 
