@@ -3,7 +3,6 @@ const KarmaServer = require('karma').Server;
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const path = require('path');
-const webpack = require('webpack');
 
 gulp.task('lint', () => {
   const eslint = require('gulp-eslint');
@@ -56,35 +55,4 @@ gulp.task('tdd', (done) => {
   karmaStart({ singleRun: false }, done);
 });
 
-const webpackConfig = require('./webpack.config.js');
-
-function runCompiler(compiler, done) {
-  compiler.run((err, stats) => {
-    if (err) {
-      throw new gutil.PluginError('webpack', err);
-    }
-
-    gutil.log('[webpack]', stats.toString({
-      chunks: false,
-      colors: true
-    }));
-    done();
-  });
-}
-
-gulp.task('webpack:build', (done) => {
-  const devCompiler = webpack(webpackConfig);
-  runCompiler(devCompiler, done);
-});
-
-gulp.task('webpack:build-production', (done) => {
-  const config = require('./webpack-production.config');
-  const prodCompiler = webpack(config);
-
-  runCompiler(prodCompiler, done);
-});
-
-gulp.task('build', ['webpack:build']);
-gulp.task('build-production', ['webpack:build-production']);
-
-gulp.task('default', ['build']);
+gulp.task('default', ['lint', 'test']);

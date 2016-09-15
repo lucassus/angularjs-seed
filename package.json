@@ -7,7 +7,7 @@
     "node": "6.2.2"
   },
   "scripts": {
-    "heroku-postbuild": "gulp build-production",
+    "heroku-postbuild": "webpack --config webpack-production.config.js",
     "start": "node server.js",
     "test": "gulp test",
     "dev-api-server": "nodemon --config nodemon.json server.js",
