@@ -4,6 +4,9 @@ const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
 
+const BUILD_DIRECTORY = 'public/assets';
+const CHUNK_FILENAME = '[name].[chunkhash].js';
+
 module.exports = {
   entry: {
     vendor: [
@@ -13,21 +16,22 @@ module.exports = {
       'angular-ui-router',
       'lodash'
     ],
-    app: './src/app.js'
+    app: ['./src/app.js']
   },
 
   output: {
-    path: path.resolve('./public/assets'),
-    filename: 'app.js',
-    publicPath: 'assets/'
+    path: path.resolve(BUILD_DIRECTORY),
+    filename: CHUNK_FILENAME,
+    publicPath: 'assets/',
+    chunkFilename: CHUNK_FILENAME
   },
 
   plugins: [
-    new CleanWebpackPlugin('public/assets', {
+    new CleanWebpackPlugin(BUILD_DIRECTORY, {
       verbose: true,
     }),
-    new ExtractTextPlugin('style.css'),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
+    new ExtractTextPlugin(CHUNK_FILENAME),
+    new webpack.optimize.CommonsChunkPlugin('vendor', CHUNK_FILENAME)
   ],
 
   module: {
