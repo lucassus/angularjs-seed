@@ -5,6 +5,8 @@ const gutil = require('gulp-util');
 const htmlhint = require('gulp-htmlhint');
 const path = require('path');
 
+const cmdArgs = require('minimist')(process.argv.slice(2));
+
 gulp.task('eslint', () => {
   const eslint = require('gulp-eslint');
   const friendlyFormatter = require('eslint-friendly-formatter');
@@ -31,10 +33,15 @@ gulp.task('htmlhint', () => {
 gulp.task('lint', ['eslint', 'htmlhint']);
 
 function karmaStart(config, done) {
-  config = _.extend({
+  config = _.extend({}, {
     configFile: path.join(__dirname, 'karma.conf.js'),
-    singleRun: false
   }, config);
+
+  if (cmdArgs.browsers) {
+    _.extend(config, {
+      browsers: cmdArgs.browsers.split(',')
+    });
+  }
 
   const server = new KarmaServer(config);
 
