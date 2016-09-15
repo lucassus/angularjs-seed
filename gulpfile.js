@@ -33,10 +33,15 @@ gulp.task('htmlhint', () => {
 gulp.task('lint', ['eslint', 'htmlhint']);
 
 function karmaStart(config, done) {
-  config = _.extend({
+  config = _.extend({}, {
     configFile: path.join(__dirname, 'karma.conf.js'),
-    singleRun: false
   }, config);
+
+  if (cmdArgs.browsers) {
+    _.extend(config, {
+      browsers: cmdArgs.browsers.split(',')
+    });
+  }
 
   const server = new KarmaServer(config);
 
@@ -61,16 +66,8 @@ function karmaStart(config, done) {
   server.start();
 }
 
-// TODO improve cli arguments
-
 gulp.task('test', (done) => {
-  let browsers = ['PhantomJS'];
-
-  if (cmdArgs.browsers) {
-    browsers = cmdArgs.browsers.split(',');
-  }
-
-  karmaStart({ browsers, singleRun: true }, done);
+  karmaStart({ singleRun: true }, done);
 });
 
 gulp.task('tdd', (done) => {

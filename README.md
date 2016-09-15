@@ -11,7 +11,9 @@ npm install
 
 gulp lint
 gulp test
+gulp test --browsers=Chrome,Firefox
 gulp tdd
+gulp tdd --browsers=Chrome
 
 npm run dev-server
 open http://localhost:8080
