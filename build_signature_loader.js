@@ -25,13 +25,14 @@ function inspectRepository() {
 }
 
 module.exports = function(source) {
+  this.cacheable();
   const callback = this.async();
 
   inspectRepository().then(({ branch, commit }) => {
     const compiled = _.template(source);
 
     const signature = compiled({
-      timestamp: new Date().toISOString(),
+      timestamp: new Date().toString(),
       branch,
       commit
     });
