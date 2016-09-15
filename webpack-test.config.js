@@ -1,19 +1,18 @@
-const combineLoaders = require('webpack-combine-loaders');
-const path = require('path');
-
 module.exports = {
+  resolve: {
+    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'],
+    alias: { sinon: 'sinon/pkg/sinon.js' }
+  },
+
   module: {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: combineLoaders([{
-        loader: 'ng-annotate'
-      }, {
-        loader: 'babel-loader',
-        query: {
-          extends: path.join(__dirname, '.babelrc.karma')
-        }
-      }])
+      loader: 'babel-loader'
+    }, {
+      test: /\.ts$/,
+      exclude: /node_modules/,
+      loader: 'ng-annotate!ts-loader'
     }, {
       test: /\.html$/,
       loader: 'html'
@@ -27,10 +26,6 @@ module.exports = {
       test: /\.jpg$/,
       loader: 'null-loader'
     }]
-  },
-
-  resolve: {
-    alias: { sinon: 'sinon/pkg/sinon.js' }
   },
 
   devtool: 'inline-source-map'

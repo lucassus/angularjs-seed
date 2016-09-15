@@ -1,4 +1,4 @@
-import 'angular';
+import angular from 'angular';
 import 'angular-mocks';
 
 // Enable strictDi mode for all specs
