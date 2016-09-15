@@ -11,6 +11,7 @@ before_script:
 
 script:
   - "gulp lint"
+  - "gulp htmlhint"
   - "gulp test"
 
 after_success:
