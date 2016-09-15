@@ -5,6 +5,8 @@ const gutil = require('gulp-util');
 const htmlhint = require('gulp-htmlhint');
 const path = require('path');
 
+const cmdArgs = require('minimist')(process.argv.slice(2));
+
 gulp.task('eslint', () => {
   const eslint = require('gulp-eslint');
   const friendlyFormatter = require('eslint-friendly-formatter');
@@ -59,10 +61,15 @@ function karmaStart(config, done) {
   server.start();
 }
 
+// TODO improve cli arguments
+
 gulp.task('test', (done) => {
-  // TODO add cli
-  // TODO tune coverage reports
-  const browsers = ['PhantomJS', 'Chrome', 'Firefox'];
+  let browsers = ['PhantomJS'];
+
+  if (cmdArgs.browsers) {
+    browsers = cmdArgs.browsers.split(',');
+  }
+
   karmaStart({ browsers, singleRun: true }, done);
 });
 

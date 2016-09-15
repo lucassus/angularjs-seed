@@ -73,10 +73,13 @@ module.exports = function(config) {
 
     coverageReporter: {
       dir : 'artifacts/coverage',
+      subdir: (browser) => {
+        return browser.toLowerCase().split(/[ /-]/)[0];
+      },
       reporters: [
-        { type: 'html', subdir: 'report-html' },
-        { type: 'lcov', subdir: '.', file: 'lcov.info' },
-        { type: 'text', subdir: '.', file: 'report.txt' },
+        { type: 'html' },
+        { type: 'lcov', file: 'lcov.info' },
+        { type: 'text', file: 'report.txt' },
         { type: 'text-summary' }
       ]
     },

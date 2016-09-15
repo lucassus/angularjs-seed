@@ -14,7 +14,9 @@ before_script:
 
 script:
   - "gulp lint"
-  - "gulp test"
+  - "gulp test --browsers=PhantomJS"
+  - "gulp test --browsers=Chrome"
+  - "gulp test --browsers=Firefox"
 
 after_success:
-  - "codecov"
+  - "codecov --file ./artifacts/coverage/phantomjs/lcov.info"
