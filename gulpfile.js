@@ -60,7 +60,10 @@ function karmaStart(config, done) {
 }
 
 gulp.task('test', (done) => {
-  karmaStart({ singleRun: true }, done);
+  // TODO add cli
+  // TODO tune coverage reports
+  const browsers = ['PhantomJS', 'Chrome', 'Firefox'];
+  karmaStart({ browsers, singleRun: true }, done);
 });
 
 gulp.task('tdd', (done) => {
