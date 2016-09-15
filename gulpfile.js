@@ -2,6 +2,7 @@ const _ = require('lodash');
 const KarmaServer = require('karma').Server;
 const gulp = require('gulp');
 const gutil = require('gulp-util');
+const htmlhint = require('gulp-htmlhint');
 const path = require('path');
 
 gulp.task('lint', () => {
@@ -16,6 +17,12 @@ gulp.task('lint', () => {
     .pipe(eslint())
     .pipe(eslint.format(friendlyFormatter))
     .pipe(eslint.failAfterError());
+});
+
+gulp.task('htmlhint', () => {
+  gulp.src('src/**/*.html')
+    .pipe(htmlhint({ 'doctype-first': false }))
+    .pipe(htmlhint.reporter('htmlhint-stylish'));
 });
 
 function karmaStart(config, done) {
@@ -55,4 +62,4 @@ gulp.task('tdd', (done) => {
   karmaStart({ singleRun: false }, done);
 });
 
-gulp.task('default', ['lint', 'test']);
+gulp.task('default', ['lint', 'htmlhint', 'test']);
