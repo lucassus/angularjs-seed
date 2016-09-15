@@ -2,6 +2,7 @@ import angular from 'angular';
 import appAbout from './about/module';
 import appContacts from './contacts/module';
 import appHome from './home/module';
+import buildSignature from '../../build_signature_loader!./build_signature.tpl';
 import template404 from './404.html';
 import uiRouter from 'angular-ui-router';
 
@@ -41,4 +42,8 @@ export default angular.module('app', [
       $log.error('$stateChangeError', error);
       $state.go('404');
     });
+  }).run(($log) => {
+    'ngInject';
+
+    $log.info(buildSignature);
   });

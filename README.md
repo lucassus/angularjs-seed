@@ -26,5 +26,5 @@ open http://localhost:8080
 * Long term caching
 * Karma, mocha and Sinon.js 
 * Istanbul test coverage
-* ESLint
+* ESLint, HTMLHint
 * TravisCI
