@@ -52,6 +52,9 @@ module.exports = function(config) {
         }, {
           test: /\.scss/,
           loader: 'null-loader'
+        }, {
+          test: /\.jpg$/,
+          loader: 'null-loader'
         }]
       },
       resolve: {
