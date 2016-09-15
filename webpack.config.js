@@ -1,3 +1,4 @@
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
@@ -22,6 +23,9 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin('public/assets', {
+      verbose: true,
+    }),
     new ExtractTextPlugin('style.css'),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
   ],
