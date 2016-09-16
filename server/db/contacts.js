@@ -1,6 +1,5 @@
 const Promise = require('bluebird');
 const _ = require('lodash');
-const faker = require('faker');
 
 let lastId = 0;
 
@@ -9,23 +8,6 @@ function nextId() {
 }
 
 const contacts = [];
-
-function seed(n = 20) {
-  faker.seed(667);
-
-  // Delete all contacts
-  contacts.splice(0, contacts.length);
-
-  _.times(n, () => {
-    contacts.push({
-      id: nextId(),
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      email: faker.internet.email(),
-      phone: faker.phone.phoneNumber()
-    });
-  });
-}
 
 function find() {
   return Promise.resolve(contacts);
@@ -63,4 +45,8 @@ function deleteOne(query) {
   });
 }
 
-module.exports = { seed, find, findOne, insertOne, updateOne, deleteOne };
+function deleteMany() {
+  contacts.splice(0, contacts.length);
+}
+
+module.exports = { find, findOne, insertOne, updateOne, deleteOne, deleteMany };
