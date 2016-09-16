@@ -17,6 +17,7 @@
     "eol-last": "error",
     "indent": ["error", 2],
     "keyword-spacing": "error",
+    "max-len": ["error", 120],
     "no-console": "off",
     "no-trailing-spaces": "error",
     "no-var": "error",
