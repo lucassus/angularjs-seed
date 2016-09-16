@@ -2,12 +2,14 @@ const Promise = require('bluebird');
 const faker = require('faker');
 const _ = require('lodash');
 
-faker.seed(667);
+const Collection = require('./collection');
 
 module.exports = {
-  contacts: require('./db/contacts'),
+  contacts: new Collection(),
 
   seed(n = 20) {
+    faker.seed(667);
+
     this.contacts.deleteMany();
 
     return Promise.all(_.times(n, () => {
