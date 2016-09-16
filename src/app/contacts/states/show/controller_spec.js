@@ -5,7 +5,9 @@ import sinon from 'sinon';
 describe(`module: ${module.name}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module.name);
+    angular.mock.module(module.name, ($provide) => {
+      $provide.value('confirm', sinon.stub().returns(true));
+    });
   });
 
   describe('controller: contacts.show', () => {

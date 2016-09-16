@@ -28,6 +28,15 @@ describe(`module: ${module.name}`, () => {
       expect(contact).to.have.property('id', 123);
     });
 
+    describe('.fullName', () => {
+
+      it('returns the full name', () => {
+        const contact = new Contact({ firstName: 'Luke', lastName: 'Skywalker' });
+        expect(contact.fullName).to.eq('Luke Skywalker');
+      });
+
+    });
+
   });
 
 });

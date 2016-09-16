@@ -16,9 +16,8 @@
   <tr ng-repeat="contact in ctrl.contacts">
     <td><a ui-sref="contacts.show({ id: contact.id })" ng-bind="contact.id"></a></td>
     <td>
-      <a ui-sref="contacts.show({ id: contact.id })">
-        <span ng-bind="contact.firstName"></span>
-        <span ng-bind="contact.lastName"></span>
+      <a ui-sref="contacts.show({ id: contact.id })"
+         ng-bind="contact.fullName">
       </a>
     </td>
     <td ng-bind="contact.email"></td>
