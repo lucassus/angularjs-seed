@@ -28,7 +28,7 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(BUILD_DIRECTORY, {
-      verbose: true,
+      verbose: true
     }),
     new webpack.optimize.CommonsChunkPlugin('vendor', CHUNK_FILENAME),
     new HtmlWebpackPlugin({
@@ -56,7 +56,7 @@ module.exports = {
       loader: 'html'
     }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('style', 'css!sass'),
+      loader: ExtractTextPlugin.extract('style', 'css!sass')
     }, {
       test: /\.png$/,
       loader: 'url-loader?limit=100000'
@@ -86,7 +86,7 @@ module.exports = {
 
     proxy: {
       '/api': {
-        target: 'http://localhost:9090',
+        target: 'http://localhost:9090'
       }
     },
 

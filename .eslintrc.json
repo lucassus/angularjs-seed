@@ -10,6 +10,8 @@
     "sourceType": "commonjs"
   },
   "rules": {
+    "comma-dangle": "error",
+    "comma-style": ["error", "last"],
     "complexity": "warn",
     "curly": "error",
     "eol-last": "error",

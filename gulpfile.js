@@ -34,7 +34,7 @@ gulp.task('lint', ['eslint', 'htmlhint']);
 
 function karmaStart(config, done) {
   config = _.extend({}, {
-    configFile: path.join(__dirname, 'karma.conf.js'),
+    configFile: path.join(__dirname, 'karma.conf.js')
   }, config);
 
   if (cmdArgs.browsers) {
