@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 
+const db = require('./server/db');
+
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'build')));
@@ -8,18 +10,14 @@ app.use(express.static(path.join(__dirname, 'build')));
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-const port = process.env.PORT || 9090;
-app.listen(port, () => {
-  console.log('Node app is running on port', port);
+db.seed().then((contacts) => {
+  console.log(`Database populated with ${contacts.length} contacts`);
+
+  const port = process.env.PORT || 9090;
+  app.listen(port, () => {
+    console.log('Server is running on port', port);
+  });
 });
-
-// Fake in-memory database
-const db = {
-  contacts: require('./server/contacts')
-};
-
-// Initially seed the fake db
-db.contacts.seed();
 
 function parseId(req) {
   const { id } = req.params;

@@ -1,5 +1,6 @@
 import angular from 'angular';
 import appAbout from './about/module';
+import appCommons from './commons/module';
 import appContacts from './contacts/module';
 import appHome from './home/module';
 import buildSignature from '../../build_signature_loader!./build_signature.tpl';
@@ -29,9 +30,10 @@ function notFoundState($stateProvider, $urlRouterProvider) {
 export default angular.module('app', [
   uiRouter,
 
-  appAbout.name,
+  appCommons.name,
+  appHome.name,
   appContacts.name,
-  appHome.name
+  appAbout.name
 ])
   .config(router)
   .config(notFoundState)

@@ -33,8 +33,10 @@ gulp.task('htmlhint', () => {
 gulp.task('lint', ['eslint', 'htmlhint']);
 
 function karmaStart(config, done) {
+  const { singleRun } = config;
+
   config = _.extend({}, {
-    configFile: path.join(__dirname, 'karma.conf.js'),
+    configFile: path.join(__dirname, 'karma.conf.js')
   }, config);
 
   if (cmdArgs.browsers) {
@@ -45,7 +47,7 @@ function karmaStart(config, done) {
 
   const server = new KarmaServer(config);
 
-  if (config.singleRun) {
+  if (singleRun) {
     // TDD never ends
 
     server.on('run_complete', (browsers, results) => {

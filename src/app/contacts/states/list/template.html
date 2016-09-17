@@ -6,6 +6,7 @@
   <thead>
   <tr>
     <th>#</th>
+    <th>Favourite</th>
     <th>Full Name</th>
     <th>Email</th>
     <th>Phone</th>
@@ -16,8 +17,12 @@
   <tr ng-repeat="contact in ctrl.contacts">
     <td><a ui-sref="contacts.show({ id: contact.id })" ng-bind="contact.id"></a></td>
     <td>
-      <span ng-bind="contact.firstName"></span>
-      <span ng-bind="contact.lastName"></span>
+      <favourite-button contact="contact"></favourite-button>
+    </td>
+    <td>
+      <a ui-sref="contacts.show({ id: contact.id })"
+         ng-bind="contact.fullName">
+      </a>
     </td>
     <td ng-bind="contact.email"></td>
     <td ng-bind="contact.phone"></td>
@@ -26,5 +31,6 @@
 </table>
 
 <button class="btn btn-default" ui-sref="contacts.new">
+  <span class="glyphicon glyphicon-user"></span>
   Add new contact
 </button>
