@@ -1,10 +1,12 @@
-function transformResponse(json) {
-  const data = angular.fromJson(json);
-  return data.contacts;
-}
+import mixin from '../../utils/mixin';
 
 export default function($resource) {
   'ngInject';
+
+  function transformResponse(json) {
+    const data = angular.fromJson(json);
+    return data.contacts;
+  }
 
   const Contact = $resource('/api/contacts/:id', { id: '@id' }, {
     query: { method: 'GET', isArray: true, transformResponse },
@@ -14,13 +16,19 @@ export default function($resource) {
     delete: { method: 'DELETE' }
   });
 
-  // TODO use es6 style
+  class ContactMixin {
 
-  Object.defineProperty(Contact.prototype, 'fullName', {
-    get() {
+    get fullName() {
       return [this.firstName, this.lastName].join(' ');
     }
-  });
 
-  return Contact;
+    toggleFavourite() {
+      const { id, favourite } = this;
+      return Contact.update({ id, favourite: !favourite }).$promise
+        .then((contact) => angular.extend(this, contact));
+    }
+
+  }
+
+  return mixin(Contact, ContactMixin);
 }

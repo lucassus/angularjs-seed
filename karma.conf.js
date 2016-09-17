@@ -30,7 +30,6 @@ module.exports = function(config) {
     },
 
     webpack: {
-      devtool: 'inline-source-map',
       module: {
         loaders: [{
           test: /\.js$/,
@@ -57,9 +56,12 @@ module.exports = function(config) {
           loader: 'null-loader'
         }]
       },
+
       resolve: {
         alias: { sinon: 'sinon/pkg/sinon.js' }
-      }
+      },
+
+      devtool: 'inline-source-map'
     },
 
     webpackMiddleware: { noInfo: true },

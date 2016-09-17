@@ -29,43 +29,59 @@ describe(`module: ${module.name}`, () => {
 
     describe('.delete', () => {
 
-      let requestHandler;
-
-      beforeEach(inject(($httpBackend, $state) => {
-        requestHandler = $httpBackend.expectDELETE('/api/contacts/2');
-
-        sinon.spy(ctrl.contact, '$delete');
+      beforeEach(inject(($state) => {
         sinon.stub($state, 'go');
-
-        ctrl.delete();
       }));
 
-      it('deletes a contact', () => {
-        expect(ctrl.contact.$delete.called).to.be.true;
-      });
+      describe('when confirmed', () => {
 
-      describe('on success', () => {
+        let requestHandler;
 
         beforeEach(inject(($httpBackend) => {
-          requestHandler.respond(200);
-          $httpBackend.flush();
+          requestHandler = $httpBackend.expectDELETE('/api/contacts/2');
+
+          sinon.spy(ctrl.contact, '$delete');
+          ctrl.delete();
         }));
 
-        it('redirect to the list page', inject(($state) => {
-          expect($state.go.calledWith('contacts.list')).to.be.true;
-        }));
+        it('deletes a contact', () => {
+          expect(ctrl.contact.$delete.called).to.be.true;
+        });
+
+        describe('on success', () => {
+
+          beforeEach(inject(($httpBackend) => {
+            requestHandler.respond(200);
+            $httpBackend.flush();
+          }));
+
+          it('redirect to the list page', inject(($state) => {
+            expect($state.go.calledWith('contacts.list')).to.be.true;
+          }));
+
+        });
+
+        describe('on error', () => {
+
+          beforeEach(inject(($httpBackend) => {
+            requestHandler.respond(422);
+            $httpBackend.flush();
+          }));
+
+          it('does not redirect', inject(($state) => {
+            expect($state.go.calledWith('contacts.list')).to.be.false;
+          }));
+
+        });
 
       });
 
-      describe('on error', () => {
+      describe('when not confirmed', () => {
 
-        beforeEach(inject(($httpBackend) => {
-          requestHandler.respond(422);
-          $httpBackend.flush();
-        }));
-
-        it('does not redirect', inject(($state) => {
-          expect($state.go.calledWith('contacts.list')).to.be.false;
+        it('does nothing', inject(($state, confirm) => {
+          confirm.returns(false);
+          ctrl.delete();
+          expect($state.go.called).to.be.false;
         }));
 
       });

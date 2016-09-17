@@ -1,4 +1,5 @@
 <h3>
+  <favourite-button contact="ctrl.contact"></favourite-button>
   Contact
   <span ng-bind="ctrl.contact.fullName"></span>
 </h3>
@@ -18,6 +19,9 @@
 
   <dt>Phone</dt>
   <dd ng-bind="ctrl.contact.phone"></dd>
+
+  <dt>Favourite</dt>
+  <dd ng-bind="ctrl.contact.favourite"></dd>
 </dl>
 
 <button class="btn btn-default" ui-sref="contacts.edit({ id: ctrl.contact.id })">

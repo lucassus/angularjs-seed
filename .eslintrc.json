@@ -19,6 +19,8 @@
     "keyword-spacing": "error",
     "max-len": ["error", 120],
     "no-console": "off",
+    "no-multiple-empty-lines": "error",
+    "no-shadow": "error",
     "no-trailing-spaces": "error",
     "no-var": "error",
     "no-warning-comments": "warn",

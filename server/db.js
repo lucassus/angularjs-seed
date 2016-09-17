@@ -14,6 +14,7 @@ module.exports = {
 
     return Promise.all(_.times(n, () => {
       return this.contacts.insertOne({
+        favourite: faker.random.boolean(),
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         email: faker.internet.email(),

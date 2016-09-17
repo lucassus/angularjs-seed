@@ -16,8 +16,8 @@ describe(`module: ${module.name}`, () => {
 
       ctrl = $controller(Controller, {
         contacts: [
-          { id: 1, name: 'foo' },
-          { id: 2, name: 'bar' }
+          { id: 1, firstName: 'Karen' },
+          { id: 2, firstName: 'Luke' }
         ]
       });
     }));
@@ -25,10 +25,12 @@ describe(`module: ${module.name}`, () => {
     it('has an array of contacts', () => {
       expect(ctrl.contacts).to.be.an.array;
       expect(ctrl.contacts).to.have.length(2);
+
       expect(ctrl.contacts[0]).to.have.property('id', 1);
-      expect(ctrl.contacts[0]).to.have.property('name', 'foo');
+      expect(ctrl.contacts[0]).to.have.property('firstName', 'Karen');
+
       expect(ctrl.contacts[1]).to.have.property('id', 2);
-      expect(ctrl.contacts[1]).to.have.property('name', 'bar');
+      expect(ctrl.contacts[1]).to.have.property('firstName', 'Luke');
     });
 
   });
