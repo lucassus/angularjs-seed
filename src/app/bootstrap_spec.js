@@ -5,13 +5,17 @@ import sinon from 'sinon';
 
 describe('boostrap', () => {
 
+  let sandbox;
+
   beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+
     // Do not boot the app in the test environment
-    sinon.stub(angular, 'bootstrap');
+    sandbox.stub(angular, 'bootstrap');
   });
 
   afterEach(() => {
-    angular.bootstrap.restore();
+    sandbox.restore();
   });
 
   describe('.bootstrap', () => {
