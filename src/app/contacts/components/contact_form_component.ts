@@ -1,10 +1,10 @@
 import * as angular from 'angular';
-import IComponentOptions = angular.IComponentOptions;
+import { IContact } from '../services/contact_factory';
 
 class Controller {
 
-  contact: any;
-  originalContact: any;
+  contact: IContact;
+  originalContact: IContact;
   onSubmit: Function;
 
   $onInit() {

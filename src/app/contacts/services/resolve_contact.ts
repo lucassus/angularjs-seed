@@ -1,4 +1,6 @@
-export default function($stateParams, Contact) {
+import { IContactClass } from './contact_factory';
+
+export default function($stateParams, Contact: IContactClass) {
   'ngInject';
 
   const { id } = $stateParams;
