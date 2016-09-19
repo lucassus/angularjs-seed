@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import module from '../../module';
 
-describe(`module: ${module.name}`, () => {
+describe(`module: ${module}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module.name);
+    angular.mock.module(module);
   });
 
   describe('state: home', () => {

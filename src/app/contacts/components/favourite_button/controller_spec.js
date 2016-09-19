@@ -3,10 +3,10 @@ import { expect } from 'chai';
 import module from '../../module';
 import sinon from 'sinon';
 
-describe(`module: ${module.name}`, () => {
+describe(`module: ${module}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module.name);
+    angular.mock.module(module);
   });
 
   describe('controller: favouriteButton', () => {

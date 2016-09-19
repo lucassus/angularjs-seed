@@ -2,10 +2,10 @@ import { expect } from 'chai';
 import module from '../../module';
 import sinon from 'sinon';
 
-describe(`module: ${module.name}`, () => {
+describe(`module: ${module}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module.name);
+    angular.mock.module(module);
   });
 
   describe('controller: home', () => {
@@ -16,9 +16,7 @@ describe(`module: ${module.name}`, () => {
       const Controller = $state.get('home').controller;
 
       ctrl = $controller(Controller, {
-        $window: {
-          alert: sinon.stub()
-        }
+        alert: sinon.stub()
       });
     }));
 
@@ -30,7 +28,7 @@ describe(`module: ${module.name}`, () => {
 
       it('alerts a message', () => {
         ctrl.sayHello();
-        expect(ctrl.$window.alert.calledWith('Hello World!')).to.be.true;
+        expect(ctrl.alert.calledWith('Hello World!')).to.be.true;
       });
 
     });

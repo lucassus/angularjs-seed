@@ -12,8 +12,9 @@ export default angular.module('app.contacts', [
   angularResource,
   uiRouter,
 
-  appCommons.name
+  appCommons
 ])
   .config(services)
   .config(components)
-  .config(states);
+  .config(states)
+  .name;
