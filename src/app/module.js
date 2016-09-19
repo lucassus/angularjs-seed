@@ -1,4 +1,6 @@
 import angular from 'angular';
+import angularAnimate from 'angular-animate';
+import angularLoadingBar from 'angular-loading-bar';
 import appAbout from './about/module';
 import appCommons from './commons/module';
 import appContacts from './contacts/module';
@@ -28,7 +30,9 @@ function notFoundState($stateProvider, $urlRouterProvider) {
 }
 
 export default angular.module('app', [
+  angularAnimate,
   uiRouter,
+  angularLoadingBar,
 
   appCommons.name,
   appHome.name,

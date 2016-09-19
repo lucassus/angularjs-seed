@@ -12,8 +12,10 @@ module.exports = {
   entry: {
     vendor: [
       'angular',
+      'angular-animate',
       'angular-messages',
       'angular-resource',
+      'angular-loading-bar',
       'angular-ui-router',
       'lodash'
     ],
