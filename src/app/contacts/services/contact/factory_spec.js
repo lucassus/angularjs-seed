@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import module from '../module';
+import module from '../../module';
 
 describe(`module: ${module.name}`, () => {
 

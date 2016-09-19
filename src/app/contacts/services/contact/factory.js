@@ -1,4 +1,5 @@
-import mixin from '../../utils/mixin';
+import angular from 'angular';
+import mixin from '../../../utils/mixin';
 
 export default function($resource) {
   'ngInject';
