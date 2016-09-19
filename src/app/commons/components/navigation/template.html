@@ -1,0 +1,22 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="home">Angular seed</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li ng-class="{ active: ('home' | includedByState) }">
+          <a ui-sref="home">Home</a>
+        </li>
+
+        <li ng-class="{ active: ('contacts' | includedByState) }">
+          <a ui-sref="contacts.list">Contacts</a>
+        </li>
+
+        <li ng-class="{ active: ('about' | includedByState) }">
+          <a ui-sref="about">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
