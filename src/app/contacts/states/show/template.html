@@ -22,6 +22,12 @@
 
   <dt>Favourite</dt>
   <dd ng-bind="ctrl.contact.favourite"></dd>
+
+  <dt>Created At</dt>
+  <dd ng-bind="ctrl.contact.createdAt | date:'medium'"></dd>
+
+  <dt>Updated At</dt>
+  <dd ng-bind="ctrl.contact.updatedAt | date:'medium'"></dd>
 </dl>
 
 <button class="btn btn-default" ui-sref="contacts.edit({ id: ctrl.contact.id })">

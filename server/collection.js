@@ -27,7 +27,11 @@ module.exports = class {
   }
 
   insertOne(data) {
-    const contact = _.extend({}, data, { id: this.nextId() });
+    const contact = _.extend({}, data, {
+      id: this.nextId(),
+      createdAt: new Date().getTime(),
+      updatedAt: null
+    });
     this.documents.push(contact);
 
     return Promise.resolve(contact);
@@ -35,7 +39,9 @@ module.exports = class {
 
   updateOne(query, data) {
     return this.findOne(query).then((contact) => {
-      return _.extend(contact, data);
+      return _.extend(contact, data, {
+        updatedAt: new Date().getTime()
+      });
     });
   }
 

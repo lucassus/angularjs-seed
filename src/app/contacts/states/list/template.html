@@ -10,6 +10,7 @@
     <th>Full Name</th>
     <th>Email</th>
     <th>Phone</th>
+    <th>Created At</th>
   </tr>
   </thead>
 
@@ -26,6 +27,7 @@
     </td>
     <td ng-bind="contact.email"></td>
     <td ng-bind="contact.phone"></td>
+    <td ng-bind="contact.createdAt | date:'medium'"></td>
   </tr>
   </tbody>
 </table>
