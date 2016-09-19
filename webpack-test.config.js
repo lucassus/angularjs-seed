@@ -11,6 +11,13 @@ module.exports = {
   ],
 
   module: {
+    // TODO only in tdd
+    preLoaders: [{
+      test: /\.js$/,
+      loader: 'eslint',
+      exclude: /node_modules/
+    }],
+
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
