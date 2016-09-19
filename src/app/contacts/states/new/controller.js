@@ -11,7 +11,6 @@ export default class {
 
   create(contact) {
     return contact.$create().then((createdContact) => {
-      // TODO spec it
       this.toastr.success('Contact created');
 
       angular.extend(this.contact, createdContact);

@@ -11,7 +11,6 @@ export default class {
 
   update(contact) {
     return contact.$update().then((updatedContact) => {
-      // TODO spec it
       this.toastr.success('Contact updated');
 
       angular.extend(this.contact, updatedContact);
