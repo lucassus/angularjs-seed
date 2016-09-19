@@ -34,10 +34,10 @@ export default angular.module('app', [
   uiRouter,
   angularLoadingBar,
 
-  appCommons.name,
-  appHome.name,
-  appContacts.name,
-  appAbout.name
+  appCommons,
+  appHome,
+  appContacts,
+  appAbout
 ])
   .config(router)
   .config(notFoundState)
@@ -52,4 +52,5 @@ export default angular.module('app', [
     'ngInject';
 
     $log.info(buildSignature);
-  });
+  })
+  .name;

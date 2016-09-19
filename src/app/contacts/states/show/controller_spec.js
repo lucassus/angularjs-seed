@@ -2,10 +2,10 @@ import { expect } from 'chai';
 import module from '../../module';
 import sinon from 'sinon';
 
-describe(`module: ${module.name}`, () => {
+describe(`module: ${module}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module.name, ($provide) => {
+    angular.mock.module(module, ($provide) => {
       $provide.value('confirm', sinon.stub().returns(true));
     });
   });

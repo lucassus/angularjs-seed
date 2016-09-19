@@ -5,6 +5,7 @@ import uiRouter from 'angular-ui-router';
 
 export default angular.module('app.home', [
   uiRouter,
-  commonsModule.name
+  commonsModule
 ])
-  .config(states);
+  .config(states)
+  .name;
