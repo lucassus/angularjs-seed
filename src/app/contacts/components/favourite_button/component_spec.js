@@ -1,6 +1,6 @@
 import angular from 'angular';
 import { expect } from 'chai';
-import module from '../module';
+import module from '../../module';
 import sinon from 'sinon';
 
 describe(`module: ${module.name}`, () => {
@@ -9,7 +9,7 @@ describe(`module: ${module.name}`, () => {
     angular.mock.module(module.name);
   });
 
-  describe('component: contactForm', () => {
+  describe('component: favouriteButton', () => {
 
     let element, scope;
 
@@ -43,7 +43,7 @@ describe(`module: ${module.name}`, () => {
           expect(scope.contact.toggleFavourite.called).to.be.true;
         });
 
-        it.only('disabled and enabled the button', inject(($rootScope, $q) => {
+        it('disabled and enabled the button', inject(($rootScope, $q) => {
           // Given
           const deferred = $q.defer();
           scope.contact.toggleFavourite.returns(deferred.promise);
