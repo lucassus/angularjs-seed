@@ -1,5 +1,5 @@
 import angular from 'angular';
-import confirmService from './services/confirm_service';
+import services from './services/config';
 
 export default angular.module('app.commons', [])
-  .service('confirm', confirmService);
+  .config(services);

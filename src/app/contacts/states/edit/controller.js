@@ -8,11 +8,11 @@ export default class {
   }
 
   update(contact) {
-    contact.$update().then((updatedContact) => {
+    return contact.$update().then((updatedContact) => {
       angular.extend(this.contact, updatedContact);
 
       const { id } = this.contact;
-      this.$state.go('contacts.show', { id });
+      return this.$state.go('contacts.show', { id });
     });
   }
 

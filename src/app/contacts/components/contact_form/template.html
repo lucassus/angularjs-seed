@@ -49,9 +49,19 @@
            type="text" class="form-control" id="phone-field" />
   </div>
 
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="favourite"
+             ng-model="$ctrl.contact.favourite" />
+      Favourite
+    </label>
+  </div>
+
+  <pre ng-bind="$ctrl.saving"></pre>
+
   <button class="btn btn-success"
           type="submit"
-          ng-disabled="contactForm.$invalid">
+          ng-disabled="contactForm.$invalid || $ctrl.saving">
     <span class="glyphicon glyphicon-floppy-disk"></span>
 
     <span ng-hide="$ctrl.isPersisted()">Create</span>

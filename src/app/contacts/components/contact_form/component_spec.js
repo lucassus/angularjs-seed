@@ -1,6 +1,6 @@
 import angular from 'angular';
 import { expect } from 'chai';
-import module from '../module';
+import module from '../../module';
 import sinon from 'sinon';
 
 describe(`module: ${module.name}`, () => {
@@ -13,10 +13,10 @@ describe(`module: ${module.name}`, () => {
 
     let element, scope;
 
-    beforeEach(inject(($compile, $rootScope, Contact) => {
+    beforeEach(inject(($compile, $rootScope, $q, Contact) => {
       scope = $rootScope.$new();
       scope.contact = new Contact({ id: 123, firstName: 'Foo' });
-      scope.update = sinon.stub();
+      scope.update = sinon.stub().returns($q.resolve({}));
 
       element = angular.element(`
         <contact-form contact="contact" 
@@ -97,6 +97,21 @@ describe(`module: ${module.name}`, () => {
           ctrl.submit();
           expect(scope.update.calledWith(ctrl.contact)).to.be.true;
         });
+
+        it('toggles `saving` flag', inject(($rootScope) => {
+          // Given
+          expect(ctrl.saving).to.be.false;
+
+          // When
+          ctrl.submit();
+
+          // Then
+          expect(ctrl.saving).to.be.true;
+
+          // ...resolve the promise
+          $rootScope.$digest();
+          expect(ctrl.saving).to.be.false;
+        }));
 
       });
 
