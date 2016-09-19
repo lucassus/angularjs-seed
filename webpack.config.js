@@ -30,7 +30,10 @@ module.exports = {
     new CleanWebpackPlugin(BUILD_DIRECTORY, {
       verbose: true
     }),
-    new webpack.optimize.CommonsChunkPlugin('vendor', CHUNK_FILENAME),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      fileName: CHUNK_FILENAME
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/index.html',
