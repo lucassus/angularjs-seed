@@ -30,8 +30,8 @@ describe(`module: ${module.name}`, () => {
       let requestHandler;
 
       beforeEach(inject(($httpBackend, $state) => {
+        // Given
         const contactCopy = angular.copy(ctrl.contact);
-
         angular.extend(contactCopy, {
           firstName: 'Lukasz',
           lastName: 'Bandzarewicz'
@@ -43,7 +43,12 @@ describe(`module: ${module.name}`, () => {
         sinon.spy(ctrl.contact, '$create');
         sinon.stub($state, 'go');
 
-        ctrl.create(contactCopy);
+        // When
+        const promise = ctrl.create(contactCopy);
+
+        // Then
+        expect(typeof promise.then).to.be.eq('function');
+        expect(typeof promise.finally).to.be.eq('function');
       }));
 
       describe('on success', () => {
