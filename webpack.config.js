@@ -36,7 +36,7 @@ module.exports = {
       template: 'src/index.html',
       inject: true
     }),
-    new ExtractTextPlugin('stype.[chunkhash].css')
+    new ExtractTextPlugin('style.[chunkhash].css')
   ],
 
   module: {
