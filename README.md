@@ -22,7 +22,7 @@ open http://localhost:8080
 ## Features
 
 * AngularJS 1.5.x with ES2015 flavour
-* AngularJS modules: uiRouter, ngResource, ngMessage
+* AngularJS modules: uiRouter, ngResource, ngMessage, toastr
 * Twitter Bootstrap with Sass
 * Gulp
 * Webpack
