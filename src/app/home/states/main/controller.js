@@ -1,14 +1,14 @@
 export default class {
 
-  constructor($window) {
+  constructor(alert) {
     'ngInject';
 
-    this.$window = $window;
+    this.alert = alert;
     this.message = 'Hello World!';
   }
 
   sayHello() {
-    this.$window.alert(this.message);
+    this.alert(this.message);
   }
 
 }

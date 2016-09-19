@@ -16,9 +16,7 @@ describe(`module: ${module.name}`, () => {
       const Controller = $state.get('home').controller;
 
       ctrl = $controller(Controller, {
-        $window: {
-          alert: sinon.stub()
-        }
+        alert: sinon.stub()
       });
     }));
 
@@ -30,7 +28,7 @@ describe(`module: ${module.name}`, () => {
 
       it('alerts a message', () => {
         ctrl.sayHello();
-        expect(ctrl.$window.alert.calledWith('Hello World!')).to.be.true;
+        expect(ctrl.alert.calledWith('Hello World!')).to.be.true;
       });
 
     });
