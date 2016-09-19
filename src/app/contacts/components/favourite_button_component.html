@@ -1,7 +1,8 @@
 <button class="btn btn-link btn-sm btn-default"
-        ng-click="$ctrl.contact.toggleFavourite()">
+        ng-disabled="$ctrl.saving"
+        ng-click="$ctrl.toggleFavourite()">
 
   <span class="glyphicon"
-        ng-class="$ctrl.contact.favourite ? 'glyphicon-star' : 'glyphicon-star-empty'">
+        ng-class="$ctrl.favourite ? 'glyphicon-star' : 'glyphicon-star-empty'">
   </span>
 </button>

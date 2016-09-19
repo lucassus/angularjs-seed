@@ -13,10 +13,12 @@ describe(`module: ${module.name}`, () => {
 
     let element, scope;
 
-    beforeEach(inject(($compile, $rootScope, Contact) => {
+    beforeEach(inject(($compile, $q, $rootScope, Contact) => {
       scope = $rootScope.$new();
       scope.contact = new Contact({ id: 123, favourite: false });
-      sinon.stub(scope.contact, 'toggleFavourite');
+
+      sinon.stub(scope.contact, 'toggleFavourite')
+        .returns($q.resolve());
 
       element = angular.element(`
         <favourite-button contact="contact"></favourite-button>
@@ -37,9 +39,30 @@ describe(`module: ${module.name}`, () => {
       describe('on click', () => {
 
         it('toggles contact favourite flag', () => {
-          buttonEl.triggerHandler('click');
+          buttonEl.click();
           expect(scope.contact.toggleFavourite.called).to.be.true;
         });
+
+        it.only('disabled and enabled the button', inject(($rootScope, $q) => {
+          // Given
+          const deferred = $q.defer();
+          scope.contact.toggleFavourite.returns(deferred.promise);
+
+          expect(buttonEl.attr('disabled')).to.be.undefined;
+
+          // When
+          buttonEl.click();
+
+          // Then
+          expect(buttonEl.attr('disabled')).to.eq('disabled');
+
+          // When
+          deferred.resolve();
+          $rootScope.$digest();
+
+          // Then
+          expect(buttonEl.attr('disabled')).to.be.undefined;
+        }));
 
       });
 
