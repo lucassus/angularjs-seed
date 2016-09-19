@@ -18,6 +18,7 @@ module.exports = {
       'angular-messages',
       'angular-resource',
       'angular-loading-bar',
+      'angular-toastr',
       'angular-ui-router'
     ],
     app: ['./src/app.js']
