@@ -1,3 +1,4 @@
+import { notFoundState, router } from './config';
 import angular from 'angular';
 import angularAnimate from 'angular-animate';
 import angularLoadingBar from 'angular-loading-bar';
@@ -6,27 +7,20 @@ import appCommons from './commons/module';
 import appContacts from './contacts/module';
 import appHome from './home/module';
 import buildSignature from '../../build_signature_loader!./build_signature.tpl';
-import template404 from './404.html';
 import uiRouter from 'angular-ui-router';
 
-function router($urlMatcherFactoryProvider, $urlRouterProvider) {
+function stateErrorsHandler($log, $rootScope, $state) {
   'ngInject';
 
-  $urlMatcherFactoryProvider.strictMode(true);
-  $urlRouterProvider.when('', '/');
+  $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
+    $log.error('$stateChangeError', error);
+    $state.go('404');
+  });
 }
 
-function notFoundState($stateProvider, $urlRouterProvider) {
+function logBuildSignature($log) {
   'ngInject';
-
-  $stateProvider
-    .state('404', {
-      template: template404
-    });
-
-  $urlRouterProvider.otherwise(($injector) => {
-    $injector.get('$state').go('404');
-  });
+  $log.info(buildSignature);
 }
 
 export default angular.module('app', [
@@ -41,16 +35,6 @@ export default angular.module('app', [
 ])
   .config(router)
   .config(notFoundState)
-  .run(($log, $rootScope, $state) => {
-    'ngInject';
-
-    $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
-      $log.error('$stateChangeError', error);
-      $state.go('404');
-    });
-  }).run(($log) => {
-    'ngInject';
-
-    $log.info(buildSignature);
-  })
+  .run(stateErrorsHandler)
+  .run(logBuildSignature)
   .name;
