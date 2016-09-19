@@ -30,7 +30,13 @@ module.exports = function(config) {
 
     webpack,
 
-    webpackMiddleware: { noInfo: true },
+    webpackMiddleware: {
+      stats: {
+        assets: false,
+        chunks: false,
+        colors: true
+      }
+    },
 
 
     // test results reporter to use
