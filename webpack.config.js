@@ -11,13 +11,14 @@ const CHUNK_FILENAME = '[name].[chunkhash].js';
 module.exports = {
   entry: {
     vendor: [
+      'jquery',
+      'lodash',
       'angular',
       'angular-animate',
       'angular-messages',
       'angular-resource',
       'angular-loading-bar',
-      'angular-ui-router',
-      'lodash'
+      'angular-ui-router'
     ],
     app: ['./src/app.js']
   },
@@ -31,6 +32,10 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(BUILD_DIRECTORY, {
       verbose: true
+    }),
+    new webpack.ProvidePlugin({
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery'
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

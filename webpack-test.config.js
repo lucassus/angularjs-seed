@@ -1,7 +1,15 @@
 const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
+  plugins: [
+    new webpack.ProvidePlugin({
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery'
+    })
+  ],
+
   module: {
     loaders: [{
       test: /\.js$/,
