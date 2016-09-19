@@ -49,6 +49,14 @@
            type="text" class="form-control" id="phone-field" />
   </div>
 
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="favourite"
+             ng-model="$ctrl.contact.favourite" />
+      Favourite
+    </label>
+  </div>
+
   <button class="btn btn-success"
           type="submit"
           ng-disabled="contactForm.$invalid">
