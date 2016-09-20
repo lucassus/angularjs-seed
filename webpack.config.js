@@ -57,7 +57,7 @@ module.exports = {
       loader: combineLoaders([{
         loader: 'ng-annotate'
       }, {
-        loader: 'babel-loader',
+        loader: 'babel',
         query: {
           extends: path.join(__dirname, '.babelrc')
         }
@@ -70,10 +70,10 @@ module.exports = {
       loader: ExtractTextPlugin.extract('style', 'css!sass')
     }, {
       test: /\.png$/,
-      loader: 'url-loader?limit=100000'
+      loader: 'url?limit=100000'
     }, {
       test: /\.jpg$/,
-      loader: 'file-loader'
+      loader: 'file'
     }, {
       test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'url?limit=10000&mimetype=application/font-woff'

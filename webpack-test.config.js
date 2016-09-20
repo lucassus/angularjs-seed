@@ -17,7 +17,7 @@ module.exports = {
       loader: combineLoaders([{
         loader: 'ng-annotate'
       }, {
-        loader: 'babel-loader',
+        loader: 'babel',
         query: {
           extends: path.join(__dirname, '.babelrc.karma')
         }
@@ -30,10 +30,10 @@ module.exports = {
       loader: 'imports?define=>false,require=>false'
     }, {
       test: /\.scss/,
-      loader: 'null-loader'
+      loader: 'null'
     }, {
       test: /\.jpg$/,
-      loader: 'null-loader'
+      loader: 'null'
     }]
   },
 
