@@ -1,12 +1,12 @@
 import angular from 'angular';
-import mixin from '../../../utils/mixin';
+import { extend } from '../../../utils';
 
 export default function($resource) {
   'ngInject';
 
   function transformResponse(json) {
-    const data = angular.fromJson(json);
-    return data.contacts;
+    const { contacts } = angular.fromJson(json);
+    return contacts;
   }
 
   const Contact = $resource('/api/contacts/:id', { id: '@id' }, {
@@ -17,11 +17,11 @@ export default function($resource) {
     delete: { method: 'DELETE' }
   });
 
-  class ContactMixin {
+  extend(Contact.prototype, {
 
     get fullName() {
       return [this.firstName, this.lastName].join(' ');
-    }
+    },
 
     toggleFavourite() {
       const { id, favourite } = this;
@@ -29,7 +29,7 @@ export default function($resource) {
         .then((contact) => angular.extend(this, contact));
     }
 
-  }
+  });
 
-  return mixin(Contact, ContactMixin);
+  return Contact;
 }
