@@ -6,6 +6,8 @@
 
 https://angular-webpack-seed.herokuapp.com/
 
+## Useful commands
+
 ```
 npm install
 
@@ -17,6 +19,7 @@ gulp tdd --browsers=Chrome
 
 npm run dev-server
 open http://localhost:8080
+e2e_test.sh
 ```
 
 ## Features
@@ -29,5 +32,6 @@ open http://localhost:8080
 * Long term caching
 * Karma, mocha and Sinon.js 
 * Istanbul test coverage
+* Protractor
 * ESLint, HTMLHint
 * TravisCI, Heroku, Continuous deployment
