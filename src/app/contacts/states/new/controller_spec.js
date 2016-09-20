@@ -2,11 +2,13 @@ import angular from 'angular';
 import { expect } from 'chai';
 import module from '../../module';
 import sinon from 'sinon';
+import toastrMockModule from '../../../../specs/toastr_mock_module';
 
 describe(`module: ${module}`, () => {
 
   beforeEach(() => {
     angular.mock.module(module);
+    angular.mock.module(toastrMockModule);
   });
 
   describe('controller: contacts.new', () => {
@@ -56,6 +58,10 @@ describe(`module: ${module}`, () => {
         beforeEach(inject(($httpBackend) => {
           requestHandler.respond(200, { id: 125 });
           $httpBackend.flush();
+        }));
+
+        it('displays a notification', inject((toastr) => {
+          expect(toastr.success.calledWith('Contact created')).to.be.true;
         }));
 
         it('creates a contact', () => {
