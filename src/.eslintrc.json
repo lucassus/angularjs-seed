@@ -1,12 +1,12 @@
 {
-  "extends": [
-    "../.eslintrc.json",
-    "angular"
-  ],
   "plugins": [
     "angular",
     "mocha",
     "promise"
+  ],
+  "extends": [
+    "../.eslintrc.json",
+    "angular"
   ],
   "env": {
     "browser": true,
