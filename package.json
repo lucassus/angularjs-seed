@@ -37,6 +37,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "favicons-webpack-plugin": "0.0.7",
     "file-loader": "^0.9.0",
+    "fs-extra": "^0.30.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
     "gulp-htmlhint": "^0.3.1",
