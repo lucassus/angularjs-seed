@@ -1,19 +1,36 @@
+class HomePage {
+
+  open() {
+    browser.get('/');
+  }
+
+  get pageHeader() {
+    return element(by.css('.page-header h2'));
+  }
+
+  get clickMeButton() {
+    return element(by.partialButtonText('Click me!'));
+  }
+
+}
+
 describe('Home page', () => {
 
-  it('has a title', () => {
-    browser.get('/');
-    expect(browser.getTitle()).toEqual('Angular webpack seed');
+  const page = new HomePage();
+
+  beforeEach(() => {
+    page.open();
   });
 
-  it('has a page title', () => {
-    expect(element(by.css('.page-header h2'))
-      .getText()).toEqual('Hello World!');
+  it('has a title', () => {
+    expect(page.pageHeader.getText())
+      .toEqual('Hello World!');
   });
 
   describe('click on `Click me!` button', () => {
 
     it('displays an alert', () => {
-      element(by.partialButtonText('Click me!')).click();
+      page.clickMeButton.click();
 
       const alert = browser.switchTo().alert();
       expect(alert.getText()).toEqual('Hello World!');
