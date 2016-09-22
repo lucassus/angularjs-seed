@@ -6,7 +6,7 @@ module.exports = class {
     this.pageHeader = element(by.css('.page-header h2'));
   }
 
-  open() {
+  navigate() {
     browser.get(this.url);
   }
 

@@ -1,4 +1,4 @@
-const Page = require('./support/page');
+const Page = require('./page_objects/page');
 
 class HomePage extends Page {
 
@@ -13,7 +13,7 @@ describe('Home page', () => {
   const page = new HomePage('/');
 
   beforeEach(() => {
-    page.open();
+    page.navigate();
   });
 
   it('has a title', () => {
