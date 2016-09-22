@@ -13,6 +13,7 @@ gulp.task('eslint', () => {
 
   return gulp.src([
     '*.js',
+    'e2e/**/*.js',
     'server/**/*.js',
     'src/**/*.js'
   ])

@@ -24,6 +24,16 @@ function parseId(req) {
   return parseInt(id);
 }
 
+app.post('/api/!seed', (req, res) => {
+  if (process.env.NODE_ENV === 'production') {
+    res.sendStatus(404);
+  } else {
+    db.seed().then(() => {
+      res.sendStatus(200);
+    });
+  }
+});
+
 app.get('/api/contacts', (req, res) => {
   db.contacts.find().then((contacts) => {
     res.json({ contacts });

@@ -30,11 +30,14 @@
     "eslint-friendly-formatter": "^2.0.6",
     "eslint-loader": "^1.5.0",
     "eslint-plugin-angular": "^1.4.1",
+    "eslint-plugin-jasmine": "^1.8.1",
     "eslint-plugin-mocha": "^4.5.1",
     "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-protractor": "^1.27.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "favicons-webpack-plugin": "0.0.7",
     "file-loader": "^0.9.0",
+    "fs-extra": "^0.30.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
     "gulp-htmlhint": "^0.3.1",
@@ -58,6 +61,8 @@
     "nodemon": "^1.10.2",
     "null-loader": "^0.1.1",
     "progress-bar-webpack-plugin": "^1.9.0",
+    "protractor": "^4.0.9",
+    "request": "^2.75.0",
     "sass-loader": "^4.0.2",
     "sinon": "^1.17.6",
     "style-loader": "^0.13.1",
@@ -80,6 +85,6 @@
     "express": "^4.14.0",
     "faker": "^3.1.0",
     "jquery": "^3.1.0",
-    "lodash": "^4.16.0"
+    "lodash": "^4.16.1"
   }
 }
