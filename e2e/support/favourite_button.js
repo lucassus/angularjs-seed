@@ -9,7 +9,7 @@ module.exports = class {
 
     browser.wait(() => {
       return this.el.isEnabled();
-    });
+    }, 5000, 'Unable to toggle favourite');
   }
 
   isToggled() {

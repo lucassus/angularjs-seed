@@ -36,8 +36,6 @@ describe('Contacts page', () => {
         expect(rows.length).toEqual(20);
       });
 
-      expect(page.table.cell(0, 'contact.id').getText())
-        .toEqual('1');
       expect(page.table.cell(0, 'contact.fullName').getText())
         .toEqual('Robert Donnelly');
       expect(page.table.cell(0, 'contact.email').getText())

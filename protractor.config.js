@@ -10,7 +10,10 @@ exports.config = {
   baseUrl: 'http://localhost:8080',
 
   framework: 'jasmine',
-  specs: ['e2e/**/*_spec.js'],
+  specs: [
+    'e2e/setup.js',
+    'e2e/**/*_spec.js'
+  ],
 
   onPrepare() {
     /* global browser */
