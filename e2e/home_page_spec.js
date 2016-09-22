@@ -1,12 +1,6 @@
-class HomePage {
+const Page = require('./support/page');
 
-  open() {
-    browser.get('/');
-  }
-
-  get pageHeader() {
-    return element(by.css('.page-header h2'));
-  }
+class HomePage extends Page {
 
   get clickMeButton() {
     return element(by.partialButtonText('Click me!'));
@@ -16,7 +10,7 @@ class HomePage {
 
 describe('Home page', () => {
 
-  const page = new HomePage();
+  const page = new HomePage('/');
 
   beforeEach(() => {
     page.open();
