@@ -1,13 +1,16 @@
 import { expect } from 'chai';
 import module from '../../module';
 import * as sinon from 'sinon';
+import toastrMockModule from '../../../../specs/toastr_mock_module';
 
-describe(`module: ${module.name}`, () => {
+describe(`module: ${module}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module.name, ($provide) => {
+    angular.mock.module(module, ($provide) => {
       $provide.value('confirm', sinon.stub().returns(true));
     });
+
+    angular.mock.module(toastrMockModule);
   });
 
   describe('controller: contacts.show', () => {
@@ -53,6 +56,10 @@ describe(`module: ${module.name}`, () => {
           beforeEach(inject(($httpBackend) => {
             requestHandler.respond(200);
             $httpBackend.flush();
+          }));
+
+          it('displays a notification', inject((toastr) => {
+            expect(toastr.success.calledWith('Contact deleted')).to.be.true;
           }));
 
           it('redirect to the list page', inject(($state) => {

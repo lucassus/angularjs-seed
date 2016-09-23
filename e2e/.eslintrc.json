@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    "jasmine",
+    "protractor"
+  ],
+  "extends": [
+    "../.eslintrc.json",
+    "plugin:jasmine/recommended",
+    "plugin:protractor/recommended"
+  ],
+  "env": {
+    "jasmine": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "commonjs"
+  },
+  "globals": {
+    "inject": true
+  }
+}

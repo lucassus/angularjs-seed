@@ -1,6 +1,7 @@
 const webpack = require('./webpack-test.config');
 
 module.exports = function(config) {
+
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -30,7 +31,13 @@ module.exports = function(config) {
 
     webpack,
 
-    webpackMiddleware: { noInfo: true },
+    webpackMiddleware: {
+      stats: {
+        assets: false,
+        chunks: false,
+        colors: true
+      }
+    },
 
 
     // test results reporter to use

@@ -10,11 +10,15 @@ const CHUNK_FILENAME = '[name].[chunkhash].js';
 module.exports = {
   entry: {
     vendor: [
+      'jquery',
+      'lodash',
       'angular',
+      'angular-animate',
       'angular-messages',
       'angular-resource',
-      'angular-ui-router',
-      'lodash'
+      'angular-loading-bar',
+      'angular-toastr',
+      'angular-ui-router'
     ],
     app: ['./src/app.ts']
   },
@@ -33,13 +37,20 @@ module.exports = {
     new CleanWebpackPlugin(BUILD_DIRECTORY, {
       verbose: true
     }),
-    new webpack.optimize.CommonsChunkPlugin('vendor', CHUNK_FILENAME),
+    new webpack.ProvidePlugin({
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      fileName: CHUNK_FILENAME
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/index.html',
       inject: true
     }),
-    new ExtractTextPlugin('stype.[chunkhash].css')
+    new ExtractTextPlugin('style.[chunkhash].css')
   ],
 
   module: {
@@ -55,10 +66,10 @@ module.exports = {
       loader: ExtractTextPlugin.extract('style', 'css!sass')
     }, {
       test: /\.png$/,
-      loader: 'url-loader?limit=100000'
+      loader: 'url?limit=100000'
     }, {
       test: /\.jpg$/,
-      loader: 'file-loader'
+      loader: 'file'
     }, {
       test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'url?limit=10000&mimetype=application/font-woff'

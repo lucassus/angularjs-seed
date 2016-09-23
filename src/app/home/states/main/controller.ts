@@ -2,14 +2,14 @@ export default class {
 
   message: string;
 
-  constructor(private $window: ng.IWindowService) {
+  constructor(private alert) {
     'ngInject';
 
     this.message = 'Hello World!';
   }
 
   sayHello() {
-    this.$window.alert(this.message);
+    this.alert(this.message);
   }
 
 }

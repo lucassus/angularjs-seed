@@ -1,8 +1,6 @@
-import { IContact } from '../../services/contact_factory';
-
 export default class {
 
-  contacts: Array<IContact>;
+  contacts: Array<any>;
 
   constructor(contacts) {
     'ngInject';

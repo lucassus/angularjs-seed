@@ -1,18 +1,27 @@
+const webpack = require('webpack');
+
 module.exports = {
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'],
     alias: { sinon: 'sinon/pkg/sinon.js' }
   },
 
+  plugins: [
+    new webpack.ProvidePlugin({
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery'
+    })
+  ],
+
   module: {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      loader: 'babel'
     }, {
       test: /\.ts$/,
       exclude: /node_modules/,
-      loader: 'ng-annotate!ts-loader'
+      loader: 'ng-annotate!ts'
     }, {
       test: /\.html$/,
       loader: 'html'
@@ -21,10 +30,10 @@ module.exports = {
       loader: 'imports?define=>false,require=>false'
     }, {
       test: /\.scss/,
-      loader: 'null-loader'
+      loader: 'null'
     }, {
       test: /\.jpg$/,
-      loader: 'null-loader'
+      loader: 'null'
     }]
   },
 

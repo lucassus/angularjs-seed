@@ -1,5 +1,4 @@
-// TODO ignore imports order
-import angular from 'angular';
+import 'angular';
 import 'angular-mocks';
 
 // Enable strictDi mode for all specs

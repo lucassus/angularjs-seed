@@ -1,11 +1,12 @@
+import * as angular from 'angular';
 import { expect } from 'chai';
 import module from './module';
 import * as sinon from 'sinon';
 
-describe(`module: ${module.name}`, () => {
+describe(`module: ${module}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module.name);
+    angular.mock.module(module);
   });
 
   describe('navigating to unknown url', () => {

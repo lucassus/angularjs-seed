@@ -1,5 +1,11 @@
 import * as angular from 'angular';
-import confirmService from './services/confirm_service';
+import * as toastr from 'angular-toastr';
+import components from './components/config';
+import services from './services/config';
 
-export default angular.module('app.commons', [])
-  .service('confirm', confirmService);
+export default angular.module('app.commons', [
+  toastr
+])
+  .config(components)
+  .config(services)
+  .name;

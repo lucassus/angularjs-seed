@@ -5,7 +5,7 @@ export default function($document: JQuery) {
   'ngInject';
 
   angular.element($document).ready(() => {
-    angular.bootstrap($document.find('body'), [module.name], {
+    angular.bootstrap($document.find('body'), [module], {
       strictDi: true
     });
   });

@@ -1,8 +1,10 @@
-<h3>
-  <favourite-button contact="ctrl.contact"></favourite-button>
-  Contact
-  <span ng-bind="ctrl.contact.fullName"></span>
-</h3>
+<div class="page-header">
+  <h2>
+    <favourite-button contact="ctrl.contact"></favourite-button>
+    Contact
+    <span ng-bind="ctrl.contact.fullName"></span>
+  </h2>
+</div>
 
 <dl class="dl-horizontal">
   <dt>#</dt>
@@ -22,6 +24,12 @@
 
   <dt>Favourite</dt>
   <dd ng-bind="ctrl.contact.favourite"></dd>
+
+  <dt>Created At</dt>
+  <dd ng-bind="ctrl.contact.createdAt | date:'medium'"></dd>
+
+  <dt>Updated At</dt>
+  <dd ng-bind="ctrl.contact.updatedAt | date:'medium'"></dd>
 </dl>
 
 <button class="btn btn-default" ui-sref="contacts.edit({ id: ctrl.contact.id })">

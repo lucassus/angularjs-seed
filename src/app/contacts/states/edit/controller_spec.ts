@@ -2,11 +2,13 @@ import * as angular from 'angular';
 import { expect } from 'chai';
 import module from '../../module';
 import * as sinon from 'sinon';
+import toastrMockModule from '../../../../specs/toastr_mock_module';
 
-describe(`module: ${module.name}`, () => {
+describe(`module: ${module}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module.name);
+    angular.mock.module(module);
+    angular.mock.module(toastrMockModule);
   });
 
   describe('controller: contacts.edit', () => {
@@ -31,6 +33,7 @@ describe(`module: ${module.name}`, () => {
       let requestHandler;
 
       beforeEach(inject(($httpBackend, $state) => {
+        // Given
         const contactCopy = angular.copy(ctrl.contact);
         angular.extend(contactCopy, {
           firstName: 'Lukasz',
@@ -43,7 +46,12 @@ describe(`module: ${module.name}`, () => {
         sinon.spy(ctrl.contact, '$update');
         sinon.stub($state, 'go');
 
-        ctrl.update(contactCopy);
+        // When
+        const promise = ctrl.update(contactCopy);
+
+        // Then
+        expect(typeof promise.then).to.be.eq('function');
+        expect(typeof promise.finally).to.be.eq('function');
       }));
 
       describe('on success', () => {
@@ -51,6 +59,10 @@ describe(`module: ${module.name}`, () => {
         beforeEach(inject(($httpBackend) => {
           requestHandler.respond(200);
           $httpBackend.flush();
+        }));
+
+        it('displays a notification', inject((toastr) => {
+          expect(toastr.success.calledWith('Contact updated')).to.be.true;
         }));
 
         it('updates a contact', () => {

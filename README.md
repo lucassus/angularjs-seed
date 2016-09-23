@@ -6,6 +6,8 @@
 
 https://angular-webpack-seed.herokuapp.com/
 
+## Useful commands
+
 ```
 npm install
 
@@ -17,16 +19,19 @@ gulp tdd --browsers=Chrome
 
 npm run dev-server
 open http://localhost:8080
+e2e_test.sh
 ```
 
 ## Features
 
 * AngularJS 1.5.x with ES2015 flavour
+* AngularJS modules: uiRouter, ngResource, ngMessage, toastr
 * Twitter Bootstrap with Sass
 * Gulp
 * Webpack
 * Long term caching
 * Karma, mocha and Sinon.js 
 * Istanbul test coverage
+* Protractor
 * ESLint, HTMLHint
 * TravisCI, Heroku, Continuous deployment

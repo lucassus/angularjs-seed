@@ -1,4 +1,4 @@
-export default function($window) {
+export default function($window: ng.IWindowService) {
   'ngInject';
 
   return function(message) {
