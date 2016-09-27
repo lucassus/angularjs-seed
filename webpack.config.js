@@ -1,7 +1,6 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -21,13 +20,17 @@ module.exports = {
       'angular-toastr',
       'angular-ui-router'
     ],
-    app: ['./src/app.js']
+    app: ['./src/app.ts']
   },
 
   output: {
     path: path.resolve(BUILD_DIRECTORY),
     filename: CHUNK_FILENAME,
     chunkFilename: CHUNK_FILENAME
+  },
+
+  resolve: {
+    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
   },
 
   plugins: [
@@ -52,16 +55,9 @@ module.exports = {
 
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.ts$/,
       exclude: /node_modules/,
-      loader: combineLoaders([{
-        loader: 'ng-annotate'
-      }, {
-        loader: 'babel',
-        query: {
-          extends: path.join(__dirname, '.babelrc')
-        }
-      }])
+      loader: 'ng-annotate!ts-loader'
     }, {
       test: /\.html$/,
       loader: 'html'
@@ -107,5 +103,5 @@ module.exports = {
     }
   },
 
-  devtool: 'eval-source-map	'
+  devtool: 'eval-source-map'
 };

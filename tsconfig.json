@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "noImplicitAny": false
+  },
+  "files": [
+    "typings/index.d.ts",
+    "src/app.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

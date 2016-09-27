@@ -21,10 +21,12 @@ before_install:
 
 install:
   - npm install gulp --global
+  - npm install typings --global
   - npm install codecov --global
 
 before_script:
   - npm install
+  - typings install
 
 script:
   - gulp lint

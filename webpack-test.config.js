@@ -1,60 +1,41 @@
-const combineLoaders = require('webpack-combine-loaders');
-const path = require('path');
 const webpack = require('webpack');
 
-module.exports = function({ singleRun }) {
-  const preLoaders = [];
+module.exports = {
+  resolve: {
+    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'],
+    alias: { sinon: 'sinon/pkg/sinon.js' }
+  },
 
-  // Execute ESLint in tdd mode
-  if (!singleRun) {
-    preLoaders.push({
+  plugins: [
+    new webpack.ProvidePlugin({
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery'
+    })
+  ],
+
+  module: {
+    loaders: [{
       test: /\.js$/,
-      loader: 'eslint',
-      exclude: /node_modules/
-    });
-  }
+      exclude: /node_modules/,
+      loader: 'babel'
+    }, {
+      test: /\.ts$/,
+      exclude: /node_modules/,
+      loader: 'ng-annotate!ts'
+    }, {
+      test: /\.html$/,
+      loader: 'html'
+    }, {
+      test: /sinon\.js$/,
+      loader: 'imports?define=>false,require=>false'
+    }, {
+      test: /\.scss/,
+      loader: 'null'
+    }, {
+      test: /\.jpg$/,
+      loader: 'null'
+    }]
+  },
 
-  return {
-    plugins: [
-      new webpack.ProvidePlugin({
-        'window.$': 'jquery',
-        'window.jQuery': 'jquery'
-      })
-    ],
-
-    module: {
-      preLoaders,
-
-      loaders: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: combineLoaders([{
-          loader: 'ng-annotate'
-        }, {
-          loader: 'babel',
-          query: {
-            extends: path.join(__dirname, '.babelrc.karma')
-          }
-        }])
-      }, {
-        test: /\.html$/,
-        loader: 'html'
-      }, {
-        test: /sinon\.js$/,
-        loader: 'imports?define=>false,require=>false'
-      }, {
-        test: /\.scss/,
-        loader: 'null'
-      }, {
-        test: /\.jpg$/,
-        loader: 'null'
-      }]
-    },
-
-    resolve: {
-      alias: { sinon: 'sinon/pkg/sinon.js' }
-    },
-
-    devtool: 'inline-source-map'
-  };
+  devtool: 'inline-source-map'
 };
