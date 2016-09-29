@@ -1,3 +1,4 @@
+import Controller from './controller';
 import { expect } from 'chai';
 import module from '../../module';
 import sinon from 'sinon';
@@ -18,9 +19,7 @@ describe(`module: ${module}`, () => {
     let ctrl;
 
     beforeEach(inject(($controller, $state, Contact) => {
-      const { controller } = $state.get('contacts.show');
-
-      ctrl = $controller(controller, {
+      ctrl = $controller(Controller, {
         contact: new Contact({ id: 2, name: 'bar' })
       });
     }));

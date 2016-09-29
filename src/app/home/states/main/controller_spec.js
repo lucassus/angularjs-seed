@@ -1,3 +1,4 @@
+import Controller from './controller';
 import { expect } from 'chai';
 import module from '../../module';
 import sinon from 'sinon';
@@ -12,9 +13,7 @@ describe(`module: ${module}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller, $state) => {
-      const Controller = $state.get('home').controller;
-
+    beforeEach(inject(($controller) => {
       ctrl = $controller(Controller, {
         alert: sinon.stub()
       });

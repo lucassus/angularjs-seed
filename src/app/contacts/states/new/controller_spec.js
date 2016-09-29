@@ -1,3 +1,4 @@
+import Controller from './controller';
 import angular from 'angular';
 import { expect } from 'chai';
 import module from '../../module';
@@ -15,10 +16,8 @@ describe(`module: ${module}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller, $state, Contact) => {
-      const { controller } = $state.get('contacts.new');
-
-      ctrl = $controller(controller, {
+    beforeEach(inject(($controller, Contact) => {
+      ctrl = $controller(Controller, {
         contact: new Contact()
       });
     }));
