@@ -40,6 +40,23 @@ app.get('/api/contacts', (req, res) => {
   });
 });
 
+app.get('/api/contacts/validate-email', (req, res) => {
+  const id = req.param('id');
+  const email = req.param('email');
+
+  db.contacts.findOne({ email }).then((contact) => {
+    if (id) {
+      return parseInt(id) !== contact.id;
+    }
+
+    return true;
+  }).catch(() => {
+    return false;
+  }).then((taken) => {
+    res.json({ taken });
+  });
+});
+
 app.post('/api/contacts', (req, res) => {
   const data = req.body;
 

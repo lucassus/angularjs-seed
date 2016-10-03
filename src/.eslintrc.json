@@ -21,6 +21,7 @@
     "inject": true
   },
   "rules": {
+    "angular/module-getter": "off",
     "angular/no-service-method": "off",
     "angular/on-watch": "off",
     "no-console": "error",
