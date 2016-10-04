@@ -1,5 +1,5 @@
-import alert from './alert/service';
-import confirm from './confirm/service';
+import alert from './alert/alert.service';
+import confirm from './confirm/confirm.service';
 
 export default function($provide) {
   'ngInject';

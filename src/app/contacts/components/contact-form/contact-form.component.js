@@ -1,5 +1,5 @@
-import controller from './controller';
-import template from './template.html';
+import controller from './contact-form.controller';
+import template from './contact-form.template.html';
 
 export default {
   bindings: {

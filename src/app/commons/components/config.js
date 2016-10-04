@@ -1,6 +1,6 @@
-import footerComponent from './footer/component';
-import navigationComponent from './navigation/component';
-import uniqueEmailDirective from './unique_email/directive';
+import footerComponent from './footer/footer.component';
+import navigationComponent from './navigation/navigation.component';
+import uniqueEmailDirective from './unique-email/unique-email.directive';
 
 export default function($compileProvider) {
   'ngInject';
