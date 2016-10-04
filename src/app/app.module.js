@@ -1,4 +1,4 @@
-import { notFoundState, router } from './config';
+import { notFoundState, router } from './app.config';
 import angular from 'angular';
 import angularAnimate from 'angular-animate';
 import angularLoadingBar from 'angular-loading-bar';
