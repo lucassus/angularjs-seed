@@ -1,11 +1,9 @@
-import _ from 'lodash';
-
 export default function($http, $parse, $q) {
   'ngInject';
 
   function isTaken(id, email) {
     return $http.get('/api/contacts/validate-email', { params: { id, email } })
-      .then(response => _.get(response, 'data.taken'));
+      .then(response => response.data.taken);
   }
 
   return {
@@ -25,8 +23,8 @@ export default function($http, $parse, $q) {
           return $q.resolve();
         }
 
-        const id = _.get($parse(attrs.appUniqueEmail)(scope), 'id');
-        return isTaken(id, modelValue).then((taken) => {
+        const resourceId = $parse(attrs.appUniqueEmail)(scope);
+        return isTaken(resourceId, modelValue).then((taken) => {
           return taken ? $q.reject() : true;
         });
       };

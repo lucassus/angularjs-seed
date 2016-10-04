@@ -91,7 +91,7 @@ describe('squirrel.common module', () => {
         const element = angular.element(`
           <form name="testForm">
             <input type="text" name="email" 
-                   ng-model="contact.email" app-unique-email="{ id: contact.id }" />
+                   ng-model="contact.email" app-unique-email="contact.id" />
           </form>
         `);
         $compile(element)(scope);

@@ -33,7 +33,7 @@
        ng-class="{ 'has-error': $ctrl.showError(contactForm, 'email') }">
     <label for="email-field" class="control-label">Email</label>
     <input ng-model="$ctrl.contact.email"
-           app-unique-email="{ id: $ctrl.contact.id }"
+           app-unique-email="$ctrl.contact.id"
            name="email"
            type="email" class="form-control" id="email-field" />
 
