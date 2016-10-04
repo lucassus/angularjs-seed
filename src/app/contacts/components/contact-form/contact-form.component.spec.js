@@ -19,8 +19,8 @@ describe(`module: ${appContactsModule}`, () => {
       scope.update = sinon.stub().returns($q.resolve({}));
 
       element = angular.element(`
-        <contact-form contact="contact" 
-                      on-submit="update(contact)"></contact-form>
+        <app-contact-form contact="contact" 
+                      on-submit="update(contact)"></app-contact-form>
       `);
 
       $compile(element)(scope);
@@ -32,7 +32,7 @@ describe(`module: ${appContactsModule}`, () => {
       let ctrl;
 
       beforeEach(() => {
-        ctrl = element.controller('contactForm');
+        ctrl = element.controller('appContactForm');
       });
 
       it('initializes a contact copy', () => {

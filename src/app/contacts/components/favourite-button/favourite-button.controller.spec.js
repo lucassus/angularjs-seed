@@ -17,7 +17,7 @@ describe(`module: ${appContactsModule}`, () => {
       const contact = new Contact({ id: 123, favourite: false });
       sinon.stub(contact, 'toggleFavourite').returns($q.resolve());
 
-      ctrl = $componentController('favouriteButton', {}, {
+      ctrl = $componentController('appFavouriteButton', {}, {
         contact
       });
 

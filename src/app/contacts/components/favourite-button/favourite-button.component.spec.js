@@ -21,7 +21,7 @@ describe(`module: ${appContactsModule}`, () => {
         .returns($q.resolve());
 
       element = angular.element(`
-        <favourite-button contact="contact"></favourite-button>
+        <app-favourite-button contact="contact"></app-favourite-button>
       `);
 
       $compile(element)(scope);

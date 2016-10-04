@@ -18,7 +18,7 @@
   <tr ng-repeat="contact in ctrl.contacts">
     <td><a ui-sref="contacts.show({ id: contact.id })" ng-bind="contact.id"></a></td>
     <td>
-      <favourite-button contact="contact"></favourite-button>
+      <app-favourite-button contact="contact"></app-favourite-button>
     </td>
     <td>
       <a ui-sref="contacts.show({ id: contact.id })"

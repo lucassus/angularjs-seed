@@ -4,8 +4,7 @@ import favouriteButtonComponent from './favourite-button/favourite-button.compon
 export default function($compileProvider) {
   'ngInject';
 
-  // TODO prefix components
   $compileProvider
-    .component('contactForm', contactFormComponent)
-    .component('favouriteButton', favouriteButtonComponent);
+    .component('appContactForm', contactFormComponent)
+    .component('appFavouriteButton', favouriteButtonComponent);
 }
