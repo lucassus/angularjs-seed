@@ -1,4 +1,4 @@
-import appHomeModule from '../../home.module';
+import appHomeModule from '../home.module';
 import { expect } from 'chai';
 
 describe(`module: ${appHomeModule}`, () => {

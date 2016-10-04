@@ -1,5 +1,5 @@
 import Controller from './controller';
-import appHomeModule from '../../home.module';
+import appHomeModule from '../home.module';
 import { expect } from 'chai';
 import sinon from 'sinon';
 

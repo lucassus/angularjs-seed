@@ -1,4 +1,4 @@
-import main from './main/state';
+import main from './@main/state';
 
 export default function($stateProvider) {
   'ngInject';

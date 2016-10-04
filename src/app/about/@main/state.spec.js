@@ -1,4 +1,4 @@
-import appAboutModule from '../../about.module';
+import appAboutModule from '../about.module';
 import { expect } from 'chai';
 
 describe(`module: ${appAboutModule}`, () => {

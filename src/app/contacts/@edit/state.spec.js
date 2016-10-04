@@ -1,4 +1,4 @@
-import appContactsModule from '../../contacts.module';
+import appContactsModule from '../contacts.module';
 import { expect } from 'chai';
 
 describe(`module: ${appContactsModule}`, () => {
