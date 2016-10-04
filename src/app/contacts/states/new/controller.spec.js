@@ -3,7 +3,7 @@ import angular from 'angular';
 import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import toastrMockModule from '../../../../specs/toastr_mock_module';
+import toastrMockModule from '../../../../specs/toastr-mock.module';
 
 describe(`module: ${appContactsModule}`, () => {
 
