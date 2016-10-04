@@ -2,10 +2,10 @@ import { notFoundState, router } from './config';
 import angular from 'angular';
 import angularAnimate from 'angular-animate';
 import angularLoadingBar from 'angular-loading-bar';
-import appAbout from './about/module';
-import appCommons from './commons/module';
-import appContacts from './contacts/module';
-import appHome from './home/module';
+import appAboutModule from './about/about.module';
+import appCommonsModule from './commons/commons.module';
+import appContactsModule from './contacts/contacts.module';
+import appHomeModule from './home/home.module';
 import buildSignature from '../../build_signature_loader!./build_signature.tpl';
 import uiRouter from 'angular-ui-router';
 
@@ -28,10 +28,10 @@ export default angular.module('app', [
   uiRouter,
   angularLoadingBar,
 
-  appCommons,
-  appHome,
-  appContacts,
-  appAbout
+  appCommonsModule,
+  appHomeModule,
+  appContactsModule,
+  appAboutModule
 ])
   .config(router)
   .config(notFoundState)

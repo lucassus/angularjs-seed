@@ -1,13 +1,13 @@
 import Controller from './controller';
+import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
-import module from '../../module';
 import sinon from 'sinon';
 import toastrMockModule from '../../../../specs/toastr_mock_module';
 
-describe(`module: ${module}`, () => {
+describe(`module: ${appContactsModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module, ($provide) => {
+    angular.mock.module(appContactsModule, ($provide) => {
       $provide.value('confirm', sinon.stub().returns(true));
     });
 

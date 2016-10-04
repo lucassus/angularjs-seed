@@ -1,7 +1,7 @@
 import angular from 'angular';
 import angularMessages from 'angular-messages';
 import angularResource from 'angular-resource';
-import appCommons from '../commons/module';
+import appCommonsModule from '../commons/commons.module';
 import components from './components/config';
 import services from './services/config';
 import states from './states/config';
@@ -12,7 +12,7 @@ export default angular.module('app.contacts', [
   angularResource,
   uiRouter,
 
-  appCommons
+  appCommonsModule
 ])
   .config(services)
   .config(components)

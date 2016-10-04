@@ -1,12 +1,12 @@
 import Controller from './controller';
+import appHomeModule from '../../home.module';
 import { expect } from 'chai';
-import module from '../../module';
 import sinon from 'sinon';
 
-describe(`module: ${module}`, () => {
+describe(`module: ${appHomeModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module);
+    angular.mock.module(appHomeModule);
   });
 
   describe('controller: home', () => {

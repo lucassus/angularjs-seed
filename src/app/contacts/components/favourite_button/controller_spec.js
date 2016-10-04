@@ -1,12 +1,12 @@
 import angular from 'angular';
+import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
-import module from '../../module';
 import sinon from 'sinon';
 
-describe(`module: ${module}`, () => {
+describe(`module: ${appContactsModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module);
+    angular.mock.module(appContactsModule);
   });
 
   describe('controller: favouriteButton', () => {

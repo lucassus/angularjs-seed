@@ -1,12 +1,12 @@
 'use strict';
 
+import appCommonsModule from '../../commons.module';
 import { expect } from 'chai';
-import module from '../../module';
 
 describe('squirrel.common module', () => {
 
   beforeEach(() => {
-    angular.mock.module(module);
+    angular.mock.module(appCommonsModule);
   });
 
   describe('appUniqueEmail directive', () => {

@@ -1,11 +1,11 @@
 import Controller from './controller';
+import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
-import module from '../../module';
 
-describe(`module: ${module}`, () => {
+describe(`module: ${appContactsModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(module);
+    angular.mock.module(appContactsModule);
   });
 
   describe('controller: contacts.list', () => {
