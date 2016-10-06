@@ -1,5 +1,5 @@
-import controller from './controller';
-import template from './template.html';
+import controller from './show.controller';
+import template from './show.state.html';
 
 function contact($stateParams, Contact) {
   'ngInject';

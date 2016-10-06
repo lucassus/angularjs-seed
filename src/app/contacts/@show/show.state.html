@@ -32,7 +32,8 @@
   <dd ng-bind="ctrl.contact.updatedAt | date:'medium'"></dd>
 </dl>
 
-<button class="btn btn-default" ui-sref="contacts.edit({ id: ctrl.contact.id })">
+<button class="btn btn-default"
+        ui-sref="contacts.edit({ id: ctrl.contact.id })">
   <span class="glyphicon glyphicon-edit"></span>
   Edit
 </button>

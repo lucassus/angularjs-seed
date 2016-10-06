@@ -1,4 +1,4 @@
-import Controller from './controller';
+import Controller from './list.controller';
 import appContactsModule from '../contacts.module';
 import { expect } from 'chai';
 

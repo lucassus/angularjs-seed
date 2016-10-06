@@ -1,7 +1,7 @@
-import create from './@new/state';
-import edit from './@edit/state';
-import list from './@list/state';
-import show from './@show/state';
+import create from './@new/new.state';
+import edit from './@edit/edit.state';
+import list from './@list/list.state';
+import show from './@show/show.state';
 
 export default function($stateProvider) {
   'ngInject';

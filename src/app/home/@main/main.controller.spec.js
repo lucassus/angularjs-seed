@@ -1,4 +1,4 @@
-import Controller from './controller';
+import Controller from './main.controller';
 import appHomeModule from '../home.module';
 import { expect } from 'chai';
 import sinon from 'sinon';

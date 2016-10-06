@@ -1,4 +1,4 @@
-import template from './template.html';
+import template from './main.state.html';
 
 export default  {
   name: 'about',
