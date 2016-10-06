@@ -1,4 +1,4 @@
-import template from './footer.template.html';
+import template from './footer.component.html';
 
 export default {
   template

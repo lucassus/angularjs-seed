@@ -1,4 +1,4 @@
-import template from './navigation.template.html';
+import template from './navigation.component.html';
 
 export default {
   template
