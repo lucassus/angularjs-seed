@@ -1,5 +1,5 @@
 import controller from './contact-form.controller';
-import template from './contact-form.template.html';
+import template from './contact-form.component.html';
 
 export default {
   bindings: {

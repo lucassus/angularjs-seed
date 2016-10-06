@@ -1,5 +1,5 @@
 import controller from './favourite-button.controller';
-import template from './favourite-button.template.html';
+import template from './favourite-button.component.html';
 
 export default {
   bindings: {
