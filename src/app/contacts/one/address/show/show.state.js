@@ -6,5 +6,5 @@ export default {
   controllerAs: 'ctrl',
 
   template,
-  url: '/address'
+  url: ''
 };

@@ -1,5 +1,16 @@
-// TODO `require` is weird
-// TODO this patterns works fine with Idea navigation
+import contactsList from './list/list.state';
+import contactsNew from './new/new.state';
+import contactsOneAddressEdit from './one/address/edit/edit.state';
+import contactsOneAddressShow from './one/address/show/show.state';
+import contactsOneEdit from './one/edit/edit.state';
+import contactsOneShow from './one/show/show.state';
+
+function contact($stateParams, Contact) {
+  'ngInject';
+
+  const { id } = $stateParams;
+  return Contact.get({ id }).$promise;
+}
 
 export default function($stateProvider) {
   'ngInject';
@@ -11,14 +22,27 @@ export default function($stateProvider) {
       template: '<div ui-view></div>'
     })
 
-    .state('contacts.list', require('./list/list.state').default)
-    .state('contacts.new', require('./new/new.state').default)
+    .state('contacts.list', contactsList)
+    .state('contacts.new', contactsNew)
 
-    .state('contacts.one', require('./one/one.state').default)
-    .state('contacts.one.show', require('./one/show/show.state').default)
-    .state('contacts.one.edit', require('./one/edit/edit.state').default)
+    .state('contacts.one', {
+      abstract: true,
+      resolve: {
+        contact
+      },
+      url: '/:id',
+      template: '<div ui-view></div>'
+    })
 
-    .state('contacts.one.address', require('./one/address/address.states').default)
-    .state('contacts.one.address.show', require('./one/address/show/show.state').default)
-    .state('contacts.one.address.edit', require('./one/address/edit/edit.state').default);
+    .state('contacts.one.show', contactsOneShow)
+    .state('contacts.one.edit', contactsOneEdit)
+
+    .state('contacts.one.address', {
+      abstract: true,
+      template: '<div ui-view></div>',
+      url: '/address'
+    })
+
+    .state('contacts.one.address.show', contactsOneAddressShow)
+    .state('contacts.one.address.edit', contactsOneAddressEdit);
 }
