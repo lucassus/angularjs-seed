@@ -1,0 +1,13 @@
+<div class="page-header">
+  <h2>
+    Edit address for
+    <span ng-bind="ctrl.contact.fullName"></span>
+  </h2>
+</div>
+
+<pre ng-bind="ctrl.contact.address | json"></pre>
+
+<a class="btn btn-success"
+   ui-sref="contacts.address.show({ id: ctrl.contact.id })">
+  Done
+</a>

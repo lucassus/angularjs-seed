@@ -1,3 +1,4 @@
+import addressStates from './@address/address.states';
 import angular from 'angular';
 import angularMessages from 'angular-messages';
 import angularResource from 'angular-resource';
@@ -17,4 +18,5 @@ export default angular.module('app.contacts', [
   .config(services)
   .config(components)
   .config(states)
+  .config(addressStates)
   .name;
