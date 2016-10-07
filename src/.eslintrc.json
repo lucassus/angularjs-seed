@@ -18,7 +18,8 @@
     "sourceType": "module"
   },
   "globals": {
-    "inject": true
+    "inject": true,
+    "require": true
   },
   "rules": {
     "angular/module-getter": "off",

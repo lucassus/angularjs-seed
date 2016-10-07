@@ -8,8 +8,6 @@ function contact(Contact) {
 }
 
 export default {
-  name: 'contacts.new',
-
   controller,
   controllerAs: 'ctrl',
   resolve: {

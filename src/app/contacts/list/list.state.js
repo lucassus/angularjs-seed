@@ -7,8 +7,6 @@ function contacts(Contact) {
 }
 
 export default {
-  name: 'contacts.list',
-
   controller,
   controllerAs: 'ctrl',
 
@@ -17,5 +15,5 @@ export default {
   },
 
   template,
-  url: '/'
+  url: ''
 };

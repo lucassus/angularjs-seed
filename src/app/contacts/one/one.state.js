@@ -1,6 +1,3 @@
-import controller from './show.controller';
-import template from './show.state.html';
-
 function contact($stateParams, Contact) {
   'ngInject';
 
@@ -9,15 +6,10 @@ function contact($stateParams, Contact) {
 }
 
 export default {
-  name: 'contacts.show',
-
-  controller,
-  controllerAs: 'ctrl',
-
+  abstract: true,
   resolve: {
     contact
   },
-
-  template,
-  url: '/:id'
+  url: '/:id',
+  template: '<div ui-view></div>'
 };

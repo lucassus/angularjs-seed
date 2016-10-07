@@ -1,7 +1,5 @@
-import create from './@new/new.state';
-import edit from './@edit/edit.state';
-import list from './@list/list.state';
-import show from './@show/show.state';
+// TODO `require` is weird
+// TODO this patterns works fine with Idea navigation
 
 export default function($stateProvider) {
   'ngInject';
@@ -13,8 +11,14 @@ export default function($stateProvider) {
       template: '<div ui-view></div>'
     })
 
-    .state(create)
-    .state(edit)
-    .state(list)
-    .state(show);
+    .state('contacts.list', require('./list/list.state').default)
+    .state('contacts.new', require('./new/new.state').default)
+
+    .state('contacts.one', require('./one/one.state').default)
+    .state('contacts.one.show', require('./one/show/show.state').default)
+    .state('contacts.one.edit', require('./one/edit/edit.state').default)
+
+    .state('contacts.one.address', require('./one/address/address.states').default)
+    .state('contacts.one.address.show', require('./one/address/show/show.state').default)
+    .state('contacts.one.address.edit', require('./one/address/edit/edit.state').default);
 }
