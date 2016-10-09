@@ -8,12 +8,11 @@ function contact(Contact) {
 }
 
 export default {
+  template,
   controller,
   controllerAs: 'ctrl',
+
   resolve: {
     contact
-  },
-
-  template,
-  url: '/new'
+  }
 };

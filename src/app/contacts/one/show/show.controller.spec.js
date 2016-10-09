@@ -1,8 +1,7 @@
-import Controller from './show.controller';
-import appContactsModule from '../contacts.module';
+import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import toastrMockModule from '../../../specs/toastr-mock.module';
+import toastrMockModule from '../../../../specs/toastr-mock.module';
 
 describe(`module: ${appContactsModule}`, () => {
 
@@ -14,11 +13,15 @@ describe(`module: ${appContactsModule}`, () => {
     angular.mock.module(toastrMockModule);
   });
 
-  describe('controller: contacts.show', () => {
+  const stateName = 'contacts.one.show';
+
+  describe(`controller: ${stateName}`, () => {
 
     let ctrl;
 
     beforeEach(inject(($controller, $state, Contact) => {
+      const Controller = $state.get(stateName).controller;
+
       ctrl = $controller(Controller, {
         contact: new Contact({ id: 2, name: 'bar' })
       });

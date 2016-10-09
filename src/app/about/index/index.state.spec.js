@@ -7,12 +7,14 @@ describe(`module: ${appAboutModule}`, () => {
     angular.mock.module(appAboutModule);
   });
 
-  describe('state: about', () => {
+  const stateName = 'about';
+
+  describe(`state: ${stateName}`, () => {
 
     let state;
 
     beforeEach(inject(($state) => {
-      state = $state.get('about');
+      state = $state.get(stateName);
     }));
 
     it('has valid url', inject(($state) => {

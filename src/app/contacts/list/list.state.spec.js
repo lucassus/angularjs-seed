@@ -16,7 +16,7 @@ describe(`module: ${appContactsModule}`, () => {
     }));
 
     it('has valid url', inject(($state) => {
-      expect($state.href(state)).to.eq('#/contacts/');
+      expect($state.href(state)).to.eq('#/contacts');
     }));
 
     it('resolves `contacts`', (done) => {

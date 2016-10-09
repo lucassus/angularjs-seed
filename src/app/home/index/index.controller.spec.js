@@ -1,4 +1,3 @@
-import Controller from './main.controller';
 import appHomeModule from '../home.module';
 import { expect } from 'chai';
 import sinon from 'sinon';
@@ -9,11 +8,15 @@ describe(`module: ${appHomeModule}`, () => {
     angular.mock.module(appHomeModule);
   });
 
-  describe('controller: home', () => {
+  const stateName = 'home';
+
+  describe(`controller: ${stateName}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller) => {
+    beforeEach(inject(($controller, $state) => {
+      const Controller = $state.get(stateName).controller;
+
       ctrl = $controller(Controller, {
         alert: sinon.stub()
       });

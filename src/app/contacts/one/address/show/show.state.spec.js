@@ -1,4 +1,4 @@
-import appContactsModule from '../../contacts.module';
+import appContactsModule from '../../../contacts.module';
 import { expect } from 'chai';
 
 describe(`module: ${appContactsModule}`, () => {
@@ -7,7 +7,7 @@ describe(`module: ${appContactsModule}`, () => {
     angular.mock.module(appContactsModule);
   });
 
-  const stateName = 'contacts.one.show';
+  const stateName = 'contacts.one.address.show';
 
   describe(`state: ${stateName}`, () => {
 
@@ -18,7 +18,7 @@ describe(`module: ${appContactsModule}`, () => {
     }));
 
     it('has valid url', inject(($state) => {
-      expect($state.href(state, { id: 123 })).to.eq('#/contacts/123');
+      expect($state.href(state, { id: 123 })).to.eq('#/contacts/123/address');
     }));
 
   });

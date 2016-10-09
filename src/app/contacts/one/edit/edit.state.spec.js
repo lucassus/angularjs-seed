@@ -1,4 +1,4 @@
-import appContactsModule from '../contacts.module';
+import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
 
 describe(`module: ${appContactsModule}`, () => {
@@ -7,36 +7,19 @@ describe(`module: ${appContactsModule}`, () => {
     angular.mock.module(appContactsModule);
   });
 
-  describe('state: contacts.show', () => {
+  const stateName = 'contacts.one.edit';
+
+  describe(`state: ${stateName}`, () => {
 
     let state;
 
     beforeEach(inject(($state) => {
-      state = $state.get('contacts.edit');
+      state = $state.get(stateName);
     }));
 
     it('has valid url', inject(($state) => {
       expect($state.href(state, { id: 124 })).to.eq('#/contacts/124/edit');
     }));
-
-    it('resolves `contacts`', (done) => {
-      inject(($httpBackend, $resolve) => {
-        $httpBackend
-          .expectGET('/api/contacts/124')
-          .respond(200, { id: 124, name: 'baz' });
-
-        const $stateParams = { id: 124 };
-
-        $resolve.resolve(state.resolve, { $stateParams }).then(({ contact }) => {
-          expect(contact).to.have.property('id', 124);
-          expect(contact).to.have.property('name', 'baz');
-
-          done();
-        });
-
-        $httpBackend.flush();
-      });
-    });
 
   });
 

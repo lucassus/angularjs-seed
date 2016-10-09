@@ -1,16 +1,11 @@
-import contactsList from './list/list.state';
-import contactsNew from './new/new.state';
-import contactsOneAddressEdit from './one/address/edit/edit.state';
-import contactsOneAddressShow from './one/address/show/show.state';
-import contactsOneEdit from './one/edit/edit.state';
-import contactsOneShow from './one/show/show.state';
-
-function contact($stateParams, Contact) {
-  'ngInject';
-
-  const { id } = $stateParams;
-  return Contact.get({ id }).$promise;
-}
+import listState from './list/list.state';
+import newState from './new/new.state';
+import oneAddressEditState from './one/address/edit/edit.state';
+import oneAddressShowState from './one/address/show/show.state';
+import oneAddressState from './one/address/address.state';
+import oneEditState from './one/edit/edit.state';
+import oneShowState from './one/show/show.state';
+import oneState from './one/one.state';
 
 export default function($stateProvider) {
   'ngInject';
@@ -22,27 +17,27 @@ export default function($stateProvider) {
       template: '<div ui-view></div>'
     })
 
-    .state('contacts.list', contactsList)
-    .state('contacts.new', contactsNew)
+    .state('contacts.list',
+      angular.extend({ url: '' }, listState))
 
-    .state('contacts.one', {
-      abstract: true,
-      resolve: {
-        contact
-      },
-      url: '/:id',
-      template: '<div ui-view></div>'
-    })
+    .state('contacts.new',
+      angular.extend({ url: '/new' }, newState))
 
-    .state('contacts.one.show', contactsOneShow)
-    .state('contacts.one.edit', contactsOneEdit)
+    .state('contacts.one',
+      angular.extend({ url: '/:id' }, oneState))
 
-    .state('contacts.one.address', {
-      abstract: true,
-      template: '<div ui-view></div>',
-      url: '/address'
-    })
+    .state('contacts.one.show',
+      angular.extend({ url: '' }, oneShowState))
 
-    .state('contacts.one.address.show', contactsOneAddressShow)
-    .state('contacts.one.address.edit', contactsOneAddressEdit);
+    .state('contacts.one.edit',
+      angular.extend({ url: '/edit' }, oneEditState))
+
+    .state('contacts.one.address',
+      angular.extend({ url: '/address' }, oneAddressState))
+
+    .state('contacts.one.address.show',
+      angular.extend({ url: '' }, oneAddressShowState))
+
+    .state('contacts.one.address.edit',
+      angular.extend({ url: '/edit' }, oneAddressEditState));
 }

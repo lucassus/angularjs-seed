@@ -1,4 +1,3 @@
-import Controller from './list.controller';
 import appContactsModule from '../contacts.module';
 import { expect } from 'chai';
 
@@ -12,11 +11,13 @@ describe(`module: ${appContactsModule}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller) => {
+    beforeEach(inject(($controller, $state, Contact) => {
+      const Controller = $state.get('contacts.list').controller;
+
       ctrl = $controller(Controller, {
         contacts: [
-          { id: 1, firstName: 'Karen' },
-          { id: 2, firstName: 'Luke' }
+          new Contact({ id: 1, firstName: 'Karen' }),
+          new Contact({ id: 2, firstName: 'Luke' })
         ]
       });
     }));

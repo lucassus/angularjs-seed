@@ -7,13 +7,11 @@ function contacts(Contact) {
 }
 
 export default {
+  template,
   controller,
   controllerAs: 'ctrl',
 
   resolve: {
     contacts
-  },
-
-  template,
-  url: ''
+  }
 };

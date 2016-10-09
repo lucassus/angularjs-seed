@@ -1,8 +1,9 @@
-import main from './@main/main.state';
+import index from './index/index.state';
 
 export default function($stateProvider) {
   'ngInject';
 
   $stateProvider
-    .state(main);
+    .state('home',
+      angular.extend({ url: '/' }, index));
 }
