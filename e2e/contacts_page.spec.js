@@ -21,7 +21,7 @@ class ListPage extends Page {
 
 describe('Contacts page', () => {
 
-  const page = new ListPage('/#/contacts/');
+  const page = new ListPage('/#/contacts');
 
   beforeEach(() => {
     page.navigate();
@@ -37,19 +37,19 @@ describe('Contacts page', () => {
       });
 
       expect(page.table.cell(0, 'contact.fullName').getText())
-        .toEqual('Robert Donnelly');
+        .toEqual('Wallace Rath');
       expect(page.table.cell(0, 'contact.email').getText())
-        .toEqual('Julio_Wuckert@hotmail.com');
+        .toEqual('Tessie_Carter16@gmail.com');
       expect(page.table.cell(0, 'contact.phone').getText())
-        .toEqual('822.315.6267 x0081');
+        .toEqual('618-677-6695 x69742');
       expect(page.table.cell(1, 'contact.fullName').getText())
-        .toEqual('Roxane Witting');
+        .toEqual('Rico Pouros');
 
       const favButton = page.nthToggleFavouriteButton(1);
-      expect(favButton.isToggled()).toEqual(true);
+      expect(favButton.isToggled()).toEqual(false);
 
       favButton.toggle();
-      expect(favButton.isToggled()).toEqual(false);
+      expect(favButton.isToggled()).toEqual(true);
     });
 
   });
