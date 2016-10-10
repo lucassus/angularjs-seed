@@ -6,7 +6,11 @@ function contacts(Contact) {
   return Contact.query().$promise;
 }
 
+export const name = 'contacts.list';
+
 export default {
+  name,
+  url: '',
   template,
   controller,
   controllerAs: 'ctrl',

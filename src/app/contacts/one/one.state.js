@@ -5,8 +5,12 @@ function contact($stateParams, Contact) {
   return Contact.get({ id }).$promise;
 }
 
+export const name = 'contacts.one';
+
 export default {
+  name,
   abstract: true,
+  url: '/:id',
   template: '<div ui-view></div>',
   resolve: {
     contact

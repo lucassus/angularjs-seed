@@ -11,9 +11,8 @@ export default class {
 
   create(contact) {
     return contact.$create().then((createdContact) => {
-      this.toastr.success('Contact created');
-
       angular.extend(this.contact, createdContact);
+      this.toastr.success('Contact created');
 
       const { id } = this.contact;
       return this.$state.go('contacts.show', { id });

@@ -1,5 +1,6 @@
 import appAboutModule from '../about.module';
 import { expect } from 'chai';
+import { name } from './index.state';
 
 describe(`module: ${appAboutModule}`, () => {
 
@@ -7,14 +8,12 @@ describe(`module: ${appAboutModule}`, () => {
     angular.mock.module(appAboutModule);
   });
 
-  const stateName = 'about';
-
-  describe(`state: ${stateName}`, () => {
+  describe(`state: ${name}`, () => {
 
     let state;
 
     beforeEach(inject(($state) => {
-      state = $state.get(stateName);
+      state = $state.get(name);
     }));
 
     it('has valid url', inject(($state) => {

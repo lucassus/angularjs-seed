@@ -17,27 +17,14 @@ export default function($stateProvider) {
       template: '<div ui-view></div>'
     })
 
-    .state('contacts.list',
-      angular.extend({ url: '' }, listState))
+    .state(listState)
+    .state(newState)
 
-    .state('contacts.new',
-      angular.extend({ url: '/new' }, newState))
+    .state(oneState)
+    .state(oneShowState)
+    .state(oneEditState)
 
-    .state('contacts.one',
-      angular.extend({ url: '/:id' }, oneState))
-
-    .state('contacts.one.show',
-      angular.extend({ url: '' }, oneShowState))
-
-    .state('contacts.one.edit',
-      angular.extend({ url: '/edit' }, oneEditState))
-
-    .state('contacts.one.address',
-      angular.extend({ url: '/address' }, oneAddressState))
-
-    .state('contacts.one.address.show',
-      angular.extend({ url: '' }, oneAddressShowState))
-
-    .state('contacts.one.address.edit',
-      angular.extend({ url: '/edit' }, oneAddressEditState));
+    .state(oneAddressState)
+    .state(oneAddressShowState)
+    .state(oneAddressEditState);
 }

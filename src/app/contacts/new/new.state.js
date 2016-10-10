@@ -7,7 +7,11 @@ function contact(Contact) {
   return new Contact();
 }
 
+export const name = 'contacts.new';
+
 export default {
+  name,
+  url: '/new',
   template,
   controller,
   controllerAs: 'ctrl',
