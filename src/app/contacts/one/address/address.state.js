@@ -4,7 +4,6 @@ import template from './address.template.html';
 export default {
   template,
   abstract: true,
-  // TODO add eslint rule
-  controller: controller,
+  controller,
   controllerAs: 'ctrl'
 };

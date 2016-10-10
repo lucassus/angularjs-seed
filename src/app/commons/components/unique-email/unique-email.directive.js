@@ -10,7 +10,7 @@ export default function($http, $parse, $q) {
     restrict: 'A',
     require: 'ngModel',
 
-    link: function(scope, element, attrs, ngModel) {
+    link(scope, element, attrs, ngModel) {
       ngModel.$options = ngModel.$options || {};
 
       angular.extend(ngModel.$options, {
