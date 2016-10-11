@@ -11,24 +11,34 @@ describe(`module: ${appContactsModule}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller, $state, Contact) => {
+    beforeEach(inject(($controller, $state, toastr, Contact) => {
       const Controller = $state.get(name).controller;
 
       ctrl = $controller(Controller, {
         $state: { go: sinon.stub() },
-        toastr: { success: sinon.stub() },
+        toastr: sinon.stub(toastr),
         confirm: sinon.stub().returns(true),
 
-        contact: new Contact({ id: 2, name: 'bar' })
+        contact: new Contact({ id: 2, firstName: 'Anakin', lastName: 'Skywalker' })
       });
     }));
 
     it('has a contact', () => {
       expect(ctrl.contact).to.have.property('id', 2);
-      expect(ctrl.contact).to.have.property('name', 'bar');
+      expect(ctrl.contact).to.have.property('firstName', 'Anakin');
+      expect(ctrl.contact).to.have.property('lastName', 'Skywalker');
     });
 
     describe('.delete', () => {
+
+      it('displays a confirmation', () => {
+        // When
+        ctrl.delete();
+
+        // Then
+        const message = 'Do you rally want to delete contact Anakin Skywalker?';
+        expect(ctrl.confirm.calledWith(message)).to.be.true;
+      });
 
       describe('when confirmed', () => {
 

@@ -1,14 +1,10 @@
 import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import toastrMockModule from '../../../../specs/toastr-mock.module';
 
 describe(`module: ${appContactsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appContactsModule);
-    angular.mock.module(toastrMockModule);
-  });
+  beforeEach(angular.mock.module(appContactsModule));
 
   const stateName = 'contacts.one.edit';
 
@@ -16,10 +12,12 @@ describe(`module: ${appContactsModule}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller, $state, Contact) => {
+    beforeEach(inject(($controller, $state, toastr, Contact) => {
       const Controller = $state.get(stateName).controller;
 
       ctrl = $controller(Controller, {
+        $state: { go: sinon.stub() },
+        toastr: sinon.stub(toastr),
         contact: new Contact({ id: 2, firstName: 'Mark' })
       });
     }));
@@ -33,7 +31,7 @@ describe(`module: ${appContactsModule}`, () => {
 
       let requestHandler;
 
-      beforeEach(inject(($httpBackend, $state) => {
+      beforeEach(inject(($httpBackend) => {
         // Given
         const contactCopy = angular.copy(ctrl.contact);
         angular.extend(contactCopy, {
@@ -45,7 +43,6 @@ describe(`module: ${appContactsModule}`, () => {
           .expectPUT('/api/contacts/2', contactCopy);
 
         sinon.spy(ctrl.contact, '$update');
-        sinon.stub($state, 'go');
 
         // When
         const promise = ctrl.update(contactCopy);
@@ -61,9 +58,9 @@ describe(`module: ${appContactsModule}`, () => {
           $httpBackend.flush();
         }));
 
-        it('displays a notification', inject((toastr) => {
-          expect(toastr.success.calledWith('Contact updated')).to.be.true;
-        }));
+        it('displays a notification', () => {
+          expect(ctrl.toastr.success.calledWith('Contact updated')).to.be.true;
+        });
 
         it('updates a contact', () => {
           expect(ctrl.contact).to.have.property('id', 2);
@@ -71,9 +68,9 @@ describe(`module: ${appContactsModule}`, () => {
           expect(ctrl.contact).to.have.property('lastName', 'Bandzarewicz');
         });
 
-        it('redirects to the list page', inject(($state) => {
-          expect($state.go.calledWith('contacts.show', { id: 2 })).to.be.true;
-        }));
+        it('redirects to the list page', () => {
+          expect(ctrl.$state.go.calledWith('contacts.show', { id: 2 })).to.be.true;
+        });
 
       });
 
@@ -84,9 +81,9 @@ describe(`module: ${appContactsModule}`, () => {
           $httpBackend.flush();
         }));
 
-        it('does not redirect', inject(($state) => {
-          expect($state.go.calledWith('contacts.show')).to.be.false;
-        }));
+        it('does not redirect', () => {
+          expect(ctrl.$state.go.calledWith('contacts.show')).to.be.false;
+        });
 
       });
 

@@ -2,22 +2,22 @@ import appContactsModule from '../contacts.module';
 import { expect } from 'chai';
 import { name } from './new.state';
 import sinon from 'sinon';
-import toastrMockModule from '../../../specs/toastr-mock.module';
 
 describe(`module: ${appContactsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appContactsModule);
-    angular.mock.module(toastrMockModule);
-  });
+  beforeEach(angular.mock.module(appContactsModule));
 
   describe(`controller: ${name}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller, $state) => {
+    beforeEach(inject(($controller, $state, toastr) => {
       const Controller = $state.get(name).controller;
-      ctrl = $controller(Controller);
+
+      ctrl = $controller(Controller, {
+        $state: { go: sinon.stub() },
+        toastr: sinon.stub(toastr)
+      });
     }));
 
     it('has a contact', inject((Contact) => {
@@ -28,9 +28,7 @@ describe(`module: ${appContactsModule}`, () => {
 
       let contact;
 
-      beforeEach(inject(($state, Contact) => {
-        sinon.stub($state, 'go');
-
+      beforeEach(inject((Contact) => {
         contact = new Contact({ firstName: 'Luke' });
       }));
 
@@ -48,7 +46,7 @@ describe(`module: ${appContactsModule}`, () => {
         }));
 
         it('creates a contact', (done) => {
-          inject(($rootScope, $state, toastr) => {
+          inject(($rootScope) => {
             ctrl.create(contact).then(() => {
               // ...assigns data from the server
               expect(ctrl.contact).to.have.property('id', 123);
@@ -56,10 +54,10 @@ describe(`module: ${appContactsModule}`, () => {
               expect(ctrl.contact).to.have.property('createdAt');
 
               // ...displays a notification
-              expect(toastr.success.calledWith('Contact created')).to.be.true;
+              expect(ctrl.toastr.success.calledWith('Contact created')).to.be.true;
 
               // ...redirects to the show page
-              expect($state.go.calledWith('contacts.one.show')).to.be.true;
+              expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.true;
 
               done();
             });
@@ -79,10 +77,10 @@ describe(`module: ${appContactsModule}`, () => {
         }));
 
         it('does not create a contact', (done) => {
-          inject(($rootScope, $state) => {
+          inject(($rootScope) => {
             ctrl.create(contact).finally(() => {
               expect(ctrl.contact).to.not.have.property('id');
-              expect($state.go.calledWith('contacts.one.show')).to.be.false;
+              expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.false;
 
               done();
             });
