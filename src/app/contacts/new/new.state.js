@@ -1,12 +1,6 @@
 import controller from './new.controller';
 import template from './new.state.html';
 
-function contact(Contact) {
-  'ngInject';
-
-  return new Contact();
-}
-
 export const name = 'contacts.new';
 
 export default {
@@ -15,10 +9,6 @@ export default {
   template,
   controller,
   controllerAs: 'ctrl',
-
-  resolve: {
-    contact
-  },
 
   ncyBreadcrumb: {
     parent: 'contacts.list',

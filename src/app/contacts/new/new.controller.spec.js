@@ -15,12 +15,9 @@ describe(`module: ${appContactsModule}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller, $state, Contact) => {
+    beforeEach(inject(($controller, $state) => {
       const Controller = $state.get(name).controller;
-
-      ctrl = $controller(Controller, {
-        contact: new Contact()
-      });
+      ctrl = $controller(Controller);
     }));
 
     it('has a contact', inject((Contact) => {
@@ -29,61 +26,77 @@ describe(`module: ${appContactsModule}`, () => {
 
     describe('.create', () => {
 
-      let requestHandler;
+      let contact;
 
-      beforeEach(inject(($httpBackend, $state) => {
-        // Given
-        const contactCopy = angular.copy(ctrl.contact);
-        angular.extend(contactCopy, {
-          firstName: 'Lukasz',
-          lastName: 'Bandzarewicz'
-        });
-
-        requestHandler = $httpBackend
-          .expectPOST('/api/contacts', contactCopy);
-
-        sinon.spy(ctrl.contact, '$create');
+      beforeEach(inject(($state, Contact) => {
         sinon.stub($state, 'go');
 
+        contact = new Contact({ firstName: 'Luke' });
+      }));
+
+      // TODO create custom macro
+      it('returns a promise', () => {
         // When
-        const promise = ctrl.create(contactCopy);
+        const promise = ctrl.create(contact);
 
         // Then
-        expect(typeof promise.then).to.be.eq('function');
-        expect(typeof promise.finally).to.be.eq('function');
-      }));
+        expect(typeof promise.then).to.eq('function');
+        expect(typeof promise.catch).to.eq('function');
+        expect(typeof promise.finally).to.eq('function');
+      });
 
       describe('on success', () => {
 
-        beforeEach(inject(($httpBackend) => {
-          requestHandler.respond(200, { id: 125 });
-          $httpBackend.flush();
+        beforeEach(inject(($q) => {
+          sinon.stub(contact, '$create', function() {
+            angular.extend(this, { id: 123, createdAt: new Date() });
+            return $q.resolve(this);
+          });
         }));
 
-        it('displays a notification', inject((toastr) => {
-          expect(toastr.success.calledWith('Contact created')).to.be.true;
-        }));
+        it('creates a contact', (done) => {
+          inject(($rootScope, $state, toastr) => {
+            ctrl.create(contact).then(() => {
+              // ...assigns data from the server
+              expect(ctrl.contact).to.have.property('id', 123);
+              expect(ctrl.contact).to.have.property('firstName', 'Luke');
+              expect(ctrl.contact).to.have.property('createdAt');
 
-        it('creates a contact', () => {
-          expect(ctrl.contact).to.have.property('id', 125);
+              // ...displays a notification
+              expect(toastr.success.calledWith('Contact created')).to.be.true;
+
+              // ...redirects to the show page
+              expect($state.go.calledWith('contacts.one.show')).to.be.true;
+
+              done();
+            });
+
+            $rootScope.$digest();
+          });
         });
-
-        it('redirects to the show page', inject(($state) => {
-          expect($state.go.calledWith('contacts.show', { id: 125 })).to.be.true;
-        }));
 
       });
 
       describe('on error', () => {
 
-        beforeEach(inject(($httpBackend) => {
-          requestHandler.respond(422);
-          $httpBackend.flush();
+        beforeEach(inject(($q) => {
+          sinon.stub(contact, '$create', () => {
+            return $q.reject();
+          });
         }));
 
-        it('does not redirect to the show page', inject(($state) => {
-          expect($state.go.calledWith('contacts.show')).to.be.false;
-        }));
+        it('does not create a contact', (done) => {
+          inject(($rootScope, $state) => {
+            ctrl.create(contact).finally(() => {
+              expect(ctrl.contact).to.not.have.property('id');
+              expect($state.go.calledWith('contacts.one.show')).to.be.false;
+
+              done();
+            });
+
+            $rootScope.$digest();
+          });
+        });
 
       });
 

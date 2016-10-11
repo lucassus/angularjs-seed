@@ -51,8 +51,9 @@ describe(`module: ${appContactsModule}`, () => {
         const promise = ctrl.update(contactCopy);
 
         // Then
-        expect(typeof promise.then).to.be.eq('function');
-        expect(typeof promise.finally).to.be.eq('function');
+        expect(typeof promise.then).to.eq('function');
+        expect(typeof promise.catch).to.eq('function');
+        expect(typeof promise.finally).to.eq('function');
       }));
 
       describe('on success', () => {
