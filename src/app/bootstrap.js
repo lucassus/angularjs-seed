@@ -4,8 +4,8 @@ import appModule from './app.module';
 export default function($document) {
   'ngInject';
 
-  angular.element($document).ready(() => {
-    angular.bootstrap($document.find('body'), [appModule], {
+  $document.ready(() => {
+    angular.bootstrap('html', [appModule], {
       strictDi: true
     });
   });

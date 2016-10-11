@@ -7,12 +7,13 @@ describe('boostrap', () => {
 
   let sandbox;
 
-  beforeEach(() => {
+  beforeEach(inject(($document) => {
     sandbox = sinon.sandbox.create();
 
     // Do not boot the app in the test environment
     sandbox.stub(angular, 'bootstrap');
-  });
+    sandbox.stub($document, 'ready').yields();
+  }));
 
   afterEach(() => {
     sandbox.restore();
@@ -20,21 +21,19 @@ describe('boostrap', () => {
 
   describe('.bootstrap', () => {
 
-    it('boots the app', (done) => {
-      inject(($document, $injector) => {
-        $injector.invoke(bootstrap);
+    it('boots the app', inject(($injector) => {
+      // When
+      $injector.invoke(bootstrap);
 
-        angular.element($document).ready(() => {
-          expect(angular.bootstrap.called).to.be.true;
+      // Then
+      expect(angular.bootstrap.called).to.be.true;
 
-          const [, modules, options] = angular.bootstrap.lastCall.args;
-          expect(modules[0]).to.eq('app');
-          expect(options).to.have.property('strictDi', true);
+      const [el, modules, options] = angular.bootstrap.lastCall.args;
 
-          done();
-        });
-      });
-    });
+      expect(el).to.eq('html');
+      expect(modules[0]).to.eq('app');
+      expect(options).to.have.property('strictDi', true);
+    }));
 
   });
 
