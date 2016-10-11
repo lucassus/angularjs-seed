@@ -1,4 +1,3 @@
-import angular from 'angular';
 import bootstrap from './bootstrap';
 import { expect } from 'chai';
 import sinon from 'sinon';

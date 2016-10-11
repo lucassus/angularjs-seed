@@ -1,4 +1,3 @@
-import angular from 'angular';
 import angularMessages from 'angular-messages';
 import angularResource from 'angular-resource';
 import appCommonsModule from '../commons/commons.module';

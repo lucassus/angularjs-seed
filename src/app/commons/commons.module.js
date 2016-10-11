@@ -1,6 +1,4 @@
 import 'angular-breadcrumb';
-// TODO no need to import angular ?
-import angular from 'angular';
 import breadcrumbTemplate from './breadcrumb.template.html';
 import components from './components/components.config';
 import services from './services/services.config';
