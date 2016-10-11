@@ -10,12 +10,12 @@ export default class {
   }
 
   update(contact) {
-    return contact.$update().then((updatedContact) => {
-      angular.extend(this.contact, updatedContact);
+    return contact.$update().then(() => {
+      angular.extend(this.contact, contact);
       this.toastr.success('Contact updated');
 
       const { id } = this.contact;
-      return this.$state.go('contacts.show', { id });
+      return this.$state.go('contacts.one.show', { id });
     });
   }
 
