@@ -34,15 +34,8 @@ describe(`module: ${appContactsModule}`, () => {
         contact = new Contact({ firstName: 'Luke' });
       }));
 
-      // TODO create custom macro
       it('returns a promise', () => {
-        // When
-        const promise = ctrl.create(contact);
-
-        // Then
-        expect(typeof promise.then).to.eq('function');
-        expect(typeof promise.catch).to.eq('function');
-        expect(typeof promise.finally).to.eq('function');
+        expect(ctrl.create(contact)).to.be.a.promise;
       });
 
       describe('on success', () => {
