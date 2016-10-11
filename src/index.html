@@ -3,13 +3,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Angular webpack seed</title>
+
+  <title
+      ncy-breadcrumb-text="Angular seed: {{ncyBreadcrumbChain}}"
+      ncy-breadcrumb-text-separator=" / ">Angular seed</title>
 </head>
 
 <body>
   <app-navigation></app-navigation>
 
   <div class="container">
+    <div ncy-breadcrumb></div>
     <div ui-view></div>
   </div>
 

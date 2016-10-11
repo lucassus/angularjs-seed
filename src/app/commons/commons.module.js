@@ -1,11 +1,24 @@
+import 'angular-breadcrumb';
+// TODO no need to import angular ?
 import angular from 'angular';
+import breadcrumbTemplate from './breadcrumb.template.html';
 import components from './components/components.config';
 import services from './services/services.config';
 import toastr from 'angular-toastr';
 
 export default angular.module('app.commons', [
-  toastr
+  toastr,
+  'ncy-angular-breadcrumb'
 ])
   .config(components)
   .config(services)
+
+  .config(($breadcrumbProvider) => {
+    'ngInject';
+
+    $breadcrumbProvider.setOptions({
+      template: breadcrumbTemplate
+    });
+  })
+
   .name;

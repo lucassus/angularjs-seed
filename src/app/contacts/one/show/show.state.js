@@ -8,5 +8,10 @@ export default {
   url: '',
   template,
   controller,
-  controllerAs: 'ctrl'
+  controllerAs: 'ctrl',
+
+  ncyBreadcrumb: {
+    parent: 'contacts.list',
+    label: '{{ctrl.contact.fullName}}'
+  }
 };
