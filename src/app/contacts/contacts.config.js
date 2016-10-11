@@ -7,11 +7,12 @@ import oneEditState from './one/edit/edit.state';
 import oneShowState from './one/show/show.state';
 import oneState from './one/one.state';
 
-export default function($stateProvider) {
+export function states($stateProvider) {
   'ngInject';
 
   $stateProvider
-    .state('contacts', {
+    .state({
+      name: 'contacts',
       abstract: true,
       url: '/contacts',
       template: '<div ui-view></div>'

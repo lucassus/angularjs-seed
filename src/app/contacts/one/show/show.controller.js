@@ -11,7 +11,9 @@ export default class {
   }
 
   delete() {
-    if (this.confirm(`Do you rally want to delete contact ${this.contact.fullName}?`)) {
+    const message = `Do you rally want to delete contact ${this.contact.fullName}?`;
+
+    if (this.confirm(message)) {
       this.contact.$delete().then(() => {
         this.toastr.success('Contact deleted');
         this.$state.go('contacts.list');
