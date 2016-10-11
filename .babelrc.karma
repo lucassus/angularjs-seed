@@ -4,7 +4,7 @@
       ["istanbul", {
         "exclude": [
           "src/specs.js",
-          "src/**/*_spec.js"
+          "src/**/*.spec.js"
         ]
       }]
     ]

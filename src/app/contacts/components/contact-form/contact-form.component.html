@@ -1,0 +1,74 @@
+<form name="contactForm" novalidate
+      ng-submit="$ctrl.submit()">
+
+  <div class="form-group"
+       ng-class="{ 'has-error': $ctrl.showError(contactForm, 'firstName') }">
+    <label class="control-label" for="fist-name-field">First name</label>
+    <input ng-model="$ctrl.contact.firstName"
+           name="firstName"
+           required
+           type="text" class="form-control" id="fist-name-field" />
+
+    <span ng-show="$ctrl.showError(contactForm, 'firstName')"
+          ng-messages="contactForm.firstName.$error" class="help-block">
+      <div ng-message="required">Please enter first name.</div>
+    </span>
+  </div>
+
+  <div class="form-group"
+       ng-class="{ 'has-error': $ctrl.showError(contactForm, 'lastName') }">
+    <label class="control-label" for="last-name-field">Last name</label>
+    <input ng-model="$ctrl.contact.lastName"
+           name="lastName"
+           required
+           type="text" class="form-control" id="last-name-field" />
+
+    <span ng-show="$ctrl.showError(contactForm, 'lastName')"
+          ng-messages="contactForm.lastName.$error" class="help-block">
+      <div ng-message="required">Please enter last name.</div>
+    </span>
+  </div>
+
+  <div class="form-group"
+       ng-class="{ 'has-error': $ctrl.showError(contactForm, 'email') }">
+    <label for="email-field" class="control-label">Email</label>
+    <input ng-model="$ctrl.contact.email"
+           app-unique-email="$ctrl.contact.id"
+           name="email"
+           type="email" class="form-control" id="email-field" />
+
+    <span ng-show="$ctrl.showError(contactForm, 'email')"
+          ng-messages="contactForm.email.$error" class="help-block">
+      <div ng-message="email">Invalid email address.</div>
+      <div ng-message="uniqueEmail">Email is taken.</div>
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for="phone-field" class="control-label">Phone</label>
+    <input ng-model="$ctrl.contact.phone"
+           name="phone"
+           type="text" class="form-control" id="phone-field" />
+  </div>
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="favourite"
+             ng-model="$ctrl.contact.favourite" />
+      Favourite
+    </label>
+  </div>
+
+  <button class="btn btn-success"
+          type="submit"
+          ng-disabled="contactForm.$invalid || $ctrl.saving">
+    <span class="glyphicon glyphicon-floppy-disk"></span>
+
+    <span ng-hide="$ctrl.isPersisted()">Create</span>
+    <span ng-show="$ctrl.isPersisted()">Update</span>
+  </button>
+
+  <button class="btn btn-default" ui-sref="contacts.list">
+    Cancel
+  </button>
+</form>

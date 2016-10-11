@@ -12,7 +12,7 @@ exports.config = {
   framework: 'jasmine',
   specs: [
     'e2e/setup.js',
-    'e2e/**/*_spec.js'
+    'e2e/**/*.spec.js'
   ],
 
   onPrepare() {
