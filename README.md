@@ -25,13 +25,13 @@ e2e_test.sh
 ## Features
 
 * AngularJS 1.5.x with ES2015 flavour
-* AngularJS modules: uiRouter, ngResource, ngMessage, toastr
+* AngularJS modules: uiRouter, ngResource, ngMessage, toastr and other useful stuff
 * Twitter Bootstrap with Sass
 * Gulp
 * Webpack
-* Long term caching
+* Long term caching for assets (Cache-Busting)
 * Karma, mocha and Sinon.js 
 * Istanbul test coverage
-* Protractor
+* Protractor along with simple Page Objects
 * ESLint, HTMLHint
-* TravisCI, Heroku, Continuous deployment
+* TravisCI, Continuous deployment on Heroku
