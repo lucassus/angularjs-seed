@@ -20,17 +20,6 @@ describe(`module: ${appContactsModule}`, () => {
       expect($state.href(state)).to.eq('#/contacts/new');
     }));
 
-    it('resolves `contact`', (done) => {
-      inject(($resolve, $rootScope, Contact) => {
-        $resolve.resolve(state.resolve).then(({ contact }) => {
-          expect(contact).to.be.an.instanceOf(Contact);
-          done();
-        });
-
-        $rootScope.$digest();
-      });
-    });
-
   });
 
 });

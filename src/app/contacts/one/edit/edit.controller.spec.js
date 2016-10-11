@@ -1,93 +1,95 @@
 import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
+import { name } from './edit.state';
 import sinon from 'sinon';
-import toastrMockModule from '../../../../specs/toastr-mock.module';
 
 describe(`module: ${appContactsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appContactsModule);
-    angular.mock.module(toastrMockModule);
-  });
+  beforeEach(angular.mock.module(appContactsModule));
 
-  const stateName = 'contacts.one.edit';
-
-  describe(`controller: ${stateName}`, () => {
+  describe(`controller: ${name}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller, $state, Contact) => {
-      const Controller = $state.get(stateName).controller;
+    beforeEach(inject(($controller, $state, toastr, Contact) => {
+      const Controller = $state.get(name).controller;
 
       ctrl = $controller(Controller, {
-        contact: new Contact({ id: 2, firstName: 'Mark' })
+        $state: { go: sinon.stub() },
+        toastr: sinon.stub(toastr),
+        contact: new Contact({ id: 123, firstName: 'Anakin' })
       });
     }));
 
     it('has a contact', () => {
-      expect(ctrl.contact).to.have.property('id', 2);
-      expect(ctrl.contact).to.have.property('firstName', 'Mark');
+      expect(ctrl.contact).to.have.property('id', 123);
+      expect(ctrl.contact).to.have.property('firstName', 'Anakin');
     });
 
     describe('.update', () => {
 
-      let requestHandler;
+      let contact;
 
-      beforeEach(inject(($httpBackend, $state) => {
-        // Given
-        const contactCopy = angular.copy(ctrl.contact);
-        angular.extend(contactCopy, {
-          firstName: 'Lukasz',
-          lastName: 'Bandzarewicz'
-        });
+      beforeEach(() => {
+        contact = angular.copy(ctrl.contact);
+        angular.extend(contact, { firstName: 'Luke' });
+      });
 
-        requestHandler = $httpBackend
-          .expectPUT('/api/contacts/2', contactCopy);
-
-        sinon.spy(ctrl.contact, '$update');
-        sinon.stub($state, 'go');
-
-        // When
-        const promise = ctrl.update(contactCopy);
-
-        // Then
-        expect(typeof promise.then).to.be.eq('function');
-        expect(typeof promise.finally).to.be.eq('function');
-      }));
+      it('returns a promise', () => {
+        expect(ctrl.update(contact)).to.be.a.promise;
+      });
 
       describe('on success', () => {
 
-        beforeEach(inject(($httpBackend) => {
-          requestHandler.respond(200);
-          $httpBackend.flush();
-        }));
+        beforeEach(inject(($q, $rootScope) => {
+          // Given
+          sinon.stub(contact, '$update', function() {
+            angular.extend(this, { updatedAt: new Date() });
+            return $q.resolve(this);
+          });
 
-        it('displays a notification', inject((toastr) => {
-          expect(toastr.success.calledWith('Contact updated')).to.be.true;
+          // When
+          ctrl.update(contact);
+          $rootScope.$digest();
         }));
 
         it('updates a contact', () => {
-          expect(ctrl.contact).to.have.property('id', 2);
-          expect(ctrl.contact).to.have.property('firstName', 'Lukasz');
-          expect(ctrl.contact).to.have.property('lastName', 'Bandzarewicz');
+          expect(ctrl.contact).to.have.property('id', 123);
+          expect(ctrl.contact).to.have.property('firstName', 'Luke');
+          expect(ctrl.contact).to.have.property('updatedAt');
         });
 
-        it('redirects to the list page', inject(($state) => {
-          expect($state.go.calledWith('contacts.show', { id: 2 })).to.be.true;
-        }));
+        it('displays a notification', () => {
+          expect(ctrl.toastr.success.calledWith('Contact updated')).to.be.true;
+        });
+
+        it('redirects to the show page', () => {
+          expect(ctrl.$state.go.calledWith('contacts.one.show', { id: 123 })).to.be.true;
+        });
 
       });
 
       describe('on error', () => {
 
-        beforeEach(inject(($httpBackend) => {
-          requestHandler.respond(422);
-          $httpBackend.flush();
+        beforeEach(inject(($q, $rootScope) => {
+          // Given
+          sinon.stub(contact, '$update', () => {
+            return $q.reject();
+          });
+
+          // When
+          ctrl.update(contact);
+          $rootScope.$digest();
         }));
 
-        it('does not redirect', inject(($state) => {
-          expect($state.go.calledWith('contacts.show')).to.be.false;
-        }));
+        it('does not update a contact', () => {
+          expect(ctrl.contact).to.have.property('firstName', 'Anakin');
+          expect(ctrl.contact).to.not.have.property('createdAt');
+        });
+
+        it('does not redirect', () => {
+          expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.false;
+        });
 
       });
 

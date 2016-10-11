@@ -1,21 +1,21 @@
 export default class {
 
-  constructor($state, toastr, contact) {
+  constructor($state, toastr, Contact) {
     'ngInject';
 
     this.$state = $state;
     this.toastr = toastr;
 
-    this.contact = contact;
+    this.contact = new Contact();
   }
 
   create(contact) {
-    return contact.$create().then((createdContact) => {
-      angular.extend(this.contact, createdContact);
+    return contact.$create().then(() => {
+      angular.extend(this.contact, contact);
       this.toastr.success('Contact created');
 
       const { id } = this.contact;
-      return this.$state.go('contacts.show', { id });
+      return this.$state.go('contacts.one.show', { id });
     });
   }
 

@@ -2,83 +2,87 @@ import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
 import { name } from './show.state';
 import sinon from 'sinon';
-import toastrMockModule from '../../../../specs/toastr-mock.module';
 
 describe(`module: ${appContactsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appContactsModule, ($provide) => {
-      $provide.value('confirm', sinon.stub().returns(true));
-    });
-
-    angular.mock.module(toastrMockModule);
-  });
+  beforeEach(angular.mock.module(appContactsModule));
 
   describe(`controller: ${name}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller, $state, Contact) => {
+    beforeEach(inject(($controller, $state, toastr, Contact) => {
       const Controller = $state.get(name).controller;
 
       ctrl = $controller(Controller, {
-        contact: new Contact({ id: 2, name: 'bar' })
+        $state: { go: sinon.stub() },
+        toastr: sinon.stub(toastr),
+        confirm: sinon.stub().returns(true),
+
+        contact: new Contact({ id: 2, firstName: 'Anakin', lastName: 'Skywalker' })
       });
     }));
 
     it('has a contact', () => {
       expect(ctrl.contact).to.have.property('id', 2);
-      expect(ctrl.contact).to.have.property('name', 'bar');
+      expect(ctrl.contact).to.have.property('firstName', 'Anakin');
+      expect(ctrl.contact).to.have.property('lastName', 'Skywalker');
     });
 
     describe('.delete', () => {
 
-      beforeEach(inject(($state) => {
-        sinon.stub($state, 'go');
-      }));
+      it('displays a confirmation', () => {
+        // When
+        ctrl.delete();
+
+        // Then
+        const message = 'Do you rally want to delete contact Anakin Skywalker?';
+        expect(ctrl.confirm.calledWith(message)).to.be.true;
+      });
 
       describe('when confirmed', () => {
 
-        let requestHandler;
-
-        beforeEach(inject(($httpBackend) => {
-          requestHandler = $httpBackend.expectDELETE('/api/contacts/2');
-
-          sinon.spy(ctrl.contact, '$delete');
-          ctrl.delete();
-        }));
-
-        it('deletes a contact', () => {
-          expect(ctrl.contact.$delete.called).to.be.true;
+        beforeEach(() => {
+          ctrl.confirm.returns(true);
         });
 
         describe('on success', () => {
 
-          beforeEach(inject(($httpBackend) => {
-            requestHandler.respond(200);
-            $httpBackend.flush();
+          beforeEach(inject(($q, $rootScope) => {
+            // Given
+            sinon.stub(ctrl.contact, '$delete')
+              .returns($q.resolve());
+
+            // When
+            ctrl.delete();
+            $rootScope.$digest();
           }));
 
-          it('displays a notification', inject((toastr) => {
-            expect(toastr.success.calledWith('Contact deleted')).to.be.true;
-          }));
+          it('displays a notification', () => {
+            expect(ctrl.toastr.success.calledWith('Contact deleted')).to.be.true;
+          });
 
-          it('redirect to the list page', inject(($state) => {
-            expect($state.go.calledWith('contacts.list')).to.be.true;
-          }));
+          it('redirect to the list page', () => {
+            expect(ctrl.$state.go.calledWith('contacts.list')).to.be.true;
+          });
 
         });
 
         describe('on error', () => {
 
-          beforeEach(inject(($httpBackend) => {
-            requestHandler.respond(422);
-            $httpBackend.flush();
+          beforeEach(inject(($q, $rootScope) => {
+            // Given
+            sinon.stub(ctrl.contact, '$delete')
+              .returns($q.reject());
+
+            // When
+            ctrl.delete();
+            $rootScope.$digest();
           }));
 
-          it('does not redirect', inject(($state) => {
-            expect($state.go.calledWith('contacts.list')).to.be.false;
-          }));
+          it('does not redirect', () => {
+            expect(ctrl.$state.go.calledWith('contacts.list')).to.be.false;
+          });
 
         });
 
@@ -86,11 +90,14 @@ describe(`module: ${appContactsModule}`, () => {
 
       describe('when not confirmed', () => {
 
-        it('does nothing', inject(($state, confirm) => {
-          confirm.returns(false);
+        beforeEach(() => {
+          ctrl.confirm.returns(false);
           ctrl.delete();
-          expect($state.go.called).to.be.false;
-        }));
+        });
+
+        it('does nothing', () => {
+          expect(ctrl.$state.go.called).to.be.false;
+        });
 
       });
 

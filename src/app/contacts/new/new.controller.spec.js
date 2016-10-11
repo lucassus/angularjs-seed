@@ -2,24 +2,21 @@ import appContactsModule from '../contacts.module';
 import { expect } from 'chai';
 import { name } from './new.state';
 import sinon from 'sinon';
-import toastrMockModule from '../../../specs/toastr-mock.module';
 
 describe(`module: ${appContactsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appContactsModule);
-    angular.mock.module(toastrMockModule);
-  });
+  beforeEach(angular.mock.module(appContactsModule));
 
   describe(`controller: ${name}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller, $state, Contact) => {
+    beforeEach(inject(($controller, $state, toastr) => {
       const Controller = $state.get(name).controller;
 
       ctrl = $controller(Controller, {
-        contact: new Contact()
+        $state: { go: sinon.stub() },
+        toastr: sinon.stub(toastr)
       });
     }));
 
@@ -29,61 +26,63 @@ describe(`module: ${appContactsModule}`, () => {
 
     describe('.create', () => {
 
-      let requestHandler;
+      let contact;
 
-      beforeEach(inject(($httpBackend, $state) => {
-        // Given
-        const contactCopy = angular.copy(ctrl.contact);
-        angular.extend(contactCopy, {
-          firstName: 'Lukasz',
-          lastName: 'Bandzarewicz'
-        });
-
-        requestHandler = $httpBackend
-          .expectPOST('/api/contacts', contactCopy);
-
-        sinon.spy(ctrl.contact, '$create');
-        sinon.stub($state, 'go');
-
-        // When
-        const promise = ctrl.create(contactCopy);
-
-        // Then
-        expect(typeof promise.then).to.be.eq('function');
-        expect(typeof promise.finally).to.be.eq('function');
+      beforeEach(inject((Contact) => {
+        contact = new Contact({ firstName: 'Luke' });
       }));
+
+      it('returns a promise', () => {
+        expect(ctrl.create(contact)).to.be.a.promise;
+      });
 
       describe('on success', () => {
 
-        beforeEach(inject(($httpBackend) => {
-          requestHandler.respond(200, { id: 125 });
-          $httpBackend.flush();
-        }));
+        beforeEach(inject(($q, $rootScope) => {
+          // Given
+          sinon.stub(contact, '$create', function() {
+            angular.extend(this, { id: 123, createdAt: new Date() });
+            return $q.resolve(this);
+          });
 
-        it('displays a notification', inject((toastr) => {
-          expect(toastr.success.calledWith('Contact created')).to.be.true;
+          // When
+          ctrl.create(contact);
+          $rootScope.$digest();
         }));
 
         it('creates a contact', () => {
-          expect(ctrl.contact).to.have.property('id', 125);
+          expect(ctrl.contact).to.have.property('id', 123);
+          expect(ctrl.contact).to.have.property('firstName', 'Luke');
+          expect(ctrl.contact).to.have.property('createdAt');
         });
 
-        it('redirects to the show page', inject(($state) => {
-          expect($state.go.calledWith('contacts.show', { id: 125 })).to.be.true;
-        }));
+        it('displays a notification', () => {
+          expect(ctrl.toastr.success.calledWith('Contact created')).to.be.true;
+        });
+
+        it('redirects to the show page', () => {
+          expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.true;
+        });
 
       });
 
       describe('on error', () => {
 
-        beforeEach(inject(($httpBackend) => {
-          requestHandler.respond(422);
-          $httpBackend.flush();
+        beforeEach(inject(($q, $rootScope) => {
+          // Given
+          sinon.stub(contact, '$create', () => {
+            return $q.reject();
+          });
+
+          // When
+          ctrl.create(contact);
+          $rootScope.$digest();
         }));
 
-        it('does not redirect to the show page', inject(($state) => {
-          expect($state.go.calledWith('contacts.show')).to.be.false;
-        }));
+        it('does not create a contact', () => {
+          expect(ctrl.contact).to.not.have.property('id');
+          expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.false;
+        });
 
       });
 

@@ -1,6 +1,7 @@
 import appContactsModule from '../contacts.module';
 import { expect } from 'chai';
 import { name } from './one.state';
+import sinon from 'sinon';
 
 describe(`module: ${appContactsModule}`, () => {
 
@@ -17,21 +18,26 @@ describe(`module: ${appContactsModule}`, () => {
     }));
 
     it('resolves `contact`', (done) => {
-      inject(($httpBackend, $resolve) => {
-        $httpBackend
-          .expectGET('/api/contacts/3')
-          .respond(200, { id: 3, name: 'baz' });
+      inject(($q, $resolve, $rootScope, Contact) => {
+        // Given
+        const $promise = $q.resolve(new Contact({ id: 3, name: 'baz' }));
+        sinon.stub(Contact, 'get').returns({ $promise });
 
         const $stateParams = { id: 3 };
 
-        $resolve.resolve(state.resolve, { $stateParams }).then(({ contact }) => {
-          expect(contact).to.have.property('id', 3);
-          expect(contact).to.have.property('name', 'baz');
+        // When
+        $resolve.resolve(state.resolve, { $stateParams })
+          .then(({ contact }) => {
+            expect(Contact.get.calledWith({ id: 3 })).to.be.true;
 
-          done();
-        });
+            expect(contact).to.be.instanceOf(Contact);
+            expect(contact).to.have.property('id', 3);
+            expect(contact).to.have.property('name', 'baz');
 
-        $httpBackend.flush();
+            done();
+          });
+
+        $rootScope.$digest();
       });
     });
 

@@ -53,6 +53,25 @@ describe(`module: ${appContactsModule}`, () => {
 
     });
 
+    describe('Contact.get', () => {
+
+      it('retrieves a contact', (done) => {
+        $httpBackend
+          .expectGET('/api/contacts/123')
+          .respond(200, { id: 123, firstName: 'Luke' });
+
+        Contact.get({ id: 123 }).$promise.then((contact) => {
+          expect(contact).to.have.property('id', 123);
+          expect(contact).to.have.property('firstName', 'Luke');
+
+          done();
+        });
+
+        $httpBackend.flush();
+      });
+
+    });
+
     describe('.$create', () => {
 
       it('creates a contact', (done) => {
