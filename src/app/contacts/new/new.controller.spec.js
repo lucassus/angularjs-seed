@@ -38,55 +38,50 @@ describe(`module: ${appContactsModule}`, () => {
 
       describe('on success', () => {
 
-        beforeEach(inject(($q) => {
+        beforeEach(inject(($q, $rootScope) => {
+          // Given
           sinon.stub(contact, '$create', function() {
             angular.extend(this, { id: 123, createdAt: new Date() });
             return $q.resolve(this);
           });
+
+          // When
+          ctrl.create(contact);
+          $rootScope.$digest();
         }));
 
-        it('creates a contact', (done) => {
-          inject(($rootScope) => {
-            ctrl.create(contact).then(() => {
-              // ...assigns data from the server
-              expect(ctrl.contact).to.have.property('id', 123);
-              expect(ctrl.contact).to.have.property('firstName', 'Luke');
-              expect(ctrl.contact).to.have.property('createdAt');
+        it('creates a contact', () => {
+          expect(ctrl.contact).to.have.property('id', 123);
+          expect(ctrl.contact).to.have.property('firstName', 'Luke');
+          expect(ctrl.contact).to.have.property('createdAt');
+        });
 
-              // ...displays a notification
-              expect(ctrl.toastr.success.calledWith('Contact created')).to.be.true;
+        it('displays a notification', () => {
+          expect(ctrl.toastr.success.calledWith('Contact created')).to.be.true;
+        });
 
-              // ...redirects to the show page
-              expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.true;
-
-              done();
-            });
-
-            $rootScope.$digest();
-          });
+        it('redirects to the show page', () => {
+          expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.true;
         });
 
       });
 
       describe('on error', () => {
 
-        beforeEach(inject(($q) => {
+        beforeEach(inject(($q, $rootScope) => {
+          // Given
           sinon.stub(contact, '$create', () => {
             return $q.reject();
           });
+
+          // When
+          ctrl.create(contact);
+          $rootScope.$digest();
         }));
 
-        it('does not create a contact', (done) => {
-          inject(($rootScope) => {
-            ctrl.create(contact).finally(() => {
-              expect(ctrl.contact).to.not.have.property('id');
-              expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.false;
-
-              done();
-            });
-
-            $rootScope.$digest();
-          });
+        it('does not create a contact', () => {
+          expect(ctrl.contact).to.not.have.property('id');
+          expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.false;
         });
 
       });
