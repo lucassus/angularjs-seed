@@ -2,17 +2,10 @@ import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
 import { name } from './show.state';
 import sinon from 'sinon';
-import toastrMockModule from '../../../../specs/toastr-mock.module';
 
 describe(`module: ${appContactsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appContactsModule, ($provide) => {
-      $provide.value('confirm', sinon.stub().returns(true));
-    });
-
-    angular.mock.module(toastrMockModule);
-  });
+  beforeEach(angular.mock.module(appContactsModule));
 
   describe(`controller: ${name}`, () => {
 
@@ -22,6 +15,10 @@ describe(`module: ${appContactsModule}`, () => {
       const Controller = $state.get(name).controller;
 
       ctrl = $controller(Controller, {
+        $state: { go: sinon.stub() },
+        toastr: { success: sinon.stub() },
+        confirm: sinon.stub().returns(true),
+
         contact: new Contact({ id: 2, name: 'bar' })
       });
     }));
@@ -33,52 +30,49 @@ describe(`module: ${appContactsModule}`, () => {
 
     describe('.delete', () => {
 
-      beforeEach(inject(($state) => {
-        sinon.stub($state, 'go');
-      }));
-
       describe('when confirmed', () => {
 
-        let requestHandler;
-
-        beforeEach(inject(($httpBackend) => {
-          requestHandler = $httpBackend.expectDELETE('/api/contacts/2');
-
-          sinon.spy(ctrl.contact, '$delete');
-          ctrl.delete();
-        }));
-
-        it('deletes a contact', () => {
-          expect(ctrl.contact.$delete.called).to.be.true;
+        beforeEach(() => {
+          ctrl.confirm.returns(true);
         });
 
         describe('on success', () => {
 
-          beforeEach(inject(($httpBackend) => {
-            requestHandler.respond(200);
-            $httpBackend.flush();
+          beforeEach(inject(($q, $rootScope) => {
+            // Given
+            sinon.stub(ctrl.contact, '$delete')
+              .returns($q.resolve());
+
+            // When
+            ctrl.delete();
+            $rootScope.$digest();
           }));
 
-          it('displays a notification', inject((toastr) => {
-            expect(toastr.success.calledWith('Contact deleted')).to.be.true;
-          }));
+          it('displays a notification', () => {
+            expect(ctrl.toastr.success.calledWith('Contact deleted')).to.be.true;
+          });
 
-          it('redirect to the list page', inject(($state) => {
-            expect($state.go.calledWith('contacts.list')).to.be.true;
-          }));
+          it('redirect to the list page', () => {
+            expect(ctrl.$state.go.calledWith('contacts.list')).to.be.true;
+          });
 
         });
 
         describe('on error', () => {
 
-          beforeEach(inject(($httpBackend) => {
-            requestHandler.respond(422);
-            $httpBackend.flush();
+          beforeEach(inject(($q, $rootScope) => {
+            // Given
+            sinon.stub(ctrl.contact, '$delete')
+              .returns($q.reject());
+
+            // When
+            ctrl.delete();
+            $rootScope.$digest();
           }));
 
-          it('does not redirect', inject(($state) => {
-            expect($state.go.calledWith('contacts.list')).to.be.false;
-          }));
+          it('does not redirect', () => {
+            expect(ctrl.$state.go.calledWith('contacts.list')).to.be.false;
+          });
 
         });
 
@@ -86,11 +80,14 @@ describe(`module: ${appContactsModule}`, () => {
 
       describe('when not confirmed', () => {
 
-        it('does nothing', inject(($state, confirm) => {
-          confirm.returns(false);
+        beforeEach(() => {
+          ctrl.confirm.returns(false);
           ctrl.delete();
-          expect($state.go.called).to.be.false;
-        }));
+        });
+
+        it('does nothing', () => {
+          expect(ctrl.$state.go.called).to.be.false;
+        });
 
       });
 
