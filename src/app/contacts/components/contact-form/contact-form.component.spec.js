@@ -19,8 +19,9 @@ describe(`module: ${appContactsModule}`, () => {
       scope.update = sinon.stub().returns($q.resolve({}));
 
       element = angular.element(`
-        <app-contact-form contact="contact" 
-                      on-submit="update(contact)"></app-contact-form>
+        <app-contact-form 
+          contact="contact" 
+          on-submit="update(contact)"></app-contact-form>
       `);
 
       $compile(element)(scope);
