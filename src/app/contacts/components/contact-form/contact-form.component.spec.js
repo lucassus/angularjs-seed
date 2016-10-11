@@ -1,4 +1,3 @@
-import angular from 'angular';
 import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
 import sinon from 'sinon';

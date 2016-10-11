@@ -8,5 +8,10 @@ export default {
   url: '/edit',
   template,
   controller,
-  controllerAs: 'ctrl'
+  controllerAs: 'ctrl',
+
+  ncyBreadcrumb: {
+    parent: 'contacts.one.show({ id: ctrl.contact.id })',
+    label: 'Edit'
+  }
 };

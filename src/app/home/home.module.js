@@ -1,4 +1,3 @@
-import angular from 'angular';
 import appCommonsModule from '../commons/commons.module';
 import { states } from './home.config';
 import uiRouter from 'angular-ui-router';

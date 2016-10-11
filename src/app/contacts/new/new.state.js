@@ -18,5 +18,10 @@ export default {
 
   resolve: {
     contact
+  },
+
+  ncyBreadcrumb: {
+    parent: 'contacts.list',
+    label: 'Create contact'
   }
 };

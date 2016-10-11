@@ -12,10 +12,13 @@ export default {
   name,
   url: '',
   template,
+  resolve: {
+    contacts
+  },
   controller,
   controllerAs: 'ctrl',
 
-  resolve: {
-    contacts
+  ncyBreadcrumb: {
+    label: 'Contacts'
   }
 };
