@@ -1,13 +1,13 @@
 import appCommonsModule from '../../commons.module';
 import { expect } from 'chai';
 
-describe('squirrel.common module', () => {
+describe(`module: ${appCommonsModule}`, () => {
 
   beforeEach(() => {
     angular.mock.module(appCommonsModule);
   });
 
-  describe('appCheckmark filter', () => {
+  describe('filter: appCheckmark', () => {
 
     let filter;
 

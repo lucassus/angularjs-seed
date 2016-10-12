@@ -1,13 +1,13 @@
 import appCommonsModule from '../../commons.module';
 import { expect } from 'chai';
 
-describe('squirrel.common module', () => {
+describe(`module: ${appCommonsModule}`, () => {
 
   beforeEach(() => {
     angular.mock.module(appCommonsModule);
   });
 
-  describe('appUniqueEmail directive', () => {
+  describe('directive: appUniqueEmail', () => {
 
     let $httpBackend, $timeout, scope;
 
