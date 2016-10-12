@@ -1,22 +1,27 @@
-<dl class="dl-horizontal">
-  <dt>Country</dt>
-  <dd ng-bind="ctrl.contact.address.country"></dd>
+<div class="row">
+  <div class="col-md-6">
+    <dl class="dl-horizontal">
+      <dt>Country</dt>
+      <dd ng-bind="ctrl.contact.address.country"></dd>
 
-  <dt>Town</dt>
-  <dd ng-bind="ctrl.contact.address.town"></dd>
+      <dt>Town</dt>
+      <dd ng-bind="ctrl.contact.address.town"></dd>
 
-  <dt>Street</dt>
-  <dd ng-bind="ctrl.contact.address.street"></dd>
+      <dt>Street</dt>
+      <dd ng-bind="ctrl.contact.address.street"></dd>
 
-  <dt>Zip Code</dt>
-  <dd ng-bind="ctrl.contact.address.zipCode"></dd>
+      <dt>Zip Code</dt>
+      <dd ng-bind="ctrl.contact.address.zipCode"></dd>
 
-  <dt>Location</dt>
-  <dd>
-    <span ng-bind="ctrl.contact.address.location.lon"></span>,
-    <span ng-bind="ctrl.contact.address.location.lat"></span>
-  </dd>
-</dl>
+      <dt>Location</dt>
+      <dd>
+        <span ng-bind="ctrl.contact.address.location.lon"></span>,
+        <span ng-bind="ctrl.contact.address.location.lat"></span>
+      </dd>
+    </dl>
+  </div>
+  <div class="col-md-6" id="address-map"></div>
+</div>
 
 <a class="btn btn-default"
    ui-sref="contacts.one.address.edit({ id: ctrl.contact.id })">

@@ -12,6 +12,7 @@ module.exports = {
   entry: {
     vendor: [
       'jquery',
+      'leaflet',
       'lodash',
       'angular',
       'angular-animate',
