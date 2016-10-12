@@ -1,5 +1,3 @@
-'use strict';
-
 import appCommonsModule from '../../commons.module';
 import { expect } from 'chai';
 
