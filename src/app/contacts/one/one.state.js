@@ -6,7 +6,7 @@ export default {
   name,
   abstract: true,
   url: '/:id',
-  template: '<div ui-view></div>',
+  template: '<div ui-view autoscroll="true"></div>',
   resolve: {
     contact: oneResolver
   }
