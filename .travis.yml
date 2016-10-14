@@ -16,8 +16,8 @@ before_install:
  - sleep 3 # give xvfb some time to start
  - sudo apt-get update
  - sudo apt-get install -y libappindicator1 fonts-liberation
- - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
- - sudo dpkg -i google-chrome*.deb
+ - wget http://www.slimjetbrowser.com/chrome/lnx/chrome64_53.0.2785.116.deb
+ - sudo dpkg -i chrome*.deb
 
 install:
   - npm install gulp --global
