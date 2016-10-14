@@ -1,15 +1,25 @@
 const Promise = require('bluebird');
 const _ = require('lodash');
 
+function *idGenerator() {
+  let id = 1;
+
+  /* eslint-disable no-constant-condition */
+  while (true) {
+    yield id;
+    id = id + 1;
+  }
+}
+
 module.exports = class {
 
   constructor() {
     this.documents = [];
-    this.lastId = 0;
+    this.id = idGenerator();
   }
 
   nextId() {
-    return ++this.lastId;
+    return this.id.next().value;
   }
 
   find() {
