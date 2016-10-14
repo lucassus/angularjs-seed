@@ -15,7 +15,7 @@ export function states($stateProvider) {
       name: 'contacts',
       abstract: true,
       url: '/contacts',
-      template: '<div ui-view></div>'
+      template: '<div ui-view autoscroll="true"></div>'
     })
 
     .state(listState)

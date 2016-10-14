@@ -1,4 +1,4 @@
-import { notFoundState, router } from './app.config';
+import { anchorScroll, notFoundState, router } from './app.config';
 import angularAnimate from 'angular-animate';
 import angularLoadingBar from 'angular-loading-bar';
 import appAboutModule from './about/about.module';
@@ -33,6 +33,7 @@ export default angular.module('app', [
   appAboutModule
 ])
   .config(router)
+  .config(anchorScroll)
   .config(notFoundState)
   .run(stateErrorsHandler)
   .run(logBuildSignature)

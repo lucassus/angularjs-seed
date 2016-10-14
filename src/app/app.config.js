@@ -19,3 +19,8 @@ export function notFoundState($stateProvider, $urlRouterProvider) {
     $injector.get('$state').go('404');
   });
 }
+
+export function anchorScroll($uiViewScrollProvider) {
+  'ngInject';
+  $uiViewScrollProvider.useAnchorScroll();
+}
