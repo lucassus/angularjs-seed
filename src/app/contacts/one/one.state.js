@@ -1,9 +1,4 @@
-function contact($stateParams, Contact) {
-  'ngInject';
-
-  const { id } = $stateParams;
-  return Contact.get({ id }).$promise;
-}
+import { oneResolver } from '../services/contact/contact.resolvers';
 
 export const name = 'contacts.one';
 
@@ -13,6 +8,6 @@ export default {
   url: '/:id',
   template: '<div ui-view></div>',
   resolve: {
-    contact
+    contact: oneResolver
   }
 };

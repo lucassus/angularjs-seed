@@ -1,10 +1,6 @@
 import controller from './list.controller';
+import { listResolver } from '../services/contact/contact.resolvers';
 import template from './list.state.html';
-
-function contacts(Contact) {
-  'ngInject';
-  return Contact.query().$promise;
-}
 
 export const name = 'contacts.list';
 
@@ -13,7 +9,7 @@ export default {
   url: '',
   template,
   resolve: {
-    contacts
+    contacts: listResolver
   },
   controller,
   controllerAs: 'ctrl',
