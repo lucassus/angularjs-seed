@@ -72,12 +72,23 @@ gulp.task('tdd', () => {
   server.start();
 });
 
-// TODO do not exit with `gulp default`
-gulp.task('test-server', () => {
+
+gulp.task('test-server', (done) => {
+  const istanbul = require('gulp-istanbul');
   const mocha = require('gulp-mocha');
 
-  gulp.src(['server/**/*.spec.js'], { read: false })
-    .pipe(mocha({ ui: 'bdd' }));
+  gulp.src(['server/**/!(*.spec).js'])
+    .pipe(istanbul({ includeUntested: true }))
+    .pipe(istanbul.hookRequire())
+    .on('finish', () => {
+      gulp.src(['server/**/*.spec.js'], { read: false })
+        .pipe(mocha({ ui: 'bdd' }))
+        .pipe(istanbul.writeReports({
+          dir: 'artifacts/server-coverage',
+          reporters: ['html', 'text', 'lcovonly']
+        }))
+        .on('end', done);
+    });
 });
 
-gulp.task('default', ['lint', 'test']);
+gulp.task('default', ['lint', 'test-server', 'test']);
