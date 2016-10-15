@@ -41,6 +41,7 @@
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
     "gulp-htmlhint": "^0.3.1",
+    "gulp-mocha": "^3.0.1",
     "gulp-util": "^3.0.7",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.22.0",

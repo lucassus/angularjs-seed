@@ -72,4 +72,12 @@ gulp.task('tdd', () => {
   server.start();
 });
 
+// TODO do not exit with `gulp default`
+gulp.task('test-server', () => {
+  const mocha = require('gulp-mocha');
+
+  gulp.src(['server/**/*.spec.js'], { read: false })
+    .pipe(mocha({ ui: 'bdd' }));
+});
+
 gulp.task('default', ['lint', 'test']);

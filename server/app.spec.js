@@ -1,9 +1,14 @@
 const expect = require('chai').expect;
 const request = require('supertest');
 
-const app = require('./server');
+const app = require('./app');
+const db = require('./db');
 
 describe('GET /api/contacts', () => {
+
+  beforeEach(() => {
+    return db.seed();
+  });
 
   it('respond with json', (done) => {
     request(app)
