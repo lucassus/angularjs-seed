@@ -1,7 +1,6 @@
 {
   "plugins": [
     "angular",
-    "mocha",
     "promise"
   ],
   "extends": [
@@ -10,7 +9,6 @@
   ],
   "env": {
     "browser": true,
-    "mocha": true,
     "node": false
   },
   "parserOptions": {

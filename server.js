@@ -95,3 +95,5 @@ app.delete('/api/contacts/:id', (req, res) => {
     res.sendStatus(404);
   });
 });
+
+module.exports = app;

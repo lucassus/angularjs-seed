@@ -27,6 +27,7 @@ before_script:
   - npm install
 
 script:
+  - ./node_modules/mocha/bin/mocha server.spec.js
   - gulp lint
   - gulp test --browsers=PhantomJS
   - gulp test --browsers=Chrome
