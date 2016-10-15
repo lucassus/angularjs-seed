@@ -33,5 +33,11 @@ module.exports = {
         address
       });
     }));
+  },
+
+  drop() {
+    return Promise.all([
+      this.contacts.drop()
+    ]);
   }
 };

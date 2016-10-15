@@ -14,8 +14,17 @@ function *idGenerator() {
 module.exports = class {
 
   constructor() {
+    this._initialize();
+  }
+
+  _initialize() {
     this.documents = [];
     this.id = idGenerator();
+  }
+
+  drop() {
+    this._initialize();
+    return Promise.resolve();
   }
 
   nextId() {
