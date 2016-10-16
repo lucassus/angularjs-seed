@@ -83,7 +83,10 @@ gulp.task('test-server', (done) => {
     .pipe(istanbul.hookRequire())
     .on('finish', () => {
       gulp.src(['server/**/*.spec.js'], { read: false })
-        .pipe(mocha({ ui: 'bdd' }))
+        .pipe(mocha({
+          ui: 'bdd',
+          reporter: 'dot'
+        }))
         .pipe(istanbul.writeReports({
           dir: 'artifacts/server-coverage',
           reporters: ['html', 'text', 'lcovonly']
