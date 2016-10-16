@@ -2,9 +2,7 @@ const _ = require('lodash');
 const KarmaServer = require('karma').Server;
 const gulp = require('gulp');
 const gutil = require('gulp-util');
-const htmlhint = require('gulp-htmlhint');
 const path = require('path');
-const runSequence = require('run-sequence');
 
 const cmdArgs = require('minimist')(process.argv.slice(2));
 
@@ -24,6 +22,8 @@ gulp.task('eslint', () => {
 });
 
 gulp.task('htmlhint', () => {
+  const htmlhint = require('gulp-htmlhint');
+
   gulp.src('src/**/*.html')
     .pipe(htmlhint({
       'doctype-first': false,
@@ -96,6 +96,8 @@ gulp.task('test-server', (done) => {
 });
 
 gulp.task('default', (done) => {
+  const runSequence = require('run-sequence');
+
   runSequence(
     'lint',
     'test-server',
