@@ -31,8 +31,7 @@ app.get('/api/contacts', (req, res) => {
 });
 
 app.get('/api/contacts/validate-email', (req, res) => {
-  const id = req.param('id');
-  const email = req.param('email');
+  const { id, email } = req.query;
 
   db.contacts.findOne({ email }).then((contact) => {
     if (id) {
