@@ -4,8 +4,11 @@ const _ = require('lodash');
 
 const Collection = require('./collection');
 
-module.exports = {
-  contacts: new Collection(),
+class Db {
+
+  constructor() {
+    this.contacts = new Collection();
+  }
 
   seed(n = 20) {
     faker.seed(667);
@@ -33,11 +36,14 @@ module.exports = {
         address
       });
     }));
-  },
+  }
 
   drop() {
     return Promise.all([
       this.contacts.drop()
     ]);
   }
-};
+
+}
+
+module.exports = new Db();
