@@ -12,6 +12,14 @@ router.get('/', (req, res) => {
   });
 });
 
+router.post('/', (req, res) => {
+  const data = req.body;
+
+  db.contacts.insertOne(data).then((contact) => {
+    res.json(contact);
+  });
+});
+
 router.get('/validate-email', (req, res) => {
   const { id, email } = req.query;
 
@@ -25,14 +33,6 @@ router.get('/validate-email', (req, res) => {
     return false;
   }).then((taken) => {
     res.json({ taken });
-  });
-});
-
-router.post('/', (req, res) => {
-  const data = req.body;
-
-  db.contacts.insertOne(data).then((contact) => {
-    res.json(contact);
   });
 });
 
