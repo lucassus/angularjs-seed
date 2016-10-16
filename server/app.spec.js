@@ -134,6 +134,32 @@ describe('app', () => {
 
   });
 
+  describe('POST /api/contacts', function() {
+
+    it('creates a contact', function(done) {
+      const firstName = 'Luke';
+      const lastName = 'Skywalker';
+      const email = 'luke@rebel.org';
+
+      request(app)
+        .post('/api/contacts')
+        .set('Accept', 'application/json')
+        .send({ firstName, lastName, email })
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .expect((res) => {
+          const { body: contact } = res;
+
+          expect(contact).to.have.property('id', 21);
+          expect(contact).to.have.property('firstName', firstName);
+          expect(contact).to.have.property('lastName', lastName);
+          expect(contact).to.have.property('email', email);
+        })
+        .end(done)
+    });
+
+  });
+
   describe('GET /api/contacts/:id', () => {
 
     describe('when a contact can be found', () => {
