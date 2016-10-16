@@ -4,6 +4,15 @@ const request = require('supertest');
 const app = require('../app');
 const db = require('../db');
 
+function itRespondsWith404(cb) {
+  it('responds with 404', (done) => {
+    cb(request(app))
+      .set('Accept', 'application/json')
+      .expect(404)
+      .end(done);
+  });
+}
+
 describe('app', () => {
 
   beforeEach(() => {
@@ -185,12 +194,8 @@ describe('app', () => {
 
     describe('when a contact cannot be found', () => {
 
-      it('responds with 404', (done) => {
-        request(app)
-          .get('/api/contacts/21')
-          .set('Accept', 'application/json')
-          .expect(404)
-          .end(done);
+      itRespondsWith404((req) => {
+        return req.get('/api/contacts/21');
       });
 
     });
@@ -230,13 +235,8 @@ describe('app', () => {
 
     describe('when a contact cannot be found', () => {
 
-      it('responds with 404', (done) => {
-        request(app)
-          .put('/api/contacts/21')
-          .send({})
-          .set('Accept', 'application/json')
-          .expect(404)
-          .end(done);
+      itRespondsWith404((req) => {
+        return req.put('/api/contacts/21');
       });
 
     });
@@ -273,12 +273,8 @@ describe('app', () => {
 
     describe('when a contact cannot be found', () => {
 
-      it('responds with 404', (done) => {
-        request(app)
-          .delete('/api/contacts/21')
-          .set('Accept', 'application/json')
-          .expect(404)
-          .end(done);
+      itRespondsWith404((req) => {
+        return req.delete('/api/contacts/21');
       });
 
     });
