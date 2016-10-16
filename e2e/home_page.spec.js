@@ -28,6 +28,7 @@ describe('Home page', () => {
 
       const alert = browser.switchTo().alert();
       expect(alert.getText()).toEqual('Hello World!');
+      alert.accept();
     });
 
   });

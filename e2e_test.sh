@@ -11,7 +11,7 @@ function available() {
   curl -f "http://localhost:$PORT" > /dev/null 2> /dev/null
 }
 
-echo -n 'Waiting for the servers'
+echo -n 'Waiting for the server'
 while ! available; do
   echo -n '.'
   sleep 1
