@@ -1,10 +1,16 @@
 const router = require('express').Router();
 const db = require('../db');
 
-function parseId(req) {
-  const { id } = req.params;
-  return parseInt(id);
-}
+router.param('id', (req, res, next, id) => {
+  id = parseInt(id);
+
+  db.contacts.findOne({ id }).then((contact) => {
+    req.contact = contact;
+    next();
+  }).catch(() => {
+    res.sendStatus(404);
+  });
+});
 
 router.get('/', (req, res) => {
   db.contacts.find().then((contacts) => {
@@ -37,33 +43,23 @@ router.get('/validate-email', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  const id = parseId(req);
-
-  db.contacts.findOne({ id }).then((contact) => {
-    res.json(contact);
-  }).catch(() => {
-    res.sendStatus(404);
-  });
+  res.json(req.contact);
 });
 
 router.put('/:id', (req, res) => {
-  const id = parseId(req);
+  const { id } = req.contact;
   const data = req.body;
 
   db.contacts.updateOne({ id }, data).then((contact) => {
     res.json(contact);
-  }).catch(() => {
-    res.sendStatus(404);
   });
 });
 
 router.delete('/:id', (req, res) => {
-  const id = parseId(req);
+  const { id } = req.contact;
 
   db.contacts.deleteOne({ id }).then(() => {
     res.sendStatus(200);
-  }).catch(() => {
-    res.sendStatus(404);
   });
 });
 
