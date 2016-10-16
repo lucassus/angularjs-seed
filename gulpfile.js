@@ -88,7 +88,7 @@ gulp.task('test-server', (done) => {
           reporter: 'dot'
         }))
         .pipe(istanbul.writeReports({
-          dir: 'artifacts/server-coverage',
+          dir: 'artifacts/server/coverage',
           reporters: ['html', 'text', 'lcovonly']
         }))
         .on('end', done);
