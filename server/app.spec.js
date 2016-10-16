@@ -171,4 +171,46 @@ describe('app', () => {
 
   });
 
+  describe('DELETE /api/contacts/:id', () => {
+
+    describe('when a contact can be found', () => {
+
+      let contact;
+
+      beforeEach(() => {
+        return db.contacts.insertOne({ firstName: 'Luke' }).then((createdContact) => {
+          contact = createdContact;
+        });
+      });
+
+      it('deletes the contact', (done) => {
+        const { id } = contact;
+
+        request(app)
+          .delete(`/api/contacts/${id}`)
+          .set('Accept', 'application/json')
+          .expect(200)
+          .end(() => {
+            db.contacts.findOne({ id }).catch(() => {
+              done();
+            });
+          });
+      });
+
+    });
+
+    describe('when a contact cannot be found', () => {
+
+      it('responds with 404', (done) => {
+        request(app)
+          .delete('/api/contacts/21')
+          .set('Accept', 'application/json')
+          .expect(404)
+          .end(done);
+      });
+
+    });
+
+  });
+
 });
