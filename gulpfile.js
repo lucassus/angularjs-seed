@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const gutil = require('gulp-util');
 const htmlhint = require('gulp-htmlhint');
 const path = require('path');
+const runSequence = require('run-sequence');
 
 const cmdArgs = require('minimist')(process.argv.slice(2));
 
@@ -91,4 +92,11 @@ gulp.task('test-server', (done) => {
     });
 });
 
-gulp.task('default', ['lint', 'test-server', 'test']);
+gulp.task('default', (done) => {
+  runSequence(
+    'lint',
+    'test-server',
+    'test',
+    done
+  );
+});
