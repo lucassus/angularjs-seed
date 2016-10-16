@@ -71,7 +71,7 @@ app.put('/api/contacts/:id', (req, res) => {
   db.contacts.updateOne({ id }, data).then((contact) => {
     res.json(contact);
   }).catch(() => {
-    res.sendStatus(422);
+    res.sendStatus(404);
   });
 });
 

@@ -134,9 +134,9 @@ describe('app', () => {
 
   });
 
-  describe('POST /api/contacts', function() {
+  describe('POST /api/contacts', () => {
 
-    it('creates a contact', function(done) {
+    it('creates a contact', (done) => {
       const firstName = 'Luke';
       const lastName = 'Skywalker';
       const email = 'luke@rebel.org';
@@ -155,7 +155,7 @@ describe('app', () => {
           expect(contact).to.have.property('lastName', lastName);
           expect(contact).to.have.property('email', email);
         })
-        .end(done)
+        .end(done);
     });
 
   });
@@ -188,6 +188,52 @@ describe('app', () => {
       it('responds with 404', (done) => {
         request(app)
           .get('/api/contacts/21')
+          .set('Accept', 'application/json')
+          .expect(404)
+          .end(done);
+      });
+
+    });
+
+  });
+
+  describe('PUT /api/contacts/:id', () => {
+
+    describe('when a contact can be found', () => {
+
+      let id;
+
+      beforeEach(() => {
+        return db.contacts.insertOne({ firstName: 'Anakin', lastName: 'Skywalker' }).then((contact) => {
+          id = contact.id;
+        });
+      });
+
+      it('updates the contact', (done) => {
+        request(app)
+          .put(`/api/contacts/${id}`)
+          .set('Accept', 'application/json')
+          .send({ firstName: 'Luke' })
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .expect((res) => {
+            const { body: contact } = res;
+
+            expect(contact).to.have.property('id', id);
+            expect(contact).to.have.property('firstName', 'Luke');
+            expect(contact).to.have.property('lastName', 'Skywalker');
+          })
+          .end(done);
+      });
+
+    });
+
+    describe('when a contact cannot be found', () => {
+
+      it('responds with 404', (done) => {
+        request(app)
+          .put('/api/contacts/21')
+          .send({})
           .set('Accept', 'application/json')
           .expect(404)
           .end(done);
