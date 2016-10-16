@@ -17,7 +17,7 @@ describe('Home page', () => {
   });
 
   it('has a title', () => {
-    expect(page.pageHeader.getText())
+    expect(page.header.getText())
       .toEqual('Hello World!');
   });
 
