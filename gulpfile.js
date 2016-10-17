@@ -73,8 +73,7 @@ gulp.task('tdd', () => {
   server.start();
 });
 
-
-gulp.task('test-server', (done) => {
+gulp.task('server:test', (done) => {
   const istanbul = require('gulp-istanbul');
   const mocha = require('gulp-mocha');
 
@@ -100,7 +99,7 @@ gulp.task('default', (done) => {
 
   runSequence(
     'lint',
-    'test-server',
+    'server:test',
     'test',
     done
   );

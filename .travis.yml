@@ -29,7 +29,7 @@ before_script:
 
 script:
   - gulp lint
-  - gulp test-server
+  - gulp server:test
   - gulp test --browsers=PhantomJS
   - gulp test --browsers=Chrome
   - gulp test --browsers=Firefox
