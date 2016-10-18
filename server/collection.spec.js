@@ -64,7 +64,7 @@ describe('Collection', () => {
       it('resolves with the found document', () => {
         return collection.findOne({ email }).then((document) => {
           expect(document).to.not.be.undefined;
-          expect(document).to.have.property('email', email)
+          expect(document).to.have.property('email', email);
         });
       });
 
