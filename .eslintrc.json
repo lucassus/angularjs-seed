@@ -1,8 +1,12 @@
 {
+  "plugins": [
+    "mocha"
+  ],
   "extends": [
     "eslint:recommended"
   ],
   "env": {
+    "mocha": true,
     "node": true
   },
   "parserOptions": {

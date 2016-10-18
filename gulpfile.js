@@ -2,7 +2,6 @@ const _ = require('lodash');
 const KarmaServer = require('karma').Server;
 const gulp = require('gulp');
 const gutil = require('gulp-util');
-const htmlhint = require('gulp-htmlhint');
 const path = require('path');
 
 const cmdArgs = require('minimist')(process.argv.slice(2));
@@ -23,6 +22,8 @@ gulp.task('eslint', () => {
 });
 
 gulp.task('htmlhint', () => {
+  const htmlhint = require('gulp-htmlhint');
+
   gulp.src('src/**/*.html')
     .pipe(htmlhint({
       'doctype-first': false,
@@ -72,4 +73,34 @@ gulp.task('tdd', () => {
   server.start();
 });
 
-gulp.task('default', ['lint', 'test']);
+gulp.task('server:test', (done) => {
+  const istanbul = require('gulp-istanbul');
+  const mocha = require('gulp-mocha');
+
+  gulp.src(['server/**/!(*.spec).js'])
+    .pipe(istanbul({ includeUntested: true }))
+    .pipe(istanbul.hookRequire())
+    .on('finish', () => {
+      gulp.src(['server/**/*.spec.js'], { read: false })
+        .pipe(mocha({
+          ui: 'bdd',
+          reporter: 'dot'
+        }))
+        .pipe(istanbul.writeReports({
+          dir: 'artifacts/server/coverage',
+          reporters: ['html', 'text', 'lcovonly']
+        }))
+        .on('end', done);
+    });
+});
+
+gulp.task('default', (done) => {
+  const runSequence = require('run-sequence');
+
+  runSequence(
+    'lint',
+    'server:test',
+    'test',
+    done
+  );
+});

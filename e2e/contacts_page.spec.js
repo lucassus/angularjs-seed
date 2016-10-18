@@ -30,7 +30,7 @@ describe('Contacts page', () => {
   describe('list', () => {
 
     it('displays contacts list', () => {
-      expect(page.pageHeader.getText()).toEqual('Contacts list');
+      expect(page.header.getText()).toEqual('Contacts list');
 
       page.table.all().then((rows) => {
         expect(rows.length).toEqual(20);

@@ -17,7 +17,7 @@ describe('Home page', () => {
   });
 
   it('has a title', () => {
-    expect(page.pageHeader.getText())
+    expect(page.header.getText())
       .toEqual('Hello World!');
   });
 
@@ -28,6 +28,7 @@ describe('Home page', () => {
 
       const alert = browser.switchTo().alert();
       expect(alert.getText()).toEqual('Hello World!');
+      alert.accept();
     });
 
   });
