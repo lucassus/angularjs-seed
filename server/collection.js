@@ -18,8 +18,8 @@ module.exports = class {
   }
 
   _initialize() {
-    this.documents = [];
-    this.id = idGenerator();
+    this._documents = [];
+    this._id = idGenerator();
   }
 
   drop() {
@@ -27,16 +27,16 @@ module.exports = class {
     return Promise.resolve();
   }
 
-  nextId() {
-    return this.id.next().value;
+  _nextId() {
+    return this._id.next().value;
   }
 
   find() {
-    return Promise.resolve(this.documents);
+    return Promise.resolve(this._documents);
   }
 
   findOne(query) {
-    const contact = _.find(this.documents, query);
+    const contact = _.find(this._documents, query);
 
     if (contact) {
       return Promise.resolve(contact);
@@ -49,11 +49,11 @@ module.exports = class {
     const now = new Date().getTime();
 
     const contact = _.extend({}, data, {
-      id: this.nextId(),
+      id: this._nextId(),
       createdAt: now,
       updatedAt: now
     });
-    this.documents.push(contact);
+    this._documents.push(contact);
 
     return Promise.resolve(contact);
   }
@@ -70,15 +70,11 @@ module.exports = class {
 
   deleteOne(query) {
     return this.findOne(query).then((contact) => {
-      const index = _.findIndex(this.documents, contact);
-      this.documents.splice(index, 1);
+      const index = _.findIndex(this._documents, contact);
+      this._documents.splice(index, 1);
 
       return Promise.resolve(index);
     });
-  }
-
-  deleteMany() {
-    this.documents.splice(0, this.documents.length);
   }
 
 };
