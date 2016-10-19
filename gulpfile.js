@@ -74,6 +74,8 @@ gulp.task('tdd', () => {
 });
 
 gulp.task('server:test', (done) => {
+  process.env.NODE_ENV = 'test';
+
   const istanbul = require('gulp-istanbul');
   const mocha = require('gulp-mocha');
 

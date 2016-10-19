@@ -4,10 +4,8 @@ const jwt = require('jsonwebtoken');
 const router = require('express').Router();
 const _ = require('lodash');
 
+const config = require('../config');
 const db = require('../db');
-
-// TODO store secret somewhere
-const secret = 'secret';
 
 function checkPassword(password, passwordHash) {
   const compare = Promise.promisify(bcrypt.compare);
@@ -21,7 +19,7 @@ router.post('/', (req, res) => {
     return checkPassword(password, user.passwordHash).then((success) => {
       if (success) {
         res.json({
-          token: jwt.sign(_.pick(user, ['id', 'email']), secret, {
+          token: jwt.sign(_.pick(user, ['id', 'email']), config.secret, {
             expiresIn: '7 days'
           })
         });

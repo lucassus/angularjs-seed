@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const request = require('supertest');
 
 const app = require('../app');
+const config = require('../config');
 const db = require('../db');
 
 describe('app', () => {
@@ -27,7 +28,7 @@ describe('app', () => {
           .expect(200)
           .expect((res) => {
             const { token } = res.body;
-            const payload = jwt.verify(token, 'secret');
+            const payload = jwt.verify(token, config.secret);
 
             expect(payload).to.have.property('id');
             expect(payload).to.have.property('email', email);
