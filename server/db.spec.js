@@ -5,15 +5,25 @@ describe('db', () => {
 
   describe('seed', () => {
 
-    it('seed the fake database', () => {
-      return db.seed().then(() => {
-        return db.contacts.find();
-      }).then((contacts) => {
+    beforeEach(function() {
+      return db.seed();
+    });
+
+    it('seeds contacts', () => {
+      return db.contacts.find().then((contacts) => {
         expect(contacts).to.have.length(20);
 
         expect(contacts[0]).to.have.property('id', 1);
         expect(contacts[1]).to.have.property('id', 2);
         expect(contacts[19]).to.have.property('id', 20);
+      });
+    });
+
+    it('seeds users', () => {
+      return db.users.findOne({ email: 'demo@email.com' }).then((user) => {
+        expect(user).to.have.property('id');
+        expect(user).to.have.property('email', 'demo@email.com');
+        expect(user).to.have.property('passwordHash');
       });
     });
 

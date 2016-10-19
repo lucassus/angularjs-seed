@@ -19,10 +19,6 @@ describe('app', () => {
     return db.seed();
   });
 
-  afterEach(() => {
-    return db.drop();
-  });
-
   describe('GET /api/contacts', () => {
 
     it('respond with json', (done) => {
