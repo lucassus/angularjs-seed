@@ -5,7 +5,7 @@ describe('db', () => {
 
   describe('seed', () => {
 
-    beforeEach(function() {
+    beforeEach(() => {
       return db.seed();
     });
 
@@ -29,13 +29,13 @@ describe('db', () => {
 
   });
 
-  describe('.drop', () =>{
+  describe('.drop', () => {
 
-    beforeEach(() =>{
+    beforeEach(() => {
       return db.seed();
     });
 
-    it('removes all collections', () =>{
+    it('removes all collections', () => {
       return db.drop().then(() => {
         return db.contacts.find();
       })
