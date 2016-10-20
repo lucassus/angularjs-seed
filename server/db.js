@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const faker = require('faker');
 const _ = require('lodash');
 
-const Collection = require('./collection');
+const Collection = require('./db/collection');
 
 class Db {
 
