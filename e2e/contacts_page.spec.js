@@ -21,7 +21,7 @@ class ListPage extends Page {
 
 describe('Contacts page', () => {
 
-  const page = new ListPage('/#/contacts');
+  const page = new ListPage('/contacts');
 
   beforeEach(() => {
     page.navigate();

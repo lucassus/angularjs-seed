@@ -20,6 +20,11 @@ export function notFoundState($stateProvider, $urlRouterProvider) {
   });
 }
 
+export function html5Mode($locationProvider) {
+  'ngInject';
+  $locationProvider.html5Mode(true);
+}
+
 export function anchorScroll($uiViewScrollProvider) {
   'ngInject';
   $uiViewScrollProvider.useAnchorScroll();

@@ -95,6 +95,8 @@ module.exports = {
 
     inline: true,
 
+    historyApiFallback: true,
+
     proxy: {
       '/api': {
         target: 'http://localhost:9090'

@@ -1,4 +1,4 @@
-import { anchorScroll, notFoundState, router } from './app.config';
+import { anchorScroll, html5Mode, notFoundState, router } from './app.config';
 import angularAnimate from 'angular-animate';
 import angularLoadingBar from 'angular-loading-bar';
 import appAboutModule from './about/about.module';
@@ -32,6 +32,7 @@ export default angular.module('app', [
   appContactsModule,
   appAboutModule
 ])
+  .config(html5Mode)
   .config(router)
   .config(anchorScroll)
   .config(notFoundState)

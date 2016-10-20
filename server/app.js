@@ -12,4 +12,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use('/api/contacts', require('./api/contacts'));
 
+app.all('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+});
+
 module.exports = app;
