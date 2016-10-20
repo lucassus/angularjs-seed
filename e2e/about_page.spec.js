@@ -6,7 +6,7 @@ class AboutPage extends Page {
 
 describe('About page', () => {
 
-  const page = new AboutPage('/#/about');
+  const page = new AboutPage('/about');
 
   beforeEach(() => {
     page.navigate();
