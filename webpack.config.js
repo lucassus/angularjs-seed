@@ -12,7 +12,6 @@ module.exports = {
   entry: {
     vendor: [
       'jquery',
-      'lodash',
       'angular',
       'angular-animate',
       'angular-messages',
