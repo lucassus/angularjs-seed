@@ -6,7 +6,7 @@ const app = require('../app');
 const config = require('../config');
 const db = require('../db');
 
-describe('app', () => {
+describe('authentication API', () => {
 
   beforeEach(() => {
     return db.seed();
@@ -22,9 +22,7 @@ describe('app', () => {
       it('creates a contact', (done) => {
         request(app)
           .post('/api/authentication')
-          .set('Accept', 'application/json')
           .send({ email, password })
-          .expect('Content-Type', /json/)
           .expect(200)
           .expect((res) => {
             const { token } = res.body;
@@ -49,7 +47,6 @@ describe('app', () => {
       it('creates a contact', (done) => {
         request(app)
           .post('/api/authentication')
-          .set('Accept', 'application/json')
           .send({ email, password })
           .expect(422)
           .end(done);

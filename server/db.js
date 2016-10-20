@@ -31,6 +31,8 @@ class Db {
 
     return hashPassword('password').then((passwordHash) => {
       return this.users.insertOne({
+        firstName: 'Admin',
+        lastName: 'Adminowsky',
         email: 'demo@email.com',
         passwordHash
       });

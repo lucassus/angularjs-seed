@@ -9,23 +9,29 @@ const db = require('../db');
 
 function checkPassword(password, passwordHash) {
   const compare = Promise.promisify(bcrypt.compare);
-  return compare(password, passwordHash);
+  return compare(password, passwordHash).then((success) => {
+    if (success) {
+      return Promise.resolve(true);
+    } else {
+      return Promise.reject(true);
+    }
+  });
 }
 
 router.post('/', (req, res) => {
   const { email, password } = req.body;
 
   db.users.findOne({ email }).then((user) => {
-    return checkPassword(password, user.passwordHash).then((success) => {
-      if (success) {
-        res.json({
-          token: jwt.sign(_.pick(user, ['id', 'email']), config.secret, {
-            expiresIn: '7 days'
-          })
-        });
-      } else {
-        return Promise.reject('invalid password');
-      }
+    const { passwordHash } = user;
+
+    return checkPassword(password, passwordHash).then(() => {
+      const data = _.pick(user, ['id', 'email']);
+
+      const token = jwt.sign(data, config.secret, {
+        expiresIn: '7 days'
+      });
+
+      res.json({ token });
     });
   }).catch(() => {
     res.sendStatus(422);
