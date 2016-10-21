@@ -1,15 +1,17 @@
 const express = require('express');
-const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
 const path = require('path');
 
 const config = require('./config');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
-app.use(require('body-parser').json());
+app.use(bodyParser.json());
 
+// TODO use `app.get('env')`
 if (config.env !== 'test') {
-  app.use(morgan('short'));
+  app.use(logger('short'));
 }
 
 if (config.env !== 'production') {

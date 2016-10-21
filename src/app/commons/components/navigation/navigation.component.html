@@ -17,6 +17,16 @@
           <a ui-sref="about">About</a>
         </li>
       </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-if="!$ctrl.isAuthenticated()">
+          <a href="" ng-click="$ctrl.login()">Login</a>
+        </li>
+
+        <li ng-if="$ctrl.isAuthenticated()">
+          <a href="" ng-click="$ctrl.logout()">Logout</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

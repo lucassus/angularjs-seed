@@ -12,7 +12,7 @@ function verityToken(token) {
     });
 }
 
-// TODO write decent test for this middleware
+// TODO write decent tests for this middleware
 module.exports.requireAuthorization = function(req, res, next) {
   const token = req.headers['x-access-token'];
 
@@ -20,6 +20,6 @@ module.exports.requireAuthorization = function(req, res, next) {
     req.currentUser = user;
     next();
   }).catch(() => {
-    res.sendStatus(401);
+    res.status(401).send({});
   });
 };
