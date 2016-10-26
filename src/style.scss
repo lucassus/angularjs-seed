@@ -1,6 +1,7 @@
 @import "bootstrap";
 @import "~angular-loading-bar/build/loading-bar.css";
 @import "~angular-toastr/dist/angular-toastr.css";
+@import "~leaflet/dist/leaflet.css";
 
 body {
   padding-top: 60px;
@@ -20,4 +21,8 @@ body {
       margin: 20px 0;
     }
   }
+}
+
+.map {
+  height: 200px;
 }

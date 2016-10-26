@@ -8,7 +8,7 @@ describe(`module: ${appContactsModule}`, () => {
     angular.mock.module(appContactsModule);
   });
 
-  describe('component: contactForm', () => {
+  describe('component: appContactForm', () => {
 
     let element, scope;
 
