@@ -3,7 +3,7 @@ export default function($httpProvider) {
 
   const HTTP_UNAUTHORIZED = 401;
 
-  $httpProvider.interceptors.push(($injector, $q, session) => {
+  $httpProvider.interceptors.push(($injector, $q, $state, session) => {
     return {
       responseError(rejection) {
         if (rejection.status === HTTP_UNAUTHORIZED) {
@@ -12,6 +12,7 @@ export default function($httpProvider) {
           toastr.error('Unauthorized');
 
           session.removeToken();
+          $state.go('login');
         }
 
         return $q.reject(rejection);

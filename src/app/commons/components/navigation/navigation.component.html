@@ -19,11 +19,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li ng-if="!$ctrl.isAuthenticated()">
-          <a ui-sref="login">Login</a>
-        </li>
-
-        <li ng-if="$ctrl.isAuthenticated()">
+        <li>
           <a href="" ng-click="$ctrl.logout()">Logout</a>
         </li>
       </ul>

@@ -2,17 +2,16 @@ import template from './navigation.component.html';
 
 class Controller {
 
-  constructor(auth) {
+  constructor($state, auth) {
     'ngInject';
-    this.auth = auth;
-  }
 
-  isAuthenticated() {
-    return this.auth.isAuthenticated();
+    this.$state = $state;
+    this.auth = auth;
   }
 
   logout() {
     this.auth.logout();
+    this.$state.go('login');
   }
 
 }
