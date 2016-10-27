@@ -1,4 +1,3 @@
-// TODO better naming convention for interceptors
 export default function($httpProvider) {
   'ngInject';
 
@@ -6,18 +5,6 @@ export default function($httpProvider) {
 
   $httpProvider.interceptors.push(($injector, $q, session) => {
     return {
-      request(config) {
-        const token = session.getToken();
-
-        if (token) {
-          angular.extend(config.headers, {
-            'x-access-token': token
-          });
-        }
-
-        return config;
-      },
-
       responseError(rejection) {
         if (rejection.status === HTTP_UNAUTHORIZED) {
           // Workaround for circular dependency (toastr <- $http)

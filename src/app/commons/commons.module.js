@@ -1,10 +1,11 @@
 import 'angular-breadcrumb';
+import accessTokenInterceptor from './config/http-interceptors/access-token-interceptor';
 import breadcrumb from './config/breadcrumb/breadcrumb.config';
 import components from './components/components.config';
 import filters from './filters/filters.config';
-import httpAuthInterceptor from './config/http-auth-interceptor/http-auth-interceptor.config';
 import services from './services/services.config';
 import toastr from 'angular-toastr';
+import unauthorizedAccessInterceptor from './config/http-interceptors/unauthorized-access-interceptor';
 
 export default angular.module('app.commons', [
   toastr,
@@ -17,6 +18,7 @@ export default angular.module('app.commons', [
   .config(filters)
 
   .config(breadcrumb)
-  .config(httpAuthInterceptor)
+  .config(accessTokenInterceptor)
+  .config(unauthorizedAccessInterceptor)
 
   .name;
