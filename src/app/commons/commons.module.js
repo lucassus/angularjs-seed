@@ -1,8 +1,8 @@
 import 'angular-breadcrumb';
-import breadcrumb from './config/breadcrumb.config';
+import breadcrumb from './config/breadcrumb/breadcrumb.config';
 import components from './components/components.config';
 import filters from './filters/filters.config';
-import httpAuthInterceptor from './config/http-auth-interceptor';
+import httpAuthInterceptor from './config/http-auth-interceptor/http-auth-interceptor.config';
 import services from './services/services.config';
 import toastr from 'angular-toastr';
 
