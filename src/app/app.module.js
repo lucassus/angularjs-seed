@@ -1,4 +1,5 @@
 import { anchorScroll, html5Mode, notFoundState, router } from './app.config';
+import _ from 'lodash';
 import angularAnimate from 'angular-animate';
 import angularLoadingBar from 'angular-loading-bar';
 import appAboutModule from './about/about.module';
@@ -38,6 +39,21 @@ export default angular.module('app', [
   .config(router)
   .config(anchorScroll)
   .config(notFoundState)
+
   .run(stateErrorsHandler)
   .run(logBuildSignature)
+
+  // TODO figure out how to test it
+  .run(($state, $transitions, auth) => {
+    const to = (state) => {
+      return _.get(state, 'data.requiresAuthentication');
+    };
+
+    $transitions.onBefore({ to }, () => {
+      if (!auth.isAuthenticated()) {
+        return $state.target('login');
+      }
+    });
+  })
+
   .name;
