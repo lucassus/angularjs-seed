@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1 class="text-center margin-bottom--large">
+        Please login to the demo app
+      </h1>
+
+      <form ng-submit="ctrl.login()">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" ng-model="ctrl.credentials.email"
+                 class="form-control" placeholder="Admin email" required autofocus/>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" ng-model="ctrl.credentials.password"
+                 class="form-control" placeholder="Password" required/>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit">
+          Sign in
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

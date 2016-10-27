@@ -11,10 +11,6 @@ class Controller {
     return this.auth.isAuthenticated();
   }
 
-  login() {
-    this.auth.authenticate('demo@email.com', 'password');
-  }
-
   logout() {
     this.auth.logout();
   }
