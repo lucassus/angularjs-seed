@@ -4,14 +4,12 @@ import sinon from 'sinon';
 
 describe(`module: ${appCommonsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appCommonsModule, ($provide) => {
-      $provide.decorator('session', ($delegate) => {
-        'ngInject';
-        return sinon.stub($delegate);
-      });
+  beforeEach(angular.mock.module(appCommonsModule, ($provide) => {
+    $provide.decorator('session', ($delegate) => {
+      'ngInject';
+      return sinon.stub($delegate);
     });
-  });
+  }));
 
   describe('service: auth', () => {
 
@@ -51,17 +49,19 @@ describe(`module: ${appCommonsModule}`, () => {
 
     describe('.authenticate', () => {
 
-      const email = 'test@email.com';
-      const password = 'passowrd';
+      const credentials = {
+        email: 'test@email.com',
+        password: 'password'
+      };
 
       let request;
 
       beforeEach(inject(($httpBackend) => {
-        request = $httpBackend.expectPOST('/api/authentication', { email, password });
+        request = $httpBackend.expectPOST('/api/authentication', credentials);
       }));
 
       it('returns a promise', () => {
-        expect(auth.authenticate(email, password)).to.be.a.promise;
+        expect(auth.authenticate(credentials)).to.be.a.promise;
       });
 
       describe('on success', () => {
@@ -72,7 +72,7 @@ describe(`module: ${appCommonsModule}`, () => {
 
         it('stores the token in the session', inject(($httpBackend, session) => {
           // When
-          auth.authenticate(email, password);
+          auth.authenticate(credentials);
           $httpBackend.flush();
 
           // Then
@@ -90,7 +90,7 @@ describe(`module: ${appCommonsModule}`, () => {
 
         it('does not store the token in the session', inject(($httpBackend, session) => {
           // When
-          auth.authenticate(email, password);
+          auth.authenticate(credentials);
           $httpBackend.flush();
 
           // Then

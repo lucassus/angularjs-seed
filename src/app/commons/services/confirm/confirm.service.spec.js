@@ -4,11 +4,9 @@ import sinon from 'sinon';
 
 describe(`module: ${appCommonsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appCommonsModule, ($provide) => {
-      $provide.value('$window', { confirm: sinon.stub() });
-    });
-  });
+  beforeEach(angular.mock.module(appCommonsModule, ($provide) => {
+    $provide.value('$window', { confirm: sinon.stub() });
+  }));
 
   describe('service: confirm', () => {
 

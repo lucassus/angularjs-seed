@@ -13,7 +13,7 @@ export default class {
   }
 
   login() {
-    return this.auth.authenticate('demo@email.com', 'password').then(() => {
+    return this.auth.authenticate(this.credentials).then(() => {
       return this.$state.go('home');
     });
   }

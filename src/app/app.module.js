@@ -43,13 +43,22 @@ export default angular.module('app', [
   .run(stateErrorsHandler)
   .run(logBuildSignature)
 
-  // TODO figure out how to test it
   .run(($state, $transitions, auth) => {
-    const to = (state) => {
-      return _.get(state, 'data.requiresAuthentication');
+    const publicState = (state) => {
+      return _.get(state, 'data.publicState');
     };
 
-    $transitions.onBefore({ to }, () => {
+    const nonPublicState = (state) => {
+      return !_.get(state, 'data.publicState');
+    };
+
+    $transitions.onBefore({ to: publicState }, () => {
+      if (auth.isAuthenticated()) {
+        return $state.target('home');
+      }
+    });
+
+    $transitions.onBefore({ to: nonPublicState }, () => {
       if (!auth.isAuthenticated()) {
         return $state.target('login');
       }

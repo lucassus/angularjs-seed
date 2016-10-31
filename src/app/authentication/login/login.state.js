@@ -8,5 +8,9 @@ export default {
   url: '/login',
   template,
   controller,
-  controllerAs: 'ctrl'
+  controllerAs: 'ctrl',
+
+  data: {
+    publicState: true
+  }
 };

@@ -5,9 +5,7 @@ import sinon from 'sinon';
 
 describe(`module: ${appContactsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appContactsModule);
-  });
+  beforeEach(angular.mock.module(appContactsModule));
 
   describe(`state: ${name}`, () => {
 

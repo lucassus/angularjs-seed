@@ -1,10 +1,10 @@
-import commonsModule from '../../commons.module';
+import appCommonsModule from '../../commons.module';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-describe(`module: ${commonsModule}`, () => {
+describe(`module: ${appCommonsModule}`, () => {
 
-  beforeEach(angular.mock.module(commonsModule));
+  beforeEach(angular.mock.module(appCommonsModule));
 
   describe('service: session', () => {
 

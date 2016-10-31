@@ -4,9 +4,7 @@ import { name } from './login.state';
 
 describe(`module: ${appAuthenticationModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appAuthenticationModule);
-  });
+  beforeEach(angular.mock.module(appAuthenticationModule));
 
   describe(`state: ${name}`, () => {
 

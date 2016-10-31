@@ -7,14 +7,4 @@ export default angular.module('app.authentication', [
   appCommonsModule
 ])
   .config(states)
-
-  // TODO write specs
-  .run(($state, $transitions, auth) => {
-    $transitions.onBefore({ to: 'login' }, () => {
-      if (auth.isAuthenticated()) {
-        return $state.target('home');
-      }
-    });
-  })
-
   .name;

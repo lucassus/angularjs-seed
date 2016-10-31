@@ -9,6 +9,6 @@ export default {
   abstract: true,
 
   data: {
-    requiresAuthentication: true
+    publicState: false
   }
 };

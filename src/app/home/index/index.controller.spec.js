@@ -5,9 +5,7 @@ import sinon from 'sinon';
 
 describe(`module: ${appHomeModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appHomeModule);
-  });
+  beforeEach(angular.mock.module(appHomeModule));
 
   describe(`controller: ${name}`, () => {
 
