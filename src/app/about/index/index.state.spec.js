@@ -4,9 +4,7 @@ import { name } from './index.state';
 
 describe(`module: ${appAboutModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appAboutModule);
-  });
+  beforeEach(angular.mock.module(appAboutModule));
 
   describe(`state: ${name}`, () => {
 

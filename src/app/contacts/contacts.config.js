@@ -12,6 +12,7 @@ export function states($stateProvider) {
 
   $stateProvider
     .state({
+      parent: 'app',
       name: 'contacts',
       abstract: true,
       url: '/contacts',

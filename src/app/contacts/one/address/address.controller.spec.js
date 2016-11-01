@@ -4,9 +4,7 @@ import { name } from './address.state';
 
 describe(`module: ${appContactsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appContactsModule);
-  });
+  beforeEach(angular.mock.module(appContactsModule));
 
   describe(`controller: ${name}`, () => {
 

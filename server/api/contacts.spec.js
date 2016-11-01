@@ -1,26 +1,50 @@
+const _ = require('lodash');
 const expect = require('chai').expect;
+const jwt = require('jsonwebtoken');
 const request = require('supertest');
 
 const app = require('../app');
+const config = require('../config');
 const db = require('../db');
 
-function itRespondsWith404(cb) {
-  it('responds with 404', (done) => {
-    cb(request(app))
-      .set('Accept', 'application/json')
-      .expect(404)
-      .end(done);
-  });
-}
-
-describe('app', () => {
+describe('contacts API', () => {
 
   beforeEach(() => {
     return db.seed();
   });
 
-  afterEach(() => {
-    return db.drop();
+  let token;
+
+  // Authenticate
+  beforeEach(() => {
+    return db.users.findOne({ email: 'demo@email.com' }).then((user) => {
+      const data = _.pick(user, ['id', 'email']);
+
+      token = jwt.sign(data, config.secret, {
+        expiresIn: '1 minute'
+      });
+    });
+  });
+
+  function itRespondsWith404(cb) {
+    it('responds with 404', (done) => {
+      cb(request(app))
+        .set('x-access-token', token)
+        .expect(404)
+        .end(done);
+    });
+  }
+
+  describe('with invalid token', () => {
+
+    it('responds with `401` error', (done) => {
+      request(app)
+        .get('/api/contacts')
+        .set('x-access-token', 'invalid token')
+        .expect(401)
+        .end(done);
+    });
+
   });
 
   describe('GET /api/contacts', () => {
@@ -28,8 +52,7 @@ describe('app', () => {
     it('respond with json', (done) => {
       request(app)
         .get('/api/contacts')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
+        .set('x-access-token', token)
         .expect(200)
         .expect((res) => {
           const { contacts } = res.body;
@@ -53,9 +76,8 @@ describe('app', () => {
 
       request(app)
         .post('/api/contacts')
-        .set('Accept', 'application/json')
+        .set('x-access-token', token)
         .send({ firstName, lastName, email })
-        .expect('Content-Type', /json/)
         .expect(200)
         .expect((res) => {
           const { body: contact } = res;
@@ -76,9 +98,13 @@ describe('app', () => {
 
       describe('when an email is not taken', () => {
 
+        const email = 'luke@rebel.org';
+
         it('responds with `{ taken: false }`', (done) => {
           request(app)
-            .get('/api/contacts/validate-email?email=luke@rebel.org')
+            .get('/api/contacts/validate-email')
+            .query({ email })
+            .set('x-access-token', token)
             .expect(200)
             .expect((res) => {
               expect(res.body).to.have.property('taken', false);
@@ -98,7 +124,9 @@ describe('app', () => {
 
         it('responds with `{ taken: true }`', (done) => {
           request(app)
-            .get(`/api/contacts/validate-email?email=${email}`)
+            .get('/api/contacts/validate-email')
+            .query({ email })
+            .set('x-access-token', token)
             .expect(200)
             .expect((res) => {
               expect(res.body).to.have.property('taken', true);
@@ -125,7 +153,9 @@ describe('app', () => {
 
         it('responds with `{ taken: false }`', (done) => {
           request(app)
-            .get(`/api/contacts/validate-email?id=${id}email=${email}`)
+            .get('/api/contacts/validate-email')
+            .query({ id, email })
+            .set('x-access-token', token)
             .expect(200)
             .expect((res) => {
               expect(res.body).to.have.property('taken', false);
@@ -135,7 +165,9 @@ describe('app', () => {
 
         it('responds with `{ taken: false }`', (done) => {
           request(app)
-            .get(`/api/contacts/validate-email?id=${id}&email=tarkin@empire.com`)
+            .get('/api/contacts/validate-email')
+            .query({ id, email: 'tarkin@empire.com' })
+            .set('x-access-token', token)
             .expect(200)
             .expect((res) => {
               expect(res.body).to.have.property('taken', false);
@@ -156,6 +188,7 @@ describe('app', () => {
         it('responds with `{ taken: true }`', (done) => {
           request(app)
             .get(`/api/contacts/validate-email?id=${id}&email=${otherEmail}`)
+            .set('x-access-token', token)
             .expect(200)
             .expect((res) => {
               expect(res.body).to.have.property('taken', true);
@@ -176,8 +209,7 @@ describe('app', () => {
       it('respond with json', (done) => {
         request(app)
           .get('/api/contacts/3')
-          .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
+          .set('x-access-token', token)
           .expect(200)
           .expect((res) => {
             const { body: contact } = res;
@@ -217,9 +249,8 @@ describe('app', () => {
       it('updates the contact', (done) => {
         request(app)
           .put(`/api/contacts/${id}`)
-          .set('Accept', 'application/json')
+          .set('x-access-token', token)
           .send({ firstName: 'Luke' })
-          .expect('Content-Type', /json/)
           .expect(200)
           .expect((res) => {
             const { body: contact } = res;
@@ -260,7 +291,7 @@ describe('app', () => {
 
         request(app)
           .delete(`/api/contacts/${id}`)
-          .set('Accept', 'application/json')
+          .set('x-access-token', token)
           .expect(200)
           .end(() => {
             db.contacts.findOne({ id }).catch(() => {

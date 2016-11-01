@@ -12,7 +12,6 @@ module.exports = {
   entry: {
     vendor: [
       'jquery',
-      'lodash',
       'angular',
       'angular-animate',
       'angular-messages',
@@ -109,5 +108,5 @@ module.exports = {
     }
   },
 
-  devtool: 'eval-source-map	'
+  devtool: 'eval-source-map'
 };

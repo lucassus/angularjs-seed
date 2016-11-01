@@ -1,5 +1,9 @@
 const router = require('express').Router();
+
 const db = require('../db');
+const { requireAuthorization } = require('../middlewares');
+
+router.use(requireAuthorization);
 
 router.param('id', (req, res, next, id) => {
   id = parseInt(id);

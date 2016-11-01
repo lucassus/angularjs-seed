@@ -46,7 +46,7 @@ module.exports = function(config) {
 
 
     coverageReporter: {
-      dir : 'artifacts/client/coverage',
+      dir: 'artifacts/client/coverage',
       subdir: (browser) => {
         return browser.toLowerCase().split(/[ /-]/)[0];
       },

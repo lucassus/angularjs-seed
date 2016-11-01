@@ -74,6 +74,8 @@ gulp.task('tdd', () => {
 });
 
 gulp.task('server:test', (done) => {
+  process.env.NODE_ENV = 'test';
+
   const istanbul = require('gulp-istanbul');
   const mocha = require('gulp-mocha');
 
@@ -84,7 +86,8 @@ gulp.task('server:test', (done) => {
       gulp.src(['server/**/*.spec.js'], { read: false })
         .pipe(mocha({
           ui: 'bdd',
-          reporter: 'dot'
+          reporter: 'dot',
+          timeout: 250
         }))
         .pipe(istanbul.writeReports({
           dir: 'artifacts/server/coverage',

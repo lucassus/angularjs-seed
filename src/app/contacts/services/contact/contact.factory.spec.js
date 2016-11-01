@@ -3,9 +3,7 @@ import { expect } from 'chai';
 
 describe(`module: ${appContactsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appContactsModule);
-  });
+  beforeEach(angular.mock.module(appContactsModule));
 
   describe('resource: Contact', () => {
 

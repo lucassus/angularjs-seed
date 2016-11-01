@@ -4,11 +4,9 @@ import sinon from 'sinon';
 
 describe(`module: ${appCommonsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appCommonsModule, ($provide) => {
-      $provide.value('$window', { alert: sinon.stub() });
-    });
-  });
+  beforeEach(angular.mock.module(appCommonsModule, ($provide) => {
+    $provide.value('$window', { alert: sinon.stub() });
+  }));
 
   describe('service: alert', () => {
 

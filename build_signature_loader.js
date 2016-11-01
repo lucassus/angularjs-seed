@@ -5,12 +5,12 @@ const path = require('path');
 const cwd = path.join(__dirname, '.');
 const exec = Promise.promisify(require('child_process').exec);
 
-function inspectRepository() {
-  function revParse(args) {
-    return exec(`git rev-parse ${args}`, { cwd })
-      .then((result) => result.trim());
-  }
+function revParse(args) {
+  return exec(`git rev-parse ${args}`, { cwd })
+    .then((result) => result.trim());
+}
 
+function inspectRepository() {
   return Promise.all([
     revParse('--abbrev-ref HEAD'),
     revParse('HEAD')

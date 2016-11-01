@@ -4,7 +4,7 @@ const request = require('supertest');
 const app = require('../app');
 const db = require('../db');
 
-describe('app', () => {
+describe('seed API', () => {
 
   describe('POST /api/seed', () => {
 

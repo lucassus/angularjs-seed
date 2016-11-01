@@ -3,9 +3,7 @@ import { expect } from 'chai';
 
 describe(`module: ${appCommonsModule}`, () => {
 
-  beforeEach(() => {
-    angular.mock.module(appCommonsModule);
-  });
+  beforeEach(angular.mock.module(appCommonsModule));
 
   describe('filter: appCheckmark', () => {
 

@@ -5,10 +5,12 @@ describe('db', () => {
 
   describe('seed', () => {
 
-    it('seed the fake database', () => {
-      return db.seed().then(() => {
-        return db.contacts.find();
-      }).then((contacts) => {
+    beforeEach(() => {
+      return db.seed();
+    });
+
+    it('seeds contacts', () => {
+      return db.contacts.find().then((contacts) => {
         expect(contacts).to.have.length(20);
 
         expect(contacts[0]).to.have.property('id', 1);
@@ -17,15 +19,23 @@ describe('db', () => {
       });
     });
 
+    it('seeds users', () => {
+      return db.users.findOne({ email: 'demo@email.com' }).then((user) => {
+        expect(user).to.have.property('id');
+        expect(user).to.have.property('email', 'demo@email.com');
+        expect(user).to.have.property('passwordHash');
+      });
+    });
+
   });
 
-  describe('.drop', () =>{
+  describe('.drop', () => {
 
-    beforeEach(() =>{
+    beforeEach(() => {
       return db.seed();
     });
 
-    it('removes all collections', () =>{
+    it('removes all collections', () => {
       return db.drop().then(() => {
         return db.contacts.find();
       })
