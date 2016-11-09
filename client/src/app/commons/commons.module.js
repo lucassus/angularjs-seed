@@ -1,7 +1,7 @@
 import 'angular-breadcrumb';
 import { alert, confirm } from './services';
-import { appFooter, appNavigation } from './components/componets';
-import { appUniqueEmail } from './components/directives';
+import { appFooter, appNavigation } from './components';
+import { appUniqueEmail } from './directives';
 import breadcrumbTemplate from './breadcrumb.template.html';
 import { checkmark } from './filters';
 import toastr from 'angular-toastr';
