@@ -1,23 +1,23 @@
 import 'angular-breadcrumb';
-import { alert, confirm } from './services';
-import { appFooter, appNavigation } from './components';
-import { appUniqueEmail } from './directives';
+import { alertService, confirmService } from './services';
+import { appFooterComponent, appNavigationComponent } from './components';
+import { appUniqueEmailDirective } from './directives';
 import breadcrumbTemplate from './breadcrumb.template.html';
-import { checkmark } from './filters';
+import { appCheckmarkFilter } from './filters';
 import toastr from 'angular-toastr';
 
 export default angular.module('app.commons', [
   toastr,
   'ncy-angular-breadcrumb'
 ])
-  .component('appFooter', appFooter)
-  .component('appNavigation', appNavigation)
-  .directive('appUniqueEmail', appUniqueEmail)
+  .component('appFooter', appFooterComponent)
+  .component('appNavigation', appNavigationComponent)
+  .directive('appUniqueEmail', appUniqueEmailDirective)
 
-  .service('alert', alert)
-  .service('confirm', confirm)
+  .service('alert', alertService)
+  .service('confirm', confirmService)
 
-  .filter('appCheckmark', checkmark)
+  .filter('appCheckmark', appCheckmarkFilter)
 
   .config(($breadcrumbProvider) => {
     'ngInject';

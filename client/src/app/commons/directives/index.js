@@ -1,5 +1,5 @@
-import appUniqueEmail from './unique-email/unique-email.directive';
+import appUniqueEmailDirective from './unique-email/unique-email.directive';
 
 export {
-  appUniqueEmail
+  appUniqueEmailDirective
 };

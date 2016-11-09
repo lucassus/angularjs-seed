@@ -1,7 +1,7 @@
-import alert from './alert/alert.service';
-import confirm from './confirm/confirm.service';
+import alertService from './alert/alert.service';
+import confirmService from './confirm/confirm.service';
 
 export {
-  alert,
-  confirm
+  alertService,
+  confirmService
 };
