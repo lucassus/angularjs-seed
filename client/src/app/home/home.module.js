@@ -1,5 +1,5 @@
 import appCommonsModule from '../commons/commons.module';
-import states from './states/states.config';
+import states from './states';
 import uiRouter from 'angular-ui-router';
 
 export default angular.module('app.home', [

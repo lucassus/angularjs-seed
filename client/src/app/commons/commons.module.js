@@ -1,9 +1,9 @@
 import 'angular-breadcrumb';
 import { alertService, confirmService } from './services';
 import { appFooterComponent, appNavigationComponent } from './components';
+import { appCheckmarkFilter } from './filters';
 import { appUniqueEmailDirective } from './directives';
 import breadcrumbTemplate from './breadcrumb.template.html';
-import { appCheckmarkFilter } from './filters';
 import toastr from 'angular-toastr';
 
 export default angular.module('app.commons', [
