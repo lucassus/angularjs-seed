@@ -1,17 +1,20 @@
 import controller from './show.controller';
 import template from './show.state.html';
 
-export const name = 'contacts.one.show';
+export default function($stateProvider) {
+  'ngInject';
 
-export default {
-  name,
-  url: '',
-  template,
-  controller,
-  controllerAs: 'ctrl',
+  $stateProvider.state('contacts.one.show', {
+    url: '',
 
-  ncyBreadcrumb: {
-    parent: 'contacts.list',
-    label: '{{ctrl.contact.fullName}}'
-  }
-};
+    template,
+    controller,
+    controllerAs: 'ctrl',
+
+    ncyBreadcrumb: {
+      parent: 'contacts.list',
+      label: '{{ctrl.contact.fullName}}'
+    }
+  });
+
+}

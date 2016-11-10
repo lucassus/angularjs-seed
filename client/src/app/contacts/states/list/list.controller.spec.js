@@ -1,6 +1,5 @@
 import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
-import { name } from './list.state';
 
 describe(`module: ${appContactsModule}`, () => {
 
@@ -8,12 +7,12 @@ describe(`module: ${appContactsModule}`, () => {
     angular.mock.module(appContactsModule);
   });
 
-  describe(`controller: ${name}`, () => {
+  describe('list controller', () => {
 
     let ctrl;
 
     beforeEach(inject(($controller, $state, Contact) => {
-      const Controller = $state.get(name).controller;
+      const Controller = $state.get('contacts.list').controller;
 
       ctrl = $controller(Controller, {
         contacts: [

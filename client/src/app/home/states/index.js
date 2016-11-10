@@ -1,8 +1,7 @@
 import indexState from './index/index.state';
 
-export default function($stateProvider) {
+export default function($injector) {
   'ngInject';
 
-  $stateProvider
-    .state(indexState);
+  $injector.invoke(indexState);
 }

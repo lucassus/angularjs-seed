@@ -1,13 +1,15 @@
 import controller from './index.controller';
 import template from './index.state.html';
 
-export const name = 'home';
+export default function($stateProvider) {
+  'ngInject';
 
-export default  {
-  name,
-  url: '/',
-  template,
+  $stateProvider.state('home', {
+    url: '/',
+    template,
 
-  controller,
-  controllerAs: 'ctrl'
-};
+    controller,
+    controllerAs: 'ctrl'
+  });
+
+}

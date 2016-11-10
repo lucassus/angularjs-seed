@@ -1,14 +1,16 @@
 import template from './edit.statate.html';
 
-export const name = 'contacts.one.address.edit';
+export default function($stateProvider) {
+  'ngInject';
 
-export default {
-  name,
-  url: '/edit',
-  template,
+  $stateProvider.state('contacts.one.address.edit', {
+    url: '/edit',
+    template,
 
-  ncyBreadcrumb: {
-    parent: 'contacts.one.address.show({ id: ctrl.contact.id })',
-    label: 'Edit'
-  }
-};
+    ncyBreadcrumb: {
+      parent: 'contacts.one.address.show({ id: ctrl.contact.id })',
+      label: 'Edit'
+    }
+  });
+
+}

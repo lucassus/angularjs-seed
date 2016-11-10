@@ -1,9 +1,11 @@
 import template from './index.state.html';
 
-export const name = 'about';
+export default function($stateProvider) {
+  'ngInject';
 
-export default  {
-  name,
-  url: '/about',
-  template
-};
+  $stateProvider.state('about', {
+    url: '/about',
+    template
+  });
+
+}

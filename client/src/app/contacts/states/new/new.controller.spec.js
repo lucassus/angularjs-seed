@@ -1,18 +1,17 @@
 import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
-import { name } from './new.state';
 import sinon from 'sinon';
 
 describe(`module: ${appContactsModule}`, () => {
 
   beforeEach(angular.mock.module(appContactsModule));
 
-  describe(`controller: ${name}`, () => {
+  describe('new controller', () => {
 
     let ctrl;
 
     beforeEach(inject(($controller, $state, toastr) => {
-      const Controller = $state.get(name).controller;
+      const Controller = $state.get('contacts.new').controller;
 
       ctrl = $controller(Controller, {
         $state: { go: sinon.stub() },

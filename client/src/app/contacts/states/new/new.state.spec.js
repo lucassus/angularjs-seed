@@ -1,6 +1,5 @@
 import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
-import { name } from './new.state';
 
 describe(`module: ${appContactsModule}`, () => {
 
@@ -8,12 +7,12 @@ describe(`module: ${appContactsModule}`, () => {
     angular.mock.module(appContactsModule);
   });
 
-  describe(`state: ${name}`, () => {
+  describe('contacts.new', () => {
 
     let state;
 
     beforeEach(inject(($state) => {
-      state = $state.get(name);
+      state = $state.get('contacts.new');
     }));
 
     it('has valid url', inject(($state) => {

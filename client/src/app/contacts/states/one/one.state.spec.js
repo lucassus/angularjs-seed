@@ -1,6 +1,5 @@
 import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
-import { name } from './one.state';
 import sinon from 'sinon';
 
 describe(`module: ${appContactsModule}`, () => {
@@ -9,12 +8,12 @@ describe(`module: ${appContactsModule}`, () => {
     angular.mock.module(appContactsModule);
   });
 
-  describe(`state: ${name}`, () => {
+  describe('contacts.one', () => {
 
     let state;
 
     beforeEach(inject(($state) => {
-      state = $state.get(name);
+      state = $state.get('contacts.one');
     }));
 
     it('resolves `contact`', (done) => {

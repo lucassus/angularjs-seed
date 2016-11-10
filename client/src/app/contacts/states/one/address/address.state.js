@@ -1,13 +1,16 @@
 import controller from './address.controller';
 import template from './address.template.html';
 
-export const name = 'contacts.one.address';
+export default function($stateProvider) {
+  'ngInject';
 
-export default {
-  name,
-  url: '/address',
-  template,
-  abstract: true,
-  controller,
-  controllerAs: 'ctrl'
-};
+  $stateProvider.state('contacts.one.address', {
+    url: '/address',
+
+    template,
+    abstract: true,
+    controller,
+    controllerAs: 'ctrl'
+  });
+
+}

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import listState from './list/list.state';
 import newState from './new/new.state';
 import oneAddressEditState from './one/address/edit/edit.state';
@@ -7,25 +8,26 @@ import oneEditState from './one/edit/edit.state';
 import oneShowState from './one/show/show.state';
 import oneState from './one/one.state';
 
-export default function($stateProvider) {
+export default function($injector, $stateProvider) {
   'ngInject';
 
   $stateProvider
-    .state({
-      name: 'contacts',
+    .state('contacts', {
       abstract: true,
       url: '/contacts',
       template: '<div ui-view autoscroll="true"></div>'
-    })
+    });
 
-    .state(listState)
-    .state(newState)
+  _.forEach([
+    listState,
+    newState,
 
-    .state(oneState)
-    .state(oneShowState)
-    .state(oneEditState)
+    oneState,
+    oneShowState,
+    oneEditState,
 
-    .state(oneAddressState)
-    .state(oneAddressShowState)
-    .state(oneAddressEditState);
+    oneAddressState,
+    oneAddressShowState,
+    oneAddressEditState
+  ], $injector.invoke);
 }

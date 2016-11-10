@@ -1,13 +1,15 @@
 import { oneResolver } from '../../services/contact/contact.resolvers';
 
-export const name = 'contacts.one';
+export default function($stateProvider) {
+  'ngInject';
 
-export default {
-  name,
-  abstract: true,
-  url: '/:id',
-  template: '<div ui-view autoscroll="true"></div>',
-  resolve: {
-    contact: oneResolver
-  }
-};
+  $stateProvider.state('contacts.one', {
+    abstract: true,
+    url: '/:id',
+    template: '<div ui-view autoscroll="true"></div>',
+    resolve: {
+      contact: oneResolver
+    }
+  });
+
+}
