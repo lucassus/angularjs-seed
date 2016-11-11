@@ -19,4 +19,5 @@ while ! available; do
 done
 echo ' OK'
 
+node_modules/webdriver-manager/bin/webdriver-manager update
 node_modules/protractor/bin/protractor protractor.config.js
