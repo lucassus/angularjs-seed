@@ -2,7 +2,7 @@ const utils = require('./e2e/utils');
 
 exports.config = {
   directConnect: true,
-  chromeDriver: 'node_modules/webdriver-manager/selenium/chromedriver_2.24',
+  chromeDriver: 'node_modules/webdriver-manager/selenium/chromedriver_2.25',
   capabilities: {
     browserName: 'chrome'
   },
