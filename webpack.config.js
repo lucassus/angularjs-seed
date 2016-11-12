@@ -6,8 +6,6 @@ const webpack = require('webpack');
 
 const BUILD_DIRECTORY = 'build';
 
-// TODO bring back commons chunks (production)?
-// TODO no errors plugin?
 module.exports = {
   entry: './src/app.js',
 
@@ -29,7 +27,8 @@ module.exports = {
       template: 'src/index.html',
       inject: true
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
 
   module: {
