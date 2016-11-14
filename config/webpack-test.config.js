@@ -33,7 +33,7 @@ module.exports = function({ singleRun }) {
         }, {
           loader: 'babel',
           query: {
-            extends: path.join(__dirname, '.babelrc.karma')
+            extends: path.join(__dirname, '..', '.babelrc.karma')
           }
         }])
       }, {

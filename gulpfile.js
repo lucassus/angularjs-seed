@@ -12,6 +12,7 @@ gulp.task('eslint', () => {
 
   return gulp.src([
     '*.js',
+    'config/**/*.js',
     'e2e/**/*.js',
     'server/**/*.js',
     'src/**/*.js'
@@ -36,7 +37,7 @@ gulp.task('lint', ['eslint', 'htmlhint']);
 
 function buildKarmaServer(config) {
   config = _.extend({}, {
-    configFile: path.join(__dirname, 'karma.conf.js')
+    configFile: path.join(__dirname, 'config', 'karma.conf.js')
   }, config);
 
   if (cmdArgs.browsers) {
