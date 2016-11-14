@@ -34,7 +34,7 @@ script:
   - gulp test --browsers=Firefox
 
   - npm run dev-server &
-  - ./e2e_test.sh
+  - ./run-e2e-tests
 
 after_success:
   - codecov

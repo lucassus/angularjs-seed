@@ -19,7 +19,8 @@ gulp tdd --browsers=Chrome
 
 npm run dev-server
 open http://localhost:8080
-e2e_test.sh
+
+./run-e2e-tests
 ```
 
 ## Features
