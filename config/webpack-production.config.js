@@ -43,6 +43,10 @@ module.exports = {
     new ProgressBarPlugin({
       format: ':msg [:bar] :percent'
     }),
+    new webpack.ProvidePlugin({
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery'
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/index.html',
