@@ -6,7 +6,7 @@ const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
 
-const BUILD_DIRECTORY = '../build';
+const BUILD_DIRECTORY = 'build';
 const CHUNK_FILENAME = '[name].[hash].js';
 
 module.exports = {
@@ -33,7 +33,8 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(BUILD_DIRECTORY, {
-      verbose: true
+      verbose: true,
+      root: process.cwd()
     }),
     new FaviconsWebpackPlugin({
       logo: './src/images/logo.png'
@@ -67,7 +68,7 @@ module.exports = {
       }, {
         loader: 'babel',
         query: {
-          extends: path.join(__dirname, '.babelrc')
+          extends: path.join(__dirname, '..', '.babelrc')
         }
       }])
     }, {
