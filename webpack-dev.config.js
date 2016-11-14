@@ -1,33 +1,17 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
 
 const BUILD_DIRECTORY = 'build';
-const CHUNK_FILENAME = '[name].[chunkhash].js';
 
 module.exports = {
-  entry: {
-    vendor: [
-      'jquery',
-      'lodash',
-      'angular',
-      'angular-animate',
-      'angular-messages',
-      'angular-resource',
-      'angular-loading-bar',
-      'angular-toastr',
-      'angular-ui-router'
-    ],
-    app: ['./src/app.js']
-  },
+  entry: './src/app.js',
 
   output: {
     path: path.resolve(BUILD_DIRECTORY),
-    filename: CHUNK_FILENAME,
-    chunkFilename: CHUNK_FILENAME
+    filename: 'app.js'
   },
 
   plugins: [
@@ -38,16 +22,13 @@ module.exports = {
       'window.$': 'jquery',
       'window.jQuery': 'jquery'
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      fileName: CHUNK_FILENAME
-    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/index.html',
       inject: true
     }),
-    new ExtractTextPlugin('style.[chunkhash].css')
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
 
   module: {
@@ -67,7 +48,7 @@ module.exports = {
       loader: 'html'
     }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('style', 'css!sass')
+      loaders: ['style', 'css', 'sass']
     }, {
       test: /\.png$/,
       loader: 'url?limit=100000'
@@ -93,9 +74,11 @@ module.exports = {
     port: 8080,
     contentBase: './build',
 
-    inline: true,
-
+    // Serve index.html in place of 404 responses (html5 routing mode)
     historyApiFallback: true,
+
+    hot: true,
+    inline: true,
 
     proxy: {
       '/api': {
@@ -109,5 +92,5 @@ module.exports = {
     }
   },
 
-  devtool: 'eval-source-map	'
+  devtool: 'eval-source-map'
 };

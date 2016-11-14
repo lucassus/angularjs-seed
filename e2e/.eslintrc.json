@@ -18,5 +18,8 @@
   },
   "globals": {
     "inject": true
+  },
+  "rules": {
+    "protractor/valid-locator-type": "off"
   }
 }

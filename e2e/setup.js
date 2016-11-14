@@ -8,6 +8,7 @@ function seedDatabase() {
   return post(`${baseUrl}/api/seed`);
 }
 
+/* eslint-disable jasmine/no-global-setup */
 beforeEach((done) => {
   seedDatabase().then(done);
 });

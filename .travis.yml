@@ -25,7 +25,6 @@ install:
 
 before_script:
   - npm install
-  - ./node_modules/webdriver-manager/bin/webdriver-manager update
 
 script:
   - gulp lint
