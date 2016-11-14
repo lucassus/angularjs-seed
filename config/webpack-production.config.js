@@ -1,6 +1,7 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
@@ -33,13 +34,23 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(BUILD_DIRECTORY, {
-      verbose: true
+      verbose: true,
+      root: process.cwd()
     }),
     new FaviconsWebpackPlugin({
       logo: './src/images/logo.png'
     }),
     new ProgressBarPlugin({
       format: ':msg [:bar] :percent'
+    }),
+    new webpack.ProvidePlugin({
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'src/index.html',
+      inject: true
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -67,7 +78,7 @@ module.exports = {
       }, {
         loader: 'babel',
         query: {
-          extends: path.join(__dirname, '.babelrc')
+          extends: path.join(__dirname, '..', '.babelrc')
         }
       }])
     }, {
