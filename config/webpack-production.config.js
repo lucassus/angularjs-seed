@@ -1,6 +1,7 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
@@ -41,6 +42,11 @@ module.exports = {
     }),
     new ProgressBarPlugin({
       format: ':msg [:bar] :percent'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'src/index.html',
+      inject: true
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
