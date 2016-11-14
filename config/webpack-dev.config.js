@@ -1,23 +1,12 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
 
-const BUILD_DIRECTORY = '../build';
-
 module.exports = {
   entry: './src/app.js',
 
-  output: {
-    path: path.resolve(BUILD_DIRECTORY),
-    filename: 'app.js'
-  },
-
   plugins: [
-    new CleanWebpackPlugin(BUILD_DIRECTORY, {
-      verbose: true
-    }),
     new webpack.ProvidePlugin({
       'window.$': 'jquery',
       'window.jQuery': 'jquery'
