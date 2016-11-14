@@ -4,7 +4,7 @@ const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
 
-const BUILD_DIRECTORY = 'build';
+const BUILD_DIRECTORY = '../build';
 
 module.exports = {
   entry: './src/app.js',
