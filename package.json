@@ -11,7 +11,7 @@
     "start": "node server.js",
     "test": "gulp test",
     "dev-api-server": "nodemon --config nodemon.json server.js",
-    "dev-server": "concurrently 'webpack-dev-server' 'npm run dev-api-server'"
+    "dev-server": "concurrently 'webpack-dev-server --config webpack-dev.config.js' 'npm run dev-api-server'"
   },
   "author": "Lukasz Bandzarewicz",
   "license": "ISC",
