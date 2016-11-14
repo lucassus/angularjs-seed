@@ -7,11 +7,11 @@
     "node": "6.2.2"
   },
   "scripts": {
-    "heroku-postbuild": "webpack --config webpack-production.config.js",
+    "heroku-postbuild": "webpack --config config/webpack-production.config.js",
     "start": "node server.js",
     "test": "gulp test",
     "dev-api-server": "nodemon --config nodemon.json server.js",
-    "dev-server": "concurrently 'webpack-dev-server --config webpack-dev.config.js' 'npm run dev-api-server'"
+    "dev-server": "concurrently 'webpack-dev-server --config config/webpack-dev.config.js' 'npm run dev-api-server'"
   },
   "author": "Lukasz Bandzarewicz",
   "license": "ISC",

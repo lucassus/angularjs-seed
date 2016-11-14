@@ -1,8 +1,8 @@
-const utils = require('./e2e/utils');
+const utils = require('../e2e/utils');
 
 exports.config = {
   directConnect: true,
-  chromeDriver: 'node_modules/webdriver-manager/selenium/chromedriver_2.25',
+  chromeDriver: '../node_modules/webdriver-manager/selenium/chromedriver_2.25',
   capabilities: {
     browserName: 'chrome'
   },
@@ -11,8 +11,8 @@ exports.config = {
 
   framework: 'jasmine',
   specs: [
-    'e2e/setup.js',
-    'e2e/**/*.spec.js'
+    '../e2e/setup.js',
+    '../e2e/**/*.spec.js'
   ],
 
   onPrepare() {
