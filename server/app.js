@@ -3,7 +3,7 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '..', 'build')));
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 app.use(require('body-parser').json());
 
 if (process.env.NODE_ENV !== 'production') {
