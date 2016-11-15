@@ -4,7 +4,7 @@
     "promise"
   ],
   "extends": [
-    "../.eslintrc.json",
+    "../../.eslintrc.json",
     "angular"
   ],
   "env": {

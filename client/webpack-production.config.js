@@ -23,7 +23,7 @@ module.exports = {
       'angular-toastr',
       'angular-ui-router'
     ],
-    app: ['./src/app.js']
+    app: ['./client/src/app.js']
   },
 
   output: {
@@ -38,7 +38,7 @@ module.exports = {
       root: process.cwd()
     }),
     new FaviconsWebpackPlugin({
-      logo: './src/images/logo.png'
+      logo: './client/src/images/logo.png'
     }),
     new ProgressBarPlugin({
       format: ':msg [:bar] :percent'
@@ -49,7 +49,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'src/index.html',
+      template: 'client/src/index.html',
       inject: true
     }),
     new webpack.optimize.CommonsChunkPlugin({
@@ -78,7 +78,7 @@ module.exports = {
       }, {
         loader: 'babel',
         query: {
-          extends: path.join(__dirname, '..', '.babelrc')
+          extends: path.join(__dirname, '.babelrc')
         }
       }])
     }, {

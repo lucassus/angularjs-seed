@@ -4,7 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/app.js',
+  entry: './client/src/app.js',
 
   plugins: [
     new webpack.ProvidePlugin({
@@ -13,7 +13,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'src/index.html',
+      template: 'client/src/index.html',
       inject: true
     }),
     new webpack.HotModuleReplacementPlugin(),
@@ -29,7 +29,7 @@ module.exports = {
       }, {
         loader: 'babel',
         query: {
-          extends: path.join(__dirname, '..', '.babelrc')
+          extends: path.join(__dirname, '.babelrc')
         }
       }])
     }, {
@@ -61,7 +61,6 @@ module.exports = {
 
   devServer: {
     port: 8080,
-    contentBase: './build',
 
     // Serve index.html in place of 404 responses (html5 routing mode)
     historyApiFallback: true,

@@ -1,5 +1,5 @@
-const app = require('./server/app');
-const db = require('./server/db');
+const app = require('./app');
+const db = require('./db');
 
 db.seed().then((contacts) => {
   console.log(`Database populated with ${contacts.length} contacts`);

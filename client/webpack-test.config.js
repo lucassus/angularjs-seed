@@ -33,7 +33,7 @@ module.exports = function({ singleRun }) {
         }, {
           loader: 'babel',
           query: {
-            extends: path.join(__dirname, '..', '.babelrc.karma')
+            extends: path.join(__dirname, '.babelrc.karma')
           }
         }])
       }, {
@@ -43,10 +43,7 @@ module.exports = function({ singleRun }) {
         test: /sinon\.js$/,
         loader: 'imports?define=>false,require=>false'
       }, {
-        test: /\.scss/,
-        loader: 'null'
-      }, {
-        test: /\.jpg$/,
+        test: /\.(scss|jpg|svg)/,
         loader: 'null'
       }]
     },
