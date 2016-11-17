@@ -3,7 +3,7 @@
     "build/*",
     "src/*",
     "gulpfile.js",
-    "karma.conf.js",
+    "karma.config.js",
     "webpack.config.js"
   ]
 }
