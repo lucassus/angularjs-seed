@@ -23,6 +23,13 @@ open http://localhost:8080
 ./e2e/run-tests
 ```
 
+## Fast TDD
+
+```
+npm run webpack-watch-specs
+gulp tdd-fast
+```
+
 ## Features
 
 * AngularJS 1.5.x with ES2015 flavour

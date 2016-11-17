@@ -3,3 +3,4 @@ artifacts
 client/build
 node_modules
 npm-debug.log
+tmp
