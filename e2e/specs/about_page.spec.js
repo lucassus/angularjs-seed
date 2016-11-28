@@ -1,4 +1,4 @@
-const Page = require('./page_objects/page');
+const Page = require('../page_objects/page');
 
 class AboutPage extends Page {
 

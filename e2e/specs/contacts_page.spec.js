@@ -1,6 +1,6 @@
-const Page = require('./page_objects/page');
-const Table = require('./page_objects/table');
-const FavouriteButton = require('./page_objects/favourite_button');
+const Page = require('../page_objects/page');
+const Table = require('../page_objects/table');
+const FavouriteButton = require('../page_objects/favourite_button');
 
 class ListPage extends Page {
 

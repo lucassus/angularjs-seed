@@ -14,7 +14,8 @@ gulp.task('eslint', () => {
     '*.js',
     'client/*.js',
     'client/src/**/*.js',
-    'server/**/*.js'
+    'server/**/*.js',
+    'e2e/**/*.js'
   ])
     .pipe(eslint())
     .pipe(eslint.format(friendlyFormatter))
