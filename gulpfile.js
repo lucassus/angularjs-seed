@@ -12,7 +12,8 @@ gulp.task('eslint', () => {
 
   return gulp.src([
     '*.js',
-    'client/**/*.js',
+    'client/*.js',
+    'client/src/**/*.js',
     'server/**/*.js'
   ])
     .pipe(eslint())
@@ -23,7 +24,7 @@ gulp.task('eslint', () => {
 gulp.task('htmlhint', () => {
   const htmlhint = require('gulp-htmlhint');
 
-  gulp.src('client/**/*.html')
+  gulp.src('client/src/**/*.html')
     .pipe(htmlhint({
       'doctype-first': false,
       'tag-self-close': true
