@@ -12,10 +12,10 @@ gulp.task('eslint', () => {
 
   return gulp.src([
     '*.js',
-    'config/**/*.js',
-    'e2e/**/*.js',
+    'client/*.js',
+    'client/src/**/*.js',
     'server/**/*.js',
-    'src/**/*.js'
+    'e2e/**/*.js'
   ])
     .pipe(eslint())
     .pipe(eslint.format(friendlyFormatter))
@@ -25,7 +25,7 @@ gulp.task('eslint', () => {
 gulp.task('htmlhint', () => {
   const htmlhint = require('gulp-htmlhint');
 
-  gulp.src('src/**/*.html')
+  gulp.src('client/src/**/*.html')
     .pipe(htmlhint({
       'doctype-first': false,
       'tag-self-close': true
@@ -37,7 +37,7 @@ gulp.task('lint', ['eslint', 'htmlhint']);
 
 function buildKarmaServer(config) {
   config = _.extend({}, {
-    configFile: path.join(__dirname, 'config', 'karma.config.js')
+    configFile: path.join(__dirname, 'client', 'karma.config.js')
   }, config);
 
   if (cmdArgs.browsers) {

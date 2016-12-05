@@ -1,7 +1,7 @@
 const Promise = require('bluebird');
 const request = require('request');
 
-const { config: { baseUrl } } = require('../config/protractor.config');
+const { config: { baseUrl } } = require('./protractor.config');
 
 function seedDatabase() {
   const post = Promise.promisify(request.post);
