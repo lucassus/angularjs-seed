@@ -23,7 +23,7 @@ module.exports = {
       'angular-toastr',
       'angular-ui-router'
     ],
-    app: ['./client/src/app.js']
+    app: './client/src/app.js'
   },
 
   output: {
