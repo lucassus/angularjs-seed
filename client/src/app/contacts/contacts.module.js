@@ -3,7 +3,7 @@ import angularResource from 'angular-resource';
 import appCommonsModule from '../commons/commons.module';
 import components from './components/components.config';
 import services from './services/services.config';
-import { states } from './contacts.config';
+import states from './states/states.config';
 import uiRouter from 'angular-ui-router';
 
 export default angular.module('app.contacts', [
