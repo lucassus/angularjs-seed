@@ -17,7 +17,7 @@ describe(`module: ${appAboutModule}`, () => {
     }));
 
     it('has valid url', inject(($state) => {
-      expect($state.href(state)).to.eq('#/about');
+      expect($state.href(state)).to.eq('#!/about');
     }));
 
   });
