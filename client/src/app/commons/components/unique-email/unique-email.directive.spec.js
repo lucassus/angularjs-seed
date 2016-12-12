@@ -31,11 +31,11 @@ describe(`module: ${appCommonsModule}`, () => {
     }));
 
     it('sets the correct debounce options', () => {
-      expect(scope.testForm.email.$options)
-        .to.have.property('debounce', 300);
+      expect(scope.testForm.email.$options.getOption('debounce'))
+        .to.eq(300);
 
-      expect(scope.testForm.email.$options)
-        .to.have.property('updateOnDefault', true);
+      expect(scope.testForm.email.$options.getOption('updateOnDefault'))
+        .to.eq(true);
     });
 
     function setEmail(email) {

@@ -11,9 +11,8 @@ export default function($http, $parse, $q) {
     require: 'ngModel',
 
     link(scope, element, attrs, ngModel) {
-      ngModel.$options = ngModel.$options || {};
 
-      angular.extend(ngModel.$options, {
+      ngModel.$options = ngModel.$options.createChild({
         debounce: 300,
         updateOnDefault: true
       });
