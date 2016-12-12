@@ -17,7 +17,7 @@
   "author": "Lukasz Bandzarewicz",
   "license": "ISC",
   "devDependencies": {
-    "angular-mocks": "^1.5.9",
+    "angular-mocks": "^1.6.0",
     "babel-core": "^6.20.0",
     "babel-loader": "^6.2.9",
     "babel-plugin-istanbul": "^3.0.0",
@@ -78,12 +78,12 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "angular": "^1.5.9",
-    "angular-animate": "^1.5.9",
+    "angular": "^1.6.0",
+    "angular-animate": "^1.6.0",
     "angular-breadcrumb": "^0.5.0",
     "angular-loading-bar": "^0.9.0",
-    "angular-messages": "^1.5.9",
-    "angular-resource": "^1.5.9",
+    "angular-messages": "^1.6.0",
+    "angular-resource": "^1.6.0",
     "angular-toastr": "^2.1.1",
     "angular-ui-router": "^1.0.0-beta.3",
     "bluebird": "^3.4.6",
