@@ -81,7 +81,15 @@ describe(`module: ${appContactsModule}`, () => {
 
         it('does not create a contact', () => {
           expect(ctrl.contact).to.not.have.property('id');
+        });
+
+        it('does not redirect', () => {
           expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.false;
+        });
+
+        it('displays an error notification', () => {
+          expect(ctrl.toastr.error.calledWith('Unable to create a contact.'))
+            .to.be.true;
         });
 
       });

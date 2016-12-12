@@ -16,6 +16,8 @@ export default class {
 
       const { id } = this.contact;
       return this.$state.go('contacts.one.show', { id });
+    }).catch(() => {
+      this.toastr.error('Unable to update a contact.');
     });
   }
 

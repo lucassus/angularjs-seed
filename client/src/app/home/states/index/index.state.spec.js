@@ -17,7 +17,7 @@ describe(`module: ${appHomeModule}`, () => {
     }));
 
     it('has valid url', inject(($state) => {
-      expect($state.href(state)).to.eq('#/');
+      expect($state.href(state)).to.eq('#!/');
     }));
 
   });

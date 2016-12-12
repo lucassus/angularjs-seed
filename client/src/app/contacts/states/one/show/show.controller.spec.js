@@ -84,6 +84,11 @@ describe(`module: ${appContactsModule}`, () => {
             expect(ctrl.$state.go.calledWith('contacts.list')).to.be.false;
           });
 
+          it('displays an error notification', () => {
+            expect(ctrl.toastr.error.calledWith('Unable to delete a contact.'))
+              .to.be.true;
+          });
+
         });
 
       });
