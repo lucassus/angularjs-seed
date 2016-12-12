@@ -16,7 +16,9 @@ export default class {
     if (this.confirm(message)) {
       this.contact.$delete().then(() => {
         this.toastr.success('Contact deleted');
-        this.$state.go('contacts.list');
+        return this.$state.go('contacts.list');
+      }).catch(() => {
+        this.toastr.error('Unable to delete a contact.');
       });
     }
   }

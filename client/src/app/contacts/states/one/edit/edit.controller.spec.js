@@ -91,6 +91,11 @@ describe(`module: ${appContactsModule}`, () => {
           expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.false;
         });
 
+        it('displays an error notification', () => {
+          expect(ctrl.toastr.error.calledWith('Unable to update a contact.'))
+            .to.be.true;
+        });
+
       });
 
     });
