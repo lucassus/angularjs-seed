@@ -26,9 +26,9 @@ describe('Collection', () => {
 
     it('reset current id', () => {
       return collection.drop().then(() => {
-        expect(collection._nextId()).to.eq(1);
-        expect(collection._nextId()).to.eq(2);
-        expect(collection._nextId()).to.eq(3);
+        expect(collection._nextId()).to.equal(1);
+        expect(collection._nextId()).to.equal(2);
+        expect(collection._nextId()).to.equal(3);
       });
     });
 

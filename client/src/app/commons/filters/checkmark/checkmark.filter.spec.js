@@ -16,8 +16,8 @@ describe(`module: ${appCommonsModule}`, () => {
     }));
 
     it('returns a checkmark', () => {
-      expect(filter(true)).to.eq('✓');
-      expect(filter(false)).to.eq('✘');
+      expect(filter(true)).to.equal('✓');
+      expect(filter(false)).to.equal('✘');
     });
 
   });

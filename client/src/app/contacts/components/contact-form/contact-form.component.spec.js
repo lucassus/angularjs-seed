@@ -40,7 +40,7 @@ describe(`module: ${appContactsModule}`, () => {
         expect(ctrl.contact).to.not.be.undefined;
 
         expect(ctrl.contact).to.not.eq(ctrl.originalContact);
-        expect(ctrl.contact.id).to.eq(ctrl.originalContact.id);
+        expect(ctrl.contact.id).to.equal(ctrl.originalContact.id);
       });
 
       describe('.showError', () => {
