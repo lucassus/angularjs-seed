@@ -18,7 +18,7 @@ describe(`module: ${appContactsModule}`, () => {
     }));
 
     it('has valid url', inject(($state) => {
-      expect($state.href(state)).to.eq('#!/contacts');
+      expect($state.href(state)).to.equal('#!/contacts');
     }));
 
     it('resolves `contacts`', (done) => {
@@ -34,7 +34,7 @@ describe(`module: ${appContactsModule}`, () => {
         // When
         $resolve.resolve(state.resolve)
           .then(({ contacts }) => {
-            expect(contacts).to.be.an.array;
+            expect(contacts).to.be.an('array');
             expect(contacts).to.have.length(2);
 
             expect(contacts[0]).to.have.property('id', 10);

@@ -17,7 +17,7 @@ describe(`module: ${appContactsModule}`, () => {
     }));
 
     it('has valid url', inject(($state) => {
-      expect($state.href(state)).to.eq('#!/contacts/new');
+      expect($state.href(state)).to.equal('#!/contacts/new');
     }));
 
   });

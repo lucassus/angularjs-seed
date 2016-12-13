@@ -81,7 +81,7 @@ describe(`module: ${appContactsModule}`, () => {
 
         const contact = new Contact({ firstName: 'Luke' });
         contact.$create().then((createdContact) => {
-          expect(createdContact).to.eq(contact);
+          expect(createdContact).to.equal(contact);
 
           expect(createdContact).to.be.an.instanceOf(Contact);
           expect(createdContact).to.have.property('id', 123);
@@ -99,7 +99,7 @@ describe(`module: ${appContactsModule}`, () => {
 
       it('returns the full name', () => {
         const contact = new Contact({ firstName: 'Luke', lastName: 'Skywalker' });
-        expect(contact.fullName).to.eq('Luke Skywalker');
+        expect(contact.fullName).to.equal('Luke Skywalker');
       });
 
     });
@@ -114,7 +114,7 @@ describe(`module: ${appContactsModule}`, () => {
         const contact = new Contact({ id: 126, favourite: false });
 
         contact.toggleFavourite().then((updatedContact) => {
-          expect(updatedContact).to.eq(contact);
+          expect(updatedContact).to.equal(contact);
           expect(contact.favourite).to.be.true;
 
           done();

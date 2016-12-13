@@ -53,7 +53,7 @@ describe(`module: ${appContactsModule}`, () => {
           buttonEl.click();
 
           // Then
-          expect(buttonEl.attr('disabled')).to.eq('disabled');
+          expect(buttonEl.attr('disabled')).to.equal('disabled');
 
           // When
           deferred.resolve();

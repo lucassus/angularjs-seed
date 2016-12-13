@@ -29,8 +29,8 @@ describe('boostrap', () => {
 
       const [el, modules, options] = angular.bootstrap.lastCall.args;
 
-      expect(el).to.eq('html');
-      expect(modules[0]).to.eq('app');
+      expect(el).to.equal('html');
+      expect(modules[0]).to.equal('app');
       expect(options).to.have.property('strictDi', true);
     }));
 

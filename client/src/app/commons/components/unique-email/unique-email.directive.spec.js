@@ -32,10 +32,10 @@ describe(`module: ${appCommonsModule}`, () => {
 
     it('sets the correct debounce options', () => {
       expect(scope.testForm.email.$options.getOption('debounce'))
-        .to.eq(300);
+        .to.equal(300);
 
       expect(scope.testForm.email.$options.getOption('updateOnDefault'))
-        .to.eq(true);
+        .to.equal(true);
     });
 
     function setEmail(email) {
@@ -78,7 +78,7 @@ describe(`module: ${appCommonsModule}`, () => {
         expect(scope.testForm.$valid).to.be.true;
         expect(scope.testForm.email.$valid).to.be.true;
         expect(scope.testForm.email.$error).to.not.have.property('uniqueEmail');
-        expect(scope.contact.email).to.eq('test@email.com');
+        expect(scope.contact.email).to.equal('test@email.com');
       });
 
     });

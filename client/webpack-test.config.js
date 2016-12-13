@@ -37,13 +37,16 @@ module.exports = function({ singleRun }) {
           }
         }])
       }, {
+        test: /\.json$/,
+        loader: 'json'
+      }, {
         test: /\.html$/,
         loader: 'html'
       }, {
         test: /sinon\.js$/,
         loader: 'imports?define=>false,require=>false'
       }, {
-        test: /\.(scss|jpg|svg)/,
+        test: /\.(scss|jpg|svg)$/,
         loader: 'null'
       }]
     },

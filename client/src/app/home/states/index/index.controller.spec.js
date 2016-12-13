@@ -22,7 +22,7 @@ describe(`module: ${appHomeModule}`, () => {
     }));
 
     it('has a message', () => {
-      expect(ctrl.message).to.eq('Hello World!');
+      expect(ctrl.message).to.equal('Hello World!');
     });
 
     describe('.sayHello', () => {

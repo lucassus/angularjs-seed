@@ -14,7 +14,7 @@ describe(`module: ${appModule}`, () => {
       $location.url('/unknown/url');
       $rootScope.$digest();
 
-      expect($state.current.name).to.eq('404');
+      expect($state.current.name).to.equal('404');
     }));
 
   });

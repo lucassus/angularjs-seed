@@ -32,9 +32,7 @@ describe('Contacts page', () => {
     it('displays contacts list', () => {
       expect(page.header.getText()).toEqual('Contacts list');
 
-      page.table.all().then((rows) => {
-        expect(rows.length).toEqual(20);
-      });
+      expect(page.table.all().count()).toEqual(20);
 
       expect(page.table.cell(0, 'contact.fullName').getText())
         .toEqual('Wallace Rath');
