@@ -24,7 +24,7 @@ describe(`module: ${appContactsModule}`, () => {
     }));
 
     it('has an array of contacts', inject((Contact) => {
-      expect(ctrl.contacts).to.be.an.array;
+      expect(ctrl.contacts).to.be.an('array');
       expect(ctrl.contacts).to.have.length(2);
 
       expect(ctrl.contacts[0]).to.be.an.instanceOf(Contact);
