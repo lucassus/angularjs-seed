@@ -23,6 +23,10 @@ open http://localhost:8080
 ./e2e/run-tests
 ```
 
+## Fast TDD
+
+Run `./client/fast-tdd` and enjoy blazing fast specs
+
 ## Features
 
 * AngularJS 1.5.x with ES2015 flavour
