@@ -25,10 +25,7 @@ open http://localhost:8080
 
 ## Fast TDD
 
-```
-npm run webpack-watch-specs
-gulp tdd-fast
-```
+Run `./client/fast-tdd` and enjoy blazing fast specs
 
 ## Features
 

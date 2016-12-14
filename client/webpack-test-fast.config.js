@@ -21,11 +21,11 @@ module.exports = {
       'chai',
       'sinon'
     ],
-    specs: './src/specs.js'
+    specs: './client/src/specs.js'
   },
 
   output: {
-    path: path.resolve('./tmp'),
+    path: path.resolve('./client/build-test'),
     filename: CHUNK_FILENAME,
     chunkFilename: CHUNK_FILENAME
   },
@@ -51,9 +51,12 @@ module.exports = {
       }, {
         loader: 'babel',
         query: {
-          extends: path.join(__dirname, '..', '.babelrc')
+          extends: path.join(__dirname, '.babelrc')
         }
       }])
+    }, {
+      test: /\.json$/,
+      loader: 'json'
     }, {
       test: /\.html$/,
       loader: 'html'
@@ -61,7 +64,7 @@ module.exports = {
       test: /sinon\.js$/,
       loader: 'imports?define=>false,require=>false'
     }, {
-      test: /\.scss/,
+      test: /\.scss$/,
       loader: 'null'
     }, {
       test: /\.jpg$/,

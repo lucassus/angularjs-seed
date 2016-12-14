@@ -35,9 +35,9 @@ gulp.task('htmlhint', () => {
 
 gulp.task('lint', ['eslint', 'htmlhint']);
 
-function buildKarmaServer(config, configFile = 'karma.config.js') {
+function buildKarmaServer(config) {
   config = _.extend({}, {
-    configFile: path.join(__dirname, 'client', configFile)
+    configFile: path.join(__dirname, 'client', 'karma.config.js')
   }, config);
 
   if (cmdArgs.browsers) {
@@ -71,11 +71,6 @@ gulp.task('test', (done) => {
 
 gulp.task('tdd', () => {
   const server = buildKarmaServer({ singleRun: false });
-  server.start();
-});
-
-gulp.task('tdd-fast', () => {
-  const server = buildKarmaServer({ singleRun: false }, 'karma-fast.config.js');
   server.start();
 });
 
