@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 
+const _ = require('lodash');
 const fs = require('fs');
+const path = require('path');
 const rimraf = require('rimraf');
+
 const webpack = require('webpack');
+const KarmaServer = require('karma').Server;
 
 rimraf.sync('./client/build-test');
 
-const spawn = require('child_process').spawn;
-
-const children = [];
 const compiler = webpack(require('./webpack-test-fast.config'));
 
 process.stdout.write('Starting webpack');
@@ -32,18 +33,15 @@ const watcher = compiler.watch({
     colors: true
   }));
 
-  // TODO use karma api
-  children.push(spawn('./node_modules/karma/bin/karma',
-    ['start', 'client/karma-fast.config.js'],
-    { stdio: 'inherit' }));
+  const config = _.extend({}, {
+    configFile: path.join(__dirname, 'karma-fast.config.js')
+  }, { singleRun: false });
+  const server = new KarmaServer(config);
+  server.start();
 });
 
 ['SIGINT', 'SIGTERM'].forEach((signal) => {
   process.on(signal, () => {
     watcher.close();
-
-    children.forEach((child) => {
-      child.kill(signal);
-    });
   });
 });
