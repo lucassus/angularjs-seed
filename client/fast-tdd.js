@@ -2,48 +2,45 @@
 
 const fs = require('fs');
 const rimraf = require('rimraf');
+const webpack = require('webpack');
 
 rimraf.sync('./client/build-test');
 
 const spawn = require('child_process').spawn;
 
-function spawnWebpack() {
-  return spawn('./node_modules/webpack/bin/webpack.js',
-    ['--config', 'client/webpack-test-fast.config.js', '--watch'],
-    { stdio: 'inherit' });
-}
-
-function spawnKarma() {
-  return spawn('./node_modules/karma/bin/karma',
-    ['start', 'client/karma-fast.config.js'],
-    { stdio: 'inherit' });
-}
-
-function webpackReady() {
-  return fs.existsSync('./client/build-test/vendor.js')
-    && fs.existsSync('./client/build-test/specs.js');
-}
-
 const children = [];
+const compiler = webpack(require('./webpack-test-fast.config'));
+
 process.stdout.write('Starting webpack');
-children.push(spawnWebpack());
-
 const timeout = setInterval(() => {
-  if (webpackReady()) {
-    clearInterval(timeout);
-
-    process.stdout.write('\n');
-    process.stdout.write('Starting karma...\n');
-
-    children.push(spawnKarma());
-  } else {
-    process.stdout.write('.');
-  }
+  process.stdout.write('.');
 }, 500);
+
+const watcher = compiler.watch({
+  aggregateTimeout: 300
+}, function(err, stats) {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  clearInterval(timeout);
+
+  process.stdout.write('\n');
+  console.log(stats.toString({
+    chunks: false,
+    colors: true
+  }));
+
+  // TODO use karma api
+  children.push(spawn('./node_modules/karma/bin/karma',
+    ['start', 'client/karma-fast.config.js'],
+    { stdio: 'inherit' }));
+});
 
 ['SIGINT', 'SIGTERM'].forEach((signal) => {
   process.on(signal, () => {
-    clearInterval(timeout);
+    watcher.close();
 
     children.forEach((child) => {
       child.kill(signal);
