@@ -28,7 +28,21 @@ module.exports = function(config) {
     },
 
 
-    reporters: ['dots'],
+    reporters: ['dots', 'coverage'],
+
+
+    coverageReporter: {
+      dir : '../artifacts/client/coverage',
+      subdir: (browser) => {
+        return browser.toLowerCase().split(/[ /-]/)[0];
+      },
+      reporters: [
+        { type: 'html' },
+        { type: 'lcov', file: 'lcov.info' },
+        { type: 'text', file: 'report.txt' },
+        { type: 'text-summary' }
+      ]
+    },
 
 
     // web server port

@@ -55,7 +55,7 @@ module.exports = {
       }, {
         loader: 'babel',
         query: {
-          extends: path.join(__dirname, '.babelrc')
+          extends: path.join(__dirname, '.babelrc.karma')
         }
       }])
     }, {
