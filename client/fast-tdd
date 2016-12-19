@@ -1,8 +1,0 @@
-#!/bin/bash
-
-rm -rf tmp
-./node_modules/webpack/bin/webpack.js --config client/webpack-test-fast.config.js
-
-./node_modules/concurrently/src/main.js --raw \
-  "./node_modules/karma/bin/karma start client/karma-fast.config.js" \
-  "./node_modules/webpack/bin/webpack.js --config client/webpack-test-fast.config.js --watch"
