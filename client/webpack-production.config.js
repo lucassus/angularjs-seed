@@ -41,7 +41,7 @@ module.exports = {
       logo: './client/src/images/logo.png'
     }),
     new ProgressBarPlugin({
-      format: ':msg [:bar] :percent'
+      format: 'Webpack :msg [:bar] :percent'
     }),
     new webpack.ProvidePlugin({
       'window.$': 'jquery',

@@ -1,6 +1,7 @@
-const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const webpack = require('webpack');
+const combineLoaders = require('webpack-combine-loaders');
 
 const CHUNK_FILENAME = '[name].js';
 
@@ -39,7 +40,10 @@ module.exports = {
       name: 'vendor',
       fileName: CHUNK_FILENAME
     }),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new ProgressBarPlugin({
+      format: 'Webpack :msg [:bar] :percent'
+    })
   ],
 
   module: {
