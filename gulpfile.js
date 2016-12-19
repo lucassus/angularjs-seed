@@ -78,7 +78,7 @@ gulp.task('server:test', (done) => {
   const istanbul = require('gulp-istanbul');
   const mocha = require('gulp-mocha');
 
-  gulp.src(['server/**/!(*.spec).js'])
+  gulp.src(['server/**/!(*.spec).js', '!server/app.js'])
     .pipe(istanbul({ includeUntested: true }))
     .pipe(istanbul.hookRequire())
     .on('finish', () => {
