@@ -1,5 +1,4 @@
 const combineLoaders = require('webpack-combine-loaders');
-const path = require('path');
 const webpack = require('webpack');
 
 process.env.BABEL_ENV = 'test';
@@ -42,11 +41,11 @@ module.exports = function({ singleRun }) {
         test: /\.html$/,
         loader: 'html'
       }, {
-        test: /sinon\.js$/,
-        loader: 'imports?define=>false,require=>false'
-      }, {
         test: /\.(scss|jpg|svg)$/,
         loader: 'null'
+      }, {
+        test: /sinon\.js$/,
+        loader: 'imports?define=>false,require=>false'
       }]
     },
 
