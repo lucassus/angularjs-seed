@@ -3,7 +3,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const webpack = require('webpack');
 const combineLoaders = require('webpack-combine-loaders');
 
-const CHUNK_FILENAME = '[name].js';
+process.env.BABEL_ENV = 'test';
 
 module.exports = {
   entry: {
@@ -17,6 +17,7 @@ module.exports = {
       'angular-loading-bar',
       'angular-toastr',
       'angular-ui-router',
+      'angular-breadcrumb',
 
       'angular-mocks',
       'chai',
@@ -27,8 +28,7 @@ module.exports = {
 
   output: {
     path: path.resolve('./client/build-test'),
-    filename: CHUNK_FILENAME,
-    chunkFilename: CHUNK_FILENAME
+    filename: '[name].js'
   },
 
   plugins: [
@@ -37,8 +37,7 @@ module.exports = {
       'window.jQuery': 'jquery'
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      fileName: CHUNK_FILENAME
+      name: 'vendor'
     }),
     new webpack.NoErrorsPlugin(),
     new ProgressBarPlugin({
@@ -53,10 +52,7 @@ module.exports = {
       loader: combineLoaders([{
         loader: 'ng-annotate'
       }, {
-        loader: 'babel',
-        query: {
-          extends: path.join(__dirname, '.babelrc')
-        }
+        loader: 'babel'
       }])
     }, {
       test: /\.json$/,
@@ -65,14 +61,11 @@ module.exports = {
       test: /\.html$/,
       loader: 'html'
     }, {
+      test: /\.(scss|jpg|svg)$/,
+      loader: 'null'
+    }, {
       test: /sinon\.js$/,
       loader: 'imports?define=>false,require=>false'
-    }, {
-      test: /\.scss$/,
-      loader: 'null'
-    }, {
-      test: /\.jpg$/,
-      loader: 'null'
     }]
   },
 

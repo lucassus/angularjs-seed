@@ -7,8 +7,7 @@ const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
 
-const BUILD_DIRECTORY = 'client/build';
-const CHUNK_FILENAME = '[name].[hash].js';
+const BUILD_DIRECTORY = './client/build';
 
 module.exports = {
   entry: {
@@ -21,15 +20,15 @@ module.exports = {
       'angular-resource',
       'angular-loading-bar',
       'angular-toastr',
-      'angular-ui-router'
+      'angular-ui-router',
+      'angular-breadcrumb'
     ],
     app: './client/src/app.js'
   },
 
   output: {
     path: path.resolve(BUILD_DIRECTORY),
-    filename: CHUNK_FILENAME,
-    chunkFilename: CHUNK_FILENAME
+    filename: '[name].[hash].js'
   },
 
   plugins: [
@@ -53,8 +52,7 @@ module.exports = {
       inject: true
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      fileName: CHUNK_FILENAME
+      name: 'vendor'
     }),
     new ExtractTextPlugin('style.[hash].css'),
     new webpack.optimize.DedupePlugin(),
@@ -76,10 +74,7 @@ module.exports = {
       loader: combineLoaders([{
         loader: 'ng-annotate'
       }, {
-        loader: 'babel',
-        query: {
-          extends: path.join(__dirname, '.babelrc')
-        }
+        loader: 'babel'
       }])
     }, {
       test: /\.html$/,

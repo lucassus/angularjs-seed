@@ -1,6 +1,7 @@
 const combineLoaders = require('webpack-combine-loaders');
-const path = require('path');
 const webpack = require('webpack');
+
+process.env.BABEL_ENV = 'test';
 
 module.exports = function({ singleRun }) {
   const preLoaders = [];
@@ -31,10 +32,7 @@ module.exports = function({ singleRun }) {
         loader: combineLoaders([{
           loader: 'ng-annotate'
         }, {
-          loader: 'babel',
-          query: {
-            extends: path.join(__dirname, '.babelrc.karma')
-          }
+          loader: 'babel'
         }])
       }, {
         test: /\.json$/,
@@ -43,11 +41,11 @@ module.exports = function({ singleRun }) {
         test: /\.html$/,
         loader: 'html'
       }, {
-        test: /sinon\.js$/,
-        loader: 'imports?define=>false,require=>false'
-      }, {
         test: /\.(scss|jpg|svg)$/,
         loader: 'null'
+      }, {
+        test: /sinon\.js$/,
+        loader: 'imports?define=>false,require=>false'
       }]
     },
 
