@@ -25,16 +25,15 @@ describe(`module: ${appContactsModule}`, () => {
         const $stateParams = { id: 3 };
 
         // When
-        $resolve.resolve(state.resolve, { $stateParams })
-          .then(({ contact }) => {
-            expect(Contact.get.calledWith({ id: 3 })).to.be.true;
+        $resolve.resolve(state.resolve, { $stateParams }).then(({ contact }) => {
+          expect(Contact.get.calledWith({ id: 3 })).to.be.true;
 
-            expect(contact).to.be.instanceOf(Contact);
-            expect(contact).to.have.property('id', 3);
-            expect(contact).to.have.property('name', 'baz');
+          expect(contact).to.be.instanceOf(Contact);
+          expect(contact).to.have.property('id', 3);
+          expect(contact).to.have.property('name', 'baz');
 
-            done();
-          });
+          done();
+        });
 
         $rootScope.$digest();
       });

@@ -31,21 +31,20 @@ describe(`module: ${appContactsModule}`, () => {
         sinon.stub(Contact, 'query').returns({ $promise });
 
         // When
-        $resolve.resolve(state.resolve)
-          .then(({ contacts }) => {
-            expect(contacts).to.be.an('array');
-            expect(contacts).to.have.length(2);
+        $resolve.resolve(state.resolve).then(({ contacts }) => {
+          expect(contacts).to.be.an('array');
+          expect(contacts).to.have.length(2);
 
-            expect(contacts[0]).to.have.property('id', 10);
-            expect(contacts[0]).to.have.property('firstName', 'Anakin');
-            expect(contacts[0]).to.be.instanceOf(Contact);
+          expect(contacts[0]).to.be.instanceOf(Contact);
+          expect(contacts[0]).to.have.property('id', 10);
+          expect(contacts[0]).to.have.property('firstName', 'Anakin');
 
-            expect(contacts[1]).to.have.property('id', 11);
-            expect(contacts[1]).to.have.property('firstName', 'Luke');
-            expect(contacts[1]).to.be.instanceOf(Contact);
+          expect(contacts[1]).to.be.instanceOf(Contact);
+          expect(contacts[1]).to.have.property('id', 11);
+          expect(contacts[1]).to.have.property('firstName', 'Luke');
 
-            done();
-          });
+          done();
+        });
 
         $rootScope.$digest();
       });
