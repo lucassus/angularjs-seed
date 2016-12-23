@@ -7,7 +7,7 @@ describe(`module: ${appContactsModule}`, () => {
     angular.mock.module(appContactsModule);
   });
 
-  describe('address controller', () => {
+  xdescribe('address controller', () => {
 
     let ctrl;
 

@@ -1,4 +1,6 @@
-export default class {
+import template from './new.component.html';
+
+class Controller {
 
   constructor($state, toastr, Contact) {
     'ngInject';
@@ -21,4 +23,9 @@ export default class {
     });
   }
 
+}
+
+export default {
+  controller: Controller,
+  template
 }

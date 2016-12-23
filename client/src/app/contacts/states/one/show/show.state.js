@@ -1,19 +1,18 @@
-import controller from './show.controller';
-import template from './show.state.html';
+import contactsShowComponent from './show.component';
 
-export default function($stateProvider) {
+export default function($compileProvider, $stateProvider) {
   'ngInject';
+
+  $compileProvider.component('contactsShow', contactsShowComponent);
 
   $stateProvider.state('contacts.one.show', {
     url: '',
 
-    template,
-    controller,
-    controllerAs: 'ctrl',
+    component: 'contactsShow',
 
     ncyBreadcrumb: {
       parent: 'contacts.list',
-      label: '{{ctrl.contact.fullName}}'
+      label: '{{$resolve.contact.fullName}}'
     }
   });
 

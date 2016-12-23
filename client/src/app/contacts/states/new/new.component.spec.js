@@ -10,10 +10,10 @@ describe(`module: ${appContactsModule}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller, $state, toastr) => {
-      const Controller = $state.get('contacts.new').controller;
+    beforeEach(inject(($componentController, $state, toastr) => {
+      const componentName = $state.get('contacts.new').component;
 
-      ctrl = $controller(Controller, {
+      ctrl = $componentController(componentName, {
         $state: { go: sinon.stub() },
         toastr: sinon.stub(toastr)
       });

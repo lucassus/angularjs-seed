@@ -2,7 +2,7 @@
   <h2>Contacts list</h2>
 </div>
 
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover" ng-if="$ctrl.contacts.length > 0">
   <thead>
   <tr>
     <th>#</th>
@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-  <tr ng-repeat="contact in ctrl.contacts">
+  <tr ng-repeat="contact in $ctrl.contacts">
     <td><a ui-sref="contacts.one.show({ id: contact.id })" ng-bind="contact.id"></a></td>
     <td>
       <app-favourite-button contact="contact"></app-favourite-button>

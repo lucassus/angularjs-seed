@@ -1,18 +1,17 @@
-import controller from './edit.controller';
-import template from './edit.state.html';
+import contactsEditComponent from './edit.component';
 
-export default function($stateProvider) {
+export default function($compileProvider, $stateProvider) {
   'ngInject';
+
+  $compileProvider.component('contactsEdit', contactsEditComponent);
 
   $stateProvider.state('contacts.one.edit', {
     url: '/edit',
 
-    template,
-    controller,
-    controllerAs: 'ctrl',
+    component: 'contactsEdit',
 
     ncyBreadcrumb: {
-      parent: 'contacts.one.show({ id: ctrl.contact.id })',
+      parent: 'contacts.one.show({ id: $resolve.contact.id })',
       label: 'Edit'
     }
   });

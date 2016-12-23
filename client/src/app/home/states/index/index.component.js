@@ -1,4 +1,6 @@
-export default class {
+import template from './index.component.html';
+
+class Controller {
 
   constructor(alert) {
     'ngInject';
@@ -11,4 +13,9 @@ export default class {
     this.alert(this.message);
   }
 
+}
+
+export default {
+  controller: Controller,
+  template
 }

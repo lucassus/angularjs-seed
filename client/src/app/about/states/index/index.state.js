@@ -1,11 +1,13 @@
-import template from './index.state.html';
+import indexComponent from './index.component';
 
-export default function($stateProvider) {
+export default function($compileProvider, $stateProvider) {
   'ngInject';
+
+  $compileProvider.component('aboutIndex', indexComponent);
 
   $stateProvider.state('about', {
     url: '/about',
-    template
+    component: 'aboutIndex'
   });
 
 }

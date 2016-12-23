@@ -8,14 +8,14 @@ describe(`module: ${appHomeModule}`, () => {
     angular.mock.module(appHomeModule);
   });
 
-  describe('home controller', () => {
+  describe('`index` component', () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller, $state) => {
-      const Controller = $state.get('home').controller;
+    beforeEach(inject(($componentController, $state) => {
+      const componentName = $state.get('home').component;
 
-      ctrl = $controller(Controller, {
+      ctrl = $componentController(componentName, {
         alert: sinon.stub()
       });
     }));

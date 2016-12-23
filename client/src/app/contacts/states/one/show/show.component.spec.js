@@ -6,19 +6,26 @@ describe(`module: ${appContactsModule}`, () => {
 
   beforeEach(angular.mock.module(appContactsModule));
 
+  // TODO rename specs
   describe('show controller', () => {
 
     let ctrl;
 
-    beforeEach(inject(($controller, $state, toastr, Contact) => {
-      const Controller = $state.get('contacts.one.show').controller;
+    beforeEach(inject(($componentController, $state, toastr, Contact) => {
+      const componentName = $state.get('contacts.one.show').component;
 
-      ctrl = $controller(Controller, {
+      const contact = new Contact({
+        id: 2,
+        firstName: 'Anakin',
+        lastName: 'Skywalker'
+      });
+
+      ctrl = $componentController(componentName, {
         $state: { go: sinon.stub() },
         toastr: sinon.stub(toastr),
-        confirm: sinon.stub().returns(true),
-
-        contact: new Contact({ id: 2, firstName: 'Anakin', lastName: 'Skywalker' })
+        confirm: sinon.stub().returns(true)
+      }, {
+        contact
       });
     }));
 

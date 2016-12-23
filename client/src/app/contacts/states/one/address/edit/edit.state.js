@@ -8,7 +8,7 @@ export default function($stateProvider) {
     template,
 
     ncyBreadcrumb: {
-      parent: 'contacts.one.address.show({ id: ctrl.contact.id })',
+      parent: 'contacts.one.address.show({ id: $resolve.contact.id })',
       label: 'Edit'
     }
   });

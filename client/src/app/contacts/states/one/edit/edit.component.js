@@ -1,12 +1,12 @@
-export default class {
+import template from './edit.component.html';
 
-  constructor($state, toastr, contact) {
+class Controller {
+
+  constructor($state, toastr) {
     'ngInject';
 
     this.$state = $state;
     this.toastr = toastr;
-
-    this.contact = contact;
   }
 
   update(contact) {
@@ -21,4 +21,12 @@ export default class {
     });
   }
 
+}
+
+export default {
+  bindings: {
+    contact: '<'
+  },
+  controller: Controller,
+  template
 }
