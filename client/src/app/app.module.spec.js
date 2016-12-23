@@ -2,7 +2,7 @@ import appModule from './app.module';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-describe(`module: ${appModule}`, () => {
+describe(`module ${appModule}`, () => {
 
   beforeEach(() => {
     angular.mock.module(appModule);

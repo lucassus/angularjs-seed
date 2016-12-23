@@ -13,7 +13,7 @@ class Controller {
   delete() {
     const message = `Do you rally want to delete contact ${this.contact.fullName}?`;
 
-    if (this.confirm(message)) {
+    if (this.confirm.show(message)) {
       this.contact.$delete().then(() => {
         this.toastr.success('Contact deleted');
         return this.$state.go('contacts.list');
@@ -31,4 +31,4 @@ export default {
   },
   controller: Controller,
   template
-}
+};

@@ -2,22 +2,26 @@ import appHomeModule from '../../home.module';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-describe(`module: ${appHomeModule}`, () => {
+describe(`module ${appHomeModule}`, () => {
 
   beforeEach(() => {
     angular.mock.module(appHomeModule);
   });
 
-  describe('`index` component', () => {
+  describe('state `home` component', () => {
 
     let ctrl;
 
-    beforeEach(inject(($componentController, $state) => {
-      const componentName = $state.get('home').component;
+    beforeEach(inject(($componentController, $state, alert) => {
+      const state = $state.get('home');
 
-      ctrl = $componentController(componentName, {
-        alert: sinon.stub()
+      sinon.stub(alert, 'show');
+
+      ctrl = $componentController(state.component, {
+        alert
       });
+
+      ctrl.$onInit();
     }));
 
     it('has a message', () => {
@@ -28,7 +32,7 @@ describe(`module: ${appHomeModule}`, () => {
 
       it('alerts a message', () => {
         ctrl.sayHello();
-        expect(ctrl.alert.calledWith('Hello World!')).to.be.true;
+        expect(ctrl.alert.show.calledWith('Hello World!')).to.be.true;
       });
 
     });

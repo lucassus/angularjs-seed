@@ -3,12 +3,12 @@ import EditComponent from './edit.component';
 export default function($compileProvider, $stateProvider) {
   'ngInject';
 
-  $compileProvider.component('contactsEdit', EditComponent);
+  $compileProvider.component('appContactsEdit', EditComponent);
 
   $stateProvider.state('contacts.one.edit', {
     url: '/edit',
 
-    component: 'contactsEdit',
+    component: 'appContactsEdit',
 
     ncyBreadcrumb: {
       parent: 'contacts.one.show({ id: $resolve.contact.id })',

@@ -4,13 +4,15 @@ class Controller {
 
   constructor(alert) {
     'ngInject';
-
     this.alert = alert;
+  }
+
+  $onInit() {
     this.message = 'Hello World!';
   }
 
   sayHello() {
-    this.alert(this.message);
+    this.alert.show(this.message);
   }
 
 }
@@ -18,4 +20,4 @@ class Controller {
 export default {
   controller: Controller,
   template
-}
+};

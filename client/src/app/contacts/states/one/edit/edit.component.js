@@ -29,4 +29,4 @@ export default {
   },
   controller: Controller,
   template
-}
+};

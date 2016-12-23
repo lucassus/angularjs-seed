@@ -28,4 +28,4 @@ class Controller {
 export default {
   controller: Controller,
   template
-}
+};

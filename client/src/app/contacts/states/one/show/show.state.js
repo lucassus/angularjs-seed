@@ -3,12 +3,12 @@ import ShowComponent from './show.component';
 export default function($compileProvider, $stateProvider) {
   'ngInject';
 
-  $compileProvider.component('contactsShow', ShowComponent);
+  $compileProvider.component('appContactsShow', ShowComponent);
 
   $stateProvider.state('contacts.one.show', {
     url: '',
 
-    component: 'contactsShow',
+    component: 'appContactsShow',
 
     ncyBreadcrumb: {
       parent: 'contacts.list',

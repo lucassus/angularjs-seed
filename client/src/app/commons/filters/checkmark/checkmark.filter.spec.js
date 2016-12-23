@@ -1,7 +1,7 @@
 import appCommonsModule from '../../commons.module';
 import { expect } from 'chai';
 
-describe(`module: ${appCommonsModule}`, () => {
+describe(`module ${appCommonsModule}`, () => {
 
   beforeEach(() => {
     angular.mock.module(appCommonsModule);

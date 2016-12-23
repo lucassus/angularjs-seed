@@ -4,7 +4,7 @@ import { listResolver } from '../../services/contact/contact.resolvers';
 export default function($compileProvider, $stateProvider) {
   'ngInject';
 
-  $compileProvider.component('contactsList', ListComponent);
+  $compileProvider.component('appContactsList', ListComponent);
 
   $stateProvider.state('contacts.list', {
     url: '',
@@ -12,7 +12,7 @@ export default function($compileProvider, $stateProvider) {
     resolve: {
       contacts: listResolver
     },
-    component: 'contactsList',
+    component: 'appContactsList',
 
     ncyBreadcrumb: {
       label: 'Contacts'

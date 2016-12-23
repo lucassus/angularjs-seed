@@ -2,13 +2,13 @@ import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-describe(`module: ${appContactsModule}`, () => {
+describe(`module ${appContactsModule}`, () => {
 
   beforeEach(() => {
     angular.mock.module(appContactsModule);
   });
 
-  describe('component: favouriteButton', () => {
+  describe('component `appFavouriteButton`', () => {
 
     let element, scope;
 
@@ -86,7 +86,7 @@ describe(`module: ${appContactsModule}`, () => {
 
   });
 
-  describe('controller: favouriteButton', () => {
+  describe('controller `appFavouriteButton`', () => {
 
     let ctrl;
 

@@ -3,11 +3,11 @@ import IndexComponent from './index.component';
 export default function($compileProvider, $stateProvider) {
   'ngInject';
 
-  $compileProvider.component('homeIndex', IndexComponent);
+  $compileProvider.component('appHomeIndex', IndexComponent);
 
   $stateProvider.state('home', {
     url: '/',
-    component: 'homeIndex'
+    component: 'appHomeIndex'
   });
 
 }

@@ -1,13 +1,13 @@
 import appContactsModule from '../../../../contacts.module';
 import { expect } from 'chai';
 
-describe(`module: ${appContactsModule}`, () => {
+describe(`module ${appContactsModule}`, () => {
 
   beforeEach(() => {
     angular.mock.module(appContactsModule);
   });
 
-  describe('contacts.one.address.show', () => {
+  describe('state `contacts.one.address.show`', () => {
 
     let state;
 

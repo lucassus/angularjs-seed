@@ -2,17 +2,16 @@ import appContactsModule from '../../../contacts.module';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-describe(`module: ${appContactsModule}`, () => {
+describe(`module ${appContactsModule}`, () => {
 
   beforeEach(angular.mock.module(appContactsModule));
 
-  // TODO rename specs
-  describe('show controller', () => {
+  describe('state `contacts.one.show` component', () => {
 
     let ctrl;
 
-    beforeEach(inject(($componentController, $state, toastr, Contact) => {
-      const componentName = $state.get('contacts.one.show').component;
+    beforeEach(inject(($componentController, $state, Contact, confirm, toastr) => {
+      const state = $state.get('contacts.one.show');
 
       const contact = new Contact({
         id: 2,
@@ -20,10 +19,13 @@ describe(`module: ${appContactsModule}`, () => {
         lastName: 'Skywalker'
       });
 
-      ctrl = $componentController(componentName, {
-        $state: { go: sinon.stub() },
-        toastr: sinon.stub(toastr),
-        confirm: sinon.stub().returns(true)
+      sinon.stub($state, 'go');
+      sinon.stub(confirm, 'show').returns(true);
+
+      ctrl = $componentController(state.component, {
+        $state,
+        confirm,
+        toastr: sinon.stub(toastr)
       }, {
         contact
       });
@@ -43,13 +45,13 @@ describe(`module: ${appContactsModule}`, () => {
 
         // Then
         const message = 'Do you rally want to delete contact Anakin Skywalker?';
-        expect(ctrl.confirm.calledWith(message)).to.be.true;
+        expect(ctrl.confirm.show.calledWith(message)).to.be.true;
       });
 
       describe('when confirmed', () => {
 
         beforeEach(() => {
-          ctrl.confirm.returns(true);
+          ctrl.confirm.show.returns(true);
         });
 
         describe('on success', () => {
@@ -102,7 +104,7 @@ describe(`module: ${appContactsModule}`, () => {
       describe('when not confirmed', () => {
 
         beforeEach(() => {
-          ctrl.confirm.returns(false);
+          ctrl.confirm.show.returns(false);
           ctrl.delete();
         });
 
