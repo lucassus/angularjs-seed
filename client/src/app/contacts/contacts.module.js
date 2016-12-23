@@ -1,4 +1,4 @@
-import { contactFormComponent, favouriteButtonComponent } from './components';
+import { ContactFormComponent, FavouriteButtonComponent } from './components';
 import angularMessages from 'angular-messages';
 import angularResource from 'angular-resource';
 import appCommonsModule from '../commons/commons.module';
@@ -15,8 +15,8 @@ export default angular.module('app.contacts', [
 ])
   .factory('Contact', contactFactory)
 
-  .component('appContactForm', contactFormComponent)
-  .component('appFavouriteButton', favouriteButtonComponent)
+  .component('appContactForm', ContactFormComponent)
+  .component('appFavouriteButton', FavouriteButtonComponent)
 
   .config(states)
 

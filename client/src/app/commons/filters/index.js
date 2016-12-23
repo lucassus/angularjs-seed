@@ -1,5 +1,5 @@
-import appCheckmarkFilter from './checkmark/checkmark.filter';
+import checkmarkFilter from './checkmark/checkmark.filter';
 
 export {
-  appCheckmarkFilter
+  checkmarkFilter
 };

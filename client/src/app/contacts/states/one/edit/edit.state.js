@@ -1,9 +1,9 @@
-import contactsEditComponent from './edit.component';
+import EditComponent from './edit.component';
 
 export default function($compileProvider, $stateProvider) {
   'ngInject';
 
-  $compileProvider.component('contactsEdit', contactsEditComponent);
+  $compileProvider.component('contactsEdit', EditComponent);
 
   $stateProvider.state('contacts.one.edit', {
     url: '/edit',

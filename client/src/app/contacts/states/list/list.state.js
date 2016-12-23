@@ -1,10 +1,10 @@
-import listComponent from './list.component';
+import ListComponent from './list.component';
 import { listResolver } from '../../services/contact/contact.resolvers';
 
 export default function($compileProvider, $stateProvider) {
   'ngInject';
 
-  $compileProvider.component('contactsList', listComponent);
+  $compileProvider.component('contactsList', ListComponent);
 
   $stateProvider.state('contacts.list', {
     url: '',

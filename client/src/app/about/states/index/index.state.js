@@ -1,9 +1,9 @@
-import indexComponent from './index.component';
+import IndexComponent from './index.component';
 
 export default function($compileProvider, $stateProvider) {
   'ngInject';
 
-  $compileProvider.component('aboutIndex', indexComponent);
+  $compileProvider.component('aboutIndex', IndexComponent);
 
   $stateProvider.state('about', {
     url: '/about',

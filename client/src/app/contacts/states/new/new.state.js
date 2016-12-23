@@ -1,9 +1,9 @@
-import contactsNewComponent from './new.component';
+import NewComponent from './new.component';
 
 export default function($compileProvider, $stateProvider) {
   'ngInject';
 
-  $compileProvider.component('contactsNew', contactsNewComponent)
+  $compileProvider.component('contactsNew', NewComponent);
 
   $stateProvider.state('contacts.new', {
     url: '/new',
