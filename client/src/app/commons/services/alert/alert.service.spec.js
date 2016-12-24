@@ -13,7 +13,7 @@ describe(`module ${appCommonsModule}`, () => {
   describe('service: alert', () => {
 
     it('displays the message', inject(($window, alert) => {
-      alert('The message');
+      alert.show('The message');
       expect($window.alert.calledWith('The message')).to.be.true;
     }));
 

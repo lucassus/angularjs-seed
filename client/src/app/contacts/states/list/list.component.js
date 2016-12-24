@@ -1,6 +1,6 @@
 import template from './list.component.html';
 
-export default {
+export const ListComponent = {
   bindings: {
     contacts: '<'
   },

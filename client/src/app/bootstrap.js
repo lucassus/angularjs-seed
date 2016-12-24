@@ -1,6 +1,6 @@
 import appModule from './app.module';
 
-export default function($document) {
+export function bootstrap($document) {
   'ngInject';
 
   $document.ready(() => {

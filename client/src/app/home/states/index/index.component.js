@@ -17,7 +17,7 @@ class Controller {
 
 }
 
-export default {
+export const IndexComponent = {
   controller: Controller,
   template
 };

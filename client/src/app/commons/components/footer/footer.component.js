@@ -1,5 +1,5 @@
 import template from './footer.component.html';
 
-export default {
+export const FooterComponent = {
   template
 };

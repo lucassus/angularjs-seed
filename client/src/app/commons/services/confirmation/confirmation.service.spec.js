@@ -10,10 +10,10 @@ describe(`module ${appCommonsModule}`, () => {
     });
   });
 
-  describe('service: confirm', () => {
+  describe('service: confirmation', () => {
 
-    it('displays a confirmation', inject(($window, confirm) => {
-      confirm('The message');
+    it('displays a confirmation', inject(($window, confirmation) => {
+      confirmation.show('The message');
       expect($window.confirm.calledWith('The message')).to.be.true;
     }));
 

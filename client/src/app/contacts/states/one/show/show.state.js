@@ -1,6 +1,6 @@
-import ShowComponent from './show.component';
+import { ShowComponent } from './show.component';
 
-export default function($compileProvider, $stateProvider) {
+export function oneShowState($compileProvider, $stateProvider) {
   'ngInject';
 
   $compileProvider.component('appContactsShow', ShowComponent);

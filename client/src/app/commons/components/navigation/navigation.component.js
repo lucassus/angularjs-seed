@@ -1,5 +1,5 @@
 import template from './navigation.component.html';
 
-export default {
+export const NavigationComponent = {
   template
 };

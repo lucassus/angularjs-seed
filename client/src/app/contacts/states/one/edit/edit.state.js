@@ -1,6 +1,6 @@
-import EditComponent from './edit.component';
+import { EditComponent } from './edit.component';
 
-export default function($compileProvider, $stateProvider) {
+export function oneEditState($compileProvider, $stateProvider) {
   'ngInject';
 
   $compileProvider.component('appContactsEdit', EditComponent);

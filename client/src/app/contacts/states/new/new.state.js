@@ -1,6 +1,6 @@
-import NewComponent from './new.component';
+import { NewComponent } from './new.component';
 
-export default function($compileProvider, $stateProvider) {
+export function newState($compileProvider, $stateProvider) {
   'ngInject';
 
   $compileProvider.component('appContactsNew', NewComponent);

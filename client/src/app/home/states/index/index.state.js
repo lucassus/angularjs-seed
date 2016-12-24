@@ -1,6 +1,6 @@
-import IndexComponent from './index.component';
+import { IndexComponent } from './index.component';
 
-export default function($compileProvider, $stateProvider) {
+export function indexState($compileProvider, $stateProvider) {
   'ngInject';
 
   $compileProvider.component('appHomeIndex', IndexComponent);

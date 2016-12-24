@@ -1,5 +1,5 @@
-import FooterComponent from './footer/footer.component';
-import NavigationComponent from './navigation/navigation.component';
+import { FooterComponent } from './footer/footer.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 export {
   FooterComponent,

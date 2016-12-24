@@ -1,6 +1,6 @@
 import template from './address.component.html';
 
-export default {
+export const AddressComponent = {
   bindings: {
     contact: '<'
   },

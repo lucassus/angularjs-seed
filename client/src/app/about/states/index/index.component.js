@@ -1,5 +1,5 @@
 import template from './index.component.html';
 
-export default {
+export const IndexComponent = {
   template
 };

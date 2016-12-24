@@ -1,4 +1,4 @@
-import contactFactory from './contact/contact.factory';
+import { contactFactory } from './contact/contact.factory';
 
 export {
   contactFactory

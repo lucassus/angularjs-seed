@@ -1,4 +1,4 @@
-export class AlertService {
+export class ConfirmationService {
 
   constructor($window) {
     'ngInject';
@@ -6,7 +6,7 @@ export class AlertService {
   }
 
   show(message) {
-    return this.$window.alert(message);
+    return this.$window.confirm(message);
   }
 
 }

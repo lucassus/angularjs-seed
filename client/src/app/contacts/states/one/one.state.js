@@ -1,6 +1,6 @@
 import { oneResolver } from '../../services/contact/contact.resolvers';
 
-export default function($stateProvider) {
+export function oneState($stateProvider) {
   'ngInject';
 
   $stateProvider.state('contacts.one', {

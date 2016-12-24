@@ -1,4 +1,4 @@
-export default function($http, $parse, $q) {
+export function UniqueEmailDirective($http, $parse, $q) {
   'ngInject';
 
   function isTaken(id, email) {

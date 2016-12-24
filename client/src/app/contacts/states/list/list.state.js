@@ -1,7 +1,7 @@
-import ListComponent from './list.component';
+import { ListComponent } from './list.component';
 import { listResolver } from '../../services/contact/contact.resolvers';
 
-export default function($compileProvider, $stateProvider) {
+export function listState($compileProvider, $stateProvider) {
   'ngInject';
 
   $compileProvider.component('appContactsList', ListComponent);

@@ -1,4 +1,4 @@
-import bootstrap from './bootstrap';
+import { bootstrap } from './bootstrap';
 import { expect } from 'chai';
 import sinon from 'sinon';
 

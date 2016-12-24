@@ -1,6 +1,6 @@
 import { extend } from '../../../utils';
 
-export default function($resource) {
+export function contactFactory($resource) {
   'ngInject';
 
   function transformResponse(json) {

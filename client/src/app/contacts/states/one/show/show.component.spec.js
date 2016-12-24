@@ -10,7 +10,7 @@ describe(`module ${appContactsModule}`, () => {
 
     let ctrl;
 
-    beforeEach(inject(($componentController, $state, Contact, confirm, toastr) => {
+    beforeEach(inject(($componentController, $state, Contact, confirmation, toastr) => {
       const state = $state.get('contacts.one.show');
 
       const contact = new Contact({
@@ -20,11 +20,11 @@ describe(`module ${appContactsModule}`, () => {
       });
 
       sinon.stub($state, 'go');
-      sinon.stub(confirm, 'show').returns(true);
+      sinon.stub(confirmation, 'show').returns(true);
 
       ctrl = $componentController(state.component, {
         $state,
-        confirm,
+        confirmation,
         toastr: sinon.stub(toastr)
       }, {
         contact
@@ -45,13 +45,13 @@ describe(`module ${appContactsModule}`, () => {
 
         // Then
         const message = 'Do you rally want to delete contact Anakin Skywalker?';
-        expect(ctrl.confirm.show.calledWith(message)).to.be.true;
+        expect(ctrl.confirmation.show.calledWith(message)).to.be.true;
       });
 
       describe('when confirmed', () => {
 
         beforeEach(() => {
-          ctrl.confirm.show.returns(true);
+          ctrl.confirmation.show.returns(true);
         });
 
         describe('on success', () => {
@@ -104,7 +104,7 @@ describe(`module ${appContactsModule}`, () => {
       describe('when not confirmed', () => {
 
         beforeEach(() => {
-          ctrl.confirm.show.returns(false);
+          ctrl.confirmation.show.returns(false);
           ctrl.delete();
         });
 

@@ -1,6 +1,6 @@
 import template from './edit.statate.html';
 
-export default function($stateProvider) {
+export function oneAddressEditState($stateProvider) {
   'ngInject';
 
   $stateProvider.state('contacts.one.address.edit', {

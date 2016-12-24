@@ -23,7 +23,7 @@ class Controller {
 
 }
 
-export default {
+export const EditComponent = {
   bindings: {
     contact: '<'
   },

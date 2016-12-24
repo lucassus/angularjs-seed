@@ -25,7 +25,7 @@ class Controller {
 
 }
 
-export default {
+export const NewComponent = {
   controller: Controller,
   template
 };

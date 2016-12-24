@@ -1,6 +1,6 @@
-import AddressComponent from './address.component';
+import { AddressComponent } from './address.component';
 
-export default function($compileProvider, $stateProvider) {
+export function oneAddressState($compileProvider, $stateProvider) {
   'ngInject';
 
   $compileProvider.component('appContactsAddress', AddressComponent);
