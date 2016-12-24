@@ -11,9 +11,14 @@ describe(`module ${appModule}`, () => {
   describe('navigating to unknown url', () => {
 
     it('changes the state to `404`', inject(($location, $rootScope, $state) => {
+      // Given
+      expect($state.current.name).to.equal('');
+
+      // When
       $location.url('/unknown/url');
       $rootScope.$digest();
 
+      // Then
       expect($state.current.name).to.equal('404');
     }));
 

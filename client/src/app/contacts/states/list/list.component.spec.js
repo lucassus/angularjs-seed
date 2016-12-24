@@ -1,10 +1,10 @@
-import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
+import statesModule from '../states.module';
 
-describe(`module ${appContactsModule}`, () => {
+describe(`module ${statesModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(appContactsModule);
+    angular.mock.module(statesModule);
   });
 
   describe('state `contacts.list` component', () => {

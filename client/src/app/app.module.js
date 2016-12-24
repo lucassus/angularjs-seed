@@ -1,11 +1,11 @@
 import { anchorScroll, html5Mode, notFoundState, router } from './app.config';
+import aboutModule from './about/about.module';
 import angularAnimate from 'angular-animate';
 import angularLoadingBar from 'angular-loading-bar';
-import appAboutModule from './about/about.module';
-import appCommonsModule from './commons/commons.module';
-import appContactsModule from './contacts/contacts.module';
-import appHomeModule from './home/home.module';
 import buildSignature from '../../build_signature_loader!./build_signature.tpl';
+import commonsModule from './commons/commons.module';
+import contactsModule from './contacts/contacts.module';
+import homeModule from './home/home.module';
 import uiRouter from 'angular-ui-router';
 
 function stateErrorsHandler($log, $rootScope, $state) {
@@ -27,10 +27,10 @@ export default angular.module('app', [
   uiRouter,
   angularLoadingBar,
 
-  appCommonsModule,
-  appHomeModule,
-  appContactsModule,
-  appAboutModule
+  aboutModule,
+  commonsModule,
+  contactsModule,
+  homeModule
 ])
   .config(html5Mode)
   .config(router)

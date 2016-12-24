@@ -1,11 +1,11 @@
-import appCommonsModule from '../../commons.module';
 import { expect } from 'chai';
+import servicesModule from '../services.module';
 import sinon from 'sinon';
 
-describe(`module ${appCommonsModule}`, () => {
+describe(`module ${servicesModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(appCommonsModule, ($provide) => {
+    angular.mock.module(servicesModule, ($provide) => {
       $provide.value('$window', { confirm: sinon.stub() });
     });
   });

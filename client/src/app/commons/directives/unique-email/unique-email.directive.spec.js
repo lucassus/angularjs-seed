@@ -1,10 +1,10 @@
-import appCommonsModule from '../../commons.module';
+import directivesModule from '../directives.module';
 import { expect } from 'chai';
 
-describe(`module ${appCommonsModule}`, () => {
+describe(`module ${directivesModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(appCommonsModule);
+    angular.mock.module(directivesModule);
   });
 
   describe('directive: appUniqueEmail', () => {

@@ -1,6 +1,6 @@
-import { states } from './states';
-import uiRouter from 'angular-ui-router';
+import statesModule from './states/states.module';
 
-export default angular.module('app.about', [uiRouter])
-  .config(states)
+export default angular.module('app.about', [
+  statesModule
+])
   .name;
