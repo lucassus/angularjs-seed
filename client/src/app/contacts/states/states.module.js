@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import angularMessages from 'angular-messages';
 import commonsModule from '../../commons/commons.module';
 import contactsServicesModule from '../services/services.module';
@@ -19,25 +18,20 @@ export default angular.module('app.contacts.states', [
   commonsModule,
   contactsServicesModule
 ])
-  .config(($injector, $stateProvider) => {
+  .config(($stateProvider) => {
     $stateProvider
       .state('contacts', {
         abstract: true,
         url: '/contacts',
         template: '<div ui-view autoscroll="true"></div>'
       });
-
-    _.forEach([
-      listState,
-      newState,
-
-      oneState,
-      oneShowState,
-      oneEditState,
-
-      oneAddressState,
-      oneAddressShowState,
-      oneAddressEditState
-    ], $injector.invoke);
   })
+  .config(listState)
+  .config(newState)
+  .config(oneState)
+  .config(oneShowState)
+  .config(oneEditState)
+  .config(oneAddressState)
+  .config(oneAddressShowState)
+  .config(oneAddressEditState)
   .name;

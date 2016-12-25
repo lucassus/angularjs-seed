@@ -6,7 +6,5 @@ export default angular.module('app.home.states', [
   uiRouter,
   commonsModule
 ])
-  .config(($injector) => {
-    $injector.invoke(indexState);
-  })
+  .config(indexState)
   .name;
