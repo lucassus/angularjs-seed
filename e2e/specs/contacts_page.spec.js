@@ -10,7 +10,7 @@ class ListPage extends Page {
     this.addButton = element(by.partialButtonText('Add new contact'));
 
     this.table = new Table(element(by.css('table.table')),
-      by.repeater('contact in ctrl.contacts'));
+      by.repeater('contact in $ctrl.contacts'));
   }
 
   nthToggleFavouriteButton(n) {
