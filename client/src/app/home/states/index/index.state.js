@@ -1,13 +1,13 @@
-import controller from './index.controller';
-import template from './index.state.html';
+import { IndexComponent } from './index.component';
 
-export const name = 'home';
+export function indexState($compileProvider, $stateProvider) {
+  'ngInject';
 
-export default  {
-  name,
-  url: '/',
-  template,
+  $compileProvider.component('appHomeIndex', IndexComponent);
 
-  controller,
-  controllerAs: 'ctrl'
-};
+  $stateProvider.state('home', {
+    url: '/',
+    component: 'appHomeIndex'
+  });
+
+}

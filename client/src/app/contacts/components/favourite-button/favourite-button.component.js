@@ -20,7 +20,7 @@ class Controller {
 
 }
 
-export default {
+export const FavouriteButtonComponent = {
   template,
   bindings: {
     contact: '='

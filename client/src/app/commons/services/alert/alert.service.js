@@ -1,8 +1,12 @@
-export default function($window) {
-  'ngInject';
+export class AlertService {
 
-  return function(message) {
-    return $window.alert(message);
-  };
+  constructor($window) {
+    'ngInject';
+    this.$window = $window;
+  }
+
+  show(message) {
+    return this.$window.alert(message);
+  }
 
 }

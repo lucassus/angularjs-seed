@@ -1,17 +1,19 @@
-import controller from './new.controller';
-import template from './new.state.html';
+import { NewComponent } from './new.component';
 
-export const name = 'contacts.new';
+export function newState($compileProvider, $stateProvider) {
+  'ngInject';
 
-export default {
-  name,
-  url: '/new',
-  template,
-  controller,
-  controllerAs: 'ctrl',
+  $compileProvider.component('appContactsNew', NewComponent);
 
-  ncyBreadcrumb: {
-    parent: 'contacts.list',
-    label: 'Create contact'
-  }
-};
+  $stateProvider.state('contacts.new', {
+    url: '/new',
+
+    component: 'appContactsNew',
+
+    ncyBreadcrumb: {
+      parent: 'contacts.list',
+      label: 'Create contact'
+    }
+  });
+
+}

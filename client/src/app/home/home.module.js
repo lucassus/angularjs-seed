@@ -1,10 +1,6 @@
-import appCommonsModule from '../commons/commons.module';
-import states from './states/states.config';
-import uiRouter from 'angular-ui-router';
+import statesModule from './states/states.module';
 
 export default angular.module('app.home', [
-  uiRouter,
-  appCommonsModule
+  statesModule
 ])
-  .config(states)
   .name;

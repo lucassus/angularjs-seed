@@ -32,7 +32,7 @@ class Controller {
 
 }
 
-export default {
+export const ContactFormComponent = {
   template,
   bindings: {
     originalContact: '=contact',

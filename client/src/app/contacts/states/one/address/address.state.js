@@ -1,13 +1,14 @@
-import controller from './address.controller';
-import template from './address.template.html';
+import { AddressComponent } from './address.component';
 
-export const name = 'contacts.one.address';
+export function oneAddressState($compileProvider, $stateProvider) {
+  'ngInject';
 
-export default {
-  name,
-  url: '/address',
-  template,
-  abstract: true,
-  controller,
-  controllerAs: 'ctrl'
-};
+  $compileProvider.component('appContactsAddress', AddressComponent);
+
+  $stateProvider.state('contacts.one.address', {
+    url: '/address',
+    abstract: true,
+    component: 'appContactsAddress'
+  });
+
+}

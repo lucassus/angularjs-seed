@@ -1,10 +1,10 @@
-import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
+import servicesModule from '../services.module';
 
-describe(`module: ${appContactsModule}`, () => {
+describe(`module ${servicesModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(appContactsModule);
+    angular.mock.module(servicesModule);
   });
 
   describe('resource: Contact', () => {

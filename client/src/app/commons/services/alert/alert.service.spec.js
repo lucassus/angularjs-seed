@@ -1,11 +1,11 @@
-import appCommonsModule from '../../commons.module';
 import { expect } from 'chai';
+import servicesModule from '../services.module';
 import sinon from 'sinon';
 
-describe(`module: ${appCommonsModule}`, () => {
+describe(`module ${servicesModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(appCommonsModule, ($provide) => {
+    angular.mock.module(servicesModule, ($provide) => {
       $provide.value('$window', { alert: sinon.stub() });
     });
   });
@@ -13,7 +13,7 @@ describe(`module: ${appCommonsModule}`, () => {
   describe('service: alert', () => {
 
     it('displays the message', inject(($window, alert) => {
-      alert('The message');
+      alert.show('The message');
       expect($window.alert.calledWith('The message')).to.be.true;
     }));
 

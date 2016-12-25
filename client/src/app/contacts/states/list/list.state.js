@@ -1,20 +1,22 @@
-import controller from './list.controller';
+import { ListComponent } from './list.component';
 import { listResolver } from '../../services/contact/contact.resolvers';
-import template from './list.state.html';
 
-export const name = 'contacts.list';
+export function listState($compileProvider, $stateProvider) {
+  'ngInject';
 
-export default {
-  name,
-  url: '',
-  template,
-  resolve: {
-    contacts: listResolver
-  },
-  controller,
-  controllerAs: 'ctrl',
+  $compileProvider.component('appContactsList', ListComponent);
 
-  ncyBreadcrumb: {
-    label: 'Contacts'
-  }
-};
+  $stateProvider.state('contacts.list', {
+    url: '',
+
+    resolve: {
+      contacts: listResolver
+    },
+    component: 'appContactsList',
+
+    ncyBreadcrumb: {
+      label: 'Contacts'
+    }
+  });
+
+}

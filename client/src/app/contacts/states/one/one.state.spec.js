@@ -1,20 +1,19 @@
-import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
-import { name } from './one.state';
 import sinon from 'sinon';
+import statesModule from '../states.module';
 
-describe(`module: ${appContactsModule}`, () => {
+describe(`module ${statesModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(appContactsModule);
+    angular.mock.module(statesModule);
   });
 
-  describe(`state: ${name}`, () => {
+  describe('state `contacts.one`', () => {
 
     let state;
 
     beforeEach(inject(($state) => {
-      state = $state.get(name);
+      state = $state.get('contacts.one');
     }));
 
     it('resolves `contact`', (done) => {
@@ -26,16 +25,15 @@ describe(`module: ${appContactsModule}`, () => {
         const $stateParams = { id: 3 };
 
         // When
-        $resolve.resolve(state.resolve, { $stateParams })
-          .then(({ contact }) => {
-            expect(Contact.get.calledWith({ id: 3 })).to.be.true;
+        $resolve.resolve(state.resolve, { $stateParams }).then(({ contact }) => {
+          expect(Contact.get.calledWith({ id: 3 })).to.be.true;
 
-            expect(contact).to.be.instanceOf(Contact);
-            expect(contact).to.have.property('id', 3);
-            expect(contact).to.have.property('name', 'baz');
+          expect(contact).to.be.instanceOf(Contact);
+          expect(contact).to.have.property('id', 3);
+          expect(contact).to.have.property('name', 'baz');
 
-            done();
-          });
+          done();
+        });
 
         $rootScope.$digest();
       });

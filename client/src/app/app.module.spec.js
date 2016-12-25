@@ -2,7 +2,7 @@ import appModule from './app.module';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-describe(`module: ${appModule}`, () => {
+describe(`module ${appModule}`, () => {
 
   beforeEach(() => {
     angular.mock.module(appModule);
@@ -11,9 +11,14 @@ describe(`module: ${appModule}`, () => {
   describe('navigating to unknown url', () => {
 
     it('changes the state to `404`', inject(($location, $rootScope, $state) => {
+      // Given
+      expect($state.current.name).to.equal('');
+
+      // When
       $location.url('/unknown/url');
       $rootScope.$digest();
 
+      // Then
       expect($state.current.name).to.equal('404');
     }));
 

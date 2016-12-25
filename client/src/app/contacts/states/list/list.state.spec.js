@@ -1,20 +1,19 @@
-import appContactsModule from '../../contacts.module';
 import { expect } from 'chai';
-import { name } from './list.state';
 import sinon from 'sinon';
+import statesModule from '../states.module';
 
-describe(`module: ${appContactsModule}`, () => {
+describe(`module ${statesModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(appContactsModule);
+    angular.mock.module(statesModule);
   });
 
-  describe(`state: ${name}`, () => {
+  describe('state `contacts.list`', () => {
 
     let state;
 
     beforeEach(inject(($state) => {
-      state = $state.get(name);
+      state = $state.get('contacts.list');
     }));
 
     it('has valid url', inject(($state) => {
@@ -32,21 +31,20 @@ describe(`module: ${appContactsModule}`, () => {
         sinon.stub(Contact, 'query').returns({ $promise });
 
         // When
-        $resolve.resolve(state.resolve)
-          .then(({ contacts }) => {
-            expect(contacts).to.be.an('array');
-            expect(contacts).to.have.length(2);
+        $resolve.resolve(state.resolve).then(({ contacts }) => {
+          expect(contacts).to.be.an('array');
+          expect(contacts).to.have.length(2);
 
-            expect(contacts[0]).to.have.property('id', 10);
-            expect(contacts[0]).to.have.property('firstName', 'Anakin');
-            expect(contacts[0]).to.be.instanceOf(Contact);
+          expect(contacts[0]).to.be.instanceOf(Contact);
+          expect(contacts[0]).to.have.property('id', 10);
+          expect(contacts[0]).to.have.property('firstName', 'Anakin');
 
-            expect(contacts[1]).to.have.property('id', 11);
-            expect(contacts[1]).to.have.property('firstName', 'Luke');
-            expect(contacts[1]).to.be.instanceOf(Contact);
+          expect(contacts[1]).to.be.instanceOf(Contact);
+          expect(contacts[1]).to.have.property('id', 11);
+          expect(contacts[1]).to.have.property('firstName', 'Luke');
 
-            done();
-          });
+          done();
+        });
 
         $rootScope.$digest();
       });

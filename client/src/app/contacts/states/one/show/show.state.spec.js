@@ -1,19 +1,18 @@
-import appContactsModule from '../../../contacts.module';
 import { expect } from 'chai';
-import { name } from './show.state';
+import statesModule from '../../states.module';
 
-describe(`module: ${appContactsModule}`, () => {
+describe(`module ${statesModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(appContactsModule);
+    angular.mock.module(statesModule);
   });
 
-  describe(`state: ${name}`, () => {
+  describe('state `contacts.one.show`', () => {
 
     let state;
 
     beforeEach(inject(($state) => {
-      state = $state.get(name);
+      state = $state.get('contacts.one.show');
     }));
 
     it('has valid url', inject(($state) => {

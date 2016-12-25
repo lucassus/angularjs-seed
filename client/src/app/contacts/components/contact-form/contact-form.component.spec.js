@@ -1,14 +1,14 @@
-import appContactsModule from '../../contacts.module';
+import componentsModule from '../components.module';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-describe(`module: ${appContactsModule}`, () => {
+describe(`module ${componentsModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(appContactsModule);
+    angular.mock.module(componentsModule);
   });
 
-  describe('component: contactForm', () => {
+  describe('component `appContactForm`', () => {
 
     let element, scope;
 

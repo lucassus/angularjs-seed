@@ -1,20 +1,10 @@
-import angularMessages from 'angular-messages';
-import angularResource from 'angular-resource';
-import appCommonsModule from '../commons/commons.module';
-import components from './components/components.config';
-import services from './services/services.config';
-import states from './states/states.config';
-import uiRouter from 'angular-ui-router';
+import componentsModule from './components/components.module';
+import servicesName from './services/services.module';
+import statesModule from './states/states.module';
 
 export default angular.module('app.contacts', [
-  angularMessages,
-  angularResource,
-  uiRouter,
-
-  appCommonsModule
+  componentsModule,
+  servicesName,
+  statesModule
 ])
-  .config(services)
-  .config(components)
-  .config(states)
-
   .name;
