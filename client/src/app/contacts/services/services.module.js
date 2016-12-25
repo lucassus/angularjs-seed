@@ -4,7 +4,5 @@ import { contactFactory } from './contact/contact.factory';
 export default angular.module('app.contacts.services', [
   angularResource
 ])
-  .factory({
-    Contact: contactFactory
-  })
+  .factory({ Contact: contactFactory })
   .name;
