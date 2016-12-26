@@ -1,5 +1,5 @@
+const assert = require('power-assert');
 const db = require('./db');
-const expect = require('chai').expect;
 
 describe('db', () => {
 
@@ -9,11 +9,11 @@ describe('db', () => {
       return db.seed().then(() => {
         return db.contacts.find();
       }).then((contacts) => {
-        expect(contacts).to.have.length(20);
+        assert(contacts.length === 20);
 
-        expect(contacts[0]).to.have.property('id', 1);
-        expect(contacts[1]).to.have.property('id', 2);
-        expect(contacts[19]).to.have.property('id', 20);
+        assert(contacts[0].id === 1);
+        assert(contacts[1].id === 2);
+        assert(contacts[19].id === 20);
       });
     });
 
@@ -30,16 +30,16 @@ describe('db', () => {
         return db.contacts.find();
       })
       .then((contacts) => {
-        expect(contacts).to.have.length(0);
+        assert(contacts.length === 0);
       })
       .then(() => {
         return db.contacts.insertOne({ email: 'test@email.com' });
       })
       .then(() => {
         return db.contacts.find().then((contacts) => {
-          expect(contacts).to.have.length(1);
-          expect(contacts[0]).to.have.property('id', 1);
-          expect(contacts[0]).to.have.property('email', 'test@email.com');
+          assert(contacts.length === 1);
+          assert(contacts[0].id === 1);
+          assert(contacts[0].email === 'test@email.com');
         });
       });
     });
