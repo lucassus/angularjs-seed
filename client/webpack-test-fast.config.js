@@ -19,7 +19,7 @@ module.exports = {
       'angular-breadcrumb',
 
       'angular-mocks',
-      'chai',
+      'power-assert',
       'sinon'
     ],
     specs: './client/src/specs.js'
@@ -38,13 +38,15 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     }),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new ProgressBarPlugin({
       format: 'Webpack :msg [:bar] :percent'
     })
   ],
 
   module: {
+    exprContextCritical: false,
+
     rules: [{
       test: /\.js$/,
       exclude: /node_modules/,

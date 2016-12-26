@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import assert from 'assert';
 import servicesModule from '../services.module';
 import sinon from 'sinon';
 
@@ -14,7 +14,7 @@ describe(`module ${servicesModule}`, () => {
 
     it('displays a confirmation', inject(($window, confirmation) => {
       confirmation.show('The message');
-      expect($window.confirm.calledWith('The message')).to.be.true;
+      assert($window.confirm.calledWith('The message'));
     }));
 
   });

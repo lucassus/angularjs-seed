@@ -1,4 +1,5 @@
-import { expect } from 'chai';
+import assert from 'assert';
+import { isPromise } from '../../../../specs/utils';
 import sinon from 'sinon';
 import statesModule from '../states.module';
 
@@ -20,7 +21,7 @@ describe(`module ${statesModule}`, () => {
     }));
 
     it('has a contact', inject((Contact) => {
-      expect(ctrl.contact).to.be.an.instanceOf(Contact);
+      assert(ctrl.contact instanceof Contact);
     }));
 
     describe('.create', () => {
@@ -32,7 +33,7 @@ describe(`module ${statesModule}`, () => {
       }));
 
       it('returns a promise', () => {
-        expect(ctrl.create(contact)).to.be.a.promise;
+        assert(isPromise(ctrl.create(contact)));
       });
 
       describe('on success', () => {
@@ -50,17 +51,17 @@ describe(`module ${statesModule}`, () => {
         }));
 
         it('creates a contact', () => {
-          expect(ctrl.contact).to.have.property('id', 123);
-          expect(ctrl.contact).to.have.property('firstName', 'Luke');
-          expect(ctrl.contact).to.have.property('createdAt');
+          assert.equal(ctrl.contact.id, 123);
+          assert.equal(ctrl.contact.firstName, 'Luke');
+          assert(ctrl.contact.createdAt);
         });
 
         it('displays a notification', () => {
-          expect(ctrl.toastr.success.calledWith('Contact created')).to.be.true;
+          assert(ctrl.toastr.success.calledWith('Contact created'));
         });
 
         it('redirects to the show page', () => {
-          expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.true;
+          assert(ctrl.$state.go.calledWith('contacts.one.show'));
         });
 
       });
@@ -79,16 +80,15 @@ describe(`module ${statesModule}`, () => {
         }));
 
         it('does not create a contact', () => {
-          expect(ctrl.contact).to.not.have.property('id');
+          assert(!ctrl.contact.id);
         });
 
         it('does not redirect', () => {
-          expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.false;
+          assert(!ctrl.$state.go.calledWith('contacts.one.show'));
         });
 
         it('displays an error notification', () => {
-          expect(ctrl.toastr.error.calledWith('Unable to create a contact.'))
-            .to.be.true;
+          assert(ctrl.toastr.error.calledWith('Unable to create a contact.'));
         });
 
       });

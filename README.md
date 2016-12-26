@@ -35,7 +35,7 @@ Run `./client/fast-tdd.js` and enjoy blazing fast specs
 * Gulp
 * Webpack
 * Long term caching for assets (Cache-Busting)
-* Karma, mocha and Sinon.js
+* Karma, mocha, power-assert and Sinon.js
 * Istanbul test coverage
 * Protractor along with simple Page Objects
 * ESLint, HTMLHint

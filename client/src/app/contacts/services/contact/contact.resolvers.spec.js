@@ -1,5 +1,5 @@
 import { listResolver, oneResolver } from './contact.resolvers';
-import { expect } from 'chai';
+import assert from 'assert';
 import sinon from 'sinon';
 
 describe('contact.resolvers', () => {
@@ -16,7 +16,7 @@ describe('contact.resolvers', () => {
       listResolver(Contact);
 
       // Then
-      expect(Contact.query.called).to.be.true;
+      assert(Contact.query.called);
     });
 
   });
@@ -28,7 +28,7 @@ describe('contact.resolvers', () => {
       oneResolver({ id: 123 }, Contact);
 
       // Then
-      expect(Contact.get.calledWith({ id: 123 })).to.be.true;
+      assert(Contact.get.calledWith({ id: 123 }));
     });
 
   });

@@ -1,5 +1,5 @@
 import appModule from './app.module';
-import { expect } from 'chai';
+import assert from 'assert';
 import sinon from 'sinon';
 
 describe(`module ${appModule}`, () => {
@@ -14,14 +14,14 @@ describe(`module ${appModule}`, () => {
 
     it('changes the state to `404`', inject(($location, $rootScope, $state) => {
       // Given
-      expect($state.current.name).to.equal('');
+      assert.equal($state.current.name, '');
 
       // When
       $location.url('/unknown/url');
       $rootScope.$digest();
 
       // Then
-      expect($state.current.name).to.equal('404');
+      assert.equal($state.current.name, '404');
     }));
 
   });
@@ -36,11 +36,11 @@ describe(`module ${appModule}`, () => {
     }));
 
     it('logs the error', inject(($log) => {
-      expect($log.error.called).to.be.true;
+      assert($log.error.called);
     }));
 
     it('changes the state to `404`', inject(($state) => {
-      expect($state.go.calledWith('404')).to.be.true;
+      assert($state.go.calledWith('404'));
     }));
 
   });

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import assert from 'assert';
 import servicesModule from '../services.module';
 
 describe(`module ${servicesModule}`, () => {
@@ -17,16 +17,16 @@ describe(`module ${servicesModule}`, () => {
     }));
 
     it('has basic CRUD methods', () => {
-      expect(Contact.prototype).to.respondTo('$query');
-      expect(Contact.prototype).to.respondTo('$get');
-      expect(Contact.prototype).to.respondTo('$create');
-      expect(Contact.prototype).to.respondTo('$update');
-      expect(Contact.prototype).to.respondTo('$delete');
+      assert(Contact.prototype.$query instanceof Function);
+      assert(Contact.prototype.$get instanceof Function);
+      assert(Contact.prototype.$create instanceof Function);
+      assert(Contact.prototype.$update instanceof Function);
+      assert(Contact.prototype.$delete instanceof Function);
     });
 
     it('can be initialized', () => {
       const contact = new Contact({ id: 123 });
-      expect(contact).to.have.property('id', 123);
+      assert.equal(contact.id, 123);
     });
 
     describe('Contact.query', () => {
@@ -37,13 +37,13 @@ describe(`module ${servicesModule}`, () => {
           .respond(200, { contacts: [{ id: 1 }, { id: 2 }] });
 
         Contact.query().$promise.then((contacts) => {
-          expect(contacts).to.have.length(2);
+          assert.equal(contacts.length, 2);
 
-          expect(contacts[0]).to.be.an.instanceOf(Contact);
-          expect(contacts[0]).to.have.property('id', 1);
+          assert(contacts[0] instanceof Contact);
+          assert.equal(contacts[0].id, 1);
 
-          expect(contacts[1]).to.be.an.instanceOf(Contact);
-          expect(contacts[1]).to.have.property('id', 2);
+          assert(contacts[1] instanceof Contact);
+          assert.equal(contacts[1].id, 2);
 
           done();
         });
@@ -61,8 +61,8 @@ describe(`module ${servicesModule}`, () => {
           .respond(200, { id: 123, firstName: 'Luke' });
 
         Contact.get({ id: 123 }).$promise.then((contact) => {
-          expect(contact).to.have.property('id', 123);
-          expect(contact).to.have.property('firstName', 'Luke');
+          assert.equal(contact.id, 123);
+          assert.equal(contact.firstName, 'Luke');
 
           done();
         });
@@ -81,11 +81,11 @@ describe(`module ${servicesModule}`, () => {
 
         const contact = new Contact({ firstName: 'Luke' });
         contact.$create().then((createdContact) => {
-          expect(createdContact).to.equal(contact);
+          assert.equal(createdContact, contact);
 
-          expect(createdContact).to.be.an.instanceOf(Contact);
-          expect(createdContact).to.have.property('id', 123);
-          expect(createdContact).to.have.property('firstName', 'Luke');
+          assert(createdContact instanceof Contact);
+          assert.equal(createdContact.id, 123);
+          assert.equal(createdContact.firstName, 'Luke');
 
           done();
         });
@@ -99,7 +99,7 @@ describe(`module ${servicesModule}`, () => {
 
       it('returns the full name', () => {
         const contact = new Contact({ firstName: 'Luke', lastName: 'Skywalker' });
-        expect(contact.fullName).to.equal('Luke Skywalker');
+        assert.equal(contact.fullName, 'Luke Skywalker');
       });
 
     });
@@ -114,8 +114,8 @@ describe(`module ${servicesModule}`, () => {
         const contact = new Contact({ id: 126, favourite: false });
 
         contact.toggleFavourite().then((updatedContact) => {
-          expect(updatedContact).to.equal(contact);
-          expect(contact.favourite).to.be.true;
+          assert.equal(updatedContact, contact);
+          assert(contact.favourite);
 
           done();
         });

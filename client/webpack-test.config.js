@@ -20,6 +20,8 @@ module.exports = function({ singleRun }) {
     ],
 
     module: {
+      exprContextCritical: false,
+
       rules: [{
         test: /\.js$/,
         exclude: /node_modules/,

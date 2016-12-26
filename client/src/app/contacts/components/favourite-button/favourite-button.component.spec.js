@@ -1,5 +1,5 @@
+import assert from 'assert';
 import componentsModule from '../components.module';
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 describe(`module ${componentsModule}`, () => {
@@ -39,7 +39,7 @@ describe(`module ${componentsModule}`, () => {
 
         it('toggles contact favourite flag', () => {
           buttonEl.click();
-          expect(scope.contact.toggleFavourite.called).to.be.true;
+          assert(scope.contact.toggleFavourite.called);
         });
 
         it('disabled and enabled the button', inject(($rootScope, $q) => {
@@ -47,20 +47,20 @@ describe(`module ${componentsModule}`, () => {
           const deferred = $q.defer();
           scope.contact.toggleFavourite.returns(deferred.promise);
 
-          expect(buttonEl.attr('disabled')).to.be.undefined;
+          assert.equal(buttonEl.attr('disabled'), undefined);
 
           // When
           buttonEl.click();
 
           // Then
-          expect(buttonEl.attr('disabled')).to.equal('disabled');
+          assert.equal(buttonEl.attr('disabled'), 'disabled');
 
           // When
           deferred.resolve();
           $rootScope.$digest();
 
           // Then
-          expect(buttonEl.attr('disabled')).to.be.undefined;
+          assert.equal(buttonEl.attr('disabled'), undefined);
         }));
 
       });
@@ -68,18 +68,14 @@ describe(`module ${componentsModule}`, () => {
       it('has valid star icon', () => {
         const iconEl = buttonEl.find('span');
 
-        expect(iconEl.hasClass('glyphicon-star-empty'))
-          .to.be.true;
-        expect(iconEl.hasClass('glyphicon-star'))
-          .to.be.false;
+        assert(iconEl.hasClass('glyphicon-star-empty'));
+        assert(!iconEl.hasClass('glyphicon-star'));
 
         angular.extend(scope.contact, { favourite: true });
         scope.$digest();
 
-        expect(iconEl.hasClass('glyphicon-star-empty'))
-          .to.be.false;
-        expect(iconEl.hasClass('glyphicon-star'))
-          .to.be.true;
+        assert(!iconEl.hasClass('glyphicon-star-empty'));
+        assert(iconEl.hasClass('glyphicon-star'));
       });
 
     });
@@ -102,17 +98,17 @@ describe(`module ${componentsModule}`, () => {
     }));
 
     it('has a `contact`', inject((Contact) => {
-      expect(ctrl.contact).to.be.an.instanceOf(Contact);
+      assert(ctrl.contact instanceof Contact);
     }));
 
     describe('.favourite', () => {
 
       it('returns `contact.favourite` flag', () => {
         angular.extend(ctrl.contact, { favourite: true });
-        expect(ctrl.favourite).to.be.true;
+        assert(ctrl.favourite);
 
         angular.extend(ctrl.contact, { favourite: false });
-        expect(ctrl.favourite).to.be.false;
+        assert(!ctrl.favourite);
       });
 
     });
@@ -121,20 +117,20 @@ describe(`module ${componentsModule}`, () => {
 
       it('updates a contact', () => {
         ctrl.toggleFavourite();
-        expect(ctrl.contact.toggleFavourite.called).to.be.true;
+        assert(ctrl.contact.toggleFavourite.called);
       });
 
       it('toggles `saving` flag', inject(($rootScope) => {
         // Given
-        expect(ctrl.saving).to.be.false;
+        assert(!ctrl.saving);
 
         // When
         ctrl.toggleFavourite();
-        expect(ctrl.saving).to.be.true;
+        assert(ctrl.saving);
         $rootScope.$digest();
 
         // Then
-        expect(ctrl.saving).to.be.false;
+        assert(!ctrl.saving);
       }));
 
     });
