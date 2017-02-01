@@ -46,26 +46,23 @@ module.exports = {
   ],
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
       loader: combineLoaders([{
-        loader: 'ng-annotate'
+        loader: 'ng-annotate-loader'
       }, {
-        loader: 'babel'
+        loader: 'babel-loader'
       }])
     }, {
-      test: /\.json$/,
-      loader: 'json'
-    }, {
       test: /\.html$/,
-      loader: 'html'
+      loader: 'html-loader'
     }, {
       test: /\.(scss|jpg|svg)$/,
-      loader: 'null'
+      loader: 'null-loader'
     }, {
       test: /sinon\.js$/,
-      loader: 'imports?define=>false,require=>false'
+      loader: 'imports-loader?define=>false,require=>false'
     }]
   },
 
