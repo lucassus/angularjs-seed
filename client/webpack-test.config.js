@@ -1,4 +1,3 @@
-const combineLoaders = require('webpack-combine-loaders');
 const webpack = require('webpack');
 
 process.env.BABEL_ENV = 'test';
@@ -30,7 +29,7 @@ module.exports = function({ singleRun }) {
       rules: [{
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: combineLoaders(jsLoaders)
+        use: jsLoaders
       }, {
         test: /\.html$/,
         loader: 'html-loader'

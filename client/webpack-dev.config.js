@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const combineLoaders = require('webpack-combine-loaders');
 const webpack = require('webpack');
 
 module.exports = {
@@ -23,11 +22,11 @@ module.exports = {
     rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: combineLoaders([{
+      use: [{
         loader: 'ng-annotate-loader'
       }, {
         loader: 'babel-loader'
-      }])
+      }]
     }, {
       test: /\.html$/,
       loader: 'html-loader'

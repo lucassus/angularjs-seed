@@ -3,7 +3,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -70,11 +69,11 @@ module.exports = {
     rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: combineLoaders([{
+      use: [{
         loader: 'ng-annotate-loader'
       }, {
         loader: 'babel-loader'
-      }])
+      }]
     }, {
       test: /\.html$/,
       loader: 'html-loader'
