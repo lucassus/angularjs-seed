@@ -81,7 +81,10 @@ module.exports = {
       loader: 'html-loader'
     }, {
       test: /\.scss$/,
-      use: extractCSS.extract(['css-loader', 'sass-loader'])
+      use: extractCSS.extract([
+        'css-loader?minimize',
+        'sass-loader'
+      ])
     }, {
       test: /\.png$/,
       loader: 'url-loader?limit=100000'
