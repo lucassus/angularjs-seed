@@ -8,6 +8,8 @@ const webpack = require('webpack');
 
 const BUILD_DIRECTORY = './client/build';
 
+const extractCSS = new ExtractTextPlugin('style.[hash].css');
+
 module.exports = {
   entry: {
     vendor: [
@@ -53,7 +55,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     }),
-    new ExtractTextPlugin('style.[hash].css'),
+    extractCSS,
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
@@ -79,10 +81,7 @@ module.exports = {
       loader: 'html-loader'
     }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract({
-        fallbackLoader: 'style-loader',
-        loader: 'css-loader!sass-loader'
-      })
+      use: extractCSS.extract(['css-loader', 'sass-loader'])
     }, {
       test: /\.png$/,
       loader: 'url-loader?limit=100000'
