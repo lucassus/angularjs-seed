@@ -4,17 +4,11 @@ process.env.BABEL_ENV = 'test';
 
 module.exports = function({ singleRun }) {
 
-  const jsLoaders = [{
-    loader: 'ng-annotate-loader'
-  }, {
-    loader: 'babel-loader'
-  }];
+  const jsLoaders = ['babel-loader'];
 
   // Execute ESLint in tdd mode
   if (!singleRun) {
-    jsLoaders.push({
-      loader: 'eslint-loader'
-    });
+    jsLoaders.push('eslint-loader');
   }
 
   return {
@@ -29,7 +23,7 @@ module.exports = function({ singleRun }) {
       rules: [{
         test: /\.js$/,
         exclude: /node_modules/,
-        use: jsLoaders
+        loaders: jsLoaders
       }, {
         test: /\.html$/,
         loader: 'html-loader'

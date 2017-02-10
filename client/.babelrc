@@ -2,6 +2,7 @@
   "presets": [["es2015", {
     "modules": false
   }]],
+  "plugins": ["angularjs-annotate"],
   "env": {
     "test": {
       "plugins": [["istanbul", {

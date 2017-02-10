@@ -71,11 +71,7 @@ module.exports = {
     rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      use: [{
-        loader: 'ng-annotate-loader'
-      }, {
-        loader: 'babel-loader'
-      }]
+      loader: 'babel-loader'
     }, {
       test: /\.html$/,
       loader: 'html-loader'
