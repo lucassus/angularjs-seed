@@ -3,7 +3,7 @@ export function appUniqueEmail($http, $parse, $q) {
 
   function isTaken(id, email) {
     return $http.get('/api/contacts/validate-email', { params: { id, email } })
-      .then(response => response.data.taken);
+      .then(({ data }) => data.taken);
   }
 
   return {
@@ -22,8 +22,9 @@ export function appUniqueEmail($http, $parse, $q) {
           return $q.resolve();
         }
 
-        const resourceId = $parse(attrs.appUniqueEmail)(scope);
-        return isTaken(resourceId, modelValue).then((taken) => {
+        const id = $parse(attrs.appUniqueEmail)(scope);
+
+        return isTaken(id, modelValue).then((taken) => {
           return taken ? $q.reject() : true;
         });
       };
