@@ -1,18 +1,14 @@
-const combineLoaders = require('webpack-combine-loaders');
 const webpack = require('webpack');
 
 process.env.BABEL_ENV = 'test';
 
 module.exports = function({ singleRun }) {
-  const preLoaders = [];
+
+  const jsLoaders = ['babel-loader'];
 
   // Execute ESLint in tdd mode
   if (!singleRun) {
-    preLoaders.push({
-      test: /\.js$/,
-      loader: 'eslint',
-      exclude: /node_modules/
-    });
+    jsLoaders.push('eslint-loader');
   }
 
   return {
@@ -24,28 +20,19 @@ module.exports = function({ singleRun }) {
     ],
 
     module: {
-      preLoaders,
-
-      loaders: [{
+      rules: [{
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: combineLoaders([{
-          loader: 'ng-annotate'
-        }, {
-          loader: 'babel'
-        }])
-      }, {
-        test: /\.json$/,
-        loader: 'json'
+        loaders: jsLoaders
       }, {
         test: /\.html$/,
-        loader: 'html'
+        loader: 'html-loader'
       }, {
         test: /\.(scss|jpg|svg)$/,
-        loader: 'null'
+        loader: 'null-loader'
       }, {
         test: /sinon\.js$/,
-        loader: 'imports?define=>false,require=>false'
+        loader: 'imports-loader?define=>false,require=>false'
       }]
     },
 

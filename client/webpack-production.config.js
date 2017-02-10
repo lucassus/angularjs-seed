@@ -3,11 +3,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const combineLoaders = require('webpack-combine-loaders');
 const path = require('path');
 const webpack = require('webpack');
 
 const BUILD_DIRECTORY = './client/build';
+
+const extractCSS = new ExtractTextPlugin('style.[hash].css');
 
 module.exports = {
   entry: {
@@ -54,52 +55,50 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     }),
-    new ExtractTextPlugin('style.[hash].css'),
-    new webpack.optimize.DedupePlugin(),
+    extractCSS,
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       },
       mangle: true,
-      comments: false
+      comments: false,
+      sourceMap: true
     }),
-    new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.AggressiveMergingPlugin()
   ],
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: combineLoaders([{
-        loader: 'ng-annotate'
-      }, {
-        loader: 'babel'
-      }])
+      loader: 'babel-loader'
     }, {
       test: /\.html$/,
-      loader: 'html'
+      loader: 'html-loader'
     }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('style', 'css!sass')
+      use: extractCSS.extract([
+        'css-loader?minimize',
+        'sass-loader'
+      ])
     }, {
       test: /\.png$/,
-      loader: 'url?limit=100000'
+      loader: 'url-loader?limit=100000'
     }, {
       test: /\.jpg$/,
-      loader: 'file'
+      loader: 'file-loader'
     }, {
       test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=application/font-woff'
+      loader: 'url-loader?limit=10000&mimetype=application/font-woff'
     }, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=application/octet-stream'
+      loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file'
+      loader: 'file-loader'
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=image/svg+xml'
+      loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
     }]
   },
 

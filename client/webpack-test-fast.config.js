@@ -1,7 +1,6 @@
 const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const webpack = require('webpack');
-const combineLoaders = require('webpack-combine-loaders');
 
 process.env.BABEL_ENV = 'test';
 
@@ -46,26 +45,19 @@ module.exports = {
   ],
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: combineLoaders([{
-        loader: 'ng-annotate'
-      }, {
-        loader: 'babel'
-      }])
-    }, {
-      test: /\.json$/,
-      loader: 'json'
+      loader: 'babel-loader'
     }, {
       test: /\.html$/,
-      loader: 'html'
+      loader: 'html-loader'
     }, {
       test: /\.(scss|jpg|svg)$/,
-      loader: 'null'
+      loader: 'null-loader'
     }, {
       test: /sinon\.js$/,
-      loader: 'imports?define=>false,require=>false'
+      loader: 'imports-loader?define=>false,require=>false'
     }]
   },
 

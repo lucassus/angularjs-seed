@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const combineLoaders = require('webpack-combine-loaders');
 const webpack = require('webpack');
 
 module.exports = {
@@ -20,38 +19,34 @@ module.exports = {
   ],
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: combineLoaders([{
-        loader: 'ng-annotate'
-      }, {
-        loader: 'babel'
-      }])
+      loader: 'babel-loader'
     }, {
       test: /\.html$/,
-      loader: 'html'
+      loader: 'html-loader'
     }, {
       test: /\.scss$/,
-      loaders: ['style', 'css', 'sass']
+      loaders: ['style-loader', 'css-loader', 'sass-loader']
     }, {
       test: /\.png$/,
-      loader: 'url?limit=100000'
+      loader: 'url-loader?limit=100000'
     }, {
       test: /\.jpg$/,
-      loader: 'file'
+      loader: 'file-loader'
     }, {
       test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=application/font-woff'
+      loader: 'url-loader?limit=10000&mimetype=application/font-woff'
     }, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=application/octet-stream'
+      loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file'
+      loader: 'file-loader'
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=image/svg+xml'
+      loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
     }]
   },
 
