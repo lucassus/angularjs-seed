@@ -1,10 +1,10 @@
-# Angular webpack seed
+# AngularJS seed
 
-[![Build Status](https://travis-ci.org/lucassus/angular-webpack-seed.svg?branch=master)](https://travis-ci.org/lucassus/angular-webpack-seed)
-[![codecov](https://codecov.io/gh/lucassus/angular-webpack-seed/branch/master/graph/badge.svg)](https://codecov.io/gh/lucassus/angular-webpack-seed)
-[![Dependency Status](https://gemnasium.com/lucassus/angular-webpack-seed.svg)](https://gemnasium.com/lucassus/angular-webpack-seed)
+[![Build Status](https://travis-ci.org/lucassus/angularjs-seed.svg?branch=master)](https://travis-ci.org/lucassus/angularjs-seed)
+[![codecov](https://codecov.io/gh/lucassus/angularjs-seed/branch/master/graph/badge.svg)](https://codecov.io/gh/lucassus/angularjs-seed)
+[![Dependency Status](https://gemnasium.com/lucassus/angularjs-seed.svg)](https://gemnasium.com/lucassus/angularjs-seed)
 
-https://angular-webpack-seed.herokuapp.com/
+https://lucassus-angularjs-seed.herokuapp.com/
 
 ## Useful commands
 
