@@ -36,6 +36,8 @@ export default angular.module('app', [
   .config(router)
   .config(anchorScroll)
   .config(notFoundState)
+
   .run(stateErrorsHandler)
   .run(logBuildSignature)
+
   .name;
