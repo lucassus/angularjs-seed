@@ -48,7 +48,7 @@ describe(`module ${statesModule}`, () => {
 
         beforeEach(inject(($q, $rootScope) => {
           // Given
-          sinon.stub(contact, '$update', function() {
+          sinon.stub(contact, '$update').callsFake(function() {
             angular.extend(this, { updatedAt: new Date() });
             return $q.resolve(this);
           });
@@ -78,7 +78,7 @@ describe(`module ${statesModule}`, () => {
 
         beforeEach(inject(($q, $rootScope) => {
           // Given
-          sinon.stub(contact, '$update', () => {
+          sinon.stub(contact, '$update').callsFake(() => {
             return $q.reject();
           });
 
