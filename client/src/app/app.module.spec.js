@@ -5,7 +5,9 @@ import sinon from 'sinon';
 describe(`module ${appModule}`, () => {
 
   beforeEach(() => {
-    angular.mock.module(appModule);
+    angular.mock.module(appModule, ($provide) => {
+      $provide.constant('appConfig', { environment: 'test' });
+    });
   });
 
   describe('navigating to unknown url', () => {

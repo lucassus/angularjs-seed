@@ -17,9 +17,11 @@ function stateErrorsHandler($log, $rootScope, $state) {
   });
 }
 
-function logBuildSignature($log) {
+function logBuildSignature($log, appConfig) {
   'ngInject';
+
   $log.info(buildSignature);
+  $log.info(`environment: ${appConfig.environment}`);
 }
 
 export default angular.module('app', [
