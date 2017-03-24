@@ -6,6 +6,7 @@ import buildSignature from '../../build_signature_loader!./build_signature.tpl';
 import commonsModule from './commons/commons.module';
 import contactsModule from './contacts/contacts.module';
 import homeModule from './home/home.module';
+import resolveFactory from 'angular-ui-router/lib/legacy/resolveService';
 import uiRouter from 'angular-ui-router';
 
 function stateErrorsHandler($log, $rootScope, $state) {
@@ -38,6 +39,8 @@ export default angular.module('app', [
   .config(router)
   .config(anchorScroll)
   .config(notFoundState)
+
+  .factory('$resolve', resolveFactory)
 
   .run(stateErrorsHandler)
   .run(logBuildSignature)

@@ -84,7 +84,7 @@
     "angular-messages": "1.6.3",
     "angular-resource": "1.6.3",
     "angular-toastr": "2.1.1",
-    "angular-ui-router": "1.0.0-beta.3",
+    "angular-ui-router": "1.0.0-rc.1",
     "bluebird": "3.5.0",
     "body-parser": "1.17.1",
     "bootstrap-sass": "3.3.7",
