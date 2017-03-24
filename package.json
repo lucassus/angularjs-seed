@@ -1,7 +1,7 @@
 {
-  "name": "angular-webpack-seed",
+  "name": "angularjs-seed",
   "version": "0.0.1",
-  "description": "Angular 1.5.x webpack seed",
+  "description": "AngularJS 1.5.x seed",
   "main": "server.js",
   "engines": {
     "node": "6.2.2"
