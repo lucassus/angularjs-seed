@@ -1,12 +1,10 @@
 {
   "plugins": [
-    "jasmine",
-    "protractor"
+    "jasmine"
   ],
   "extends": [
     "../.eslintrc.json",
-    "plugin:jasmine/recommended",
-    "plugin:protractor/recommended"
+    "plugin:jasmine/recommended"
   ],
   "env": {
     "jasmine": true,
@@ -20,6 +18,7 @@
     "inject": true
   },
   "rules": {
+    "protractor/no-shadowing": "off",
     "protractor/valid-locator-type": "off"
   }
 }

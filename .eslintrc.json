@@ -28,6 +28,7 @@
     "no-trailing-spaces": "error",
     "no-var": "error",
     "no-warning-comments": "warn",
+    "object-curly-spacing": ["error", "always"],
     "object-shorthand": "error",
     "prefer-arrow-callback": "error",
     "prefer-const": "warn",

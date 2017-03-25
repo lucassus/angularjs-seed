@@ -1,3 +1,5 @@
+const { element, browser, by } = require('protractor');
+
 const Page = require('../page_objects/page');
 
 class HomePage extends Page {

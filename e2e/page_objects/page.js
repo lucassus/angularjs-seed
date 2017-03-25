@@ -1,3 +1,5 @@
+const { browser, by, element } = require('protractor');
+
 module.exports = class {
 
   constructor(url) {
