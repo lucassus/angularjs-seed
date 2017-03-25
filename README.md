@@ -29,13 +29,13 @@ Run `./client/fast-tdd.js` and enjoy blazing fast specs
 
 ## Features
 
-* AngularJS 1.5.x with ES2015 flavour
+* AngularJS 1.6.x with ES2015 flavour
 * AngularJS modules: uiRouter, ngResource, ngMessage, toastr and other useful stuff
 * Twitter Bootstrap with Sass
 * Gulp
 * Webpack
 * Long term caching for assets (Cache-Busting)
-* Karma, mocha, power-assert and Sinon.js
+* Karma, power-assert and Sinon.js
 * Istanbul test coverage
 * Protractor along with simple Page Objects
 * ESLint, HTMLHint
