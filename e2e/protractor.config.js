@@ -1,4 +1,8 @@
-const utils = require('./utils');
+const {
+  cleanupArtifacts,
+  takeScreenshot,
+  writeBrowserLog
+} = require('./utils');
 
 exports.config = {
   directConnect: true,
@@ -20,13 +24,13 @@ exports.config = {
     /* global jasmine */
 
     // Cleanup artifacts dir
-    utils.cleanupArtifacts();
+    cleanupArtifacts();
 
     // Collect screenshots for failed scenarios
     jasmine.getEnv().addReporter({
       specDone(result) {
         if (result.status === 'failed') {
-          utils.takeScreenshot(result.fullName);
+          takeScreenshot(result.fullName);
         }
       }
     });
@@ -35,7 +39,7 @@ exports.config = {
     jasmine.getEnv().addReporter({
       specDone(result) {
         browser.manage().logs().get('browser').then((browserLog) => {
-          utils.writeBrowserLog(result.fullName, browserLog);
+          writeBrowserLog(result.fullName, browserLog);
         });
       }
     });
