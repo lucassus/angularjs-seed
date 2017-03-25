@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import assert from 'assert';
 import sinon from 'sinon';
 import statesModule from '../states.module';
 
@@ -17,7 +17,7 @@ describe(`module ${statesModule}`, () => {
     }));
 
     it('has valid url', inject(($state) => {
-      expect($state.href(state)).to.equal('#!/contacts');
+      assert.equal($state.href(state), '#!/contacts');
     }));
 
     it('resolves `contacts`', (done) => {
@@ -32,16 +32,16 @@ describe(`module ${statesModule}`, () => {
 
         // When
         $resolve.resolve(state.resolve).then(({ contacts }) => {
-          expect(contacts).to.be.an('array');
-          expect(contacts).to.have.length(2);
+          assert(contacts instanceof Array);
+          assert.equal(contacts.length, 2);
 
-          expect(contacts[0]).to.be.instanceOf(Contact);
-          expect(contacts[0]).to.have.property('id', 10);
-          expect(contacts[0]).to.have.property('firstName', 'Anakin');
+          assert(contacts[0] instanceof Contact);
+          assert.equal(contacts[0].id, 10);
+          assert.equal(contacts[0].firstName, 'Anakin');
 
-          expect(contacts[1]).to.be.instanceOf(Contact);
-          expect(contacts[1]).to.have.property('id', 11);
-          expect(contacts[1]).to.have.property('firstName', 'Luke');
+          assert(contacts[1] instanceof Contact);
+          assert.equal(contacts[1].id, 11);
+          assert.equal(contacts[1].firstName, 'Luke');
 
           done();
         });

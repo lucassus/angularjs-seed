@@ -1,4 +1,4 @@
-const expect = require('chai').expect;
+const assert = require('power-assert');
 const request = require('supertest');
 
 const app = require('../app');
@@ -33,11 +33,11 @@ describe('app', () => {
         .expect(200)
         .expect((res) => {
           const { contacts } = res.body;
-          expect(contacts).to.have.length(20);
+          assert(contacts.length === 20);
 
-          expect(contacts[0]).to.have.property('firstName', 'Wallace');
-          expect(contacts[0]).to.have.property('lastName', 'Rath');
-          expect(contacts[0]).to.have.property('email', 'Tessie_Carter16@gmail.com');
+          assert(contacts[0].firstName === 'Wallace');
+          assert(contacts[0].lastName === 'Rath');
+          assert(contacts[0].email === 'Tessie_Carter16@gmail.com');
         })
         .end(done);
     });
@@ -60,10 +60,10 @@ describe('app', () => {
         .expect((res) => {
           const { body: contact } = res;
 
-          expect(contact).to.have.property('id', 21);
-          expect(contact).to.have.property('firstName', firstName);
-          expect(contact).to.have.property('lastName', lastName);
-          expect(contact).to.have.property('email', email);
+          assert(contact.id === 21);
+          assert(contact.firstName === firstName);
+          assert(contact.lastName === lastName);
+          assert(contact.email === email);
         })
         .end(done);
     });
@@ -81,7 +81,7 @@ describe('app', () => {
             .get('/api/contacts/validate-email?email=luke@rebel.org')
             .expect(200)
             .expect((res) => {
-              expect(res.body).to.have.property('taken', false);
+              assert(!res.body.taken);
             })
             .end(done);
         });
@@ -101,7 +101,7 @@ describe('app', () => {
             .get(`/api/contacts/validate-email?email=${email}`)
             .expect(200)
             .expect((res) => {
-              expect(res.body).to.have.property('taken', true);
+              assert(res.body.taken);
             })
             .end(done);
         });
@@ -128,7 +128,7 @@ describe('app', () => {
             .get(`/api/contacts/validate-email?id=${id}email=${email}`)
             .expect(200)
             .expect((res) => {
-              expect(res.body).to.have.property('taken', false);
+              assert(!res.body.taken);
             })
             .end(done);
         });
@@ -138,7 +138,7 @@ describe('app', () => {
             .get(`/api/contacts/validate-email?id=${id}&email=tarkin@empire.com`)
             .expect(200)
             .expect((res) => {
-              expect(res.body).to.have.property('taken', false);
+              assert(!res.body.taken);
             })
             .end(done);
         });
@@ -158,7 +158,7 @@ describe('app', () => {
             .get(`/api/contacts/validate-email?id=${id}&email=${otherEmail}`)
             .expect(200)
             .expect((res) => {
-              expect(res.body).to.have.property('taken', true);
+              assert(res.body.taken);
             })
             .end(done);
         });
@@ -182,10 +182,10 @@ describe('app', () => {
           .expect((res) => {
             const { body: contact } = res;
 
-            expect(contact).to.have.property('id', 3);
-            expect(contact).to.have.property('firstName', 'Caterina');
-            expect(contact).to.have.property('lastName', 'Hackett');
-            expect(contact).to.have.property('email', 'Destin.Kassulke80@hotmail.com');
+            assert(contact.id === 3);
+            assert(contact.firstName === 'Caterina');
+            assert(contact.lastName === 'Hackett');
+            assert(contact.email === 'Destin.Kassulke80@hotmail.com');
           })
           .end(done);
       });
@@ -224,9 +224,9 @@ describe('app', () => {
           .expect((res) => {
             const { body: contact } = res;
 
-            expect(contact).to.have.property('id', id);
-            expect(contact).to.have.property('firstName', 'Luke');
-            expect(contact).to.have.property('lastName', 'Skywalker');
+            assert(contact.id === id);
+            assert(contact.firstName === 'Luke');
+            assert(contact.lastName === 'Skywalker');
           })
           .end(done);
       });

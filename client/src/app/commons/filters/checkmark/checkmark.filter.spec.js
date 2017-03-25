@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import assert from 'assert';
 import filtersModule from '../filters.module';
 
 describe(`module ${filtersModule}`, () => {
@@ -16,8 +16,8 @@ describe(`module ${filtersModule}`, () => {
     }));
 
     it('returns a checkmark', () => {
-      expect(filter(true)).to.equal('✓');
-      expect(filter(false)).to.equal('✘');
+      assert.equal(filter(true), '✓');
+      assert.equal(filter(false), '✘');
     });
 
   });

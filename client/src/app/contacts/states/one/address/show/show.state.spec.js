@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import assert from 'assert';
 import statesModule from '../../../states.module';
 
 describe(`module ${statesModule}`, () => {
@@ -16,7 +16,7 @@ describe(`module ${statesModule}`, () => {
     }));
 
     it('has valid url', inject(($state) => {
-      expect($state.href(state, { id: 123 })).to.equal('#!/contacts/123/address');
+      assert.equal($state.href(state, { id: 123 }), '#!/contacts/123/address');
     }));
 
   });

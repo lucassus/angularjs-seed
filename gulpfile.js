@@ -85,7 +85,8 @@ gulp.task('server:test', (done) => {
       gulp.src(['server/**/*.spec.js'], { read: false })
         .pipe(mocha({
           ui: 'bdd',
-          reporter: 'dot'
+          reporter: 'dot',
+          require: ['./server/enable-power-assert']
         }))
         .pipe(istanbul.writeReports({
           dir: 'artifacts/server/coverage',

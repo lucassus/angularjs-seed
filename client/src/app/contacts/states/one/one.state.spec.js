@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import assert from 'assert';
 import sinon from 'sinon';
 import statesModule from '../states.module';
 
@@ -26,11 +26,11 @@ describe(`module ${statesModule}`, () => {
 
         // When
         $resolve.resolve(state.resolve, { $stateParams }).then(({ contact }) => {
-          expect(Contact.get.calledWith({ id: 3 })).to.be.true;
+          assert(Contact.get.calledWith({ id: 3 }));
 
-          expect(contact).to.be.instanceOf(Contact);
-          expect(contact).to.have.property('id', 3);
-          expect(contact).to.have.property('name', 'baz');
+          assert(contact instanceof Contact);
+          assert.equal(contact.id, 3);
+          assert.equal(contact.name, 'baz');
 
           done();
         });

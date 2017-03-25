@@ -1,4 +1,4 @@
-const expect = require('chai').expect;
+const assert = require('power-assert');
 const sinon = require('sinon');
 
 const app = require('./app');
@@ -25,8 +25,8 @@ describe('server', () => {
   it('seeds the db and starts the app', () => {
     require('./server');
 
-    expect(db.seed.called).to.be.true;
-    expect(app.listen.called).to.be.true;
+    assert(db.seed.called);
+    assert(app.listen.called);
   });
 
 });

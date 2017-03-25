@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import assert from 'assert';
 import sinon from 'sinon';
 import statesModule from '../../states.module';
 
@@ -32,9 +32,9 @@ describe(`module ${statesModule}`, () => {
     }));
 
     it('has a contact', () => {
-      expect(ctrl.contact).to.have.property('id', 2);
-      expect(ctrl.contact).to.have.property('firstName', 'Anakin');
-      expect(ctrl.contact).to.have.property('lastName', 'Skywalker');
+      assert.equal(ctrl.contact.id, 2);
+      assert.equal(ctrl.contact.firstName, 'Anakin');
+      assert.equal(ctrl.contact.lastName, 'Skywalker');
     });
 
     describe('.delete', () => {
@@ -45,7 +45,7 @@ describe(`module ${statesModule}`, () => {
 
         // Then
         const message = 'Do you rally want to delete contact Anakin Skywalker?';
-        expect(ctrl.confirmation.show.calledWith(message)).to.be.true;
+        assert(ctrl.confirmation.show.calledWith(message));
       });
 
       describe('when confirmed', () => {
@@ -67,11 +67,11 @@ describe(`module ${statesModule}`, () => {
           }));
 
           it('displays a notification', () => {
-            expect(ctrl.toastr.success.calledWith('Contact deleted')).to.be.true;
+            assert(ctrl.toastr.success.calledWith('Contact deleted'));
           });
 
           it('redirect to the list page', () => {
-            expect(ctrl.$state.go.calledWith('contacts.list')).to.be.true;
+            assert(ctrl.$state.go.calledWith('contacts.list'));
           });
 
         });
@@ -89,12 +89,11 @@ describe(`module ${statesModule}`, () => {
           }));
 
           it('does not redirect', () => {
-            expect(ctrl.$state.go.calledWith('contacts.list')).to.be.false;
+            assert(!ctrl.$state.go.calledWith('contacts.list'));
           });
 
           it('displays an error notification', () => {
-            expect(ctrl.toastr.error.calledWith('Unable to delete a contact.'))
-              .to.be.true;
+            assert(ctrl.toastr.error.calledWith('Unable to delete a contact.'));
           });
 
         });
@@ -109,7 +108,7 @@ describe(`module ${statesModule}`, () => {
         });
 
         it('does nothing', () => {
-          expect(ctrl.$state.go.called).to.be.false;
+          assert(!ctrl.$state.go.called);
         });
 
       });

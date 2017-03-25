@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import assert from 'assert';
 import statesModule from '../states.module';
 
 describe(`module ${statesModule}`, () => {
@@ -23,16 +23,16 @@ describe(`module ${statesModule}`, () => {
     }));
 
     it('has an array of contacts', inject((Contact) => {
-      expect(ctrl.contacts).to.be.an('array');
-      expect(ctrl.contacts).to.have.length(2);
+      assert(ctrl.contacts instanceof Array);
+      assert.equal(ctrl.contacts.length, 2);
 
-      expect(ctrl.contacts[0]).to.be.an.instanceOf(Contact);
-      expect(ctrl.contacts[0]).to.have.property('id', 1);
-      expect(ctrl.contacts[0]).to.have.property('firstName', 'Karen');
+      assert(ctrl.contacts[0] instanceof Contact);
+      assert.equal(ctrl.contacts[0].id, 1);
+      assert.equal(ctrl.contacts[0].firstName, 'Karen');
 
-      expect(ctrl.contacts[1]).to.be.an.instanceOf(Contact);
-      expect(ctrl.contacts[1]).to.have.property('id', 2);
-      expect(ctrl.contacts[1]).to.have.property('firstName', 'Luke');
+      assert(ctrl.contacts[1] instanceof Contact);
+      assert.equal(ctrl.contacts[1].id, 2);
+      assert.equal(ctrl.contacts[1].firstName, 'Luke');
     }));
 
   });

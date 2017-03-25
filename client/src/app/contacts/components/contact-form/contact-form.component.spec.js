@@ -1,5 +1,5 @@
+import assert from 'assert';
 import componentsModule from '../components.module';
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 describe(`module ${componentsModule}`, () => {
@@ -36,11 +36,11 @@ describe(`module ${componentsModule}`, () => {
       });
 
       it('initializes a contact copy', () => {
-        expect(ctrl.originalContact).to.not.be.undefined;
-        expect(ctrl.contact).to.not.be.undefined;
+        assert.notEqual(ctrl.originalContact, undefined);
+        assert(ctrl.contact);
 
-        expect(ctrl.contact).to.not.eq(ctrl.originalContact);
-        expect(ctrl.contact.id).to.equal(ctrl.originalContact.id);
+        assert.notEqual(ctrl.contact, ctrl.originalConcontact);
+        assert.equal(ctrl.contact.id, ctrl.originalContact.id);
       });
 
       describe('.showError', () => {
@@ -48,7 +48,7 @@ describe(`module ${componentsModule}`, () => {
         describe('when the form is not dirty', () => {
 
           it('returns false', () => {
-            expect(ctrl.showError({ $dirty: false })).to.be.false;
+            assert(!ctrl.showError({ $dirty: false }));
           });
 
         });
@@ -59,7 +59,7 @@ describe(`module ${componentsModule}`, () => {
 
             it('returns true', () => {
               const form = { $dirty: true, foo: { $invalid: true } };
-              expect(ctrl.showError(form, 'foo')).to.be.true;
+              assert(ctrl.showError(form, 'foo'));
             });
 
           });
@@ -68,7 +68,7 @@ describe(`module ${componentsModule}`, () => {
 
             it('returns false', () => {
               const form = { $dirty: true, foo: { $invalid: false } };
-              expect(ctrl.showError(form, 'foo')).to.be.false;
+              assert(!ctrl.showError(form, 'foo'));
             });
 
           });
@@ -81,12 +81,12 @@ describe(`module ${componentsModule}`, () => {
 
         it('returns true for a contacts with `id`', () => {
           angular.extend(ctrl.contact, { id: 123 });
-          expect(ctrl.isPersisted()).to.be.true;
+          assert(ctrl.isPersisted());
         });
 
         it('returns false for a contact without `id`', () => {
           angular.extend(ctrl.contact, { id: null });
-          expect(ctrl.isPersisted()).to.be.false;
+          assert(!ctrl.isPersisted());
         });
 
       });
@@ -95,22 +95,22 @@ describe(`module ${componentsModule}`, () => {
 
         it('updates a contact', () => {
           ctrl.submit();
-          expect(scope.update.calledWith(ctrl.contact)).to.be.true;
+          assert(scope.update.calledWith(ctrl.contact));
         });
 
         it('toggles `saving` flag', inject(($rootScope) => {
           // Given
-          expect(ctrl.saving).to.be.false;
+          assert(!ctrl.saving);
 
           // When
           ctrl.submit();
 
           // Then
-          expect(ctrl.saving).to.be.true;
+          assert(ctrl.saving);
 
           // ...resolve the promise
           $rootScope.$digest();
-          expect(ctrl.saving).to.be.false;
+          assert(!ctrl.saving);
         }));
 
       });

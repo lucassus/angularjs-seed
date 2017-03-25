@@ -5,11 +5,13 @@
   "plugins": ["angularjs-annotate"],
   "env": {
     "test": {
-      "plugins": [["istanbul", {
-        "exclude": [
-          "client/src/specs.js",
-          "client/src/**/*.spec.js"
-        ]
+      "presets": ["babel-preset-power-assert"],
+      "plugins": [
+        ["istanbul", {
+          "exclude": [
+            "client/src/specs.js",
+            "client/src/**/*.spec.js"
+          ]
       }]]
     }
   }

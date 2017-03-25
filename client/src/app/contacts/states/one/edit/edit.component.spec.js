@@ -1,4 +1,5 @@
-import { expect } from 'chai';
+import assert from 'assert';
+import { isPromise } from '../../../../../specs/utils';
 import sinon from 'sinon';
 import statesModule from '../../states.module';
 
@@ -27,8 +28,8 @@ describe(`module ${statesModule}`, () => {
     }));
 
     it('has a contact', () => {
-      expect(ctrl.contact).to.have.property('id', 123);
-      expect(ctrl.contact).to.have.property('firstName', 'Anakin');
+      assert.equal(ctrl.contact.id, 123);
+      assert.equal(ctrl.contact.firstName, 'Anakin');
     });
 
     describe('.update', () => {
@@ -41,7 +42,7 @@ describe(`module ${statesModule}`, () => {
       });
 
       it('returns a promise', () => {
-        expect(ctrl.update(contact)).to.be.a.promise;
+        assert(isPromise(ctrl.update(contact)));
       });
 
       describe('on success', () => {
@@ -59,17 +60,17 @@ describe(`module ${statesModule}`, () => {
         }));
 
         it('updates a contact', () => {
-          expect(ctrl.contact).to.have.property('id', 123);
-          expect(ctrl.contact).to.have.property('firstName', 'Luke');
-          expect(ctrl.contact).to.have.property('updatedAt');
+          assert.equal(ctrl.contact.id, 123);
+          assert.equal(ctrl.contact.firstName, 'Luke');
+          assert(ctrl.contact.updatedAt);
         });
 
         it('displays a notification', () => {
-          expect(ctrl.toastr.success.calledWith('Contact updated')).to.be.true;
+          assert(ctrl.toastr.success.calledWith('Contact updated'));
         });
 
         it('redirects to the show page', () => {
-          expect(ctrl.$state.go.calledWith('contacts.one.show', { id: 123 })).to.be.true;
+          assert(ctrl.$state.go.calledWith('contacts.one.show', { id: 123 }));
         });
 
       });
@@ -88,17 +89,16 @@ describe(`module ${statesModule}`, () => {
         }));
 
         it('does not update a contact', () => {
-          expect(ctrl.contact).to.have.property('firstName', 'Anakin');
-          expect(ctrl.contact).to.not.have.property('createdAt');
+          assert.equal(ctrl.contact.firstName, 'Anakin');
+          assert(!ctrl.contact.createdAt);
         });
 
         it('does not redirect', () => {
-          expect(ctrl.$state.go.calledWith('contacts.one.show')).to.be.false;
+          assert(!ctrl.$state.go.calledWith('contacts.one.show'));
         });
 
         it('displays an error notification', () => {
-          expect(ctrl.toastr.error.calledWith('Unable to update a contact.'))
-            .to.be.true;
+          assert(ctrl.toastr.error.calledWith('Unable to update a contact.'));
         });
 
       });

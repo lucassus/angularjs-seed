@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import assert from 'assert';
 import statesModule from '../../states.module';
 
 describe(`module ${statesModule}`, () => {
@@ -20,8 +20,8 @@ describe(`module ${statesModule}`, () => {
     }));
 
     it('has a contact', () => {
-      expect(ctrl.contact).to.have.property('id', 2);
-      expect(ctrl.contact).to.have.property('name', 'bar');
+      assert.equal(ctrl.contact.id, 2);
+      assert.equal(ctrl.contact.name, 'bar');
     });
 
   });

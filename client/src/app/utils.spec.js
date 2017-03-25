@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import assert from 'assert';
 import { extend } from './utils';
 
 describe('.extend', () => {
@@ -36,22 +36,22 @@ describe('.extend', () => {
 
   it('mixes instance methods', () => {
     const dolphin = new Dolphin('Willy');
-    expect(dolphin.breed()).to.equal('Willy is breeding');
+    assert.equal(dolphin.breed(), 'Willy is breeding');
   });
 
   it('calls the super method', () => {
     const dolphin = new Dolphin('Billy');
-    expect(dolphin.swim('the ocean')).to.equal('Billy is swimming in the ocean');
+    assert.equal(dolphin.swim('the ocean'), 'Billy is swimming in the ocean');
   });
 
   it('mixes instance properties', () => {
     const dolphin = new Dolphin('Willy');
 
     dolphin.speed = 20;
-    expect(dolphin.speedMiles).to.equal(12.4);
+    assert.equal(dolphin.speedMiles, 12.4);
 
     dolphin.speedMiles = 5;
-    expect(dolphin.speed).to.equal(8.064516129032258);
+    assert.equal(dolphin.speed, 8.064516129032258);
   });
 
 });

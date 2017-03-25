@@ -1,4 +1,4 @@
-const expect = require('chai').expect;
+const assert = require('power-assert');
 const Collection = require('./collection');
 const Promise = require('bluebird');
 
@@ -19,16 +19,16 @@ describe('Collection', () => {
     it('removes all documents', () => {
       return collection.drop().then(() => {
         return collection.find().then((documents) => {
-          expect(documents).to.have.length(0);
+          assert(documents.length === 0);
         });
       });
     });
 
     it('reset current id', () => {
       return collection.drop().then(() => {
-        expect(collection._nextId()).to.equal(1);
-        expect(collection._nextId()).to.equal(2);
-        expect(collection._nextId()).to.equal(3);
+        assert(collection._nextId() === 1);
+        assert(collection._nextId() === 2);
+        assert(collection._nextId() === 3);
       });
     });
 
@@ -45,7 +45,7 @@ describe('Collection', () => {
 
     it('returns all documents', () => {
       return collection.find().then((documents) => {
-        expect(documents).to.have.length(2);
+        assert(documents.length === 2);
       });
     });
 
@@ -63,8 +63,8 @@ describe('Collection', () => {
 
       it('resolves with the found document', () => {
         return collection.findOne({ email }).then((document) => {
-          expect(document).to.not.be.undefined;
-          expect(document).to.have.property('email', email);
+          assert(document);
+          assert(document.email === email);
         });
       });
 
@@ -87,11 +87,11 @@ describe('Collection', () => {
     it('inserts a document', () => {
       return collection.insertOne({ email: 'foo@email.com' }).then(() => {
         return collection.find().then((documents) => {
-          expect(documents).to.have.length(1);
-          expect(documents[0]).to.have.property('id');
-          expect(documents[0]).to.have.property('email', 'foo@email.com');
-          expect(documents[0]).to.have.property('updatedAt');
-          expect(documents[0]).to.have.property('createdAt');
+          assert(documents.length === 1);
+          assert(documents[0].id);
+          assert(documents[0].email === 'foo@email.com');
+          assert(documents[0].createdAt);
+          assert(documents[0].updatedAt);
         });
       });
     });
@@ -110,10 +110,10 @@ describe('Collection', () => {
 
     it('updates a document', () => {
       return collection.updateOne({ id }, { firstName: 'Luke' }).then((document) => {
-        expect(document).to.have.property('id', id);
-        expect(document).to.have.property('firstName', 'Luke');
-        expect(document).to.have.property('updatedAt');
-        expect(document).to.have.property('createdAt');
+        assert(document.id === id);
+        assert(document.firstName === 'Luke');
+        assert(document.updatedAt);
+        assert(document.createdAt);
       });
     });
 
@@ -132,7 +132,7 @@ describe('Collection', () => {
     it('deletes a document', () => {
       return collection.deleteOne({ id }).then(() => {
         return collection.find().then((documents) => {
-          expect(documents).to.have.length(0);
+          assert(documents.length === 0);
         });
       });
     });

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import assert from 'assert';
 import sinon from 'sinon';
 import statesModule from '../states.module';
 
@@ -25,14 +25,14 @@ describe(`module ${statesModule}`, () => {
     }));
 
     it('has a message', () => {
-      expect(ctrl.message).to.equal('Hello World!');
+      assert.equal(ctrl.message, 'Hello World!');
     });
 
     describe('.sayHello', () => {
 
       it('alerts a message', () => {
         ctrl.sayHello();
-        expect(ctrl.alert.show.calledWith('Hello World!')).to.be.true;
+        assert(ctrl.alert.show.calledWith('Hello World!'));
       });
 
     });

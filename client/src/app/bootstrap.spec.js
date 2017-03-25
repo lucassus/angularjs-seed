@@ -1,6 +1,6 @@
+import assert from 'assert';
 import { bootstrap } from './bootstrap';
 import commonsModule from './commons/commons.module';
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 describe('boostrap', () => {
@@ -41,19 +41,19 @@ describe('boostrap', () => {
       }));
 
       it('configures the module', () => {
-        expect(app.constant.calledWith('appConfig', {
+        assert(app.constant.calledWith('appConfig', {
           environment: 'test'
-        })).to.be.true;
+        }));
       });
 
       it('boots the app', () => {
-        expect(angular.bootstrap.called).to.be.true;
+        assert(angular.bootstrap.called);
 
         const [el, modules, options] = angular.bootstrap.lastCall.args;
 
-        expect(el).to.equal('html');
-        expect(modules[0]).to.equal('app');
-        expect(options).to.have.property('strictDi', true);
+        assert.equal(el, 'html');
+        assert.equal(modules[0], 'app');
+        assert(options.strictDi);
       });
 
     });
@@ -72,7 +72,7 @@ describe('boostrap', () => {
         $httpBackend.flush();
 
         // Then
-        expect($log.error.called).to.be.true;
+        assert($log.error.called);
       }));
 
     });

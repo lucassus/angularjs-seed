@@ -22,6 +22,7 @@
     "angular/module-getter": "off",
     "angular/no-service-method": "off",
     "angular/on-watch": "off",
+    "angular/definedundefined": "off",
     "no-console": "error",
     "no-duplicate-imports": "error",
     "no-useless-rename": "error",

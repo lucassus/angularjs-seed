@@ -1,4 +1,4 @@
-const expect = require('chai').expect;
+const assert = require('power-assert');
 const request = require('supertest');
 
 const app = require('../app');
@@ -14,7 +14,7 @@ describe('app', () => {
         .expect(200)
         .end(() => {
           db.contacts.find().then((contacts) => {
-            expect(contacts).to.have.length(20);
+            assert(contacts.length === 20);
             done();
           });
         });

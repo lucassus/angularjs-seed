@@ -1,5 +1,5 @@
+import assert from 'assert';
 import directivesModule from '../directives.module';
-import { expect } from 'chai';
 
 describe(`module ${directivesModule}`, () => {
 
@@ -31,11 +31,8 @@ describe(`module ${directivesModule}`, () => {
     }));
 
     it('sets the correct debounce options', () => {
-      expect(scope.testForm.email.$options.getOption('debounce'))
-        .to.equal(300);
-
-      expect(scope.testForm.email.$options.getOption('updateOnDefault'))
-        .to.equal(true);
+      assert.equal(scope.testForm.email.$options.getOption('debounce'), 300);
+      assert(scope.testForm.email.$options.getOption('updateOnDefault'));
     });
 
     function setEmail(email) {
@@ -55,10 +52,10 @@ describe(`module ${directivesModule}`, () => {
         setEmail('taken@email.com');
         $httpBackend.flush();
 
-        expect(scope.testForm.$valid).to.be.false;
-        expect(scope.testForm.email.$valid).to.be.false;
-        expect(scope.testForm.email.$error).to.have.property('uniqueEmail', true);
-        expect(scope.contact.email).to.be.undefined;
+        assert(!scope.testForm.$valid);
+        assert(!scope.testForm.email.$valid);
+        assert(scope.testForm.email.$error.uniqueEmail);
+        assert.equal(scope.contact.email, undefined);
       });
 
     });
@@ -75,10 +72,10 @@ describe(`module ${directivesModule}`, () => {
         setEmail('test@email.com');
         $httpBackend.flush();
 
-        expect(scope.testForm.$valid).to.be.true;
-        expect(scope.testForm.email.$valid).to.be.true;
-        expect(scope.testForm.email.$error).to.not.have.property('uniqueEmail');
-        expect(scope.contact.email).to.equal('test@email.com');
+        assert(scope.testForm.$valid);
+        assert(scope.testForm.email.$valid);
+        assert(!scope.testForm.email.$error.uniqueEmail);
+        assert.equal(scope.contact.email, 'test@email.com');
       });
 
     });
@@ -106,10 +103,10 @@ describe(`module ${directivesModule}`, () => {
         setEmail('another@email.com');
         $httpBackend.flush();
 
-        expect(scope.testForm.$valid).to.be.false;
-        expect(scope.testForm.email.$valid).to.be.false;
-        expect(scope.testForm.email.$error).to.have.property('uniqueEmail', true);
-        expect(scope.contact.email).to.be.undefined;
+        assert(!scope.testForm.$valid);
+        assert(!scope.testForm.email.$valid);
+        assert(scope.testForm.email.$error.uniqueEmail);
+        assert.equal(scope.contact.email, undefined);
       });
 
     });
