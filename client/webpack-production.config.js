@@ -8,7 +8,7 @@ const webpack = require('webpack');
 
 const BUILD_DIRECTORY = './client/build';
 
-const extractCSS = new ExtractTextPlugin('style.[hash].css');
+const extractCSS = new ExtractTextPlugin('style.[contenthash].css');
 
 module.exports = {
   entry: {
@@ -17,7 +17,7 @@ module.exports = {
 
   output: {
     path: path.resolve(BUILD_DIRECTORY),
-    filename: '[name].[hash].js'
+    filename: '[name].[chunkhash].js'
   },
 
   plugins: [
