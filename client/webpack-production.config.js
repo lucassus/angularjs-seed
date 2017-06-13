@@ -12,18 +12,6 @@ const extractCSS = new ExtractTextPlugin('style.[hash].css');
 
 module.exports = {
   entry: {
-    vendor: [
-      'jquery',
-      'lodash',
-      'angular',
-      'angular-animate',
-      'angular-messages',
-      'angular-resource',
-      'angular-loading-bar',
-      'angular-toastr',
-      'angular-ui-router',
-      'angular-breadcrumb'
-    ],
     app: './client/src/app.js'
   },
 
@@ -53,7 +41,15 @@ module.exports = {
       inject: true
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
+      name: 'vendor',
+      minChunks(module) {
+        // Assumes that vendor imports exist in the `/node_modules/` directory
+        return module.context && module.context.indexOf('/node_modules/') !== -1;
+      }
+    }),
+    // CommonChunksPlugin will now extract all the common modules from vendor and main bundles
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest'
     }),
     extractCSS,
     new webpack.optimize.UglifyJsPlugin({
