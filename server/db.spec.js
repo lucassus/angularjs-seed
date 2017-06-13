@@ -28,14 +28,11 @@ describe('db', () => {
     it('removes all collections', () =>{
       return db.drop().then(() => {
         return db.contacts.find();
-      })
-      .then((contacts) => {
+      }).then((contacts) => {
         assert(contacts.length === 0);
-      })
-      .then(() => {
+      }).then(() => {
         return db.contacts.insertOne({ email: 'test@email.com' });
-      })
-      .then(() => {
+      }).then(() => {
         return db.contacts.find().then((contacts) => {
           assert(contacts.length === 1);
           assert(contacts[0].id === 1);
