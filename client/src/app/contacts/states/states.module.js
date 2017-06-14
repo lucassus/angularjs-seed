@@ -9,7 +9,7 @@ import { oneAddressState } from './one/address/address.state';
 import { oneEditState } from './one/edit/edit.state';
 import { oneShowState } from './one/show/show.state';
 import { oneState } from './one/one.state';
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs';
 
 export default angular.module('app.contacts.states', [
   angularMessages,

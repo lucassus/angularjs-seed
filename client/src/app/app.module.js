@@ -6,8 +6,8 @@ import buildSignature from '../../build_signature_loader!./build_signature.tpl';
 import commonsModule from './commons/commons.module';
 import contactsModule from './contacts/contacts.module';
 import homeModule from './home/home.module';
-import resolveFactory from 'angular-ui-router/lib/legacy/resolveService';
-import uiRouter from 'angular-ui-router';
+import resolveFactory from '@uirouter/angularjs/lib/legacy/resolveService';
+import uiRouter from '@uirouter/angularjs';
 
 function stateErrorsHandler($log, $rootScope, $state) {
   'ngInject';
