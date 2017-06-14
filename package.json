@@ -4,7 +4,7 @@
   "description": "AngularJS 1.5.x seed",
   "main": "server.js",
   "engines": {
-    "node": "6.2.2"
+    "node": "6.11"
   },
   "scripts": {
     "heroku-postbuild": "webpack --config client/webpack-production.config.js",

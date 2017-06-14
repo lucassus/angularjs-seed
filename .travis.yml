@@ -33,7 +33,7 @@ script:
   - gulp test --browsers=Chrome
   - gulp test --browsers=Firefox
 
-  - npm run dev-server &
+  - yarn run dev-server &
   - ./e2e/run-tests
 
 after_success:
