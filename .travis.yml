@@ -4,7 +4,7 @@ dist: trusty
 language: node_js
 
 node_js:
-  - 6.2
+  - 6.11
 
 addons:
   firefox: latest
@@ -20,12 +20,11 @@ before_install:
  - export CHROME_BIN=/usr/bin/google-chrome
 
 install:
-  - npm install npm --global
-  - npm install gulp --global
-  - npm install codecov --global
+  - yarn global add gulp
+  - yarn global add codecov
 
 before_script:
-  - npm install
+  - yarn install
 
 script:
   - gulp lint
