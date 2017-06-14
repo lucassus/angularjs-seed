@@ -12,6 +12,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'build-test/manifest.js',
       'build-test/vendor.js',
       'build-test/specs.js'
     ],

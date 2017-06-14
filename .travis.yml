@@ -20,6 +20,7 @@ before_install:
  - export CHROME_BIN=/usr/bin/google-chrome
 
 install:
+  - npm install npm --global
   - npm install gulp --global
   - npm install codecov --global
 
