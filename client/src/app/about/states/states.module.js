@@ -1,5 +1,5 @@
 import { indexState } from './index/index.state';
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs';
 
 export default angular.module('app.about.states', [
   uiRouter

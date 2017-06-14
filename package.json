@@ -4,7 +4,7 @@
   "description": "AngularJS 1.5.x seed",
   "main": "server.js",
   "engines": {
-    "node": "6.2.2"
+    "node": "6.11"
   },
   "scripts": {
     "heroku-postbuild": "webpack --config client/webpack-production.config.js",
@@ -79,6 +79,7 @@
     "webpack-dev-server": "2.4.5"
   },
   "dependencies": {
+    "@uirouter/angularjs": "1.0.4",
     "angular": "1.6.4",
     "angular-animate": "1.6.4",
     "angular-breadcrumb": "0.5.0",
@@ -86,7 +87,6 @@
     "angular-messages": "1.6.4",
     "angular-resource": "1.6.4",
     "angular-toastr": "2.1.1",
-    "angular-ui-router": "1.0.3",
     "bluebird": "3.5.0",
     "body-parser": "1.17.2",
     "bootstrap-sass": "3.3.7",
