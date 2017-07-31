@@ -2,7 +2,7 @@ const utils = require('./utils');
 
 exports.config = {
   directConnect: true,
-  chromeDriver: '../node_modules/webdriver-manager/selenium/chromedriver_2.30',
+  chromeDriver: '../node_modules/webdriver-manager/selenium/chromedriver_2.31',
   capabilities: {
     browserName: 'chrome'
   },
