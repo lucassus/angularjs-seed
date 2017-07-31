@@ -79,7 +79,7 @@
     "webpack-dev-server": "2.6.1"
   },
   "dependencies": {
-    "@uirouter/angularjs": "1.0.4",
+    "@uirouter/angularjs": "1.0.5",
     "angular": "1.6.5",
     "angular-animate": "1.6.5",
     "angular-breadcrumb": "0.5.0",
