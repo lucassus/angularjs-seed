@@ -4,11 +4,15 @@ process.env.BABEL_ENV = 'test';
 
 module.exports = function({ singleRun }) {
 
-  const jsLoaders = ['babel-loader'];
+  const jsLoaders = [{
+    loader: 'babel-loader'
+  }];
 
   // Execute ESLint in tdd mode
   if (!singleRun) {
-    jsLoaders.push('eslint-loader');
+    jsLoaders.push({
+      loader: 'eslint-loader'
+    });
   }
 
   return {
@@ -25,7 +29,7 @@ module.exports = function({ singleRun }) {
       rules: [{
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: jsLoaders
+        use: jsLoaders
       }, {
         test: /\.html$/,
         loader: 'html-loader'
