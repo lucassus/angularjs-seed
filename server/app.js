@@ -11,12 +11,14 @@ app.get('/api/config', (req, res) => {
   res.json({ environment });
 });
 
+/* istanbul ignore next */
 if (app.get('env') !== 'production') {
   app.use('/api/seed', require('./api/seed'));
 }
 
 app.use('/api/contacts', require('./api/contacts'));
 
+/* istanbul ignore next */
 if (app.get('env') === 'production') {
   app.all('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
