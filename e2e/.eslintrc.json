@@ -20,6 +20,7 @@
     "inject": true
   },
   "rules": {
+    "jasmine/new-line-before-expect": "off",
     "protractor/valid-locator-type": "off"
   }
 }
