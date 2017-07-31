@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const KarmaServer = require('karma').Server;
 const gulp = require('gulp');
+const shell = require('gulp-shell');
 const gutil = require('gulp-util');
 const path = require('path');
 
@@ -74,27 +75,10 @@ gulp.task('tdd', () => {
   server.start();
 });
 
-gulp.task('server:test', (done) => {
-  const istanbul = require('gulp-istanbul');
-  const mocha = require('gulp-mocha');
-
-  gulp.src(['server/**/!(*.spec).js', '!server/app.js'])
-    .pipe(istanbul({ includeUntested: true }))
-    .pipe(istanbul.hookRequire())
-    .on('finish', () => {
-      gulp.src(['server/**/*.spec.js'], { read: false })
-        .pipe(mocha({
-          ui: 'bdd',
-          reporter: 'dot',
-          require: ['./server/enable-power-assert']
-        }))
-        .pipe(istanbul.writeReports({
-          dir: 'artifacts/server/coverage',
-          reporters: ['html', 'text', 'lcovonly']
-        }))
-        .on('end', done);
-    });
-});
+gulp.task('server:test', shell.task(
+  'node_modules/.bin/istanbul cover --dir artifacts/server/coverage ' +
+  'node_modules/.bin/_mocha -- --reporter dot server/**/*.spec.js'
+));
 
 gulp.task('default', (done) => {
   const runSequence = require('run-sequence');
