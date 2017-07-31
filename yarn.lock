@@ -116,9 +116,9 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular-animate@1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.4.tgz#d3eb906d39834f2dfbdd982e6b8d7a3b4d9001d2"
+angular-animate@1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.5.tgz#3817c75880d05fc899a6c8d4b09d1cc62a71e93a"
 
 angular-breadcrumb@0.5.0:
   version "0.5.0"
@@ -128,25 +128,25 @@ angular-loading-bar@0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/angular-loading-bar/-/angular-loading-bar-0.9.0.tgz#37ef52c25f102c216e7b3cdfd2fc5a5df9628e45"
 
-angular-messages@1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.6.4.tgz#9ec9c1393293b14de54161d2f849776489e980fe"
+angular-messages@1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.6.5.tgz#cc8127c48dfc47e69fedd0b0eadd5a97d18983a8"
 
-angular-mocks@1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.4.tgz#47fdf50921cf24fb489f100a8cf2ad99d0538f40"
+angular-mocks@1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.5.tgz#c62f8014cc6d3ed3fd1b383a634ca0009af3efee"
 
-angular-resource@1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.6.4.tgz#bcb83688b0a7d3402fde58dc7f4881383a6c0ebb"
+angular-resource@1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.6.5.tgz#d1e712ab01afa5d2ec649f5e471673a704f2be40"
 
 angular-toastr@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/angular-toastr/-/angular-toastr-2.1.1.tgz#9f8350ca482145a44d011a755b8fb3623d60544c"
 
-angular@1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.4.tgz#03b7b15c01a0802d7e2cf593240e604054dc77fb"
+angular@1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.5.tgz#37f788eebec5ce2e3fa02b17bbcb2a231576a0d6"
 
 ansi-escapes@^2.0.0:
   version "2.0.0"
@@ -1884,11 +1884,7 @@ domain-browser@^1.1.1:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.1.7.tgz#867aa4b093faa05f1de08c06f4d7b21fdf8698bc"
 
-domelementtype@1:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-1.3.0.tgz#b17aed82e8ab59e52dd9c19b1756e0fc187204c2"
-
-domelementtype@~1.1.1:
+domelementtype@1, domelementtype@~1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-1.1.3.tgz#bd28773e2642881aec51544924299c5cd822185b"
 
@@ -7670,16 +7666,9 @@ write@^0.2.1:
   dependencies:
     mkdirp "^0.5.1"
 
-ws@1.1.2:
+ws@1.1.2, ws@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/ws/-/ws-1.1.2.tgz#8a244fa052401e08c9886cf44a85189e1fd4067f"
-  dependencies:
-    options ">=0.0.5"
-    ultron "1.0.x"
-
-ws@^1.0.1:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-1.1.4.tgz#57f40d036832e5f5055662a397c4de76ed66bf61"
   dependencies:
     options ">=0.0.5"
     ultron "1.0.x"
